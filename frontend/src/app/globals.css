@@ -1,0 +1,84 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #fdfcf7; /* Soft Ivory */
+  --foreground: #2e3333; /* Soft Anthracite */
+
+  --ivory-soft: #fdfcf7;
+  --sage-light: #f0f4f1;
+  --teal-deep: #133b3a;
+  --gold-soft: #d9a05b;
+  --anthracite-soft: #2e3333;
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: var(--font-inter), Arial, Helvetica, sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-outfit), var(--font-inter), sans-serif;
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+/* Signature diagonal shimmer effect */
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.shimmer-effect {
+  position: relative;
+  overflow: hidden;
+}
+
+.shimmer-effect::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.4) 40%,
+    rgba(255, 255, 255, 0.4) 60%,
+    transparent 70%
+  );
+  background-size: 200% 100%;
+  background-position: -200% 0;
+  transition: all 0.6s ease;
+  pointer-events: none;
+}
+
+.shimmer-effect:hover::after {
+  animation: shimmer 1.5s infinite;
+}
+
+.shimmer-loop::after {
+  animation: shimmer 4s infinite linear;
+}
+
+/* Logo shine animation */
+@keyframes logoShimmer {
+  0%, 100% {
+    background-position: -250% 0;
+  }
+  50% {
+    background-position: 250% 0;
+  }
+}
+
