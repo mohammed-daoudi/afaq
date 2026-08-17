@@ -4,6 +4,13 @@ import React, { useState } from 'react';
 
 export default function ContactPage() {
   const [formType, setFormType] = useState('commercial');
+  const [copied, setCopied] = useState<string | null>(null);
+
+  const handleCopy = (text: string, id: string) => {
+    navigator.clipboard.writeText(text);
+    setCopied(id);
+    setTimeout(() => setCopied(null), 2000);
+  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -49,17 +56,43 @@ export default function ContactPage() {
 
                 <div className="flex items-start gap-4">
                   <div className="mt-1 text-gold-soft">📞</div>
-                  <div>
+                  <div className="flex-1">
                     <p className="font-semibold">Téléphone</p>
-                    <p className="text-sm text-sage-light mt-1">+212 6 17 20 11 29</p>
+                    <div className="flex items-center gap-2 mt-1">
+                      <p className="text-sm text-sage-light">+212 6 17 20 11 29</p>
+                      <button 
+                        onClick={() => handleCopy('+212617201129', 'phone')}
+                        className="text-sage-light hover:text-gold-soft transition-colors"
+                        title="Copier le numéro"
+                      >
+                        {copied === 'phone' ? (
+                          <span className="text-xs text-green-400">✓ Copié</span>
+                        ) : (
+                          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+                        )}
+                      </button>
+                    </div>
                   </div>
                 </div>
 
                 <div className="flex items-start gap-4">
                   <div className="mt-1 text-gold-soft">✉️</div>
-                  <div>
+                  <div className="flex-1">
                     <p className="font-semibold">Email</p>
-                    <p className="text-sm text-sage-light mt-1">contact@afaqhealth.com</p>
+                    <div className="flex items-center gap-2 mt-1">
+                      <p className="text-sm text-sage-light">contact@afaqhealth.com</p>
+                      <button 
+                        onClick={() => handleCopy('contact@afaqhealth.com', 'email')}
+                        className="text-sage-light hover:text-gold-soft transition-colors"
+                        title="Copier l'email"
+                      >
+                        {copied === 'email' ? (
+                          <span className="text-xs text-green-400">✓ Copié</span>
+                        ) : (
+                          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+                        )}
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>

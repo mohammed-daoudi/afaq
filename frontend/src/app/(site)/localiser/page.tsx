@@ -35,10 +35,11 @@ export default function LocaliserPage() {
   useEffect(() => {
     const fetchPharmacies = async () => {
       try {
-        const response = await axios.get('http://127.0.0.1:8000/api/public/pharmacies');
+        const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://127.0.0.1:8000/api';
+        const response = await axios.get(`${apiUrl}/public/pharmacies`);
         setPharmacies(response.data);
       } catch (error) {
-        console.error('Erreur lors du chargement des pharmacies (fallback aux données de test):', error);
+        console.warn('Backend non disponible, fallback aux données de test.');
         setPharmacies([
           { id: 1, name: 'Pharmacie Centrale', city: 'Rabat', address: '15 Avenue Mohammed V, Rabat', lat: 34.020882, lng: -6.841650 },
           { id: 2, name: 'Pharmacie Al Amal', city: 'Rabat', address: 'Quartier Agdal, Rabat', lat: 34.004413, lng: -6.847582 },
@@ -81,10 +82,10 @@ export default function LocaliserPage() {
         </div>
 
         {/* Layout: Sidebar + Map */}
-        <div className="flex-grow flex flex-col lg:flex-row gap-6 h-[70vh] min-h-[600px]">
+        <div className="flex-grow flex flex-col lg:flex-row gap-6 lg:h-[70vh] lg:min-h-[600px]">
           
           {/* Sidebar (Search & List) */}
-          <div className="w-full lg:w-1/3 bg-white rounded-3xl shadow-sm border border-sage-light flex flex-col overflow-hidden">
+          <div className="w-full lg:w-1/3 bg-white rounded-3xl shadow-sm border border-sage-light flex flex-col overflow-hidden h-[400px] lg:h-auto">
             
             {/* Search Header */}
             <div className="p-6 border-b border-sage-light/50 bg-ivory-soft/30 space-y-4">
@@ -149,7 +150,7 @@ export default function LocaliserPage() {
           </div>
 
           {/* Map Area */}
-          <div className="w-full lg:w-2/3 bg-white rounded-3xl shadow-sm border border-sage-light relative overflow-hidden flex flex-col z-0">
+          <div className="w-full lg:w-2/3 bg-white rounded-3xl shadow-sm border border-sage-light relative overflow-hidden flex flex-col z-0 h-[400px] sm:h-[500px] lg:h-auto lg:min-h-0">
             {isLoading ? (
               <div className="absolute inset-0 flex items-center justify-center bg-[#f4f7f6]">
                 <div className="text-teal-deep font-semibold">Chargement de la carte...</div>

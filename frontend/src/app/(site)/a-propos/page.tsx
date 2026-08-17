@@ -1,5 +1,9 @@
+'use client';
+
 import React from 'react';
 import { Card, CardContent } from '@/components/ui/Card';
+import Image from 'next/image';
+import { motion } from 'framer-motion';
 
 const differentiators = [
   {
@@ -24,27 +28,39 @@ const differentiators = [
   }
 ];
 
+const fadeUp = {
+  hidden: { opacity: 0, y: 30 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
+};
+
 export default function AProposPage() {
   return (
-    <div className="min-h-screen bg-ivory-soft pt-12 pb-24">
+    <div className="min-h-screen bg-ivory-soft pt-12 pb-24 overflow-hidden">
       <div className="container mx-auto px-4">
         
         {/* Header */}
-        <div className="max-w-3xl mx-auto text-center mb-20 space-y-6">
-          <div className="inline-block px-3 py-1 text-xs font-semibold tracking-wider text-teal-deep bg-sage-light rounded-full uppercase">
+        <motion.div 
+          initial="hidden" animate="visible" variants={{ hidden: { opacity: 0 }, visible: { opacity: 1, transition: { staggerChildren: 0.2 } } }}
+          className="max-w-3xl mx-auto text-center mb-20 space-y-6"
+        >
+          <motion.div variants={fadeUp} className="inline-block px-3 py-1 text-xs font-semibold tracking-wider text-teal-deep bg-sage-light rounded-full uppercase">
             Qui Sommes-Nous
-          </div>
-          <h1 className="text-4xl md:text-5xl font-heading font-extrabold text-teal-deep">
+          </motion.div>
+          <motion.h1 variants={fadeUp} className="text-4xl md:text-5xl font-heading font-extrabold text-teal-deep">
             L'Expertise <span className="text-gold-soft">AFAQ Health</span>
-          </h1>
-          <p className="text-lg text-anthracite-soft/80 font-sans">
+          </motion.h1>
+          <motion.p variants={fadeUp} className="text-lg text-anthracite-soft/80 font-sans">
             Nous accompagnons des laboratoires européens dans leur implantation durable sur des marchés à fort potentiel, en Afrique de l'Ouest et au Maroc.
-          </p>
-        </div>
+          </motion.p>
+        </motion.div>
 
-        {/* Mission & Expertise */}
-        <div className="max-w-4xl mx-auto bg-white rounded-3xl shadow-sm p-8 md:p-12 mb-20 border border-sage-light/50">
-          <div className="grid md:grid-cols-2 gap-12">
+        {/* Mission & Expertise with Image */}
+        <motion.div 
+          initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }}
+          variants={{ hidden: { opacity: 0 }, visible: { opacity: 1, transition: { staggerChildren: 0.3 } } }}
+          className="max-w-6xl mx-auto bg-white rounded-3xl shadow-lg p-8 md:p-12 mb-20 border border-sage-light/50 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center"
+        >
+          <motion.div variants={fadeUp} className="space-y-12">
             <div className="space-y-4">
               <h2 className="text-2xl font-heading font-bold text-teal-deep border-b-2 border-gold-soft pb-2 inline-block">Notre Mission</h2>
               <p className="text-anthracite-soft/80 leading-relaxed">
@@ -57,25 +73,52 @@ export default function AProposPage() {
                 Au-delà de la simple importation, AFAQ Health prend en charge l'ensemble de la chaîne de valeur : de la stratégie d'accès au marché et l'homologation AMMPS, jusqu'au développement commercial, la structuration des réseaux de distribution et l'accompagnement scientifique des officines.
               </p>
             </div>
-          </div>
-        </div>
+          </motion.div>
+          
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, type: "spring" }}
+            className="relative h-[400px] lg:h-full min-h-[500px] w-full rounded-2xl overflow-hidden"
+          >
+            <Image 
+              src="/tsawrsotya/a_propos_mission.png" 
+              alt="L'équipe AFAQ Health en réunion" 
+              fill 
+              className="object-cover hover:scale-105 transition-transform duration-1000" 
+            />
+            <div className="absolute inset-0 bg-gold-soft/10 mix-blend-multiply pointer-events-none" />
+          </motion.div>
+        </motion.div>
 
         {/* Differentiators Grid */}
         <div className="max-w-5xl mx-auto">
-          <h2 className="text-3xl font-heading font-bold text-teal-deep text-center mb-12">Nos 4 Différenciateurs</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <motion.h2 
+            initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
+            className="text-3xl font-heading font-bold text-teal-deep text-center mb-12"
+          >
+            Nos 4 Différenciateurs
+          </motion.h2>
+          <motion.div 
+            initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }}
+            variants={{ hidden: { opacity: 0 }, visible: { opacity: 1, transition: { staggerChildren: 0.1 } } }}
+            className="grid grid-cols-1 md:grid-cols-2 gap-8"
+          >
             {differentiators.map((item, index) => (
-              <Card key={index} className="border-none shadow-sm hover:shadow-md transition-shadow bg-white flex flex-row items-start p-6 gap-6">
-                <div className="text-4xl bg-sage-light p-4 rounded-2xl">{item.icon}</div>
-                <div>
-                  <h3 className="text-lg font-bold text-teal-deep mb-2">{item.title}</h3>
-                  <p className="text-anthracite-soft/80 text-sm leading-relaxed">
-                    {item.description}
-                  </p>
-                </div>
-              </Card>
+              <motion.div variants={fadeUp} key={index}>
+                <Card className="border-none shadow-sm hover:shadow-xl transition-all duration-300 bg-white flex flex-row items-start p-6 gap-6 group">
+                  <div className="text-4xl bg-sage-light p-4 rounded-2xl transform group-hover:rotate-12 transition-transform duration-300">{item.icon}</div>
+                  <div>
+                    <h3 className="text-lg font-bold text-teal-deep mb-2">{item.title}</h3>
+                    <p className="text-anthracite-soft/80 text-sm leading-relaxed">
+                      {item.description}
+                    </p>
+                  </div>
+                </Card>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
 
       </div>

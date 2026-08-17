@@ -9,9 +9,10 @@ const navLinks = [
   { href: '/marques', label: 'Nos marques' },
   { href: '/pourquoi-nous', label: 'Pourquoi nous' },
   { href: '/a-propos', label: 'À propos' },
-  { href: '/notre-reseau', label: 'Notre réseau' },
+  { href: '/#notre-reseau', label: 'Notre réseau' },
   { href: '/localiser', label: 'Localiser' },
   { href: '/faq', label: 'FAQ' },
+  { href: '/contact', label: 'Contact' },
 ];
 
 export function Header() {

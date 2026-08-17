@@ -9,6 +9,7 @@ export interface Product {
   brand: string;
   category: TherapeuticFamily;
   imagePath: string;
+  labelImagePath?: string;
   description: string;
   benefits: string[];
   dosage: string;
@@ -204,6 +205,7 @@ export const products: Product[] = [
     brand: 'SOTYA',
     category: 'Santé Spécifique',
     imagePath: '/images/products/WhatsApp Image 2026-08-05 at 6.04.42 AM.jpeg',
+    labelImagePath: '/tsawrsotya/onagre_label_3d.png',
     description: 'Complément alimentaire à base de Huile d\'Onagre, Acide gamma Linolénique et Vitamine E. 10% GLA (Oméga 6).',
     benefits: ['Équilibre hormonal prénatal', 'Santé gynécologique', 'Peau et articulations'],
     dosage: '1 à 2 perles par jour',

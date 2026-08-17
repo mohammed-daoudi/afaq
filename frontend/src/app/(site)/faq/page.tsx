@@ -1,6 +1,8 @@
 'use client';
 
 import React, { useState } from 'react';
+import Image from 'next/image';
+import { motion } from 'framer-motion';
 
 const faqs = [
   {
@@ -52,6 +54,11 @@ const faqs = [
   }
 ];
 
+const fadeUp = {
+  hidden: { opacity: 0, y: 30 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
+};
+
 export default function FaqPage() {
   const [openIndex, setOpenIndex] = useState<string>('0-0');
 
@@ -60,82 +67,102 @@ export default function FaqPage() {
   };
 
   return (
-    <div className="min-h-screen bg-ivory-soft pt-12 pb-24">
+    <div className="min-h-screen bg-ivory-soft pt-12 pb-24 overflow-hidden">
       <div className="container mx-auto px-4">
         
         {/* Header */}
-        <div className="max-w-3xl mx-auto text-center mb-16 space-y-6">
-          <div className="inline-block px-3 py-1 text-xs font-semibold tracking-wider text-teal-deep bg-sage-light rounded-full uppercase">
+        <motion.div 
+          initial="hidden" animate="visible" variants={{ hidden: { opacity: 0 }, visible: { opacity: 1, transition: { staggerChildren: 0.2 } } }}
+          className="max-w-3xl mx-auto text-center mb-16 space-y-6"
+        >
+          <motion.div variants={fadeUp} className="inline-block px-3 py-1 text-xs font-semibold tracking-wider text-teal-deep bg-sage-light rounded-full uppercase">
             Centre d'Aide
-          </div>
-          <h1 className="text-4xl md:text-5xl font-heading font-extrabold text-teal-deep">
+          </motion.div>
+          <motion.h1 variants={fadeUp} className="text-4xl md:text-5xl font-heading font-extrabold text-teal-deep">
             Questions <span className="text-gold-soft">Fréquentes</span>
-          </h1>
-          <p className="text-lg text-anthracite-soft/80 font-sans">
+          </motion.h1>
+          <motion.p variants={fadeUp} className="text-lg text-anthracite-soft/80 font-sans">
             Retrouvez les réponses aux questions les plus posées par nos partenaires professionnels et le grand public.
-          </p>
-        </div>
+          </motion.p>
+        </motion.div>
 
-        {/* FAQ Accordions */}
-        <div className="max-w-4xl mx-auto space-y-12">
-          {faqs.map((group, groupIdx) => (
-            <div key={groupIdx} className="space-y-6">
-              <h2 className="text-2xl font-heading font-bold text-teal-deep border-b-2 border-sage-light pb-2">
-                {group.category}
-              </h2>
-              
-              <div className="space-y-4">
-                {group.questions.map((faq, faqIdx) => {
-                  const currentIndex = `${groupIdx}-${faqIdx}`;
-                  const isOpen = openIndex === currentIndex;
-                  
-                  return (
-                    <div 
-                      key={faqIdx} 
-                      className={`bg-white rounded-2xl border transition-all duration-200 overflow-hidden ${
-                        isOpen ? 'border-gold-soft shadow-md' : 'border-sage-light shadow-sm'
-                      }`}
-                    >
-                      <button
-                        onClick={() => toggleAccordion(currentIndex)}
-                        className="w-full px-6 py-5 text-left flex justify-between items-center focus:outline-none"
-                      >
-                        <span className="font-bold text-teal-deep pr-8">{faq.q}</span>
-                        <span className={`text-gold-soft transform transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`}>
-                          ▼
-                        </span>
-                      </button>
-                      
+        {/* Content with Image and Accordions */}
+        <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+          
+          {/* Left Side: Animated Image */}
+          <motion.div 
+            initial={{ opacity: 0, x: -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.8, type: "spring" }}
+            className="lg:col-span-5 relative h-[500px] w-full rounded-3xl overflow-hidden shadow-2xl sticky top-24"
+          >
+            <Image 
+              src="/tsawrsotya/faq_support.png" 
+              alt="Support Client AFAQ Health" 
+              fill 
+              className="object-cover hover:scale-105 transition-transform duration-1000" 
+            />
+            <div className="absolute inset-0 bg-teal-deep/5 pointer-events-none" />
+            <div className="absolute bottom-6 left-6 right-6 bg-white/90 backdrop-blur-md p-6 rounded-2xl shadow-lg">
+              <h3 className="font-bold text-teal-deep text-lg mb-2">Besoin d'assistance directe ?</h3>
+              <p className="text-anthracite-soft/80 text-sm mb-4">Notre équipe de pharmaciens est à votre écoute.</p>
+              <a href="/contact" className="inline-block w-full text-center bg-gold-soft text-teal-deep font-bold px-4 py-2 rounded-xl hover:bg-teal-deep hover:text-white transition-colors">
+                Nous contacter
+              </a>
+            </div>
+          </motion.div>
+
+          {/* Right Side: FAQ Accordions */}
+          <motion.div 
+            initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }}
+            variants={{ hidden: { opacity: 0 }, visible: { opacity: 1, transition: { staggerChildren: 0.1 } } }}
+            className="lg:col-span-7 space-y-12"
+          >
+            {faqs.map((group, groupIdx) => (
+              <motion.div variants={fadeUp} key={groupIdx} className="space-y-6">
+                <h2 className="text-2xl font-heading font-bold text-teal-deep border-b-2 border-sage-light pb-2">
+                  {group.category}
+                </h2>
+                
+                <div className="space-y-4">
+                  {group.questions.map((faq, faqIdx) => {
+                    const currentIndex = `${groupIdx}-${faqIdx}`;
+                    const isOpen = openIndex === currentIndex;
+                    
+                    return (
                       <div 
-                        className={`px-6 overflow-hidden transition-all duration-300 ease-in-out ${
-                          isOpen ? 'max-h-96 pb-5 opacity-100' : 'max-h-0 opacity-0'
+                        key={faqIdx} 
+                        className={`bg-white rounded-2xl border transition-all duration-200 overflow-hidden ${
+                          isOpen ? 'border-gold-soft shadow-md' : 'border-sage-light shadow-sm hover:border-gold-soft/50'
                         }`}
                       >
-                        <p className="text-anthracite-soft/80 text-sm leading-relaxed border-t border-sage-light/30 pt-4">
-                          {faq.a}
-                        </p>
+                        <button
+                          onClick={() => toggleAccordion(currentIndex)}
+                          className="w-full px-6 py-5 text-left flex justify-between items-center focus:outline-none"
+                        >
+                          <span className={`font-bold pr-8 transition-colors ${isOpen ? 'text-gold-soft' : 'text-teal-deep'}`}>{faq.q}</span>
+                          <span className={`text-gold-soft transform transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`}>
+                            ▼
+                          </span>
+                        </button>
+                        
+                        <div 
+                          className={`px-6 overflow-hidden transition-all duration-300 ease-in-out ${
+                            isOpen ? 'max-h-96 pb-5 opacity-100' : 'max-h-0 opacity-0'
+                          }`}
+                        >
+                          <p className="text-anthracite-soft/80 text-sm leading-relaxed border-t border-sage-light/30 pt-4">
+                            {faq.a}
+                          </p>
+                        </div>
                       </div>
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
-          ))}
-        </div>
-
-        {/* Contact CTA */}
-        <div className="max-w-4xl mx-auto mt-20 text-center bg-teal-deep text-white p-10 rounded-3xl relative overflow-hidden">
-          <div className="absolute top-0 right-0 w-64 h-64 bg-gold-soft rounded-full opacity-10 blur-3xl transform translate-x-1/3 -translate-y-1/3"></div>
-          <h3 className="text-2xl font-heading font-bold mb-4 relative z-10">Vous n'avez pas trouvé votre réponse ?</h3>
-          <p className="text-sage-light mb-8 relative z-10 max-w-lg mx-auto">
-            Notre équipe est à votre disposition pour répondre à toutes vos questions complémentaires.
-          </p>
-          <a 
-            href="/contact" 
-            className="inline-block bg-gold-soft text-teal-deep font-bold px-8 py-3 rounded-xl hover:bg-white transition-colors relative z-10"
-          >
-            Contactez-nous
-          </a>
+                    );
+                  })}
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
         </div>
 
       </div>

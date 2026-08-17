@@ -35,6 +35,12 @@ const featuredProducts = featuredIds.map(id => {
   };
 });
 
+const heroImages = [
+  '/tsawrsotya/yoga.png',
+  '/tsawrsotya/prod.jpeg',
+  '/tsawrsotya/guy.jfif'
+];
+
 // Reusable animation variants
 const fadeUpVariant = {
   hidden: { opacity: 0, y: 40 },
@@ -66,7 +72,7 @@ export default function HomePage() {
     <div className="min-h-screen">
       
       {/* 1. Product-Centric Hero Carousel */}
-      <section className="relative h-screen bg-sage-light overflow-hidden flex items-center pt-20">
+      <section className="relative min-h-[100dvh] lg:h-screen bg-sage-light overflow-hidden flex items-center pt-32 pb-16 lg:py-0">
         <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-teal-deep/5 rounded-full blur-3xl transform translate-x-1/3 -translate-y-1/3 pointer-events-none" />
         <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-gold-soft/10 rounded-full blur-3xl transform -translate-x-1/3 translate-y-1/3 pointer-events-none" />
 
@@ -105,20 +111,28 @@ export default function HomePage() {
                   </Link>
                 </div>
               </div>
-              <div className="order-1 lg:order-2 flex justify-center relative">
+              <div className="order-1 lg:order-2 flex justify-center relative w-[calc(100%+2rem)] -mx-4 lg:mx-0 lg:w-full h-[400px] sm:h-[500px] lg:h-[600px]">
                 <div 
-                  className="absolute inset-0 rounded-full blur-2xl opacity-20 transform scale-75"
+                  className="absolute inset-0 blur-3xl opacity-30 transform scale-90"
                   style={{ backgroundColor: FAMILY_COLORS[featuredProducts[currentSlide].category as TherapeuticFamily].accent }}
                 />
-                <Image 
-                  src={featuredProducts[currentSlide].imagePath}
-                  alt={featuredProducts[currentSlide].name}
-                  width={600}
-                  height={600}
-                  priority
-                  className="relative z-10 object-contain drop-shadow-[0_30px_40px_rgba(0,0,0,0.4)] hover:scale-105 transition-transform duration-700"
-                  sizes="(max-width: 1024px) 80vw, 50vw"
-                />
+                <motion.div 
+                  className="relative w-full h-full overflow-hidden z-10"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.8, ease: "easeOut" }}
+                >
+                  <Image 
+                    src={heroImages[currentSlide]}
+                    alt={featuredProducts[currentSlide].name}
+                    fill
+                    priority
+                    className="object-cover hover:scale-105 transition-transform duration-700"
+                    sizes="(max-width: 1024px) 100vw, 50vw"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent pointer-events-none" />
+                </motion.div>
               </div>
             </motion.div>
           </AnimatePresence>
@@ -170,6 +184,17 @@ export default function HomePage() {
                   Découvrir nos marques
                 </Link>
               </div>
+
+                <motion.div 
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.8, delay: 0.3 }}
+                  className="relative w-full aspect-square min-h-[300px] sm:min-h-[400px] max-h-[600px] mx-auto mt-8 rounded-3xl overflow-hidden shadow-lg"
+                >
+                  <Image src="/tsawrsotya/sotya_girl.png" alt="Sotya Santé et nutrition" fill sizes="(max-width: 1024px) 100vw, 50vw" className="object-contain" />
+                  <div className="absolute inset-0 bg-teal-deep/10 mix-blend-multiply pointer-events-none" />
+                </motion.div>
 
               <div className="grid grid-cols-3 gap-6 pt-10 border-t border-sage-light">
                 <div>
@@ -227,17 +252,26 @@ export default function HomePage() {
             whileInView="visible"
             viewport={{ once: true, margin: "-100px" }}
             variants={fadeUpVariant}
-            className="mb-16"
+            className="mb-16 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center"
           >
-            <p className="text-sm font-bold text-gold-soft uppercase tracking-widest mb-4">
-              Portefeuille
-            </p>
-            <h2 className="text-4xl md:text-5xl font-heading font-extrabold text-teal-deep mb-6 max-w-2xl">
-              Des marques choisies pour leur rigueur scientifique.
-            </h2>
-            <p className="text-lg text-anthracite-soft/80 max-w-3xl">
-              AFAQ Health représente en exclusivité des laboratoires européens reconnus, sélectionnés pour la qualité de leurs formulations et leur conformité réglementaire.
-            </p>
+            <div>
+              <p className="text-sm font-bold text-gold-soft uppercase tracking-widest mb-4">
+                Portefeuille
+              </p>
+              <h2 className="text-4xl md:text-5xl font-heading font-extrabold text-teal-deep mb-6">
+                Des marques choisies pour leur rigueur scientifique.
+              </h2>
+              <p className="text-lg text-anthracite-soft/80">
+                AFAQ Health représente en exclusivité des laboratoires européens reconnus, sélectionnés pour la qualité de leurs formulations et leur conformité réglementaire.
+              </p>
+            </div>
+            <motion.div 
+              className="relative w-full aspect-square min-h-[300px] sm:min-h-[400px] md:max-h-[600px] rounded-[2rem] overflow-hidden shadow-xl mx-auto"
+              whileHover={{ scale: 1.02 }}
+              transition={{ duration: 0.5 }}
+            >
+              <Image src="/tsawrsotya/sotya_smile.png" alt="Sotya Beauté et bien-être" fill sizes="(max-width: 1024px) 100vw, 50vw" className="object-contain lg:object-cover" />
+            </motion.div>
           </motion.div>
 
           <motion.div 
@@ -446,73 +480,127 @@ export default function HomePage() {
       </section>
 
       {/* 6. Notre Réseau */}
-      <section className="py-24 bg-teal-deep relative z-20">
-        <div className="container mx-auto px-4">
-          <motion.div 
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-100px" }}
-            variants={fadeUpVariant}
-            className="mb-16 text-center lg:text-left flex flex-col items-center lg:items-start"
-          >
-            <p className="text-sm font-bold text-gold-soft uppercase tracking-widest mb-4">
-              Notre Réseau
-            </p>
-            <h2 className="text-4xl md:text-5xl font-heading font-extrabold text-white mb-6 max-w-2xl">
-              De la formulation à l'officine, une chaîne maîtrisée.
-            </h2>
-            <p className="text-lg text-white/80 max-w-3xl">
-              AFAQ Health ne vend pas au consommateur final. Notre rôle est d'importer, d'homologuer et d'approvisionner un réseau professionnel qui délivre le bon produit, au bon endroit, avec le bon conseil.
-            </p>
-          </motion.div>
+      <section id="notre-reseau" className="py-32 bg-teal-deep relative z-20 overflow-hidden">
+        {/* Background ambient light */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-white rounded-full opacity-5 blur-[120px] pointer-events-none" />
+        
+        <div className="container mx-auto px-4 relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            
+            {/* Left side: Text & Steps */}
+            <motion.div 
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: "-100px" }}
+              variants={staggerContainer}
+              className="space-y-12"
+            >
+              <div className="space-y-6">
+                <motion.p variants={fadeUpVariant} className="text-sm font-bold text-gold-soft uppercase tracking-widest inline-flex items-center gap-3">
+                  <span className="w-8 h-px bg-gold-soft"></span>
+                  Notre Réseau
+                </motion.p>
+                <motion.h2 variants={fadeUpVariant} className="text-4xl md:text-5xl lg:text-6xl font-heading font-extrabold text-white leading-[1.1]">
+                  De la formulation à l'officine.
+                </motion.h2>
+                <motion.p variants={fadeUpVariant} className="text-xl text-white/80 max-w-xl leading-relaxed">
+                  AFAQ Health importe, homologue et approvisionne un réseau professionnel d'excellence. Le bon produit, au bon endroit, avec le bon conseil.
+                </motion.p>
+              </div>
 
-          <motion.div 
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-100px" }}
-            variants={staggerContainer}
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto lg:mx-0"
-          >
-            {[
-              { num: "01", title: "Fabricant", desc: "Laboratoires européens partenaires, formulations certifiées." },
-              { num: "02", title: "AFAQ Health", desc: "Importation, homologation AMMPS, stockage, pilotage commercial." },
-              { num: "03", title: "Distributeurs", desc: "Distributeurs nationaux et grossistes régionaux, tarifs dédiés." },
-              { num: "04", title: "Pharmacies", desc: "Officines approvisionnées, conseil professionnel au patient." }
-            ].map((step, idx) => (
-              <motion.div key={idx} variants={fadeUpVariant} className="h-full">
-                <div className="border border-white/20 bg-white/5 hover:bg-white/10 transition-colors rounded-xl relative overflow-hidden group h-full flex flex-col p-8">
-                  <div className="text-gold-soft font-bold text-lg mb-6">{step.num}</div>
-                  <div className="flex items-center justify-between mb-3">
-                    <h3 className="text-xl font-bold text-white">{step.title}</h3>
-                    <div className="text-gold-soft opacity-0 group-hover:opacity-100 transition-opacity transform translate-x-4 group-hover:translate-x-0 duration-300">→</div>
-                  </div>
-                  <p className="text-white/70 text-sm leading-relaxed flex-grow">{step.desc}</p>
-                </div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                {[
+                  { num: "01", title: "Fabricant", desc: "Laboratoires européens certifiés." },
+                  { num: "02", title: "AFAQ Health", desc: "Importation & homologation AMMPS." },
+                  { num: "03", title: "Distributeurs", desc: "Grossistes régionaux & nationaux." },
+                  { num: "04", title: "Pharmacies", desc: "Conseil professionnel au patient." }
+                ].map((step, idx) => (
+                  <motion.div key={idx} variants={fadeUpVariant} className="relative group perspective-1000">
+                    <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl" />
+                    <div className="p-6 rounded-2xl border border-white/10 bg-white/5 backdrop-blur-sm group-hover:border-gold-soft/50 transition-all duration-500 transform group-hover:-translate-y-2 group-hover:shadow-[0_20px_40px_rgba(0,0,0,0.3)]">
+                      <div className="text-gold-soft font-bold text-2xl mb-4 opacity-50 group-hover:opacity-100 transition-opacity">{step.num}</div>
+                      <h3 className="text-xl font-bold text-white mb-2">{step.title}</h3>
+                      <p className="text-white/60 text-sm leading-relaxed">{step.desc}</p>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
+
+            {/* Right side: Animated Photo Collage */}
+            <div className="relative h-[500px] sm:h-[600px] lg:h-[700px] w-full">
+              <motion.div 
+                initial={{ opacity: 0, y: 100, rotate: -5 }}
+                whileInView={{ opacity: 1, y: 0, rotate: -2 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ duration: 1, type: "spring", bounce: 0.3 }}
+                className="absolute top-0 right-0 w-[75%] h-[60%] rounded-3xl overflow-hidden shadow-2xl border-4 border-white/10 z-10"
+              >
+                <Image src="/tsawrsotya/network_logistics.png" alt="Logistics Center" fill sizes="(max-width: 1024px) 100vw, 50vw" className="object-cover hover:scale-110 transition-transform duration-1000" />
+                <div className="absolute inset-0 bg-teal-deep/20 mix-blend-multiply pointer-events-none" />
               </motion.div>
-            ))}
-          </motion.div>
+              
+              <motion.div 
+                initial={{ opacity: 0, x: -100, rotate: 5 }}
+                whileInView={{ opacity: 1, x: 0, rotate: 3 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ duration: 1, delay: 0.2, type: "spring", bounce: 0.3 }}
+                className="absolute bottom-0 left-0 w-[70%] h-[55%] rounded-3xl overflow-hidden shadow-2xl border-4 border-white/10 z-20"
+              >
+                <Image src="/tsawrsotya/network_pharmacy.png" alt="Pharmacy Professional" fill sizes="(max-width: 1024px) 100vw, 50vw" className="object-cover hover:scale-110 transition-transform duration-1000" />
+                <div className="absolute inset-0 bg-gold-soft/10 mix-blend-multiply pointer-events-none" />
+              </motion.div>
+              
+              {/* Decorative elements */}
+              <motion.div 
+                initial={{ scale: 0 }}
+                whileInView={{ scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, delay: 0.6 }}
+                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-24 h-24 bg-gold-soft rounded-full flex items-center justify-center z-30 shadow-[0_0_40px_rgba(202,168,111,0.6)]"
+              >
+                <svg className="w-10 h-10 text-teal-deep" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                </svg>
+              </motion.div>
+            </div>
+
+          </div>
         </div>
       </section>
 
       {/* 7. CTA Section */}
-      <section className="py-24 bg-white relative z-20 overflow-hidden border-t border-sage-light">
-        <div className="absolute top-0 right-0 w-96 h-96 bg-gold-soft rounded-full opacity-10 blur-3xl transform translate-x-1/2 -translate-y-1/2"></div>
+      <section className="py-32 relative z-20 overflow-hidden">
+        {/* Parallax Background */}
+        <div className="absolute inset-0 z-0">
+          <Image 
+            src="/tsawrsotya/pill.jpg" 
+            alt="Qualité pharmaceutique" 
+            fill 
+            sizes="100vw"
+            className="object-cover object-top"
+          />
+          <div className="absolute inset-0 bg-teal-deep/90 backdrop-blur-sm" />
+        </div>
+        
+        <div className="absolute top-0 right-0 w-96 h-96 bg-gold-soft rounded-full opacity-20 blur-3xl transform translate-x-1/2 -translate-y-1/2 z-10"></div>
+        
         <motion.div 
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
           variants={fadeUpVariant}
-          className="container mx-auto px-4 text-center relative z-10"
+          className="container mx-auto px-4 text-center relative z-20"
         >
-          <h2 className="text-4xl font-heading font-bold text-teal-deep mb-6">
+          <h2 className="text-4xl md:text-5xl font-heading font-bold text-white mb-6">
             Vous êtes un professionnel de santé ?
           </h2>
-          <p className="text-anthracite-soft/80 max-w-2xl mx-auto mb-10 text-lg">
+          <p className="text-white/80 max-w-2xl mx-auto mb-10 text-lg">
             Pharmaciens, grossistes et distributeurs : accédez à vos tarifs négociés, passez commande et suivez vos livraisons depuis votre espace dédié.
           </p>
           <Link
             href="/portal/login"
-            className="shimmer-effect inline-block bg-teal-deep text-white font-bold px-10 py-5 rounded-xl text-lg hover:bg-opacity-95 hover:shadow-lg transition-all"
+            className="shimmer-effect inline-block bg-white text-teal-deep font-bold px-10 py-5 rounded-xl text-lg hover:bg-sage-light hover:shadow-lg transition-all"
           >
             Accéder à l'Espace Professionnel
           </Link>
