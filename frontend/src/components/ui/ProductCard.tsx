@@ -124,7 +124,7 @@ export function ProductCard({ product }: ProductCardProps) {
                 src={product.imagePath}
                 alt={product.name}
                 fill
-                className="object-contain drop-shadow-xl"
+                className="object-contain mix-blend-multiply"
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               />
             </div>
@@ -188,7 +188,7 @@ export function ProductCard({ product }: ProductCardProps) {
                     src={product.labelImagePath || product.imagePath}
                     alt={`${product.name}`}
                     fill
-                    className="object-contain drop-shadow-2xl p-4"
+                    className="object-contain mix-blend-multiply p-4"
                     sizes="(max-width: 768px) 100vw, 50vw"
                   />
                 </div>
