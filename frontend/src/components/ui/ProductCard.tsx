@@ -27,6 +27,7 @@ export function ProductCard({ product }: ProductCardProps) {
   const [isHovered, setIsHovered] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isFlipped, setIsFlipped] = useState(false);
   const router = useRouter();
 
   const x = useMotionValue(0);
@@ -160,7 +161,7 @@ export function ProductCard({ product }: ProductCardProps) {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6"
-            onClick={() => setIsModalOpen(false)}
+            onClick={() => { setIsModalOpen(false); setIsFlipped(false); }}
           >
             {/* Backdrop */}
             <div className="absolute inset-0 bg-anthracite-deep/60 backdrop-blur-sm" />
@@ -175,23 +176,78 @@ export function ProductCard({ product }: ProductCardProps) {
             >
               {/* Close Button */}
               <button
-                onClick={() => setIsModalOpen(false)}
+                onClick={() => { setIsModalOpen(false); setIsFlipped(false); }}
                 className="absolute top-4 right-4 z-20 bg-white/80 backdrop-blur hover:bg-ivory-soft text-anthracite-soft px-3 py-1.5 rounded-full text-xs font-bold transition-colors shadow-sm flex items-center gap-1 border border-sage-light"
               >
                 Quitter <span className="text-base leading-none">&times;</span>
               </button>
 
-              {/* Image Section */}
-              <div className="w-full md:w-1/2 bg-ivory-soft/50 p-6 relative flex items-center justify-center min-h-[280px] md:min-h-[400px]">
-                <div className="relative w-full h-full min-h-[250px]">
-                  <Image
-                    src={product.labelImagePath || product.imagePath}
-                    alt={`${product.name}`}
-                    fill
-                    className="object-contain mix-blend-multiply p-4"
-                    sizes="(max-width: 768px) 100vw, 50vw"
-                  />
-                </div>
+              {/* Image Section with 3D Flip */}
+              <div className="w-full md:w-1/2 bg-ivory-soft/50 p-6 relative flex flex-col items-center justify-center min-h-[280px] md:min-h-[400px]" style={{ perspective: "1000px" }}>
+                
+                <motion.div
+                  className="relative w-full h-full min-h-[250px]"
+                  animate={{ rotateY: isFlipped ? 180 : 0 }}
+                  transition={{ type: "spring", stiffness: 260, damping: 20 }}
+                  style={{ transformStyle: "preserve-3d" }}
+                >
+                  {/* Front: Bottle Image */}
+                  <div className="absolute inset-0 flex items-center justify-center p-4" style={{ backfaceVisibility: "hidden" }}>
+                    <Image
+                      src={product.labelImagePath || product.imagePath}
+                      alt={`${product.name}`}
+                      fill
+                      className="object-contain mix-blend-multiply"
+                      sizes="(max-width: 768px) 100vw, 50vw"
+                    />
+                  </div>
+
+                  {/* Back: Supplement Facts HTML Label */}
+                  <div 
+                    className="absolute inset-0 bg-white rounded-xl shadow-lg border border-gray-200 p-4 md:p-6 overflow-y-auto"
+                    style={{ transform: "rotateY(180deg)", backfaceVisibility: "hidden" }}
+                  >
+                    <div className="border-4 border-black p-3 h-full flex flex-col font-sans">
+                      <h3 className="font-black text-2xl leading-none border-b-[6px] border-black pb-2 mb-2 uppercase tracking-tighter">
+                        Valeurs<br/>Nutritionnelles
+                      </h3>
+                      <p className="text-xs font-bold border-b-4 border-black pb-2 mb-2">Portion: {product.dosage || '1 dose'}</p>
+                      
+                      <table className="w-full text-sm">
+                        <thead>
+                          <tr className="border-b-[3px] border-black font-extrabold text-left">
+                            <th className="pb-1">Propriété</th>
+                            <th className="text-right pb-1">% VNR</th>
+                          </tr>
+                        </thead>
+                        <tbody className="font-medium text-[11px] md:text-xs leading-tight">
+                          <tr className="border-b border-gray-300">
+                            <td className="py-2">{product.name}</td>
+                            <td className="text-right py-2">**</td>
+                          </tr>
+                          {product.benefits.map((benefit, i) => (
+                            <tr key={i} className="border-b border-gray-300">
+                              <td className="py-2 pl-2 text-anthracite-soft/80">{benefit}</td>
+                              <td className="text-right py-2 text-anthracite-soft/80">**</td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                      
+                      <p className="text-[9px] leading-tight mt-auto pt-2 border-t-[3px] border-black text-anthracite-soft font-medium">
+                        * Les valeurs nutritionnelles détaillées (VNR) varient. Référez-vous à l'emballage physique pour le tableau complet des ingrédients.
+                      </p>
+                    </div>
+                  </div>
+                </motion.div>
+
+                {/* Flip Toggle Button */}
+                <button 
+                  onClick={(e) => { e.stopPropagation(); setIsFlipped(!isFlipped); }}
+                  className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-white text-anthracite-deep border border-sage-light/50 px-4 py-2.5 rounded-full text-[11px] uppercase tracking-wider font-bold shadow-md hover:shadow-lg transition-all flex items-center gap-2 z-10"
+                >
+                  {isFlipped ? "Voir la bouteille" : "Valeurs nutritionnelles"} <span className="text-sm">🔄</span>
+                </button>
               </div>
 
               {/* Content Section */}
