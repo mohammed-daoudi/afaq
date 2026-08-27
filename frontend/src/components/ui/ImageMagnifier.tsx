@@ -50,15 +50,12 @@ export function ImageMagnifier({
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
     >
-      <div className="relative w-full aspect-square md:aspect-[4/5] rounded-3xl overflow-hidden bg-[radial-gradient(circle_at_center,_#2a2a2a_0%,_#000000_100%)] shadow-inner flex items-center justify-center p-8">
-        {/* Subtle grid pattern over the dark bg */}
-        <div className="absolute inset-0 opacity-10 bg-[linear-gradient(rgba(255,255,255,0.1)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.1)_1px,transparent_1px)] bg-[size:20px_20px]"></div>
-        
+      <div className="relative w-full aspect-square md:aspect-[4/5] rounded-3xl overflow-hidden bg-white border border-sage-light/30 shadow-inner flex items-center justify-center p-8">
         <Image
           src={src}
           alt={alt}
           fill
-          className="object-contain drop-shadow-[0_20px_30px_rgba(0,0,0,0.5)] p-8"
+          className="object-contain mix-blend-multiply p-8"
           sizes="(max-width: 768px) 100vw, 50vw"
           priority
         />
@@ -66,7 +63,7 @@ export function ImageMagnifier({
 
       {showMagnifier && (
         <div
-          className="pointer-events-none absolute border-4 border-white shadow-2xl rounded-2xl z-50 overflow-hidden bg-[radial-gradient(circle_at_center,_#2a2a2a_0%,_#000000_100%)]"
+          className="pointer-events-none absolute border-4 border-sage-light shadow-2xl rounded-2xl z-50 overflow-hidden bg-white"
           style={{
             display: showMagnifier ? '' : 'none',
             top: `${y - magnifierHeight / 2}px`,
@@ -75,12 +72,6 @@ export function ImageMagnifier({
             height: `${magnifierHeight}px`,
           }}
         >
-          <div className="absolute inset-0 opacity-10 bg-[linear-gradient(rgba(255,255,255,0.1)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.1)_1px,transparent_1px)] bg-[size:20px_20px] scale-[2.5] origin-top-left"
-            style={{
-               left: `-${(x * zoomLevel) - magnifierWidth / 2}px`,
-               top: `-${(y * zoomLevel) - magnifierHeight / 2}px`,
-            }}
-          ></div>
           <div
             className="absolute"
             style={{
@@ -94,7 +85,7 @@ export function ImageMagnifier({
               src={src}
               alt={alt}
               fill
-              className="object-contain drop-shadow-[0_20px_30px_rgba(0,0,0,0.5)] p-8"
+              className="object-contain mix-blend-multiply p-8"
             />
           </div>
         </div>
