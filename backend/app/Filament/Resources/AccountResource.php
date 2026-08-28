@@ -3,27 +3,69 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\AccountResource\Pages;
-use App\Filament\Resources\AccountResource\RelationManagers;
 use App\Models\Account;
 use Filament\Forms;
 use Filament\Resources\Form;
 use Filament\Resources\Resource;
 use Filament\Resources\Table;
 use Filament\Tables;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class AccountResource extends Resource
 {
     protected static ?string $model = Account::class;
-
-    protected static ?string $navigationIcon = 'heroicon-o-collection';
+    protected static ?string $navigationIcon = 'heroicon-o-users';
+    protected static ?string $navigationLabel = 'Pharmacies & Comptes';
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                //
+                Forms\Components\TextInput::make('name')
+                    ->label('Nom du compte')
+                    ->required(),
+                    
+                Forms\Components\Select::make('type')
+                    ->label('Type')
+                    ->options([
+                        'pharmacie' => 'Pharmacie',
+                        'grossiste' => 'Grossiste',
+                        'autre' => 'Autre',
+                    ])
+                    ->required(),
+                    
+                Forms\Components\Select::make('status')
+                    ->label('Statut')
+                    ->options([
+                        'active' => 'Actif',
+                        'inactive' => 'Inactif',
+                    ])
+                    ->required(),
+                    
+                Forms\Components\TextInput::make('address')
+                    ->label('Adresse'),
+                    
+                Forms\Components\TextInput::make('city')
+                    ->label('Ville'),
+                    
+                Forms\Components\TextInput::make('google_maps_link')
+                    ->label('Lien Google Maps')
+                    ->helperText('Collez le lien Google Maps de la pharmacie ici. Le système extraira automatiquement les coordonnées (Latitude/Longitude) si possible.')
+                    ->url()
+                    ->reactive()
+                    ->afterStateUpdated(function ($state, callable $set) {
+                        if ($state && preg_match('/@(-?\d+\.\d+),(-?\d+\.\d+)/', $state, $matches)) {
+                            $set('lat', $matches[1]);
+                            $set('lng', $matches[2]);
+                        }
+                    }),
+                    
+                Forms\Components\TextInput::make('lat')
+                    ->label('Latitude')
+                    ->numeric(),
+                    
+                Forms\Components\TextInput::make('lng')
+                    ->label('Longitude')
+                    ->numeric(),
             ]);
     }
 
@@ -31,10 +73,17 @@ class AccountResource extends Resource
     {
         return $table
             ->columns([
-                //
+                Tables\Columns\TextColumn::make('name')->label('Nom')->searchable(),
+                Tables\Columns\TextColumn::make('type')->label('Type'),
+                Tables\Columns\TextColumn::make('city')->label('Ville')->searchable(),
+                Tables\Columns\TextColumn::make('status')->label('Statut'),
             ])
             ->filters([
-                //
+                Tables\Filters\SelectFilter::make('type')
+                    ->options([
+                        'pharmacie' => 'Pharmacie',
+                        'grossiste' => 'Grossiste',
+                    ]),
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),

@@ -101,7 +101,7 @@ export default function ProductDetailPage({ params }: { params: { id: string } }
               {/* CTA */}
               <div className="pt-6">
                 <Link
-                  href="/localiser"
+                  href={`/localiser?product_id=${product.id}`}
                   className="block w-full text-center bg-teal-deep text-white font-bold text-lg px-8 py-4 rounded-xl shadow-lg hover:shadow-xl hover:bg-opacity-95 transition-all transform hover:-translate-y-1 shimmer-effect"
                 >
                   Trouver en pharmacie

@@ -20,6 +20,7 @@ Route::prefix('public')->group(function () {
     Route::get('/brands', [PublicController::class, 'brands']);
     Route::get('/products', [PublicController::class, 'products']);
     Route::get('/pharmacies', [PublicController::class, 'pharmacies']);
+    Route::get('/products/{id}/pharmacies', [PublicController::class, 'productPharmacies']);
     Route::get('/blog', [PublicController::class, 'blogPosts']);
 });
 

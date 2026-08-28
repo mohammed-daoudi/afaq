@@ -23,7 +23,25 @@ class ProductResource extends Resource
     {
         return $form
             ->schema([
-                //
+                Forms\Components\Select::make('brand_id')
+                    ->relationship('brand', 'name')
+                    ->required(),
+                Forms\Components\TextInput::make('label')
+                    ->required()
+                    ->maxLength(255),
+                Forms\Components\TextInput::make('category')
+                    ->required()
+                    ->maxLength(255),
+                Forms\Components\FileUpload::make('photo')
+                    ->image()
+                    ->directory('products'),
+                Forms\Components\Textarea::make('composition')
+                    ->maxLength(65535),
+                Forms\Components\Textarea::make('benefits')
+                    ->maxLength(65535),
+                Forms\Components\RichEditor::make('description')
+                    ->maxLength(65535)
+                    ->columnSpan('full'),
             ]);
     }
 
@@ -31,7 +49,10 @@ class ProductResource extends Resource
     {
         return $table
             ->columns([
-                //
+                Tables\Columns\ImageColumn::make('photo'),
+                Tables\Columns\TextColumn::make('label')->searchable()->sortable(),
+                Tables\Columns\TextColumn::make('category')->searchable()->sortable(),
+                Tables\Columns\TextColumn::make('brand.name')->sortable(),
             ])
             ->filters([
                 //

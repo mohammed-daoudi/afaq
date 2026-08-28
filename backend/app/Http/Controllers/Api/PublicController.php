@@ -43,4 +43,17 @@ class PublicController extends Controller
     {
         return response()->json(BlogPost::with('author')->orderBy('published_at', 'desc')->get());
     }
+
+    public function productPharmacies($id)
+    {
+        $pharmacies = Account::where('type', 'pharmacie')
+            ->whereHas('inventories', function ($query) use ($id) {
+                $query->where('product_id', $id)
+                      ->where('in_stock', true);
+            })
+            ->select('id', 'name', 'address', 'city', 'lat', 'lng', 'google_maps_link')
+            ->get();
+
+        return response()->json($pharmacies);
+    }
 }

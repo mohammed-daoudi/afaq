@@ -31,12 +31,27 @@ export default function LocaliserPage() {
   const [pharmacies, setPharmacies] = useState<Pharmacy[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
+  const [isProductFiltered, setIsProductFiltered] = useState(false);
+
   // Fetch real pharmacies
   useEffect(() => {
     const fetchPharmacies = async () => {
       try {
         const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://127.0.0.1:8000/api';
-        const response = await axios.get(`${apiUrl}/public/pharmacies`);
+        
+        // Check if we are filtering by a specific product
+        const searchParams = new URLSearchParams(window.location.search);
+        const productId = searchParams.get('product_id');
+        
+        if (productId) {
+          setIsProductFiltered(true);
+        }
+        
+        const endpoint = productId 
+          ? `${apiUrl}/products/${productId}/pharmacies`
+          : `${apiUrl}/public/pharmacies`;
+          
+        const response = await axios.get(endpoint);
         setPharmacies(response.data);
       } catch (error) {
         console.warn('Backend non disponible, fallback aux données de test.');
@@ -70,14 +85,23 @@ export default function LocaliserPage() {
         
         {/* Page Header */}
         <div className="max-w-4xl mb-8 space-y-4">
-          <div className="inline-block px-3 py-1 text-xs font-semibold tracking-wider text-teal-deep bg-sage-light rounded-full uppercase">
-            Notre Réseau
+          <div className="flex items-center gap-3">
+            <div className="inline-block px-3 py-1 text-xs font-semibold tracking-wider text-teal-deep bg-sage-light rounded-full uppercase">
+              Notre Réseau
+            </div>
+            {isProductFiltered && (
+              <div className="inline-block px-3 py-1 text-xs font-semibold tracking-wider text-white bg-gold-soft rounded-full uppercase">
+                Stock Vérifié ✓
+              </div>
+            )}
           </div>
           <h1 className="text-4xl md:text-5xl font-heading font-extrabold text-teal-deep">
             Trouver une <span className="text-gold-soft">Pharmacie</span>
           </h1>
           <p className="text-lg text-anthracite-soft/80 font-sans max-w-2xl">
-            Recherchez les pharmacies partenaires AFAQ Health distribuant nos références près de chez vous.
+            {isProductFiltered 
+              ? "Les pharmacies ci-dessous ont déclaré avoir ce produit en stock." 
+              : "Recherchez les pharmacies partenaires AFAQ Health distribuant nos références près de chez vous."}
           </p>
         </div>
 
@@ -131,6 +155,19 @@ export default function LocaliserPage() {
                     <p className="text-sm text-anthracite-soft/80 flex items-start gap-1.5 mt-2">
                       <span className="text-gold-soft">📍</span> {pharmacy.address}
                     </p>
+                    {activePharmacy === pharmacy.id && (
+                      <div className="mt-3">
+                        <a 
+                          href={`https://www.google.com/maps/dir/?api=1&destination=${pharmacy.lat},${pharmacy.lng}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-block w-full text-center bg-teal-deep text-white text-sm py-2 rounded-lg font-semibold hover:bg-opacity-90 transition-colors"
+                          onClick={(e) => e.stopPropagation()}
+                        >
+                          Obtenir l'itinéraire
+                        </a>
+                      </div>
+                    )}
                   </div>
                 ))
               ) : (

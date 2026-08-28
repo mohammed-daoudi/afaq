@@ -63,7 +63,7 @@ export default function PharmacyMap({ pharmacies, activePharmacyId, onMarkerClic
     >
       <TileLayer
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-        url="https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png"
+        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
       
       <MapCenterController center={currentCenter} zoom={currentZoom} />
@@ -81,10 +81,18 @@ export default function PharmacyMap({ pharmacies, activePharmacyId, onMarkerClic
             }}
           >
             <Popup>
-              <div className="text-sm">
+              <div className="text-sm min-w-[150px]">
                 <p className="font-bold text-teal-deep mb-1">{pharmacy.name}</p>
                 <p className="text-gray-600 mb-1">{pharmacy.address}</p>
-                <p className="text-gray-600">{pharmacy.city}</p>
+                <p className="text-gray-600 mb-3">{pharmacy.city}</p>
+                <a 
+                  href={`https://www.google.com/maps/dir/?api=1&destination=${pharmacy.lat},${pharmacy.lng}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block w-full text-center bg-teal-deep text-white py-1.5 rounded-lg font-semibold hover:bg-opacity-90 transition-colors"
+                >
+                  📍 Y aller
+                </a>
               </div>
             </Popup>
           </Marker>

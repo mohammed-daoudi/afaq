@@ -16,7 +16,9 @@ class Account extends Model
         'name',
         'address',
         'city',
-        'location',
+        'lat',
+        'lng',
+        'google_maps_link',
         'tariff_group',
     ];
 
@@ -43,5 +45,10 @@ class Account extends Model
     public function crmEntries()
     {
         return $this->hasMany(CrmEntry::class);
+    }
+
+    public function inventories()
+    {
+        return $this->hasMany(Inventory::class);
     }
 }
