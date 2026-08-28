@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
+import MarkerClusterGroup from 'react-leaflet-cluster';
 
 // Fix for default Leaflet markers in Next.js/Webpack
 const icon = L.icon({
@@ -68,36 +69,40 @@ export default function PharmacyMap({ pharmacies, activePharmacyId, onMarkerClic
       
       <MapCenterController center={currentCenter} zoom={currentZoom} />
 
-      {pharmacies.map((pharmacy) => {
-        if (!pharmacy.lat || !pharmacy.lng) return null;
-        
-        return (
-          <Marker 
-            key={pharmacy.id} 
-            position={[pharmacy.lat, pharmacy.lng]} 
-            icon={icon}
-            eventHandlers={{
-              click: () => onMarkerClick(pharmacy.id),
-            }}
-          >
-            <Popup>
-              <div className="text-sm min-w-[150px]">
-                <p className="font-bold text-teal-deep mb-1">{pharmacy.name}</p>
-                <p className="text-gray-600 mb-1">{pharmacy.address}</p>
-                <p className="text-gray-600 mb-3">{pharmacy.city}</p>
-                <a 
-                  href={`https://www.google.com/maps/dir/?api=1&destination=${pharmacy.lat},${pharmacy.lng}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="block w-full text-center bg-teal-deep text-white py-1.5 rounded-lg font-semibold hover:bg-opacity-90 transition-colors"
-                >
-                  📍 Y aller
-                </a>
-              </div>
-            </Popup>
-          </Marker>
-        );
-      })}
+      <MarkerClusterGroup
+        chunkedLoading
+      >
+        {pharmacies.map((pharmacy) => {
+          if (!pharmacy.lat || !pharmacy.lng) return null;
+          
+          return (
+            <Marker 
+              key={pharmacy.id} 
+              position={[pharmacy.lat, pharmacy.lng]} 
+              icon={icon}
+              eventHandlers={{
+                click: () => onMarkerClick(pharmacy.id),
+              }}
+            >
+              <Popup>
+                <div className="text-sm min-w-[150px]">
+                  <p className="font-bold text-teal-deep mb-1">{pharmacy.name}</p>
+                  <p className="text-gray-600 mb-1">{pharmacy.address}</p>
+                  <p className="text-gray-600 mb-3">{pharmacy.city}</p>
+                  <a 
+                    href={`https://www.google.com/maps/dir/?api=1&destination=${pharmacy.lat},${pharmacy.lng}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block w-full text-center bg-teal-deep text-white py-1.5 rounded-lg font-semibold hover:bg-opacity-90 transition-colors"
+                  >
+                    📍 Y aller
+                  </a>
+                </div>
+              </Popup>
+            </Marker>
+          );
+        })}
+      </MarkerClusterGroup>
     </MapContainer>
   );
 }

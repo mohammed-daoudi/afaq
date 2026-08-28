@@ -22,6 +22,23 @@ class Account extends Model
         'tariff_group',
     ];
 
+    protected static function booted()
+    {
+        $clearCaches = function ($account) {
+            if ($account->type === 'pharmacie') {
+                \Illuminate\Support\Facades\Cache::forget('api.pharmacies');
+                
+                // Clear any product-specific caches for products this pharmacy has
+                foreach ($account->inventories as $inventory) {
+                    \Illuminate\Support\Facades\Cache::forget('api.product_pharmacies.' . $inventory->product_id);
+                }
+            }
+        };
+
+        static::saved($clearCaches);
+        static::deleted($clearCaches);
+    }
+
     public function user()
     {
         return $this->belongsTo(User::class);

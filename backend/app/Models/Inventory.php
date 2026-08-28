@@ -19,6 +19,17 @@ class Inventory extends Model
         'in_stock' => 'boolean',
     ];
 
+    protected static function booted()
+    {
+        static::saved(function ($inventory) {
+            \Illuminate\Support\Facades\Cache::forget('api.product_pharmacies.' . $inventory->product_id);
+        });
+
+        static::deleted(function ($inventory) {
+            \Illuminate\Support\Facades\Cache::forget('api.product_pharmacies.' . $inventory->product_id);
+        });
+    }
+
     public function account()
     {
         return $this->belongsTo(Account::class);

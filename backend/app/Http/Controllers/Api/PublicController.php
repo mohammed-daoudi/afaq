@@ -23,18 +23,20 @@ class PublicController extends Controller
 
     public function pharmacies()
     {
-        $driver = config('database.connections.' . config('database.default') . '.driver');
-        
-        // Only return validated pharmacies
-        $query = Account::where('type', 'pharmacie')
-            ->where('status', 'valide');
+        $pharmacies = \Illuminate\Support\Facades\Cache::remember('api.pharmacies', 3600, function () {
+            $driver = config('database.connections.' . config('database.default') . '.driver');
             
-        if ($driver === 'sqlite') {
-            $pharmacies = $query->select('id', 'name', 'address', 'city', 'lat', 'lng')->get();
-        } else {
-            // Extract coordinates from PostGIS
-            $pharmacies = $query->select('id', 'name', 'address', 'city', \Illuminate\Support\Facades\DB::raw('ST_Y(location::geometry) as lat, ST_X(location::geometry) as lng'))->get();
-        }
+            // Only return validated pharmacies
+            $query = Account::where('type', 'pharmacie')
+                ->where('status', 'active'); // The schema/form uses 'active' rather than 'valide'
+                
+            if ($driver === 'sqlite') {
+                return $query->select('id', 'name', 'address', 'city', 'lat', 'lng')->get();
+            } else {
+                // Extract coordinates from PostGIS
+                return $query->select('id', 'name', 'address', 'city', \Illuminate\Support\Facades\DB::raw('ST_Y(location::geometry) as lat, ST_X(location::geometry) as lng'))->get();
+            }
+        });
             
         return response()->json($pharmacies);
     }
@@ -46,13 +48,15 @@ class PublicController extends Controller
 
     public function productPharmacies($id)
     {
-        $pharmacies = Account::where('type', 'pharmacie')
-            ->whereHas('inventories', function ($query) use ($id) {
-                $query->where('product_id', $id)
-                      ->where('in_stock', true);
-            })
-            ->select('id', 'name', 'address', 'city', 'lat', 'lng', 'google_maps_link')
-            ->get();
+        $pharmacies = \Illuminate\Support\Facades\Cache::remember('api.product_pharmacies.' . $id, 3600, function () use ($id) {
+            return Account::where('type', 'pharmacie')
+                ->whereHas('inventories', function ($query) use ($id) {
+                    $query->where('product_id', $id)
+                          ->where('in_stock', true);
+                })
+                ->select('id', 'name', 'address', 'city', 'lat', 'lng', 'google_maps_link')
+                ->get();
+        });
 
         return response()->json($pharmacies);
     }
