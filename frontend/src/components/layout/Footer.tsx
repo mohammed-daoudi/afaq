@@ -13,29 +13,35 @@ export function Footer() {
             Importation et distribution exclusive de compléments alimentaires premium au Maroc et en Afrique de l'Ouest francophone.
           </p>
         </div>
+        
         <div>
-          <h4 className="font-semibold mb-4 text-gold-soft uppercase tracking-wider text-sm">Marques</h4>
-          <ul className="space-y-2 text-sm text-sage-light/80">
-            <li><Link href="/marques/sotya" className="hover:text-white transition-colors">SOTYA</Link></li>
-            <li><Link href="/marques/colagenova" className="hover:text-white transition-colors">Colagenova</Link></li>
-            <li><Link href="/marques/naturamins" className="hover:text-white transition-colors">Naturamins</Link></li>
-          </ul>
-        </div>
-        <div>
-          <h4 className="font-semibold mb-4 text-gold-soft uppercase tracking-wider text-sm">Société</h4>
+          <h4 className="font-semibold mb-4 text-gold-soft uppercase tracking-wider text-sm">AFAQ HEALTH</h4>
           <ul className="space-y-2 text-sm text-sage-light/80">
             <li><Link href="/a-propos" className="hover:text-white transition-colors">À propos</Link></li>
-            <li><Link href="/pourquoi-nous" className="hover:text-white transition-colors">Pourquoi nous</Link></li>
-            <li><Link href="/notre-reseau" className="hover:text-white transition-colors">Notre réseau</Link></li>
-            <li><Link href="/faq" className="hover:text-white transition-colors">FAQ</Link></li>
+            <li><Link href="/expertise" className="hover:text-white transition-colors">Notre expertise</Link></li>
+            <li><Link href="/marques" className="hover:text-white transition-colors">Nos marques</Link></li>
+            <li><Link href="/produits" className="hover:text-white transition-colors">Nos produits</Link></li>
+            <li><Link href="/conseils" className="hover:text-white transition-colors">Conseils</Link></li>
+            <li><Link href="/pharmacies" className="hover:text-white transition-colors">Trouver une pharmacie</Link></li>
+            <li><Link href="/contact" className="hover:text-white transition-colors">Contact</Link></li>
           </ul>
         </div>
+        
         <div>
-          <h4 className="font-semibold mb-4 text-gold-soft uppercase tracking-wider text-sm">Professionnels</h4>
+          <h4 className="font-semibold mb-4 text-gold-soft uppercase tracking-wider text-sm">PROFESSIONNELS</h4>
           <ul className="space-y-2 text-sm text-sage-light/80">
-            <li><Link href="/portal/login" className="hover:text-white transition-colors">Portail B2B</Link></li>
-            <li><Link href="/devenir-partenaire" className="hover:text-white transition-colors">Devenir partenaire</Link></li>
-            <li><Link href="/contact" className="hover:text-white transition-colors">Contact commercial</Link></li>
+
+            <li><Link href="/contact" className="hover:text-white transition-colors">Devenir partenaire</Link></li>
+            <li><Link href="/portal/login" className="hover:text-white transition-colors">Espace professionnel</Link></li>
+          </ul>
+        </div>
+        
+        <div>
+          <h4 className="font-semibold mb-4 text-gold-soft uppercase tracking-wider text-sm">INFORMATIONS</h4>
+          <ul className="space-y-2 text-sm text-sage-light/80">
+            <li><Link href="/mentions-legales" className="hover:text-white transition-colors">Mentions légales</Link></li>
+            <li><Link href="/confidentialite" className="hover:text-white transition-colors">Confidentialité</Link></li>
+            <li><Link href="/cookies" className="hover:text-white transition-colors">Cookies</Link></li>
           </ul>
         </div>
       </div>
@@ -47,7 +53,7 @@ export function Footer() {
           <span>·</span>
           <Link href="/confidentialite" className="hover:text-white transition-colors">Confidentialité</Link>
           <span>·</span>
-          <span>Conforme loi 09-08</span>
+          <Link href="/cookies" className="hover:text-white transition-colors">Cookies</Link>
         </div>
       </div>
     </footer>

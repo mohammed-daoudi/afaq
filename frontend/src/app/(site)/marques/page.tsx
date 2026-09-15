@@ -1,140 +1,123 @@
+'use client';
+
 import React from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
+import { motion } from 'framer-motion';
+import { Card } from '@/components/ui/Card';
 
 const brands = [
   {
     slug: 'sotya',
     name: 'SOTYA',
-    subtitle: 'HEALTH SUPPLEMENTS',
-    origin: 'Espagne (Bescorp Health)',
-    description: 'Laboratoire de référence en compléments alimentaires. 14 références homologuées AMMPS pour le lancement Maroc 2026 — stress, sommeil, immunité, vitalité, santé spécifique et beauté.',
+    subtitle: 'Compléments alimentaires',
+    origin: 'Espagne',
+    description: 'Une marque européenne proposant une gamme diversifiée de solutions nutritionnelles pour accompagner le bien-être et la santé au quotidien.',
     color: 'from-[#007B5F] to-[#004D3B]',
-    status: 'active',
-    productCount: 14,
-    certifications: ['AMMPS', 'GMP', 'EU', 'ISO'],
+    status: 'ACTUELLEMENT DISPONIBLE',
+    statusColor: 'bg-green-100 text-green-800'
+  },
+  {
+    slug: 'naturamins-kids',
+    name: 'Naturamins Kids',
+    subtitle: 'Nutrition pédiatrique',
+    origin: 'Europe',
+    description: 'Une gamme dédiée aux besoins nutritionnels des enfants, conçue pour accompagner les familles au quotidien.',
+    color: 'from-[#2A9D8F] to-[#1A6B60]',
+    status: 'PROCHAIN LANCEMENT',
+    statusColor: 'bg-teal-100 text-teal-800'
   },
   {
     slug: 'colagenova',
     name: 'Colagenova',
-    subtitle: 'Expert Collagène',
-    origin: 'Espagne (Vaminter)',
-    description: 'Gamme experte de collagène marin et de solutions beauté-mobilité, structurée par indication. Préparation réglementaire en cours.',
+    subtitle: 'Beauté & nutrition',
+    origin: 'Espagne',
+    description: 'Une gamme spécialisée autour du collagène et de la nutrition beauté, destinée à rejoindre progressivement le portefeuille commercial d\'AFAQ Health.',
     color: 'from-[#D4A373] to-[#A67C52]',
-    status: 'coming-2027',
-    productCount: null,
-    certifications: [],
-  },
-  {
-    slug: 'naturamins',
-    name: 'Naturamins',
-    subtitle: 'Premium Nutrition',
-    origin: 'Europe',
-    description: 'Nouvelle marque du portefeuille, en cours de préparation réglementaire et commerciale pour le marché marocain.',
-    color: 'from-[#2A9D8F] to-[#1A6B60]',
-    status: 'preparation',
-    productCount: null,
-    certifications: [],
+    status: 'PROCHAINEMENT',
+    statusColor: 'bg-gold-soft/20 text-gold-soft'
   }
 ];
 
-function StatusBadge({ status }: { status: string }) {
-  switch (status) {
-    case 'active':
-      return (
-        <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-green-100 text-green-700">
-          <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
-          Disponible — 14 références
-        </span>
-      );
-    case 'coming-2027':
-      return (
-        <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-amber-100 text-amber-700">
-          Lancement Maroc prévu 2027
-        </span>
-      );
-    case 'preparation':
-      return (
-        <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-blue-100 text-blue-700">
-          En préparation réglementaire
-        </span>
-      );
-    default:
-      return null;
-  }
-}
+const fadeUp = {
+  hidden: { opacity: 0, y: 30 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
+};
 
 export default function MarquesPage() {
   return (
-    <div className="min-h-screen bg-ivory-soft pt-12 pb-24">
+    <div className="min-h-screen bg-sage-light/20 pt-32 pb-24 overflow-hidden">
       <div className="container mx-auto px-4">
 
         {/* Page Header */}
-        <div className="max-w-3xl mx-auto text-center mb-20 space-y-6">
-          <div className="inline-block px-3 py-1 text-xs font-semibold tracking-wider text-teal-deep bg-sage-light rounded-full uppercase">
-            Nos Partenaires
-          </div>
-          <h1 className="text-4xl md:text-5xl font-heading font-extrabold text-teal-deep">
-            Laboratoires <span className="text-gold-soft">Européens</span>
-          </h1>
-          <p className="text-lg text-anthracite-soft/80 font-sans">
-            Nous distribuons en exclusivité au Maroc et en Afrique de l'Ouest des marques de nutrition
-            certifiées ISO 9001, fabriquées en Europe.
-          </p>
-        </div>
+        <motion.div 
+          initial="hidden" animate="visible" variants={{ hidden: { opacity: 0 }, visible: { opacity: 1, transition: { staggerChildren: 0.2 } } }}
+          className="max-w-4xl mx-auto text-center mb-20 space-y-8"
+        >
+          <motion.div variants={fadeUp} className="inline-block px-4 py-1.5 text-xs font-bold tracking-widest text-gold-soft bg-white border border-gold-soft/20 rounded-full uppercase">
+            Portefeuille
+          </motion.div>
+          <motion.h1 variants={fadeUp} className="text-4xl md:text-5xl lg:text-6xl font-heading font-extrabold text-teal-deep">
+            Nos marques exclusives
+          </motion.h1>
+          <motion.p variants={fadeUp} className="text-xl text-anthracite-soft/80 font-medium max-w-3xl mx-auto leading-relaxed">
+            AFAQ Health développe un portefeuille de marques internationales bénéficiant de droits de distribution exclusifs au Maroc et en Afrique de l'Ouest.
+          </motion.p>
+        </motion.div>
 
-        {/* Brands Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-          {brands.map((brand) => (
-            <div key={brand.slug} className="group">
-              <div className={`bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden border border-sage-light h-full flex flex-col ${brand.status !== 'active' ? 'opacity-80' : ''}`}>
-                {/* Brand Header */}
-                <div className={`h-44 w-full bg-gradient-to-br ${brand.color} relative overflow-hidden flex flex-col items-center justify-center p-6`}>
-                  <div className="absolute inset-0 shimmer-loop opacity-20"></div>
-                  <h2 className="text-4xl font-heading font-extrabold text-white relative z-10">{brand.name}</h2>
-                  <span className="text-white/60 text-xs uppercase tracking-widest mt-2 relative z-10">{brand.subtitle}</span>
-                </div>
-
-                {/* Brand Content */}
-                <div className="p-8 flex-grow flex flex-col">
-                  <div className="flex items-center justify-between mb-4">
-                    <div className="text-xs font-bold text-gold-soft uppercase tracking-wider">
-                      Fabrication: {brand.origin}
-                    </div>
+        {/* Brands List */}
+        <div className="max-w-6xl mx-auto space-y-16">
+          {brands.map((brand, idx) => (
+            <motion.div 
+              key={brand.slug}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.6, delay: idx * 0.1 }}
+            >
+              <Card className="overflow-hidden border-none shadow-lg hover:shadow-xl transition-all duration-300 bg-white">
+                <div className="flex flex-col md:flex-row">
+                  {/* Brand Visual Area */}
+                  <div className={`md:w-1/3 bg-gradient-to-br ${brand.color} p-12 flex flex-col items-center justify-center relative overflow-hidden min-h-[300px]`}>
+                    <div className="absolute inset-0 shimmer-loop opacity-10" />
+                    <h2 className="text-4xl md:text-5xl font-heading font-black text-white relative z-10 text-center">
+                      {brand.name}
+                    </h2>
+                    <p className="text-white/80 uppercase tracking-widest text-sm mt-4 font-bold relative z-10 text-center">
+                      {brand.subtitle}
+                    </p>
                   </div>
 
-                  <StatusBadge status={brand.status} />
-
-                  <p className="text-anthracite-soft/80 flex-grow my-5 text-sm leading-relaxed">
-                    {brand.description}
-                  </p>
-
-                  {/* Certifications */}
-                  {brand.certifications.length > 0 && (
-                    <div className="flex gap-2 mb-5">
-                      {brand.certifications.map((cert) => (
-                        <span key={cert} className="text-[10px] font-bold text-teal-deep bg-sage-light px-2 py-1 rounded">
-                          {cert}
-                        </span>
-                      ))}
+                  {/* Brand Info Area */}
+                  <div className="md:w-2/3 p-10 flex flex-col justify-center">
+                    <div className="flex flex-wrap gap-3 mb-6">
+                      <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold bg-sage-light text-teal-deep uppercase tracking-wider">
+                        Fabrication: {brand.origin}
+                      </span>
+                      <span className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider ${brand.statusColor}`}>
+                        {brand.status}
+                      </span>
                     </div>
-                  )}
 
-                  {brand.status === 'active' ? (
-                    <Link
-                      href="/produits"
-                      className="shimmer-effect text-center text-teal-deep font-semibold bg-sage-light rounded-xl py-3 px-4 hover:bg-teal-deep hover:text-white transition-all duration-300"
-                    >
-                      Voir les 14 références →
-                    </Link>
-                  ) : (
-                    <div className="text-center text-anthracite-soft/40 font-medium py-3 text-sm">
-                      Bientôt disponible
+                    <h3 className="text-sm font-bold text-gold-soft uppercase tracking-widest mb-4">
+                      Distribution exclusive AFAQ Health — Maroc & Afrique de l'Ouest
+                    </h3>
+                    
+                    <p className="text-lg text-anthracite-soft/80 leading-relaxed mb-10">
+                      {brand.description}
+                    </p>
+
+                    <div>
+                      <Link
+                        href={`/marques/${brand.slug}`}
+                        className="inline-flex items-center gap-2 font-bold text-teal-deep hover:text-gold-soft transition-colors text-lg"
+                      >
+                        Découvrir {brand.name} <span>→</span>
+                      </Link>
                     </div>
-                  )}
+                  </div>
                 </div>
-              </div>
-            </div>
+              </Card>
+            </motion.div>
           ))}
         </div>
 

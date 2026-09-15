@@ -98,7 +98,7 @@ export default function FaqPage() {
             className="lg:col-span-5 relative h-[500px] w-full rounded-3xl overflow-hidden shadow-2xl sticky top-24"
           >
             <Image 
-              src="/tsawrsotya/faq_support.png" 
+              src="/uploaded/faq_support.png" 
               alt="Support Client AFAQ Health" 
               fill 
               className="object-cover hover:scale-105 transition-transform duration-1000" 

@@ -16,6 +16,16 @@ const icon = L.icon({
   shadowSize: [41, 41]
 });
 
+// Icon for the user's location
+const userIcon = L.icon({
+  iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-red.png',
+  shadowUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png',
+  iconSize: [25, 41],
+  iconAnchor: [12, 41],
+  popupAnchor: [1, -34],
+  shadowSize: [41, 41]
+});
+
 // A component to dynamically center the map when the active pharmacy changes
 function MapCenterController({ center, zoom }: { center: [number, number], zoom: number }) {
   const map = useMap();
@@ -42,16 +52,19 @@ interface PharmacyMapProps {
   pharmacies: Pharmacy[];
   activePharmacyId: number | null;
   onMarkerClick: (id: number) => void;
+  userLocation?: { lat: number, lng: number } | null;
 }
 
-export default function PharmacyMap({ pharmacies, activePharmacyId, onMarkerClick }: PharmacyMapProps) {
+export default function PharmacyMap({ pharmacies, activePharmacyId, onMarkerClick, userLocation }: PharmacyMapProps) {
   // Default center (Morocco)
   const defaultCenter: [number, number] = [33.5928, -7.6192];
   
   const activePharmacy = pharmacies.find(p => p.id === activePharmacyId);
   const currentCenter: [number, number] = activePharmacy && activePharmacy.lat && activePharmacy.lng
     ? [activePharmacy.lat, activePharmacy.lng] 
-    : (pharmacies.length > 0 && pharmacies[0].lat && pharmacies[0].lng ? [pharmacies[0].lat, pharmacies[0].lng] : defaultCenter);
+    : userLocation 
+      ? [userLocation.lat, userLocation.lng]
+      : (pharmacies.length > 0 && pharmacies[0].lat && pharmacies[0].lng ? [pharmacies[0].lat, pharmacies[0].lng] : defaultCenter);
     
   const currentZoom = activePharmacy ? 15 : 6;
 
@@ -68,6 +81,18 @@ export default function PharmacyMap({ pharmacies, activePharmacyId, onMarkerClic
       />
       
       <MapCenterController center={currentCenter} zoom={currentZoom} />
+
+      {userLocation && (
+        <Marker 
+          position={[userLocation.lat, userLocation.lng]} 
+          icon={userIcon}
+          zIndexOffset={1000}
+        >
+          <Popup>
+            <div className="font-bold text-center text-teal-deep">Vous êtes ici</div>
+          </Popup>
+        </Marker>
+      )}
 
       <MarkerClusterGroup
         chunkedLoading

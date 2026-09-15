@@ -5,13 +5,13 @@ import Link from 'next/link';
 import { Logo } from '@/components/ui/Logo';
 
 const navLinks = [
-  { href: '/produits', label: 'Nos produits' },
-  { href: '/marques', label: 'Nos marques' },
-  { href: '/pourquoi-nous', label: 'Pourquoi nous' },
   { href: '/a-propos', label: 'À propos' },
-  { href: '/#notre-reseau', label: 'Notre réseau' },
-  { href: '/localiser', label: 'Localiser' },
-  { href: '/faq', label: 'FAQ' },
+  { href: '/expertise', label: 'Notre expertise' },
+  { href: '/marques', label: 'Nos marques' },
+  { href: '/produits', label: 'Nos produits' },
+  { href: '/conseils', label: 'Conseils' },
+  { href: '/pharmacies', label: 'Pharmacies' },
+
   { href: '/contact', label: 'Contact' },
 ];
 
@@ -38,7 +38,7 @@ export function Header() {
         <div className="flex items-center gap-4">
           <Link
             href="/portal/login"
-            className="hidden sm:inline-block text-sm font-medium text-teal-deep border border-teal-deep rounded-full px-4 py-2 hover:bg-sage-light transition-colors"
+            className="hidden sm:inline-block text-sm font-bold bg-teal-deep text-white px-6 py-2.5 rounded-xl hover:bg-gold-soft hover:text-teal-deep transition-all shadow-md shimmer-effect"
           >
             Espace Pro
           </Link>

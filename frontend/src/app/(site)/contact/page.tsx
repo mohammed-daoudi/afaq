@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 
 export default function ContactPage() {
-  const [formType, setFormType] = useState('commercial');
+  const [formType, setFormType] = useState('');
   const [copied, setCopied] = useState<string | null>(null);
 
   const handleCopy = (text: string, id: string) => {
@@ -113,24 +113,26 @@ export default function ContactPage() {
           <div className="md:col-span-2 bg-white p-8 md:p-10 rounded-3xl shadow-sm border border-sage-light">
             
             {/* Form Type Selector */}
-            <div className="flex flex-wrap gap-3 mb-8">
-              {[
-                { id: 'commercial', label: 'Service Commercial' },
-                { id: 'partenariat', label: 'Demande de Partenariat (Fabricant)' },
-                { id: 'support', label: 'Support / Autre' }
-              ].map((type) => (
-                <button
-                  key={type.id}
-                  onClick={() => setFormType(type.id)}
-                  className={`px-4 py-2 rounded-full text-sm font-semibold transition-all ${
-                    formType === type.id 
-                      ? 'bg-teal-deep text-white shadow-md' 
-                      : 'bg-sage-light/50 text-anthracite-soft hover:bg-sage-light'
-                  }`}
-                >
-                  {type.label}
-                </button>
-              ))}
+            <div className="mb-6 space-y-2">
+              <label htmlFor="formType" className="text-sm font-semibold text-teal-deep">Type de demande *</label>
+              <select 
+                id="formType" 
+                required
+                value={formType}
+                onChange={(e) => setFormType(e.target.value)}
+                className="w-full px-4 py-3 rounded-xl border border-sage-light focus:border-teal-deep focus:ring-1 focus:ring-teal-deep outline-none bg-ivory-soft/30 transition-all appearance-none cursor-pointer"
+              >
+                <option value="" disabled>Sélectionnez un type de demande</option>
+                <option value="Consommateur">Consommateur</option>
+                <option value="Produit">Produit</option>
+                <option value="Pharmacie">Pharmacie</option>
+                <option value="Professionnel">Professionnel</option>
+                <option value="Grossiste / distributeur">Grossiste / distributeur</option>
+                <option value="Partenariat">Partenariat</option>
+                <option value="Laboratoire / marque">Laboratoire / marque</option>
+                <option value="Presse">Presse</option>
+                <option value="Autre">Autre</option>
+              </select>
             </div>
 
             <form onSubmit={handleSubmit} className="space-y-6">

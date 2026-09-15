@@ -1,127 +1,169 @@
 'use client';
 
 import React from 'react';
-import { Card, CardContent } from '@/components/ui/Card';
+import { Card } from '@/components/ui/Card';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 
-const differentiators = [
+const values = [
   {
-    title: 'Conformité Réglementaire',
-    description: 'Chaque référence est enregistrée AMMPS avant commercialisation. Nous ne faisons aucun compromis sur la sécurité et la légalité de nos produits.',
-    icon: '📋',
+    title: 'Exigence Scientifique',
+    description: 'Chaque produit distribué fait l\'objet d\'un examen minutieux de sa formulation et de son efficacité clinique.',
+    icon: '🔬',
   },
   {
-    title: 'Exclusivité Territoriale',
-    description: 'Une présence garantie sur le Maroc et huit pays d\'Afrique de l\'Ouest francophone, assurant un développement commercial cohérent et protégé.',
-    icon: '🌍',
+    title: 'Transparence & Conformité',
+    description: 'Nous garantissons un respect absolu des normes réglementaires et des standards pharmaceutiques marocains.',
+    icon: '📄',
   },
   {
-    title: 'Partenaires Reconnus',
-    description: 'Nous sélectionnons rigoureusement des laboratoires européens certifiés ISO 9001, garants d\'une qualité de production irréprochable.',
+    title: 'Soutien Continu',
+    description: 'De la formation des pharmaciens au conseil patient, nous assurons une présence constante sur le terrain.',
     icon: '🤝',
-  },
-  {
-    title: 'Vision Multi-Pays',
-    description: 'Une organisation pensée dès le départ pour l\'expansion régionale, adaptant notre stratégie aux spécificités de chaque marché local.',
-    icon: '🚀',
   }
 ];
 
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
+  visible: { opacity: 1, y: 0, transition: { duration: 0.8 } }
 };
 
 export default function AProposPage() {
   return (
-    <div className="min-h-screen bg-ivory-soft pt-12 pb-24 overflow-hidden">
-      <div className="container mx-auto px-4">
+    <div className="min-h-screen bg-white pb-24 overflow-hidden">
+      
+      {/* Hero Section */}
+      <section className="relative w-full h-[70vh] lg:h-[80vh] flex items-end pb-24">
+        <div className="absolute inset-0">
+          <Image 
+            src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&w=1920&q=80" 
+            alt="Recherche et exigence médicale" 
+            fill 
+            className="object-cover" 
+            priority
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-teal-deep via-teal-deep/50 to-transparent" />
+        </div>
         
-        {/* Header */}
-        <motion.div 
-          initial="hidden" animate="visible" variants={{ hidden: { opacity: 0 }, visible: { opacity: 1, transition: { staggerChildren: 0.2 } } }}
-          className="max-w-3xl mx-auto text-center mb-20 space-y-6"
-        >
-          <motion.div variants={fadeUp} className="inline-block px-3 py-1 text-xs font-semibold tracking-wider text-teal-deep bg-sage-light rounded-full uppercase">
-            Qui Sommes-Nous
-          </motion.div>
-          <motion.h1 variants={fadeUp} className="text-4xl md:text-5xl font-heading font-extrabold text-teal-deep">
-            L'Expertise <span className="text-gold-soft">AFAQ Health</span>
-          </motion.h1>
-          <motion.p variants={fadeUp} className="text-lg text-anthracite-soft/80 font-sans">
-            Nous accompagnons des laboratoires européens dans leur implantation durable sur des marchés à fort potentiel, en Afrique de l'Ouest et au Maroc.
-          </motion.p>
-        </motion.div>
-
-        {/* Mission & Expertise with Image */}
-        <motion.div 
-          initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }}
-          variants={{ hidden: { opacity: 0 }, visible: { opacity: 1, transition: { staggerChildren: 0.3 } } }}
-          className="max-w-6xl mx-auto bg-white rounded-3xl shadow-lg p-8 md:p-12 mb-20 border border-sage-light/50 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center"
-        >
-          <motion.div variants={fadeUp} className="space-y-12">
-            <div className="space-y-4">
-              <h2 className="text-2xl font-heading font-bold text-teal-deep border-b-2 border-gold-soft pb-2 inline-block">Notre Mission</h2>
-              <p className="text-anthracite-soft/80 leading-relaxed">
-                Apporter des solutions de santé et de nutrition de haute qualité aux professionnels, en garantissant une traçabilité totale et un respect strict des normes réglementaires. Nous nous positionnons comme le pont de confiance entre l'excellence européenne et les besoins grandissants du marché ouest-africain.
-              </p>
-            </div>
-            <div className="space-y-4">
-              <h2 className="text-2xl font-heading font-bold text-teal-deep border-b-2 border-gold-soft pb-2 inline-block">Notre Expertise</h2>
-              <p className="text-anthracite-soft/80 leading-relaxed">
-                Au-delà de la simple importation, AFAQ Health prend en charge l'ensemble de la chaîne de valeur : de la stratégie d'accès au marché et l'homologation AMMPS, jusqu'au développement commercial, la structuration des réseaux de distribution et l'accompagnement scientifique des officines.
-              </p>
-            </div>
-          </motion.div>
-          
+        <div className="container mx-auto px-4 relative z-10">
           <motion.div 
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, type: "spring" }}
-            className="relative h-[400px] lg:h-full min-h-[500px] w-full rounded-2xl overflow-hidden"
+            initial="hidden" animate="visible" variants={{ hidden: { opacity: 0 }, visible: { opacity: 1, transition: { staggerChildren: 0.2 } } }}
+            className="max-w-4xl space-y-6"
           >
-            <Image 
-              src="/tsawrsotya/a_propos_mission.png" 
-              alt="L'équipe AFAQ Health en réunion" 
-              fill 
-              className="object-cover hover:scale-105 transition-transform duration-1000" 
-            />
-            <div className="absolute inset-0 bg-gold-soft/10 mix-blend-multiply pointer-events-none" />
-          </motion.div>
-        </motion.div>
-
-        {/* Differentiators Grid */}
-        <div className="max-w-5xl mx-auto">
-          <motion.h2 
-            initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
-            className="text-3xl font-heading font-bold text-teal-deep text-center mb-12"
-          >
-            Nos 4 Différenciateurs
-          </motion.h2>
-          <motion.div 
-            initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }}
-            variants={{ hidden: { opacity: 0 }, visible: { opacity: 1, transition: { staggerChildren: 0.1 } } }}
-            className="grid grid-cols-1 md:grid-cols-2 gap-8"
-          >
-            {differentiators.map((item, index) => (
-              <motion.div variants={fadeUp} key={index}>
-                <Card className="border-none shadow-sm hover:shadow-xl transition-all duration-300 bg-white flex flex-row items-start p-6 gap-6 group">
-                  <div className="text-4xl bg-sage-light p-4 rounded-2xl transform group-hover:rotate-12 transition-transform duration-300">{item.icon}</div>
-                  <div>
-                    <h3 className="text-lg font-bold text-teal-deep mb-2">{item.title}</h3>
-                    <p className="text-anthracite-soft/80 text-sm leading-relaxed">
-                      {item.description}
-                    </p>
-                  </div>
-                </Card>
-              </motion.div>
-            ))}
+            <motion.div variants={fadeUp} className="inline-block px-4 py-1.5 text-xs font-bold tracking-widest text-gold-soft bg-white/10 backdrop-blur-md rounded-full uppercase border border-white/20">
+              Notre Manifeste
+            </motion.div>
+            <motion.h1 variants={fadeUp} className="text-5xl md:text-6xl lg:text-7xl font-heading font-extrabold text-white leading-tight">
+              Rehausser les standards de <span className="text-gold-soft italic font-serif font-light">santé</span>.
+            </motion.h1>
           </motion.div>
         </div>
+      </section>
 
-      </div>
+      {/* Chapitre 1: Notre Histoire */}
+      <section className="py-24 relative bg-ivory-soft">
+        <div className="container mx-auto px-4 max-w-7xl">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <motion.div 
+              initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}
+              className="space-y-8"
+            >
+              <h2 className="text-4xl lg:text-5xl font-heading font-bold text-teal-deep leading-tight">
+                Une vision née d'une conviction profonde
+              </h2>
+              <div className="space-y-6 text-lg text-anthracite-soft/80 leading-relaxed font-serif">
+                <p>
+                  Créée avec l'ambition de rapprocher les consommateurs marocains des meilleurs standards européens, AFAQ Health n'est pas un simple distributeur, c'est un créateur de ponts entre l'innovation scientifique et le besoin patient.
+                </p>
+                <p>
+                  Nous avons constaté un fossé entre les solutions de santé naturelles disponibles à l'international et celles accessibles localement. Notre mission est devenue évidente : identifier des marques d'exception, certifiées, et les implanter durablement sur le marché marocain et ouest-africain.
+                </p>
+              </div>
+            </motion.div>
+            
+            <motion.div 
+              initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={{ hidden: { opacity: 0, x: 50 }, visible: { opacity: 1, x: 0, transition: { duration: 0.8 } } }}
+              className="relative h-[600px] w-full rounded-[2rem] overflow-hidden shadow-2xl"
+            >
+              <Image 
+                src="https://images.unsplash.com/photo-1551076805-e1869033e561?auto=format&fit=crop&w=800&q=80" 
+                alt="Équipe professionnelle" 
+                fill 
+                className="object-cover" 
+              />
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* Chapitre 2: Le Patient au Centre */}
+      <section className="py-24 relative bg-white">
+        <div className="container mx-auto px-4 max-w-7xl">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <motion.div 
+              initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={{ hidden: { opacity: 0, x: -50 }, visible: { opacity: 1, x: 0, transition: { duration: 0.8 } } }}
+              className="relative h-[600px] w-full rounded-[2rem] overflow-hidden shadow-2xl order-2 lg:order-1"
+            >
+              <Image 
+                src="https://images.unsplash.com/photo-1584483766114-2cea6facdf57?auto=format&fit=crop&w=800&q=80" 
+                alt="Satisfaction patient" 
+                fill 
+                className="object-cover" 
+              />
+            </motion.div>
+
+            <motion.div 
+              initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}
+              className="space-y-8 order-1 lg:order-2"
+            >
+              <p className="text-sm font-bold text-gold-soft uppercase tracking-widest">
+                L'humain avant tout
+              </p>
+              <h2 className="text-4xl lg:text-5xl font-heading font-bold text-teal-deep leading-tight">
+                Chaque produit est une promesse de qualité
+              </h2>
+              <div className="space-y-6 text-lg text-anthracite-soft/80 leading-relaxed font-serif">
+                <p>
+                  L'écosystème que nous avons construit repose sur un engagement sans faille envers la santé publique. Chaque référence importée passe par un filtre rigoureux d'approbations (AMMPS), garantissant ainsi au pharmacien de délivrer un conseil sûr et au patient de consommer un produit efficace.
+                </p>
+                <p>
+                  AFAQ Health s'engage à accompagner les professionnels de la santé dans leur quotidien, avec des formations, des fiches techniques détaillées et un support constant.
+                </p>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* Nos Valeurs */}
+      <section className="py-24 bg-teal-deep text-white relative">
+        <div className="container mx-auto px-4 max-w-7xl">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
+            className="text-center mb-20 max-w-3xl mx-auto"
+          >
+            <h2 className="text-4xl md:text-5xl font-heading font-extrabold mb-6">Nos piliers d'excellence</h2>
+            <p className="text-xl text-white/80 font-serif">Les fondations sur lesquelles nous bâtissons notre réseau de distribution.</p>
+          </motion.div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {values.map((item, index) => (
+              <motion.div 
+                key={index} 
+                initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: index * 0.2 }}
+                className="bg-white/5 border border-white/10 p-10 rounded-[2rem] backdrop-blur-sm"
+              >
+                <div className="text-5xl mb-6">{item.icon}</div>
+                <h3 className="text-2xl font-bold text-gold-soft mb-4">{item.title}</h3>
+                <p className="text-white/70 leading-relaxed font-serif">
+                  {item.description}
+                </p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
     </div>
   );
 }

@@ -1,47 +1,12 @@
 'use client';
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { motion, AnimatePresence } from "framer-motion";
-import { Card, CardContent } from "@/components/ui/Card";
+import { motion } from "framer-motion";
+import { Card } from "@/components/ui/Card";
+import { HistorySlider } from "@/components/ui/HistorySlider";
 import { products, FAMILY_COLORS, type TherapeuticFamily } from "@/lib/products";
 
-// Fetch the 3 featured products for Hero
-const featuredIds = ['collagene', 'melatonine', 'complexe-vitamine-c'];
-const featuredProducts = featuredIds.map(id => {
-  const p = products.find(p => p.id === id);
-  if (!p) {
-    console.error(`[AFAQ] Product not found for id: ${id}`);
-    return {
-      id,
-      name: 'Produit non trouvé',
-      brand: 'SOTYA',
-      category: 'Santé Spécifique' as TherapeuticFamily,
-      imagePath: '/placeholder.png',
-      description: 'Produit introuvable.',
-      benefits: [],
-      dosage: '',
-      duration: '',
-      format: '',
-      certifications: [],
-      headline: 'Erreur de chargement'
-    };
-  }
-  return {
-    ...p,
-    headline: p.id === 'collagene' ? "Pour la beauté de votre peau et de vos cheveux." :
-              p.id === 'melatonine' ? "Retrouvez un sommeil réparateur et naturel." :
-              "Boostez votre immunité au quotidien."
-  };
-});
-
-const heroImages = [
-  '/tsawrsotya/yoga.png',
-  '/tsawrsotya/prod.jpeg',
-  '/tsawrsotya/guy.jfif'
-];
-
-// Reusable animation variants
 const fadeUpVariant = {
   hidden: { opacity: 0, y: 40 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.8 } }
@@ -58,554 +23,256 @@ const staggerContainer = {
 };
 
 export default function HomePage() {
-  const [currentSlide, setCurrentSlide] = useState(0);
-
-  // Auto-advance carousel
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % featuredProducts.length);
-    }, 6000);
-    return () => clearInterval(timer);
-  }, []);
+  const [videoError, setVideoError] = useState(false);
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-white">
       
-      {/* 1. Product-Centric Hero Carousel */}
-      <section className="relative min-h-[100dvh] lg:h-screen bg-sage-light overflow-hidden flex items-center pt-32 pb-16 lg:py-0">
-        <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-teal-deep/5 rounded-full blur-3xl transform translate-x-1/3 -translate-y-1/3 pointer-events-none" />
-        <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-gold-soft/10 rounded-full blur-3xl transform -translate-x-1/3 translate-y-1/3 pointer-events-none" />
+      {/* 1. Hero Video / Lifestyle */}
+      <section className="relative w-full h-[100dvh] lg:h-screen overflow-hidden flex items-center justify-center">
+        {/* Fallback image if video fails or is loading */}
+        <div className="absolute inset-0 bg-teal-deep z-0">
+          <Image 
+            src="https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?auto=format&fit=crop&w=1920&q=80" 
+            alt="Lifestyle santé" 
+            fill 
+            className="object-cover opacity-60" 
+            priority
+          />
+        </div>
 
-        <div className="container mx-auto px-4 relative z-10 h-full flex items-center">
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={currentSlide}
-              initial={{ opacity: 0, x: 50 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -50 }}
-              transition={{ duration: 0.7, ease: "easeInOut" }}
-              className="w-full grid grid-cols-1 lg:grid-cols-2 gap-12 items-center"
-            >
-              <div className="space-y-6 md:space-y-8 order-2 lg:order-1 text-center lg:text-left">
-                <div 
-                  className="inline-block px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider border shadow-sm bg-white"
-                  style={{ 
-                    color: FAMILY_COLORS[featuredProducts[currentSlide].category as TherapeuticFamily].accent,
-                    borderColor: `${FAMILY_COLORS[featuredProducts[currentSlide].category as TherapeuticFamily].accent}40`
-                  }}
-                >
-                  {featuredProducts[currentSlide].category}
+        {/* Video Background */}
+        {!videoError && (
+          <video 
+            autoPlay 
+            loop 
+            muted 
+            playsInline
+            onError={() => setVideoError(true)}
+            className="absolute inset-0 w-full h-full object-cover z-0 opacity-60 mix-blend-overlay"
+          >
+            {/* Using a placeholder generic video URL. Replace with actual AFAQ video URL */}
+            <source src="https://assets.mixkit.co/videos/preview/mixkit-woman-doing-yoga-on-a-mat-in-the-middle-of-42790-large.mp4" type="video/mp4" />
+          </video>
+        )}
+
+        <div className="absolute inset-0 bg-gradient-to-b from-teal-deep/80 via-teal-deep/40 to-teal-deep/90 z-0" />
+
+        <div className="container mx-auto px-4 relative z-10 text-center flex flex-col items-center mt-16">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, ease: "easeOut" }}
+            className="space-y-6 max-w-4xl"
+          >
+            <div className="inline-block px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest border border-gold-soft/50 text-gold-soft bg-teal-deep/50 backdrop-blur-md mb-4">
+              Santé & Bien-être Premium
+            </div>
+            <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-heading font-extrabold text-white leading-[1.1] tracking-tight">
+              L'exigence de la santé, <br/>
+              <span className="text-gold-soft italic font-serif font-light">accessible à tous.</span>
+            </h1>
+            <p className="text-xl md:text-2xl text-white/90 font-medium max-w-2xl mx-auto pt-4 leading-relaxed">
+              Découvrez nos gammes de compléments alimentaires européens, conçues pour vous accompagner à chaque étape de votre vie.
+            </p>
+            <div className="pt-8 flex flex-col sm:flex-row gap-4 justify-center">
+              <Link
+                href="/produits"
+                className="px-8 py-4 bg-gold-soft text-teal-deep font-bold text-lg rounded-full hover:bg-white transition-all transform hover:-translate-y-1 shadow-xl"
+              >
+                Découvrir nos solutions
+              </Link>
+              <Link
+                href="/a-propos"
+                className="px-8 py-4 bg-transparent border-2 border-white text-white font-bold text-lg rounded-full hover:bg-white/10 transition-all"
+              >
+                Notre manifeste
+              </Link>
+            </div>
+          </motion.div>
+        </div>
+
+        {/* Scroll Indicator */}
+        <motion.div 
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1.5, duration: 1 }}
+          className="absolute bottom-10 left-1/2 -translate-x-1/2 text-white/50 flex flex-col items-center gap-2 z-10"
+        >
+          <span className="text-xs uppercase tracking-widest font-bold">Découvrir</span>
+          <div className="w-[1px] h-12 bg-white/30 relative overflow-hidden">
+            <div className="w-full h-full bg-white absolute top-0 left-0 animate-[scroll_2s_ease-in-out_infinite]" />
+          </div>
+        </motion.div>
+      </section>
+
+      {/* 2. Notre Histoire (History Slider) */}
+      <HistorySlider />
+
+      {/* 3. Blog / Conseils (Magazine Style) */}
+      <section className="py-24 bg-white">
+        <div className="container mx-auto px-4 max-w-7xl">
+          <motion.div 
+            initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUpVariant}
+            className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6 border-b border-sage-light pb-8"
+          >
+            <div className="max-w-2xl">
+              <p className="text-sm font-bold text-gold-soft uppercase tracking-widest mb-3">Magazine Santé</p>
+              <h2 className="text-4xl md:text-5xl font-heading font-extrabold text-teal-deep">S'informer pour mieux vivre</h2>
+            </div>
+            <Link href="/conseils" className="px-6 py-3 rounded-full border border-teal-deep text-teal-deep font-bold hover:bg-teal-deep hover:text-white transition-all whitespace-nowrap">
+              Tous nos articles
+            </Link>
+          </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {/* Featured Article (Large) */}
+            <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUpVariant} className="lg:col-span-2 group cursor-pointer">
+              <Link href="/conseils/magnesium-bisglycinate" className="block h-full">
+                <div className="relative h-[400px] rounded-3xl overflow-hidden mb-6">
+                  <Image src="https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=1200&q=80" alt="Nutrition" fill className="object-cover group-hover:scale-105 transition-transform duration-700" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                  <div className="absolute bottom-8 left-8 right-8">
+                    <span className="bg-white text-teal-deep text-xs font-bold uppercase tracking-wider px-3 py-1.5 rounded-full mb-4 inline-block">Dossier Spécial</span>
+                    <h3 className="text-3xl md:text-4xl font-heading font-bold text-white mb-2 leading-tight group-hover:text-gold-soft transition-colors">
+                      Pourquoi le magnésium bisglycinate est-il le plus assimilable ?
+                    </h3>
+                  </div>
                 </div>
-                <h1 className="text-5xl sm:text-6xl md:text-7xl font-heading font-extrabold text-teal-deep leading-[1.1] tracking-tight">
-                  {featuredProducts[currentSlide].headline}
-                </h1>
-                <p className="text-xl text-anthracite-soft/80 font-medium max-w-xl mx-auto lg:mx-0">
-                  {featuredProducts[currentSlide].name} — {featuredProducts[currentSlide].description}
+                <p className="text-anthracite-soft/80 text-lg line-clamp-2 pr-8">
+                  Fatigue persistante, crampes nocturnes, stress... Le magnésium est la solution, mais encore faut-il choisir la bonne forme. Plongée au cœur de la biodisponibilité.
                 </p>
-                <div className="pt-4 flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-                  <Link
-                    href={`/produits/${featuredProducts[currentSlide].id}`}
-                    className="shimmer-effect px-8 py-4 bg-teal-deep text-white font-bold text-lg rounded-xl shadow-xl hover:shadow-2xl hover:bg-opacity-95 transition-all transform hover:-translate-y-1"
-                  >
-                    Découvrir le produit
+              </Link>
+            </motion.div>
+
+            <div className="space-y-8 flex flex-col justify-between">
+              {/* Secondary Article 1 */}
+              <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUpVariant} className="group cursor-pointer flex flex-col sm:flex-row gap-6 items-start">
+                <Link href="/conseils/collagene-marin-vs-bovin" className="flex flex-col sm:flex-row gap-6 w-full">
+                  <div className="relative w-full sm:w-48 h-48 sm:h-auto sm:aspect-square rounded-2xl overflow-hidden shrink-0 shadow-md">
+                    <Image src="/images/unsplash/beauty/beauty_3.jpg" alt="Beauté et Peau" fill className="object-cover group-hover:scale-110 transition-transform duration-500" />
+                  </div>
+                  <div className="flex flex-col justify-center">
+                    <span className="text-gold-soft text-xs font-bold uppercase tracking-widest block mb-2">Beauté & Peau</span>
+                    <h4 className="text-2xl font-bold text-teal-deep group-hover:text-teal-deep/70 transition-colors leading-snug mb-3">
+                      Collagène marin : le secret d'une peau éclatante
+                    </h4>
+                    <p className="text-base text-anthracite-soft/70 leading-relaxed line-clamp-3">
+                      Avec l'âge, la production naturelle de collagène diminue, entraînant l'apparition de rides et une perte de fermeté. Le collagène marin hydrolysé se distingue par sa structure très proche de celle du collagène humain, offrant une biodisponibilité maximale. Découvrez comment l'intégrer à votre routine pour restaurer l'élasticité de votre peau de l'intérieur.
+                    </p>
+                  </div>
+                </Link>
+              </motion.div>
+              <div className="w-full h-px bg-sage-light" />
+              {/* Secondary Article 2 */}
+              <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUpVariant} className="group cursor-pointer flex flex-col sm:flex-row gap-6 items-start">
+                <Link href="/conseils/immunite-enfants-hiver" className="flex flex-col sm:flex-row gap-6 w-full">
+                  <div className="relative w-full sm:w-48 h-48 sm:h-auto sm:aspect-square rounded-2xl overflow-hidden shrink-0 shadow-md">
+                    <Image src="/images/unsplash/babies/baby_3.jpg" alt="Enfants et Immunité" fill className="object-cover group-hover:scale-110 transition-transform duration-500" />
+                  </div>
+                  <div className="flex flex-col justify-center">
+                    <span className="text-gold-soft text-xs font-bold uppercase tracking-widest block mb-2">Pédiatrie</span>
+                    <h4 className="text-2xl font-bold text-teal-deep group-hover:text-teal-deep/70 transition-colors leading-snug mb-3">
+                      Protéger l'immunité des enfants à l'approche de l'hiver
+                    </h4>
+                    <p className="text-base text-anthracite-soft/70 leading-relaxed line-clamp-3">
+                      Les changements de saison mettent le système immunitaire des plus petits à rude épreuve. Entre l'école et les activités, ils sont constamment exposés. Une supplémentation ciblée en vitamines et minéraux essentiels permet de soutenir leurs défenses naturelles de manière douce et efficace, pour un hiver serein et plein de vitalité.
+                    </p>
+                  </div>
+                </Link>
+              </motion.div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 4. Contextualized Products */}
+      <section className="py-24 lg:py-32 bg-sage-light/20 relative overflow-hidden">
+        {/* Background blobs */}
+        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-teal-deep/5 rounded-full blur-[100px] pointer-events-none" />
+        
+        <div className="container mx-auto px-4 max-w-7xl">
+          <div className="text-center max-w-3xl mx-auto mb-20">
+            <h2 className="text-4xl md:text-5xl font-heading font-extrabold text-teal-deep mb-6">Des solutions expertes pour chaque besoin</h2>
+            <p className="text-xl text-anthracite-soft/70">Des formulations précises, adaptées à votre rythme de vie.</p>
+          </div>
+
+          <div className="space-y-24">
+            
+            {/* Feature 1 : Sommeil */}
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+              <div className="lg:col-span-5 order-2 lg:order-1 space-y-6">
+                <div className="w-16 h-16 bg-blue-100 text-blue-800 rounded-full flex items-center justify-center mb-6">
+                  <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" /></svg>
+                </div>
+                <h3 className="text-4xl font-heading font-bold text-teal-deep">Retrouvez des nuits paisibles</h3>
+                <p className="text-lg text-anthracite-soft/80 leading-relaxed">
+                  Le stress quotidien et la lumière des écrans perturbent notre cycle naturel. Notre solution à base de Mélatonine et de plantes relaxantes vous aide à trouver le sommeil plus rapidement, sans accoutumance.
+                </p>
+                <div className="pt-4">
+                  <Link href="/produits/melatonine" className="inline-flex items-center gap-3 bg-teal-deep text-white px-6 py-3 rounded-full font-bold hover:bg-gold-soft transition-colors">
+                    Découvrir SOTYA Mélatonine <span aria-hidden="true">→</span>
                   </Link>
                 </div>
               </div>
-              <div className="order-1 lg:order-2 flex justify-center relative w-[calc(100%+2rem)] -mx-4 lg:mx-0 lg:w-full h-[400px] sm:h-[500px] lg:h-[600px]">
-                <div 
-                  className="absolute inset-0 blur-3xl opacity-30 transform scale-90"
-                  style={{ backgroundColor: FAMILY_COLORS[featuredProducts[currentSlide].category as TherapeuticFamily].accent }}
-                />
-                <motion.div 
-                  className="relative w-full h-full overflow-hidden z-10"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 0.8, ease: "easeOut" }}
-                >
-                  <Image 
-                    src={heroImages[currentSlide]}
-                    alt={featuredProducts[currentSlide].name}
-                    fill
-                    priority
-                    className="object-cover hover:scale-105 transition-transform duration-700"
-                    sizes="(max-width: 1024px) 100vw, 50vw"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent pointer-events-none" />
-                </motion.div>
-              </div>
-            </motion.div>
-          </AnimatePresence>
-        </div>
-
-        <div className="absolute bottom-12 left-0 right-0 flex justify-center gap-3 z-20">
-          {featuredProducts.map((_, idx) => (
-            <button
-              key={idx}
-              onClick={() => setCurrentSlide(idx)}
-              className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                currentSlide === idx ? 'bg-teal-deep w-10' : 'bg-teal-deep/30 hover:bg-teal-deep/50'
-              }`}
-              aria-label={`Go to slide ${idx + 1}`}
-            />
-          ))}
-        </div>
-      </section>
-
-      {/* 2. Introduction: La santé par la nutrition */}
-      <section className="py-24 bg-white relative z-20">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            
-            <motion.div 
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: "-100px" }}
-              variants={fadeUpVariant}
-              className="space-y-8"
-            >
-              <div>
-                <p className="text-sm font-bold text-gold-soft uppercase tracking-widest mb-4">
-                  Laboratoire importateur • Maroc & Afrique de l'Ouest
-                </p>
-                <h2 className="text-5xl md:text-6xl font-heading font-extrabold text-teal-deep leading-tight">
-                  La santé par la <span className="text-gold-soft italic font-serif">nutrition</span>, distribuée avec exigence.
-                </h2>
-              </div>
-              <p className="text-xl text-anthracite-soft/80 leading-relaxed">
-                AFAQ Health importe et distribue en exclusivité des marques internationales de compléments alimentaires premium — au service des pharmacies, des grossistes et des distributeurs.
-              </p>
-              
-              <div className="flex flex-col sm:flex-row gap-4 pt-4">
-                <Link href="/portal/login" className="bg-teal-deep text-white font-bold px-8 py-4 rounded-xl text-center hover:bg-opacity-95 transition-all shadow-md hover:shadow-lg">
-                  Accéder au portail B2B →
-                </Link>
-                <Link href="/marques" className="bg-white border-2 border-teal-deep/20 text-teal-deep font-bold px-8 py-4 rounded-xl text-center hover:bg-sage-light transition-all">
-                  Découvrir nos marques
-                </Link>
-              </div>
-
-                <motion.div 
-                  initial={{ opacity: 0, scale: 0.95 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.8, delay: 0.3 }}
-                  className="relative w-full aspect-square min-h-[300px] sm:min-h-[400px] max-h-[600px] mx-auto mt-8 rounded-3xl overflow-hidden shadow-lg"
-                >
-                  <Image src="/tsawrsotya/sotya_girl.png" alt="Sotya Santé et nutrition" fill sizes="(max-width: 1024px) 100vw, 50vw" className="object-contain" />
-                  <div className="absolute inset-0 bg-teal-deep/10 mix-blend-multiply pointer-events-none" />
-                </motion.div>
-
-              <div className="grid grid-cols-3 gap-6 pt-10 border-t border-sage-light">
-                <div>
-                  <div className="text-4xl font-heading font-extrabold text-teal-deep mb-2">3</div>
-                  <p className="text-sm font-semibold text-anthracite-soft/70">Marques exclusives</p>
-                </div>
-                <div>
-                  <div className="text-4xl font-heading font-extrabold text-teal-deep mb-2">9</div>
-                  <p className="text-sm font-semibold text-anthracite-soft/70">Pays couverts</p>
-                </div>
-                <div>
-                  <div className="text-4xl font-heading font-extrabold text-teal-deep mb-2">100%</div>
-                  <p className="text-sm font-semibold text-anthracite-soft/70">Références enregistrées AMMPS</p>
+              <div className="lg:col-span-7 order-1 lg:order-2 relative h-[500px] rounded-[3rem] overflow-hidden bg-blue-50">
+                <Image src="https://images.unsplash.com/photo-1541781774459-bb2af2f05b55?auto=format&fit=crop&w=800&q=80" alt="Sommeil paisible" fill className="object-cover opacity-90 mix-blend-multiply" />
+                {/* Floating Product Image */}
+                <div className="absolute -bottom-10 -right-10 w-96 h-96 transform -rotate-12 drop-shadow-2xl hover:rotate-0 transition-transform duration-500">
+                  <Image src="/tsawrsotya/sotya_girl.png" alt="Produit Sommeil" fill className="object-contain" />
                 </div>
               </div>
-            </motion.div>
-
-            {/* Diagram */}
-            <motion.div 
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: "-100px" }}
-              variants={staggerContainer}
-              className="relative hidden md:flex flex-col gap-6 pl-12 border-l-2 border-sage-light/50"
-            >
-              {[
-                { title: "Fabricant international", active: false },
-                { title: "AFAQ Health • Importation", active: true },
-                { title: "Distributeurs & grossistes", active: false },
-                { title: "Pharmacies & officines", active: false },
-                { title: "Patient • Conseil officinal", active: true },
-              ].map((step, i) => (
-                <motion.div 
-                  key={i} 
-                  variants={fadeUpVariant}
-                  className={`relative p-5 rounded-xl shadow-sm border ${step.active ? 'bg-white border-gold-soft' : 'bg-sage-light/30 border-white'} ml-${i % 2 === 0 ? '0' : '12'}`}
-                  style={{ marginLeft: i * 20 }}
-                >
-                  <div className="flex items-center gap-3">
-                    <div className={`w-3 h-3 rounded-full ${step.active ? 'bg-gold-soft' : 'bg-teal-deep'}`} />
-                    <span className="font-bold text-teal-deep">{step.title}</span>
-                  </div>
-                </motion.div>
-              ))}
-            </motion.div>
-          </div>
-        </div>
-      </section>
-
-      {/* 3. Portefeuille: Nos Marques */}
-      <section className="py-24 bg-sage-light/30 relative z-20 border-y border-sage-light">
-        <div className="container mx-auto px-4">
-          <motion.div 
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-100px" }}
-            variants={fadeUpVariant}
-            className="mb-16 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center"
-          >
-            <div>
-              <p className="text-sm font-bold text-gold-soft uppercase tracking-widest mb-4">
-                Portefeuille
-              </p>
-              <h2 className="text-4xl md:text-5xl font-heading font-extrabold text-teal-deep mb-6">
-                Des marques choisies pour leur rigueur scientifique.
-              </h2>
-              <p className="text-lg text-anthracite-soft/80">
-                AFAQ Health représente en exclusivité des laboratoires européens reconnus, sélectionnés pour la qualité de leurs formulations et leur conformité réglementaire.
-              </p>
             </div>
-            <motion.div 
-              className="relative w-full aspect-square min-h-[300px] sm:min-h-[400px] md:max-h-[600px] rounded-[2rem] overflow-hidden shadow-xl mx-auto"
-              whileHover={{ scale: 1.02 }}
-              transition={{ duration: 0.5 }}
-            >
-              <Image src="/tsawrsotya/sotya_smile.png" alt="Sotya Beauté et bien-être" fill sizes="(max-width: 1024px) 100vw, 50vw" className="object-contain lg:object-cover" />
-            </motion.div>
-          </motion.div>
 
-          <motion.div 
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-100px" }}
-            variants={staggerContainer}
-            className="grid grid-cols-1 md:grid-cols-3 gap-8"
-          >
-            {/* SOTYA */}
-            <motion.div variants={fadeUpVariant}>
-              <Card className="h-full border-none shadow-md hover:shadow-xl transition-all bg-white flex flex-col p-8">
-                <h3 className="text-3xl font-heading font-bold text-teal-deep mb-2">SOTYA</h3>
-                <p className="text-xs font-bold text-anthracite-soft/50 uppercase tracking-wider mb-6">Espagne • Bescorp Health</p>
-                <p className="text-anthracite-soft/80 mb-8 flex-grow">
-                  Gamme complète de compléments alimentaires — stress, sommeil, immunité, vitalité et santé spécifique. 19 références enregistrées AMMPS.
-                </p>
-                <div className="flex flex-wrap gap-2 mb-8">
-                  <span className="text-xs font-bold bg-sage-light px-3 py-1.5 rounded-full text-teal-deep">Immunité</span>
-                  <span className="text-xs font-bold bg-sage-light px-3 py-1.5 rounded-full text-teal-deep">Sommeil</span>
-                  <span className="text-xs font-bold bg-sage-light px-3 py-1.5 rounded-full text-teal-deep">Vitalité</span>
+            {/* Feature 2 : Immunité */}
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+              <div className="lg:col-span-7 relative h-[500px] rounded-[3rem] overflow-hidden bg-orange-50">
+                <Image src="https://images.unsplash.com/photo-1538805060514-97d9cc17730c?auto=format&fit=crop&w=800&q=80" alt="Femme active courant" fill className="object-cover opacity-90 mix-blend-multiply" />
+                <div className="absolute -bottom-10 -left-10 w-96 h-96 transform rotate-12 drop-shadow-2xl hover:rotate-0 transition-transform duration-500">
+                  <Image src="/tsawrsotya/sotya_smile.png" alt="Produit Immunité" fill className="object-contain" />
                 </div>
-                <Link href="/produits" className="font-bold text-teal-deep hover:text-gold-soft transition-colors flex items-center gap-2">
-                  Voir la gamme →
-                </Link>
-              </Card>
-            </motion.div>
-
-            {/* Colagenova */}
-            <motion.div variants={fadeUpVariant}>
-              <Card className="h-full border-none shadow-md hover:shadow-xl transition-all bg-white flex flex-col p-8">
-                <h3 className="text-3xl font-heading font-bold text-gold-soft mb-2">Colagenova</h3>
-                <p className="text-xs font-bold text-anthracite-soft/50 uppercase tracking-wider mb-6">Espagne • Vaminter</p>
-                <p className="text-anthracite-soft/80 mb-8 flex-grow">
-                  Gamme experte de collagène marin et de solutions beauté-mobilité, structurée par indication. Lancement Maroc prévu en 2027.
-                </p>
-                <div className="flex flex-wrap gap-2 mb-8">
-                  <span className="text-xs font-bold bg-gold-soft/10 px-3 py-1.5 rounded-full text-gold-soft">Collagène marin</span>
-                  <span className="text-xs font-bold bg-gold-soft/10 px-3 py-1.5 rounded-full text-gold-soft">Beauté</span>
-                  <span className="text-xs font-bold bg-gold-soft/10 px-3 py-1.5 rounded-full text-gold-soft">Mobilité</span>
+              </div>
+              <div className="lg:col-span-5 space-y-6 lg:pl-8">
+                <div className="w-16 h-16 bg-orange-100 text-orange-600 rounded-full flex items-center justify-center mb-6">
+                  <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
                 </div>
-                <Link href="#" className="font-bold text-gold-soft hover:text-teal-deep transition-colors flex items-center gap-2">
-                  Découvrir →
-                </Link>
-              </Card>
-            </motion.div>
-
-            {/* Naturamins */}
-            <motion.div variants={fadeUpVariant}>
-              <Card className="h-full border-none shadow-md hover:shadow-xl transition-all bg-white flex flex-col p-8">
-                <h3 className="text-3xl font-heading font-bold text-teal-deep/70 mb-2">Naturamins</h3>
-                <p className="text-xs font-bold text-anthracite-soft/50 uppercase tracking-wider mb-6">Europe • À venir</p>
-                <p className="text-anthracite-soft/80 mb-8 flex-grow">
-                  Nouvelle marque du portefeuille AFAQ Health, en cours de préparation réglementaire et commerciale pour le marché marocain.
+                <h3 className="text-4xl font-heading font-bold text-teal-deep">Une énergie qui dure toute la journée</h3>
+                <p className="text-lg text-anthracite-soft/80 leading-relaxed">
+                  Votre système immunitaire est votre bouclier. Avec notre Complexe Vitamine C hautement dosé, offrez à votre corps l'énergie nécessaire pour faire face aux changements de saison et à la fatigue passagère.
                 </p>
-                <div className="flex flex-wrap gap-2 mb-8">
-                  <span className="text-xs font-bold bg-gray-100 px-3 py-1.5 rounded-full text-gray-500">Prochainement</span>
+                <div className="pt-4">
+                  <Link href="/produits/complexe-vitamine-c" className="inline-flex items-center gap-3 bg-teal-deep text-white px-6 py-3 rounded-full font-bold hover:bg-gold-soft transition-colors">
+                    Découvrir SOTYA Vitamine C <span aria-hidden="true">→</span>
+                  </Link>
                 </div>
-                <Link href="#" className="font-bold text-teal-deep/70 hover:text-teal-deep transition-colors flex items-center gap-2">
-                  En savoir plus →
-                </Link>
-              </Card>
-            </motion.div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* 4. Pourquoi AFAQ Health */}
-      <section className="py-24 bg-white relative z-20">
-        <div className="container mx-auto px-4">
-          <motion.div 
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-100px" }}
-            variants={fadeUpVariant}
-            className="mb-16"
-          >
-            <p className="text-sm font-bold text-gold-soft uppercase tracking-widest mb-4">
-              Pourquoi AFAQ Health
-            </p>
-            <h2 className="text-4xl md:text-5xl font-heading font-extrabold text-teal-deep mb-6 max-w-2xl">
-              Un partenaire pensé pour la performance et la conformité.
-            </h2>
-            <p className="text-lg text-anthracite-soft/80 max-w-3xl">
-              Plus qu'un distributeur, AFAQ Health est une plateforme complète de développement de marques — de l'homologation réglementaire jusqu'au conseil officinal.
-            </p>
-          </motion.div>
-
-          <motion.div 
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-100px" }}
-            variants={staggerContainer}
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4"
-          >
-            {[
-              { icon: "✓", title: "20+", subtitle: "Références homologuées", desc: "Plus de 20 références enregistrées AMMPS, prêtes pour le marché marocain." },
-              { icon: "🌍", title: "9", subtitle: "Pays en exclusivité", desc: "Droits exclusifs sur le Maroc et l'Afrique de l'Ouest francophone." },
-              { icon: "🇪🇺", title: "100%", subtitle: "Fabrication européenne", desc: "Laboratoires partenaires certifiés, formulations conçues en Europe." },
-              { icon: "📄", title: "A → Z", subtitle: "Conformité réglementaire", desc: "Dossiers, monographies et déclarations gérés de bout en bout." },
-              { icon: "🎯", title: "360°", subtitle: "Support scientifique & marketing", desc: "Accompagnement des officines : PLV, formations, conseil produit." }
-            ].map((stat, idx) => (
-              <motion.div key={idx} variants={fadeUpVariant}>
-                <Card className="h-full border border-sage-light bg-white p-6 hover:shadow-lg transition-all">
-                  <div className="text-gold-soft mb-6 text-2xl">{stat.icon}</div>
-                  <div className="text-4xl font-heading font-extrabold text-teal-deep mb-2">{stat.title}</div>
-                  <h3 className="text-sm font-bold text-teal-deep mb-3">{stat.subtitle}</h3>
-                  <p className="text-xs text-anthracite-soft/70 leading-relaxed">{stat.desc}</p>
-                </Card>
-              </motion.div>
-            ))}
-          </motion.div>
-        </div>
-      </section>
-
-      {/* 5. Présentation / Qui Sommes-Nous */}
-      <section className="py-24 bg-sage-light/40 relative z-20">
-        <div className="container mx-auto px-4">
-          <motion.div 
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-100px" }}
-            variants={fadeUpVariant}
-            className="mb-16"
-          >
-            <p className="text-sm font-bold text-gold-soft uppercase tracking-widest mb-4">
-              Présentation & Qui sommes-nous
-            </p>
-            <h2 className="text-4xl md:text-5xl font-heading font-extrabold text-teal-deep max-w-4xl leading-tight">
-              AFAQ Health, l'écosystème des marques de santé. Le partenaire stratégique des laboratoires internationaux.
-            </h2>
-          </motion.div>
-
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 mb-16">
-            <motion.div 
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: "-100px" }}
-              variants={fadeUpVariant}
-              className="space-y-6 text-anthracite-soft/80 leading-relaxed text-lg"
-            >
-              <p>
-                Basée à Kénitra, AFAQ Health est une plateforme de développement de marques internationales spécialisée dans la nutrition, les compléments alimentaires et les solutions de santé naturelle. Nous accompagnons les laboratoires européens dans leur implantation et leur croissance au Maroc et en Afrique de l'Ouest francophone.
-              </p>
-              <p>
-                Notre mission dépasse largement la distribution. Nous créons un véritable écosystème permettant aux fabricants internationaux de développer leur présence régionale grâce à une organisation locale solide, conforme aux exigences réglementaires et orientée vers la performance commerciale.
-              </p>
-              <p>
-                Notre expertise ne se limite pas à la mise à disposition des produits : nous construisons des partenariats durables entre fabricants, distributeurs, grossistes, pharmaciens et professionnels de santé, pour un développement pérenne des marques que nous représentons.
-              </p>
-            </motion.div>
-
-            <motion.div 
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: "-100px" }}
-              variants={staggerContainer}
-              className="bg-white p-8 rounded-2xl shadow-sm border border-sage-light"
-            >
-              <h3 className="text-2xl font-heading font-bold text-teal-deep mb-8">Notre chaîne de valeur</h3>
-              <div className="space-y-6">
-                {[
-                  { title: "Stratégie d'accès au marché", desc: "Étude, positionnement, pricing régional." },
-                  { title: "Conformité & homologation", desc: "Dossiers AMMPS, monographies, déclarations." },
-                  { title: "Développement commercial", desc: "Réseaux de distribution structurés." },
-                  { title: "Accompagnement scientifique", desc: "Support continu aux professionnels de santé." },
-                  { title: "Valorisation des marques", desc: "Marketing, PLV, notoriété régionale." }
-                ].map((item, idx) => (
-                  <motion.div key={idx} variants={fadeUpVariant} className="flex gap-4">
-                    <div className="mt-1 text-gold-soft">→</div>
-                    <div>
-                      <h4 className="font-bold text-teal-deep">{item.title}</h4>
-                      <p className="text-sm text-anthracite-soft/70">{item.desc}</p>
-                    </div>
-                  </motion.div>
-                ))}
               </div>
-            </motion.div>
-          </div>
-
-          <motion.div 
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-100px" }}
-            variants={staggerContainer}
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
-          >
-            {[
-              { icon: "✓", title: "Conformité réglementaire", desc: "Chaque référence est enregistrée AMMPS avant commercialisation. Dossiers, monographies et déclarations tenus à jour." },
-              { icon: "⏱", title: "Exclusivité territoriale", desc: "Droits de distribution exclusifs sur le Maroc et huit pays d'Afrique de l'Ouest francophone." },
-              { icon: "🏢", title: "Partenaires reconnus", desc: "Laboratoires européens certifiés (ISO 9001), sélectionnés pour la robustesse de leurs formulations." },
-              { icon: "📊", title: "Vision multi-pays", desc: "Une plateforme et une organisation pensées pour accompagner l'expansion régionale, pays par pays." }
-            ].map((feature, idx) => (
-              <motion.div key={idx} variants={fadeUpVariant} className="h-full">
-                <Card className="h-full border-none shadow-sm bg-white p-8">
-                  <div className="w-12 h-12 rounded-full bg-sage-light flex items-center justify-center text-teal-deep text-xl mb-6">
-                    {feature.icon}
-                  </div>
-                  <h4 className="text-lg font-bold text-teal-deep mb-3">{feature.title}</h4>
-                  <p className="text-sm text-anthracite-soft/70 leading-relaxed">{feature.desc}</p>
-                </Card>
-              </motion.div>
-            ))}
-          </motion.div>
-        </div>
-      </section>
-
-      {/* 6. Notre Réseau */}
-      <section id="notre-reseau" className="py-32 bg-teal-deep relative z-20 overflow-hidden">
-        {/* Background ambient light */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-white rounded-full opacity-5 blur-[120px] pointer-events-none" />
-        
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            
-            {/* Left side: Text & Steps */}
-            <motion.div 
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: "-100px" }}
-              variants={staggerContainer}
-              className="space-y-12"
-            >
-              <div className="space-y-6">
-                <motion.p variants={fadeUpVariant} className="text-sm font-bold text-gold-soft uppercase tracking-widest inline-flex items-center gap-3">
-                  <span className="w-8 h-px bg-gold-soft"></span>
-                  Notre Réseau
-                </motion.p>
-                <motion.h2 variants={fadeUpVariant} className="text-4xl md:text-5xl lg:text-6xl font-heading font-extrabold text-white leading-[1.1]">
-                  De la formulation à l'officine.
-                </motion.h2>
-                <motion.p variants={fadeUpVariant} className="text-xl text-white/80 max-w-xl leading-relaxed">
-                  AFAQ Health importe, homologue et approvisionne un réseau professionnel d'excellence. Le bon produit, au bon endroit, avec le bon conseil.
-                </motion.p>
-              </div>
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                {[
-                  { num: "01", title: "Fabricant", desc: "Laboratoires européens certifiés." },
-                  { num: "02", title: "AFAQ Health", desc: "Importation & homologation AMMPS." },
-                  { num: "03", title: "Distributeurs", desc: "Grossistes régionaux & nationaux." },
-                  { num: "04", title: "Pharmacies", desc: "Conseil professionnel au patient." }
-                ].map((step, idx) => (
-                  <motion.div key={idx} variants={fadeUpVariant} className="relative group perspective-1000">
-                    <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl" />
-                    <div className="p-6 rounded-2xl border border-white/10 bg-white/5 backdrop-blur-sm group-hover:border-gold-soft/50 transition-all duration-500 transform group-hover:-translate-y-2 group-hover:shadow-[0_20px_40px_rgba(0,0,0,0.3)]">
-                      <div className="text-gold-soft font-bold text-2xl mb-4 opacity-50 group-hover:opacity-100 transition-opacity">{step.num}</div>
-                      <h3 className="text-xl font-bold text-white mb-2">{step.title}</h3>
-                      <p className="text-white/60 text-sm leading-relaxed">{step.desc}</p>
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
-            </motion.div>
-
-            {/* Right side: Animated Photo Collage */}
-            <div className="relative h-[500px] sm:h-[600px] lg:h-[700px] w-full">
-              <motion.div 
-                initial={{ opacity: 0, y: 100, rotate: -5 }}
-                whileInView={{ opacity: 1, y: 0, rotate: -2 }}
-                viewport={{ once: true, margin: "-100px" }}
-                transition={{ duration: 1, type: "spring", bounce: 0.3 }}
-                className="absolute top-0 right-0 w-[75%] h-[60%] rounded-3xl overflow-hidden shadow-2xl border-4 border-white/10 z-10"
-              >
-                <Image src="/tsawrsotya/network_logistics.png" alt="Logistics Center" fill sizes="(max-width: 1024px) 100vw, 50vw" className="object-cover hover:scale-110 transition-transform duration-1000" />
-                <div className="absolute inset-0 bg-teal-deep/20 mix-blend-multiply pointer-events-none" />
-              </motion.div>
-              
-              <motion.div 
-                initial={{ opacity: 0, x: -100, rotate: 5 }}
-                whileInView={{ opacity: 1, x: 0, rotate: 3 }}
-                viewport={{ once: true, margin: "-100px" }}
-                transition={{ duration: 1, delay: 0.2, type: "spring", bounce: 0.3 }}
-                className="absolute bottom-0 left-0 w-[70%] h-[55%] rounded-3xl overflow-hidden shadow-2xl border-4 border-white/10 z-20"
-              >
-                <Image src="/tsawrsotya/network_pharmacy.png" alt="Pharmacy Professional" fill sizes="(max-width: 1024px) 100vw, 50vw" className="object-cover hover:scale-110 transition-transform duration-1000" />
-                <div className="absolute inset-0 bg-gold-soft/10 mix-blend-multiply pointer-events-none" />
-              </motion.div>
-              
-              {/* Decorative elements */}
-              <motion.div 
-                initial={{ scale: 0 }}
-                whileInView={{ scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8, delay: 0.6 }}
-                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-24 h-24 bg-gold-soft rounded-full flex items-center justify-center z-30 shadow-[0_0_40px_rgba(202,168,111,0.6)]"
-              >
-                <svg className="w-10 h-10 text-teal-deep" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-                </svg>
-              </motion.div>
             </div>
 
           </div>
+          
+          <div className="text-center mt-20">
+            <Link href="/produits" className="text-teal-deep font-bold text-xl hover:text-gold-soft transition-colors underline decoration-2 underline-offset-8">
+              Voir tout le catalogue produits
+            </Link>
+          </div>
         </div>
       </section>
 
-      {/* 7. CTA Section */}
-      <section className="py-32 relative z-20 overflow-hidden">
-        {/* Parallax Background */}
-        <div className="absolute inset-0 z-0">
-          <Image 
-            src="/tsawrsotya/pill.jpg" 
-            alt="Qualité pharmaceutique" 
-            fill 
-            sizes="100vw"
-            className="object-cover object-top"
-          />
-          <div className="absolute inset-0 bg-teal-deep/90 backdrop-blur-sm" />
-        </div>
-        
-        <div className="absolute top-0 right-0 w-96 h-96 bg-gold-soft rounded-full opacity-20 blur-3xl transform translate-x-1/2 -translate-y-1/2 z-10"></div>
-        
-        <motion.div 
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          variants={fadeUpVariant}
-          className="container mx-auto px-4 text-center relative z-20"
-        >
-          <h2 className="text-4xl md:text-5xl font-heading font-bold text-white mb-6">
-            Vous êtes un professionnel de santé ?
-          </h2>
-          <p className="text-white/80 max-w-2xl mx-auto mb-10 text-lg">
-            Pharmaciens, grossistes et distributeurs : accédez à vos tarifs négociés, passez commande et suivez vos livraisons depuis votre espace dédié.
+      {/* 5. Réseau & Call to action pro */}
+      <section className="py-24 bg-teal-deep text-white text-center px-4">
+        <div className="max-w-4xl mx-auto space-y-8">
+          <h2 className="text-4xl md:text-5xl font-heading font-extrabold">Vous êtes un professionnel de santé ?</h2>
+          <p className="text-xl text-white/80 max-w-2xl mx-auto">
+            AFAQ Health met à votre disposition un portail B2B exclusif pour gérer vos commandes, consulter nos fiches techniques et suivre vos livraisons.
           </p>
-          <Link
-            href="/portal/login"
-            className="shimmer-effect inline-block bg-white text-teal-deep font-bold px-10 py-5 rounded-xl text-lg hover:bg-sage-light hover:shadow-lg transition-all"
-          >
-            Accéder à l'Espace Professionnel
-          </Link>
-        </motion.div>
+          <div className="pt-8">
+            <Link href="/portal/login" className="px-8 py-4 bg-white text-teal-deep font-bold text-lg rounded-full hover:bg-gold-soft hover:text-white transition-all shadow-xl">
+              Accéder à l'Espace Professionnel
+            </Link>
+          </div>
+        </div>
       </section>
+
     </div>
   );
 }

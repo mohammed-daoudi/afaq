@@ -1,8 +1,9 @@
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { notFound } from 'next/navigation';
-import { ImageMagnifier } from '@/components/ui/ImageMagnifier';
 import { products, FAMILY_COLORS, type TherapeuticFamily } from '@/lib/products';
+import { ProductGallery, ProductTabs, RelatedProducts } from './ProductClient';
 
 export default function ProductDetailPage({ params }: { params: { id: string } }) {
   const product = products.find(p => p.id === params.id);
@@ -30,13 +31,9 @@ export default function ProductDetailPage({ params }: { params: { id: string } }
         <div className="bg-white rounded-[2.5rem] shadow-xl border border-sage-light p-6 md:p-12 mb-16">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-16 items-center">
             
-            {/* Left: Interactive Image */}
-            <div className="h-[400px] md:h-[600px] w-full relative rounded-3xl overflow-hidden">
-               <ImageMagnifier 
-                 src={product.imagePath} 
-                 alt={product.name}
-                 zoomLevel={2}
-               />
+            {/* Left: Interactive Image Gallery */}
+            <div className="w-full relative rounded-3xl overflow-hidden">
+               <ProductGallery product={product} />
             </div>
 
             {/* Right: Product Details */}
@@ -56,10 +53,6 @@ export default function ProductDetailPage({ params }: { params: { id: string } }
                 </p>
               </div>
 
-              <p className="text-anthracite-soft/90 leading-relaxed text-lg">
-                {product.description}
-              </p>
-
               {/* Benefits */}
               <div className="bg-sage-light/30 rounded-2xl p-6 border border-sage-light">
                 <h3 className="font-bold text-teal-deep mb-4 font-heading text-lg">Bénéfices clés</h3>
@@ -73,35 +66,10 @@ export default function ProductDetailPage({ params }: { params: { id: string } }
                 </ul>
               </div>
 
-              {/* Format & Certifications */}
-              <div className="grid grid-cols-2 gap-4">
-                <div className="bg-white border border-sage-light rounded-xl p-4 shadow-sm">
-                  <div className="text-xs text-anthracite-soft/60 uppercase font-bold tracking-wider mb-1">Format</div>
-                  <div className="font-semibold text-teal-deep">{product.format}</div>
-                </div>
-                {(product.dosage || product.duration) && (
-                  <div className="bg-white border border-sage-light rounded-xl p-4 shadow-sm">
-                     <div className="text-xs text-anthracite-soft/60 uppercase font-bold tracking-wider mb-1">Dosage</div>
-                     <div className="font-semibold text-teal-deep">{product.dosage}</div>
-                  </div>
-                )}
-              </div>
-
-              {product.certifications && product.certifications.length > 0 && (
-                <div className="flex gap-2 pt-2">
-                  {product.certifications.includes('Vegan') && (
-                    <span className="text-xs font-bold bg-green-100 text-green-700 px-3 py-1.5 rounded-full">🌿 Vegan</span>
-                  )}
-                  {product.certifications.includes('Sans gluten') && (
-                    <span className="text-xs font-bold bg-amber-100 text-amber-700 px-3 py-1.5 rounded-full">🌾 Sans gluten</span>
-                  )}
-                </div>
-              )}
-
               {/* CTA */}
               <div className="pt-6">
                 <Link
-                  href={`/localiser?product_id=${product.id}`}
+                  href={`/pharmacies?product_id=${product.id}`}
                   className="block w-full text-center bg-teal-deep text-white font-bold text-lg px-8 py-4 rounded-xl shadow-lg hover:shadow-xl hover:bg-opacity-95 transition-all transform hover:-translate-y-1 shimmer-effect"
                 >
                   Trouver en pharmacie
@@ -114,6 +82,9 @@ export default function ProductDetailPage({ params }: { params: { id: string } }
           </div>
         </div>
 
+        {/* Dynamic Tabs: Description / Fiche Technique */}
+        <ProductTabs product={product} colors={colors} />
+
         {/* Scientific Explanation Section */}
         <div className="max-w-5xl mx-auto space-y-16 mt-24">
           <div className="text-center mb-16">
@@ -125,60 +96,56 @@ export default function ProductDetailPage({ params }: { params: { id: string } }
              </p>
           </div>
 
-          {/* Block 1 */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-            <div className="order-2 md:order-1 space-y-6">
-              <h3 className="text-2xl font-bold text-teal-deep font-heading">
-                Synergie d'actifs purs
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+            <div className="order-2 md:order-1 space-y-8">
+              <h3 className="text-3xl font-bold text-teal-deep font-heading">
+                Synergie d'actifs purs et Recherche Clinique
               </h3>
-              <p className="text-anthracite-soft/80 leading-relaxed text-lg">
-                La formulation de <strong>{product.name}</strong> a été développée pour maximiser la biodisponibilité. Les ingrédients agissent en synergie pour garantir une absorption optimale par l'organisme sans irriter le système digestif.
-              </p>
-              <div className="bg-white p-6 rounded-2xl shadow-sm border border-sage-light">
-                 <h4 className="font-bold text-teal-deep mb-2">Focus biodisponibilité</h4>
-                 <p className="text-sm text-anthracite-soft/70">
-                   Chaque actif est sélectionné sous sa forme la plus assimilable pour garantir des résultats rapides et durables, tout en respectant les doses physiologiques journalières.
+              <div className="text-anthracite-soft/80 leading-relaxed text-lg space-y-4">
+                <p>
+                  La formulation de <strong>{product.name}</strong> a été rigoureusement développée dans nos laboratoires partenaires pour maximiser la biodisponibilité. Les ingrédients de haute qualité agissent en parfaite synergie, garantissant une absorption optimale par l'organisme tout en respectant l'équilibre du système digestif.
+                </p>
+                <p>
+                  Nous ne laissons rien au hasard : chaque dosage est scientifiquement prouvé pour apporter une réponse ciblée à vos besoins physiologiques sans effet de surdosage.
+                </p>
+              </div>
+              <div className="bg-white p-8 rounded-3xl shadow-sm border border-sage-light/50">
+                 <div className="flex items-center gap-3 mb-4">
+                   <span className="text-2xl">🔬</span>
+                   <h4 className="font-bold text-xl text-teal-deep">Focus Biodisponibilité</h4>
+                 </div>
+                 <p className="text-base text-anthracite-soft/80 leading-relaxed">
+                   Chaque actif est sélectionné sous sa forme galénique la plus assimilable (extraits titrés, formes hydrolysées ou chélatées). Cela garantit des résultats rapides, mesurables et durables, avec une tolérance clinique exceptionnelle pour une utilisation quotidienne en toute sécurité.
                  </p>
               </div>
             </div>
             <div className="order-1 md:order-2">
-              <div className="aspect-[4/3] rounded-3xl overflow-hidden bg-sage-light relative shadow-lg">
-                {/* Abstract science representation */}
-                <div className="absolute inset-0 bg-gradient-to-tr from-teal-deep to-[#1a7fa8] opacity-10"></div>
-                <div className="absolute inset-0 flex items-center justify-center text-6xl opacity-20">🧬</div>
+              <div className="grid grid-cols-2 gap-4">
+                <div className="relative aspect-[4/5] rounded-3xl overflow-hidden shadow-xl mt-8">
+                  <Image 
+                    src="/images/unsplash/science/microscope.jpg" 
+                    alt="Recherche scientifique" 
+                    fill 
+                    className="object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-tr from-teal-deep to-transparent opacity-20 mix-blend-multiply"></div>
+                </div>
+                <div className="relative aspect-[4/5] rounded-3xl overflow-hidden shadow-xl mb-8">
+                  <Image 
+                    src="/images/unsplash/formulations/formulation_4.jpg" 
+                    alt="Formulation de suppléments" 
+                    fill 
+                    className="object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-tr from-teal-deep to-transparent opacity-20 mix-blend-multiply"></div>
+                </div>
               </div>
             </div>
           </div>
-
-          {/* Block 2 */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-             <div className="order-1">
-              <div className="aspect-[4/3] rounded-3xl overflow-hidden bg-sage-light relative shadow-lg">
-                 <div className="absolute inset-0 bg-gradient-to-br from-gold-soft to-teal-deep opacity-10"></div>
-                 <div className="absolute inset-0 flex items-center justify-center text-6xl opacity-20">🔬</div>
-              </div>
-            </div>
-            <div className="order-2 space-y-6">
-              <h3 className="text-2xl font-bold text-teal-deep font-heading">
-                Efficacité cliniquement prouvée
-              </h3>
-              <p className="text-anthracite-soft/80 leading-relaxed text-lg">
-                Les actifs utilisés dans cette formule font l'objet de nombreuses études cliniques démontrant leur efficacité. En soutenant le métabolisme naturel de l'organisme, ils offrent une réponse physiologique profonde et non superficielle.
-              </p>
-              <ul className="space-y-4 pt-4">
-                <li className="flex gap-4">
-                  <div className="w-10 h-10 rounded-full bg-white shadow flex items-center justify-center flex-shrink-0 text-teal-deep font-bold">1</div>
-                  <p className="text-sm text-anthracite-soft font-medium pt-2">Agit au cœur des cellules pour une action ciblée.</p>
-                </li>
-                <li className="flex gap-4">
-                  <div className="w-10 h-10 rounded-full bg-white shadow flex items-center justify-center flex-shrink-0 text-teal-deep font-bold">2</div>
-                  <p className="text-sm text-anthracite-soft font-medium pt-2">Protège contre le stress oxydatif et cellulaire.</p>
-                </li>
-              </ul>
-            </div>
-          </div>
-
         </div>
+
+        {/* Related Products */}
+        <RelatedProducts currentProductId={product.id} products={products} />
 
       </div>
     </div>
