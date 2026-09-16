@@ -11,6 +11,9 @@ interface ImageMagnifierProps {
   magnifierHeight?: number;
   magnifierWidth?: number;
   zoomLevel?: number;
+  onClick?: () => void;
+  containerClassName?: string;
+  imageClassName?: string;
 }
 
 export function ImageMagnifier({
@@ -18,7 +21,10 @@ export function ImageMagnifier({
   alt,
   magnifierHeight = 250,
   magnifierWidth = 250,
-  zoomLevel = 2.5
+  zoomLevel = 2.5,
+  onClick,
+  containerClassName,
+  imageClassName
 }: ImageMagnifierProps) {
   const [[x, y], setXY] = useState([0, 0]);
   const [[imgWidth, imgHeight], setSize] = useState([0, 0]);
@@ -49,13 +55,14 @@ export function ImageMagnifier({
       onMouseEnter={handleMouseEnter}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
+      onClick={onClick}
     >
-      <div className="relative w-full aspect-square md:aspect-[4/5] rounded-3xl overflow-hidden bg-white border border-sage-light/30 shadow-inner flex items-center justify-center p-8">
+      <div className={`relative w-full flex items-center justify-center overflow-hidden ${containerClassName ?? 'aspect-square md:aspect-[4/5] rounded-3xl bg-white border border-sage-light/30 shadow-inner p-8'}`}>
         <Image
           src={src}
           alt={alt}
           fill
-          className="object-contain mix-blend-multiply p-8"
+          className={imageClassName ?? 'object-contain mix-blend-multiply p-8'}
           sizes="(max-width: 768px) 100vw, 50vw"
           priority
         />

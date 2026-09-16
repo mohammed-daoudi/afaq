@@ -4,7 +4,7 @@ import React from 'react';
 import { useCart } from '@/context/CartContext';
 import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
-import Link from 'next/link';
+import { Link } from '@/navigation';
 
 export function CartSlideOver() {
   const { items, isOpen, setIsOpen, updateQuantity, removeItem, totalPrice } = useCart();

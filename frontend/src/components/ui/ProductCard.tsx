@@ -4,6 +4,7 @@ import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { motion, useMotionValue, useSpring, useTransform, AnimatePresence } from 'framer-motion';
 import { FAMILY_COLORS, type TherapeuticFamily } from '@/lib/products';
+import { useTranslations } from 'next-intl';
 
 interface ProductCardProps {
   product: {
@@ -28,6 +29,7 @@ export function ProductCard({ product }: ProductCardProps) {
   const [isMobile, setIsMobile] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const router = useRouter();
+  const t = useTranslations('ProductCard');
 
   const x = useMotionValue(0);
   const y = useMotionValue(0);
@@ -185,7 +187,7 @@ export function ProductCard({ product }: ProductCardProps) {
               <div className="w-full md:w-1/2 bg-ivory-soft/50 p-6 relative flex items-center justify-center min-h-[280px] md:min-h-[400px]">
                 <div className="relative w-full h-full min-h-[250px]">
                   <Image
-                    src={product.labelImagePath || product.imagePath}
+                    src={product.imagePath}
                     alt={`${product.name}`}
                     fill
                     className="object-contain mix-blend-multiply p-4"
@@ -219,7 +221,7 @@ export function ProductCard({ product }: ProductCardProps) {
                   {product.duration && (
                     <div className="flex items-start gap-2 text-sm">
                       <span className="text-teal-deep mt-0.5">⏱️</span>
-                      <span className="text-anthracite-soft font-medium">Cure de {product.duration}</span>
+                      <span className="text-anthracite-soft font-medium">{product.duration}</span>
                     </div>
                   )}
                 </div>
@@ -229,7 +231,7 @@ export function ProductCard({ product }: ProductCardProps) {
                     onClick={() => router.push(`/produits/${product.id}`)}
                     className="w-full bg-teal-deep hover:bg-teal-deep/90 text-white py-3.5 rounded-xl font-bold transition-colors shadow-md hover:shadow-lg"
                   >
-                    Voir plus de détails
+                    {t('viewDetails')}
                   </button>
                 </div>
               </div>
