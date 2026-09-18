@@ -77,82 +77,44 @@ export function ProductCard({ product }: ProductCardProps) {
 
   return (
     <>
-      <motion.div
-        ref={cardRef}
-        onMouseMove={handleMouseMove}
-        onMouseLeave={handleMouseLeave}
-        onMouseEnter={() => !isMobile && setIsHovered(true)}
+      {/* Simple Product Item */}
+      <div 
+        className="group cursor-pointer flex flex-col h-full"
         onClick={() => setIsModalOpen(true)}
-        style={{
-          rotateX: isMobile ? 0 : rotateX,
-          rotateY: isMobile ? 0 : rotateY,
-          transformStyle: "preserve-3d",
-        }}
-        className="relative w-full aspect-[3/4] rounded-3xl overflow-hidden cursor-pointer shadow-lg hover:shadow-2xl transition-shadow duration-500 bg-white group"
       >
-        {/* Front face */}
-        <div
-          className="absolute inset-0 w-full h-full p-4 flex flex-col justify-between"
-          style={{ transform: "translateZ(30px)" }}
-        >
-          {/* Category badge */}
-          <div className="flex justify-between items-start z-10 px-2 pt-2">
-            <span
-              className="text-[10px] font-bold uppercase tracking-wider px-3 py-1.5 rounded-full backdrop-blur-md bg-white/80 shadow-sm"
-              style={{
-                color: familyColors?.accent || '#133b3a',
-              }}
-            >
-              {product.category}
-            </span>
-            {/* Certifications */}
-            {product.certifications && product.certifications.length > 0 && (
-              <div className="flex gap-1">
-                {product.certifications.includes('Vegan') && (
-                  <span className="text-[9px] font-bold bg-green-100/90 backdrop-blur-md text-green-700 px-2 py-1 rounded-full shadow-sm">🌿</span>
-                )}
-                {product.certifications.includes('Sans gluten') && (
-                  <span className="text-[9px] font-bold bg-amber-100/90 backdrop-blur-md text-amber-700 px-2 py-1 rounded-full shadow-sm">SG</span>
-                )}
-              </div>
-            )}
-          </div>
-
-          {/* Product image container */}
-          <div className="relative w-full flex-1 flex items-center justify-center my-2 rounded-2xl overflow-hidden bg-white shadow-inner border border-sage-light/30">
-            {/* Front Image */}
-            <div className="absolute inset-0 p-4">
-              <Image
-                src={product.imagePath}
-                alt={product.name}
-                fill
-                className="object-contain mix-blend-multiply"
-                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-              />
+        {/* Image Container */}
+        <div className="relative w-full aspect-square mb-4 flex items-center justify-center overflow-hidden">
+          <Image
+            src={product.imagePath}
+            alt={product.name}
+            fill
+            className="object-contain mix-blend-multiply transition-transform duration-500 group-hover:scale-105"
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          />
+          
+          {/* Optional Badges (like Vegan/Gluten Free) */}
+          {product.certifications && product.certifications.length > 0 && (
+            <div className="absolute top-2 right-2 flex flex-col gap-1">
+              {product.certifications.includes('Vegan') && (
+                <span className="text-xs font-bold bg-green-100/90 text-green-700 px-2 py-1 rounded-full shadow-sm">🌿</span>
+              )}
+              {product.certifications.includes('Sans gluten') && (
+                <span className="text-xs font-bold bg-amber-100/90 text-amber-700 px-2 py-1 rounded-full shadow-sm">SG</span>
+              )}
             </div>
-          </div>
-
-          {/* Product name & format */}
-          <div className="text-center pb-2 px-2 z-10 mt-2">
-            <h3 className="font-heading font-bold text-lg text-teal-deep leading-tight group-hover:text-gold-soft transition-colors">
-              {product.name}
-            </h3>
-            {product.format && (
-              <p className="text-[11px] text-anthracite-soft/60 mt-1.5 font-medium tracking-wide">{product.format}</p>
-            )}
-          </div>
+          )}
         </div>
 
-        {/* Modern Glare Effect (on top of everything) */}
-        <motion.div
-          className="absolute inset-0 pointer-events-none z-40 mix-blend-overlay rounded-3xl"
-          style={{
-            background: `radial-gradient(circle at ${useTransform(x, [-0.5, 0.5], [0, 100])}% ${useTransform(y, [-0.5, 0.5], [0, 100])}%, rgba(255,255,255,0.2) 0%, transparent 50%)`,
-            opacity: isHovered ? 1 : 0,
-          }}
-          transition={{ duration: 0.3 }}
-        />
-      </motion.div>
+        {/* Text Content */}
+        <div className="flex flex-col flex-1 text-left">
+          <h3 className="font-heading font-bold text-sm md:text-base text-anthracite-deep leading-snug group-hover:text-teal-deep transition-colors line-clamp-2">
+            {product.name}
+          </h3>
+          {product.format && (
+            <p className="text-xs md:text-sm text-anthracite-soft mt-1.5 font-medium">{product.format}</p>
+          )}
+        </div>
+      </div>
 
       {/* Quick-View Modal */}
       <AnimatePresence>

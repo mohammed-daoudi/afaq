@@ -13,6 +13,7 @@ export default function ArticlePage({ params }: { params: { slug: string } }) {
     notFound();
   }
 
+  const relatedArticles = MOCK_ARTICLES.filter(a => a.slug !== article.slug).slice(0, 3);
   const t = useTranslations('ConseilsPage');
 
   return (
@@ -105,6 +106,44 @@ export default function ArticlePage({ params }: { params: { slug: string } }) {
           </div>
         </div>
       </div>
+
+      {/* Related Articles */}
+      {relatedArticles.length > 0 && (
+        <div className="container mx-auto px-4 mt-24 max-w-6xl">
+          <h2 className="text-3xl md:text-4xl font-heading font-extrabold text-teal-deep text-center mb-12">
+            {t('relatedArticles')}
+          </h2>
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            {relatedArticles.map(related => (
+              <Link 
+                key={related.slug} 
+                href={`/conseils/${related.slug}`} 
+                className="group block bg-white rounded-[2rem] overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 border border-gray-100 flex flex-col h-full"
+              >
+                <div className="relative h-64 w-full shrink-0 overflow-hidden">
+                  <Image 
+                    src={related.image} 
+                    alt={related.title} 
+                    fill 
+                    className="object-cover group-hover:scale-110 transition-transform duration-700" 
+                  />
+                </div>
+                <div className="p-8 flex flex-col flex-1">
+                  <div className="text-xs font-bold text-gold-soft uppercase tracking-widest mb-4">
+                    {related.category}
+                  </div>
+                  <h3 className="text-xl font-heading font-bold text-teal-deep mb-4 line-clamp-2 group-hover:text-gold-soft transition-colors">
+                    {related.title}
+                  </h3>
+                  <p className="text-sm text-anthracite-soft/80 leading-relaxed line-clamp-3 mb-6 flex-1">
+                    {related.intro}
+                  </p>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </div>
+      )}
     </div>
   );
 }

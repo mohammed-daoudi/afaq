@@ -31,7 +31,7 @@ const brands = [
     name: 'Colagenova',
     subtitle: 'Beauté & nutrition',
     origin: 'Espagne',
-    description: 'Une gamme spécialisée autour du collagène et de la nutrition beauté, destinée à rejoindre progressivement le portefeuille commercial d\'AFAQ Health.',
+    description: 'Une gamme spécialisée autour du collagène et de la nutrition beauté, destinée à rejoindre progressivement le portefeuille commercial d\'AFAQ HEALTH.',
     color: 'from-[#D4A373] to-[#A67C52]',
     status: 'PROCHAINEMENT',
     statusColor: 'bg-gold-soft/20 text-gold-soft'
@@ -60,7 +60,7 @@ export default function MarquesPage() {
             Nos marques exclusives
           </motion.h1>
           <motion.p variants={fadeUp} className="text-xl text-anthracite-soft/80 font-medium max-w-3xl mx-auto leading-relaxed">
-            AFAQ Health développe un portefeuille de marques internationales bénéficiant de droits de distribution exclusifs au Maroc et en Afrique de l'Ouest.
+            AFAQ HEALTH développe un portefeuille de marques internationales bénéficiant de droits de distribution exclusifs au Maroc et en Afrique de l'Ouest.
           </motion.p>
         </motion.div>
 
@@ -100,7 +100,7 @@ export default function MarquesPage() {
                     </div>
 
                     <h3 className="text-[11px] font-bold text-gold-soft uppercase tracking-widest mb-3">
-                      Distribution exclusive AFAQ Health — Maroc & Afrique de l'Ouest
+                      Distribution exclusive AFAQ HEALTH — Maroc & Afrique de l'Ouest
                     </h3>
                     
                     <p className="text-sm text-anthracite-soft/80 leading-relaxed mb-8 flex-grow">

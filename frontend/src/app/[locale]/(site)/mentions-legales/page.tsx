@@ -34,7 +34,7 @@ export default function MentionsLegalesPage() {
             <h2 className="text-2xl font-bold text-teal-deep mb-6">1. Éditeur du site</h2>
             <p>
               Le présent site est édité par :<br />
-              <strong>AFAQ Health</strong><br />
+              <strong>AFAQ HEALTH</strong><br />
               [Forme juridique : ex: S.A.R.L au capital de X MAD]<br />
               <strong>Siège social :</strong> [Adresse complète, Casablanca, Maroc]<br />
               <strong>Registre du Commerce (RC) :</strong> [Numéro de RC]<br />
@@ -65,15 +65,15 @@ export default function MentionsLegalesPage() {
 
             <h2 className="text-2xl font-bold text-teal-deep mt-10 mb-6">5. Propriété intellectuelle</h2>
             <p>
-              L'ensemble du contenu présent sur ce site (textes, images, logos, vidéos, éléments graphiques, architecture, etc.) est la propriété exclusive d'AFAQ Health, de ses marques partenaires ou fait l'objet d'une autorisation d'utilisation. 
+              L'ensemble du contenu présent sur ce site (textes, images, logos, vidéos, éléments graphiques, architecture, etc.) est la propriété exclusive d'AFAQ HEALTH, de ses marques partenaires ou fait l'objet d'une autorisation d'utilisation. 
             </p>
             <p>
-              Toute reproduction, représentation, modification, publication, adaptation de tout ou partie des éléments du site, quel que soit le moyen ou le procédé utilisé, est interdite, sauf autorisation écrite préalable d'AFAQ Health.
+              Toute reproduction, représentation, modification, publication, adaptation de tout ou partie des éléments du site, quel que soit le moyen ou le procédé utilisé, est interdite, sauf autorisation écrite préalable d'AFAQ HEALTH.
             </p>
 
             <h2 className="text-2xl font-bold text-teal-deep mt-10 mb-6">6. Responsabilité</h2>
             <p>
-              AFAQ Health s'efforce de fournir sur ce site des informations aussi précises que possible. Toutefois, l'entreprise ne pourra être tenue responsable des oublis, des inexactitudes et des carences dans la mise à jour, qu'elles soient de son fait ou du fait des tiers partenaires qui lui fournissent ces informations.
+              AFAQ HEALTH s'efforce de fournir sur ce site des informations aussi précises que possible. Toutefois, l'entreprise ne pourra être tenue responsable des oublis, des inexactitudes et des carences dans la mise à jour, qu'elles soient de son fait ou du fait des tiers partenaires qui lui fournissent ces informations.
             </p>
             <p>
               Les informations publiées sur ce site sont destinées à des fins informatives et éducatives. Elles ne remplacent en aucun cas l'avis d'un professionnel de santé.

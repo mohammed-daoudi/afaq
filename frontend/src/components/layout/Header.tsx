@@ -21,10 +21,11 @@ export function Header() {
   ];
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-sage-light bg-ivory-soft/80 backdrop-blur-md">
-
-      {/* Top Row: Logo, Search, Actions */}
-      <div className="container mx-auto px-4 py-4 lg:h-24 flex items-center justify-between gap-4 lg:gap-8">
+    <header className="sticky top-0 z-50 w-full flex flex-col">
+      {/* Top Section (Solid White) */}
+      <div className="bg-white">
+        {/* Top Row: Logo, Search, Actions */}
+        <div className="container mx-auto px-4 py-2 flex items-center justify-between gap-4 lg:gap-8">
 
         {/* Logo */}
         <Logo />
@@ -68,12 +69,13 @@ export function Header() {
       {/* Mobile Search Bar (visible only on mobile) */}
       <div className="lg:hidden px-4 pb-4">
         <GlobalSearch />
+        </div>
       </div>
 
       {/* Desktop Navigation Row */}
-      <div className="hidden lg:block border-t border-sage-light/50 bg-white/40 backdrop-blur-sm shadow-sm">
+      <div className="hidden lg:block border-t border-b border-sage-light/50 bg-white shadow-sm">
         <div className="container mx-auto px-4">
-          <nav className="flex items-center justify-center gap-10 h-14">
+          <nav className="flex items-center justify-center gap-10 h-10">
             {navLinks.map((link) => (
               <Link
                 key={link.href}

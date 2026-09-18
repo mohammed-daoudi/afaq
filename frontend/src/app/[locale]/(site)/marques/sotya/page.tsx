@@ -30,7 +30,7 @@ export default function SotyaPage() {
           className="max-w-4xl mx-auto text-center mb-24 space-y-8"
         >
           <motion.div variants={fadeUp} className="inline-block px-4 py-1.5 text-xs font-bold tracking-widest text-teal-deep bg-white border border-teal-deep/20 rounded-full uppercase mb-4 shadow-sm">
-            Distribution exclusive AFAQ Health — Maroc & Afrique de l'Ouest
+            Distribution exclusive AFAQ HEALTH — Maroc & Afrique de l'Ouest
           </motion.div>
           <motion.h1 variants={fadeUp} className="text-5xl md:text-6xl lg:text-7xl font-heading font-black text-teal-deep leading-tight">
             SOTYA
@@ -106,7 +106,7 @@ export default function SotyaPage() {
             <Card className="h-full bg-white p-12 rounded-[2rem] border border-sage-light shadow-xl flex flex-col justify-center items-center text-center">
               <h3 className="text-3xl font-heading font-bold text-teal-deep mb-4">Où trouver SOTYA ?</h3>
               <p className="text-anthracite-soft/80 mb-8">
-                Retrouvez les produits SOTYA auprès des pharmacies partenaires AFAQ Health à travers le Maroc.
+                Retrouvez les produits SOTYA auprès des pharmacies partenaires AFAQ HEALTH à travers le Maroc.
               </p>
               <Link
                 href="/pharmacies"

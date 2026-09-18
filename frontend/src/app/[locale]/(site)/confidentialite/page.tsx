@@ -33,7 +33,7 @@ export default function ConfidentialitePage() {
           <Card className="bg-white p-8 md:p-12 shadow-xl border border-sage-light rounded-[2rem] prose prose-teal max-w-none">
             
             <p className="lead">
-              La présente Politique de Confidentialité a pour but de vous informer sur la manière dont AFAQ Health collecte, utilise et protège vos données personnelles dans le respect de la loi n°09-08 relative à la protection des personnes physiques à l'égard du traitement des données à caractère personnel au Maroc.
+              La présente Politique de Confidentialité a pour but de vous informer sur la manière dont AFAQ HEALTH collecte, utilise et protège vos données personnelles dans le respect de la loi n°09-08 relative à la protection des personnes physiques à l'égard du traitement des données à caractère personnel au Maroc.
             </p>
 
             <h2 className="text-2xl font-bold text-teal-deep mt-10 mb-6">1. Données collectées</h2>
@@ -56,7 +56,7 @@ export default function ConfidentialitePage() {
 
             <h2 className="text-2xl font-bold text-teal-deep mt-10 mb-6">3. Durée de conservation</h2>
             <p>
-              AFAQ Health conserve vos données personnelles uniquement pour la durée nécessaire aux finalités pour lesquelles elles ont été collectées, conformément aux obligations légales et réglementaires applicables au Maroc.
+              AFAQ HEALTH conserve vos données personnelles uniquement pour la durée nécessaire aux finalités pour lesquelles elles ont été collectées, conformément aux obligations légales et réglementaires applicables au Maroc.
             </p>
             <ul>
               <li><strong>Demandes de contact :</strong> 3 ans après le dernier contact.</li>
@@ -65,7 +65,7 @@ export default function ConfidentialitePage() {
 
             <h2 className="text-2xl font-bold text-teal-deep mt-10 mb-6">4. Partage des données</h2>
             <p>
-              Vos données personnelles sont strictement confidentielles. Elles sont exclusivement destinées aux services internes d'AFAQ Health. Elles ne sont en aucun cas vendues, louées ou cédées à des tiers à des fins de prospection commerciale.
+              Vos données personnelles sont strictement confidentielles. Elles sont exclusivement destinées aux services internes d'AFAQ HEALTH. Elles ne sont en aucun cas vendues, louées ou cédées à des tiers à des fins de prospection commerciale.
             </p>
             <p>
               Nous pouvons toutefois être amenés à partager certaines données avec des prestataires techniques de confiance (hébergeur, agence web) dans le seul but d'assurer le bon fonctionnement du site.
@@ -83,7 +83,7 @@ export default function ConfidentialitePage() {
             <p>
               Pour exercer ces droits, vous pouvez nous contacter à l'adresse suivante :<br />
               <strong>Email :</strong> contact@afaqhealth.ma<br />
-              <strong>Courrier :</strong> [Adresse postale d'AFAQ Health, Casablanca, Maroc]
+              <strong>Courrier :</strong> [Adresse postale d'AFAQ HEALTH, Casablanca, Maroc]
             </p>
 
             <h2 className="text-2xl font-bold text-teal-deep mt-10 mb-6">6. Cookies</h2>

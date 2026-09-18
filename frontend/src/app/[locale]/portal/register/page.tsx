@@ -43,7 +43,7 @@ export default function RegisterPage() {
             {step === 1 ? 'Demande d\'Ouverture de Compte' : 'Demande Envoyée'}
           </h1>
           <p className="text-sm text-anthracite-soft/60 mt-1 text-center">
-            {step === 1 ? 'Rejoignez le portail B2B exclusif AFAQ Health' : 'Votre compte est en cours de validation'}
+            {step === 1 ? 'Rejoignez le portail B2B exclusif AFAQ HEALTH' : 'Votre compte est en cours de validation'}
           </p>
         </div>
 

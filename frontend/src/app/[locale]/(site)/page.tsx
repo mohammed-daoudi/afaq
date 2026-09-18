@@ -84,7 +84,7 @@ export default function HomePage() {
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            <Link href="/conseils/magnesium-bisglycinate" className="group block bg-white rounded-[2rem] overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 border border-gray-100 flex flex-col h-full">
+            <Link href="/conseils/pourquoi-se-supplementer-en-magnesium" className="group block bg-white rounded-[2rem] overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 border border-gray-100 flex flex-col h-full">
               <div className="relative h-64 w-full shrink-0 overflow-hidden">
                 <Image src="/images/unsplash/comp/kayla-maurais-EZWTMjwAWls-unsplash.jpg" alt="Article 1" fill className="object-cover group-hover:scale-110 transition-transform duration-700" />
               </div>
@@ -95,7 +95,7 @@ export default function HomePage() {
               </div>
             </Link>
 
-            <Link href="/conseils/collagene-marin-vs-bovin" className="group block bg-white rounded-[2rem] overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 border border-gray-100 flex flex-col h-full">
+            <Link href="/conseils/comprendre-le-collagene" className="group block bg-white rounded-[2rem] overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 border border-gray-100 flex flex-col h-full">
               <div className="relative h-64 w-full shrink-0 overflow-hidden">
                 <Image src="/images/unsplash/welness/jared-rice-NTyBbu66_SI-unsplash.jpg" alt="Article 2" fill className="object-cover group-hover:scale-110 transition-transform duration-700" />
               </div>
@@ -106,7 +106,7 @@ export default function HomePage() {
               </div>
             </Link>
 
-            <Link href="/conseils/immunite-enfants-hiver" className="group block bg-white rounded-[2rem] overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 border border-gray-100 flex flex-col h-full">
+            <Link href="/conseils/les-besoins-nutritionnels-des-enfants" className="group block bg-white rounded-[2rem] overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 border border-gray-100 flex flex-col h-full">
               <div className="relative h-64 w-full shrink-0 overflow-hidden">
                 <Image src="/images/unsplash/comp/Gemini_Generated_Image_1tkniv1tkniv1tkn.jfif" alt="Article 3" fill className="object-cover group-hover:scale-110 transition-transform duration-700" />
               </div>

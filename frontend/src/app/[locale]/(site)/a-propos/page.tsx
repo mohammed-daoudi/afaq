@@ -1,7 +1,6 @@
 'use client';
 
 import React from 'react';
-import { Card } from '@/components/ui/Card';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { Link } from '@/navigation';
@@ -15,21 +14,15 @@ const fadeUp = {
 export default function AProposPage() {
   const t = useTranslations('AboutPage');
 
-  const values = [
-    { title: t('value1Title'), description: t('value1Desc'), icon: '🔬' },
-    { title: t('value2Title'), description: t('value2Desc'), icon: '📄' },
-    { title: t('value3Title'), description: t('value3Desc'), icon: '🤝' },
-  ];
-
   return (
     <div className="min-h-screen bg-white pb-24 overflow-hidden">
       
-      {/* Hero Section */}
+      {/* SECTION 1 — EN-TÊTE */}
       <section className="relative w-full h-[70vh] lg:h-[80vh] flex items-end pb-24">
         <div className="absolute inset-0">
           <Image 
             src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&w=1920&q=80" 
-            alt="Recherche et exigence médicale" 
+            alt="Hero Background" 
             fill 
             className="object-cover" 
             priority
@@ -43,16 +36,34 @@ export default function AProposPage() {
             className="max-w-4xl space-y-6"
           >
             <motion.div variants={fadeUp} className="inline-block px-4 py-1.5 text-xs font-bold tracking-widest text-gold-soft bg-white/10 backdrop-blur-md rounded-full uppercase border border-white/20">
-              {t('ourManifesto')}
+              {t('heroSurtitre')}
             </motion.div>
             <motion.h1 variants={fadeUp} className="text-5xl md:text-6xl lg:text-7xl font-heading font-extrabold text-white leading-tight">
-              {t('heroTitle')} <span className="text-gold-soft italic font-serif font-light">{t('heroHighlight')}</span>.
+              {t('heroTitle')}
             </motion.h1>
+            <motion.p variants={fadeUp} className="text-xl text-white/90 font-serif leading-relaxed max-w-2xl">
+              {t('heroSubtitle')}
+            </motion.p>
           </motion.div>
         </div>
       </section>
 
-      {/* Chapitre 1: Notre Histoire */}
+      {/* Hero Text content below image */}
+      <section className="py-16 bg-white">
+        <div className="container mx-auto px-4 max-w-4xl space-y-8 text-lg text-anthracite-soft/80 leading-relaxed font-serif text-center">
+          <motion.p initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}>
+            {t('heroText1')}
+          </motion.p>
+          <motion.p initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}>
+            {t('heroText2')}
+          </motion.p>
+          <motion.p initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} className="text-teal-deep font-bold text-2xl italic">
+            {t('heroHighlight')}
+          </motion.p>
+        </div>
+      </section>
+
+      {/* NOTRE MISSION */}
       <section className="py-24 relative bg-ivory-soft">
         <div className="container mx-auto px-4 max-w-7xl">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
@@ -61,21 +72,52 @@ export default function AProposPage() {
               className="space-y-8"
             >
               <h2 className="text-4xl lg:text-5xl font-heading font-bold text-teal-deep leading-tight">
-                {t('historyTitle')}
+                {t('missionTitle')}
               </h2>
+              <p className="text-2xl text-gold-soft font-serif italic">
+                {t('missionSubtitle')}
+              </p>
               <div className="space-y-6 text-lg text-anthracite-soft/80 leading-relaxed font-serif">
-                <p>{t('historyP1')}</p>
-                <p>{t('historyP2')}</p>
+                <p>{t('missionText1')}</p>
+                <p>{t('missionText2')}</p>
+              </div>
+
+              {/* Chaîne de valeur */}
+              <div className="bg-white p-8 rounded-[2rem] shadow-sm border border-sage-light mt-8">
+                <h3 className="text-sm font-bold text-teal-deep uppercase tracking-widest mb-6">{t('chainTitle')}</h3>
+                <div className="space-y-4 font-serif text-anthracite-soft">
+                  <div className="flex items-center gap-3"><span className="text-gold-soft">↓</span> {t('chain1')}</div>
+                  <div className="flex items-center gap-3"><span className="text-gold-soft">↓</span> <strong>{t('chain2')}</strong></div>
+                  <div className="flex items-center gap-3"><span className="text-gold-soft">↓</span> {t('chain3')}</div>
+                  <div className="flex items-center gap-3"><span className="text-gold-soft">↓</span> {t('chain4')}</div>
+                  <div className="flex items-center gap-3"><span className="text-gold-soft">↓</span> {t('chain5')}</div>
+                </div>
+              </div>
+
+              {/* Accompagnement */}
+              <div className="space-y-4 mt-8">
+                <h3 className="text-sm font-bold text-teal-deep uppercase tracking-widest">{t('accompagnementTitle')}</h3>
+                <ul className="space-y-2 text-anthracite-soft font-serif">
+                  <li>{t('accompagnement1')}</li>
+                  <li>{t('accompagnement2')}</li>
+                  <li className="italic text-sm text-anthracite-soft/60 mt-2">{t('accompagnement3')}</li>
+                </ul>
+              </div>
+
+              <div className="pt-6 border-t border-sage-light mt-8">
+                <p className="text-teal-deep font-bold text-xl italic font-serif">
+                  {t('missionClosing')}
+                </p>
               </div>
             </motion.div>
             
             <motion.div 
               initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={{ hidden: { opacity: 0, x: 50 }, visible: { opacity: 1, x: 0, transition: { duration: 0.8 } } }}
-              className="relative h-[600px] w-full rounded-[2rem] overflow-hidden shadow-2xl"
+              className="relative h-[800px] w-full rounded-[2rem] overflow-hidden shadow-2xl"
             >
               <Image 
                 src="/images/unsplash/science/colabb.jpg" 
-                alt="Notre engagement" 
+                alt="Mission" 
                 fill 
                 className="object-cover" 
               />
@@ -84,163 +126,52 @@ export default function AProposPage() {
         </div>
       </section>
 
-      {/* Chapitre 2: Le Patient au Centre */}
+      {/* NOTRE POSITIONNEMENT & NOTRE EXPERTISE */}
       <section className="py-24 relative bg-white">
-        <div className="container mx-auto px-4 max-w-7xl">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            <motion.div 
-              initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={{ hidden: { opacity: 0, x: -50 }, visible: { opacity: 1, x: 0, transition: { duration: 0.8 } } }}
-              className="relative h-[600px] w-full order-2 lg:order-1"
-            >
-              <div className="absolute top-0 left-0 w-[75%] h-[75%] rounded-[2rem] overflow-hidden shadow-2xl z-10">
-                <Image src="/images/unsplash/comp/sick_man.png" alt="Satisfaction patient" fill className="object-cover" />
-              </div>
-              <div className="absolute bottom-0 right-0 w-[65%] h-[60%] rounded-[2rem] overflow-hidden shadow-2xl z-20 border-4 border-white">
-                <Image src="/images/unsplash/comp/sick_child.jpg" alt="Soins et famille" fill className="object-cover" />
-              </div>
-            </motion.div>
-
-            <motion.div 
-              initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}
-              className="space-y-8 order-1 lg:order-2"
-            >
-              <p className="text-sm font-bold text-gold-soft uppercase tracking-widest">
-                {t('humanFirst')}
-              </p>
-              <h2 className="text-4xl lg:text-5xl font-heading font-bold text-teal-deep leading-tight">
-                {t('qualityPromise')}
-              </h2>
-              <div className="space-y-6 text-lg text-anthracite-soft/80 leading-relaxed font-serif">
-                <p>{t('qualityP1')}</p>
-                <p>{t('qualityP2')}</p>
-              </div>
-            </motion.div>
+        <div className="container mx-auto px-4 max-w-7xl space-y-16">
+          
+          <div className="text-center max-w-4xl mx-auto space-y-6">
+            <p className="text-sm font-bold text-gold-soft uppercase tracking-widest">
+              {t('expertiseSurtitre')}
+            </p>
+            <h2 className="text-4xl lg:text-5xl font-heading font-bold text-teal-deep leading-tight">
+              {t('expertiseTitle')}
+            </h2>
+            <div className="space-y-4 text-lg text-anthracite-soft/80 leading-relaxed font-serif">
+              <p>{t('expertiseText1')}</p>
+              <p>{t('expertiseText2')}</p>
+              <p className="font-bold text-teal-deep">{t('expertiseText3')}</p>
+            </div>
           </div>
-        </div>
-      </section>
 
-      {/* Nos Valeurs - Hero Style Image */}
-      <section className="relative w-full h-[60vh] lg:h-[70vh] flex items-end pb-24 mt-24">
-        <div className="absolute inset-0">
-          <Image src="/images/unsplash/science/atibba.jpg" alt="Équipe professionnelle" fill className="object-cover object-top" />
-          <div className="absolute inset-0 bg-gradient-to-t from-teal-deep via-teal-deep/60 to-transparent" />
-        </div>
-        
-        <div className="container mx-auto px-4 relative z-10">
-          <motion.div 
-            initial="hidden" whileInView="visible" viewport={{ once: true }} variants={{ hidden: { opacity: 0 }, visible: { opacity: 1, transition: { staggerChildren: 0.2 } } }}
-            className="max-w-4xl space-y-6"
-          >
-            <motion.h2 variants={fadeUp} className="text-5xl md:text-6xl lg:text-7xl font-heading font-extrabold text-white leading-tight">
-              {t('pillarsTitle')} <span className="text-gold-soft italic font-serif font-light">{t('pillarsHighlight')}</span>.
-            </motion.h2>
-            <motion.p variants={fadeUp} className="text-xl text-white/90 font-serif leading-relaxed max-w-2xl">
-              {t('pillarsSubtitle')}
-            </motion.p>
-          </motion.div>
-        </div>
-      </section>
+          <div className="relative w-full h-[400px] rounded-[2rem] overflow-hidden shadow-2xl mb-16">
+             <Image src="/images/unsplash/science/microscope.jpg" alt="Expertise" fill className="object-cover" />
+             <div className="absolute inset-0 bg-teal-deep/60" />
+             <div className="absolute inset-0 flex items-center justify-center">
+                <h3 className="text-3xl lg:text-4xl font-heading font-bold text-white text-center px-4">
+                  {t('expertiseSubtitle')}
+                </h3>
+             </div>
+          </div>
 
-      {/* Cards Section */}
-      <section className="py-24 bg-teal-deep text-white relative">
-        <div className="container mx-auto px-4 max-w-7xl">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {values.map((item, index) => (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {[1,2,3,4,5,6].map((num) => (
               <motion.div 
-                key={index} 
-                initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: index * 0.2 }}
-                className="bg-white/5 border border-white/10 p-10 rounded-[2rem] hover:bg-white/10 transition-colors relative overflow-hidden group"
+                key={num} 
+                initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
+                className="bg-ivory-soft p-8 rounded-[2rem] hover:shadow-lg transition-all"
               >
-                <div className="text-7xl font-serif italic font-light text-gold-soft/20 absolute -top-4 -right-2 group-hover:text-gold-soft/40 transition-colors duration-500">
-                  0{index + 1}
-                </div>
-                <div className="relative z-10">
-                  <h3 className="text-2xl font-bold text-white mb-4 mt-4">{item.title}</h3>
-                  <p className="text-white/70 leading-relaxed font-serif">{item.description}</p>
-                </div>
+                <h4 className="text-lg font-bold text-teal-deep mb-4">{t(`exp${num}Title` as any)}</h4>
+                <p className="text-anthracite-soft/80 font-serif leading-relaxed">{t(`exp${num}Desc` as any)}</p>
               </motion.div>
             ))}
           </div>
+
         </div>
       </section>
 
-      {/* --- SECTION NOTRE EXPERTISE --- */}
-      <section className="relative w-full h-[60vh] lg:h-[70vh] flex items-end pb-24 mt-24">
-        <div className="absolute inset-0">
-          <Image src="/images/unsplash/science/microscope.jpg" alt="Approche scientifique et recherche" fill className="object-cover" priority />
-          <div className="absolute inset-0 bg-gradient-to-t from-teal-deep via-teal-deep/60 to-transparent" />
-        </div>
-        
-        <div className="container mx-auto px-4 relative z-10">
-          <motion.div 
-            initial="hidden" animate="visible" variants={{ hidden: { opacity: 0 }, visible: { opacity: 1, transition: { staggerChildren: 0.2 } } }}
-            className="max-w-4xl space-y-6"
-          >
-            <motion.div variants={fadeUp} className="inline-block px-4 py-1.5 text-xs font-bold tracking-widest text-gold-soft bg-white/10 backdrop-blur-md rounded-full uppercase border border-white/20">
-              {t('ourExpertise')}
-            </motion.div>
-            <motion.h2 variants={fadeUp} className="text-5xl md:text-6xl lg:text-7xl font-heading font-extrabold text-white leading-tight">
-              {t('scientificApproach')} <span className="text-gold-soft italic font-serif font-light">{t('scientificHighlight')}</span>.
-            </motion.h2>
-            <motion.p variants={fadeUp} className="text-xl text-white/90 font-serif leading-relaxed max-w-2xl">
-              {t('scientificSubtitle')}
-            </motion.p>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Chapitre 1: Sélection Rigoureuse */}
-      <section className="py-24 relative bg-ivory-soft">
-        <div className="container mx-auto px-4 max-w-7xl">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            <motion.div 
-              initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}
-              className="space-y-8"
-            >
-              <h2 className="text-4xl lg:text-5xl font-heading font-bold text-teal-deep leading-tight">
-                {t('researchToFormulation')}
-              </h2>
-              <div className="space-y-6 text-lg text-anthracite-soft/80 leading-relaxed font-serif">
-                <p>{t('researchP1')}</p>
-                <p>{t('researchP2')}</p>
-              </div>
-            </motion.div>
-            
-            <motion.div 
-              initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={{ hidden: { opacity: 0, x: 50 }, visible: { opacity: 1, x: 0, transition: { duration: 0.8 } } }}
-              className="grid grid-cols-2 gap-6"
-            >
-              <div className="space-y-6">
-                <Card className="p-8 border-none shadow-md bg-white rounded-3xl">
-                  <div className="w-12 h-12 bg-sage-light text-teal-deep flex items-center justify-center rounded-2xl mb-6 text-2xl">🔬</div>
-                  <h3 className="text-xl font-bold text-teal-deep mb-3">{t('clinicalResearch')}</h3>
-                  <p className="text-anthracite-soft/70">{t('clinicalResearchDesc')}</p>
-                </Card>
-                <Card className="p-8 border-none shadow-md bg-white rounded-3xl">
-                  <div className="w-12 h-12 bg-sage-light text-teal-deep flex items-center justify-center rounded-2xl mb-6 text-2xl">🌱</div>
-                  <h3 className="text-xl font-bold text-teal-deep mb-3">{t('extractPurity')}</h3>
-                  <p className="text-anthracite-soft/70">{t('extractPurityDesc')}</p>
-                </Card>
-              </div>
-              <div className="space-y-6 mt-12">
-                <Card className="p-8 border-none shadow-md bg-white rounded-3xl">
-                  <div className="w-12 h-12 bg-sage-light text-teal-deep flex items-center justify-center rounded-2xl mb-6 text-2xl">💊</div>
-                  <h3 className="text-xl font-bold text-teal-deep mb-3">{t('bioavailability')}</h3>
-                  <p className="text-anthracite-soft/70">{t('bioavailabilityDesc')}</p>
-                </Card>
-                <Card className="p-8 border-none shadow-md bg-white rounded-3xl bg-teal-deep text-white">
-                  <div className="w-12 h-12 bg-white/10 flex items-center justify-center rounded-2xl mb-6 text-2xl text-gold-soft">🛡️</div>
-                  <h3 className="text-xl font-bold mb-3">{t('tolerance')}</h3>
-                  <p className="text-white/70">{t('toleranceDesc')}</p>
-                </Card>
-              </div>
-            </motion.div>
-          </div>
-        </div>
-      </section>
-
-      {/* Chapitre 2: Conformité et Sécurité */}
-      <section className="py-24 relative bg-white">
+      {/* NOTRE RÉSEAU */}
+      <section className="py-24 relative bg-teal-deep text-white">
         <div className="container mx-auto px-4 max-w-7xl">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             
@@ -248,7 +179,7 @@ export default function AProposPage() {
               initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={{ hidden: { opacity: 0, x: -50 }, visible: { opacity: 1, x: 0, transition: { duration: 0.8 } } }}
               className="relative h-[600px] w-full rounded-[2rem] overflow-hidden shadow-2xl order-2 lg:order-1"
             >
-              <Image src="/images/unsplash/formulations/formulation_4.jpg" alt="Laboratoire de conformité" fill className="object-cover" />
+              <Image src="/images/unsplash/science/scientist_microscope.png" alt="Réseau" fill className="object-cover" />
             </motion.div>
 
             <motion.div 
@@ -256,18 +187,30 @@ export default function AProposPage() {
               className="space-y-8 order-1 lg:order-2"
             >
               <p className="text-sm font-bold text-gold-soft uppercase tracking-widest">
-                {t('uncompromising')}
+                {t('reseauSurtitre')}
               </p>
-              <h2 className="text-4xl lg:text-5xl font-heading font-bold text-teal-deep leading-tight">
-                {t('safetyTitle')}
+              <h2 className="text-4xl lg:text-5xl font-heading font-bold text-white leading-tight">
+                {t('reseauTitle')}
               </h2>
-              <div className="space-y-6 text-lg text-anthracite-soft/80 leading-relaxed font-serif">
-                <p>{t('safetyP1')}</p>
-                <p>{t('safetyP2')}</p>
+              <p className="text-xl text-white/90 italic font-serif">
+                {t('reseauSubtitle')}
+              </p>
+              <p className="text-lg text-white/80 font-serif leading-relaxed">
+                {t('reseauText')}
+              </p>
+              
+              <div className="space-y-6 mt-8">
+                {[1,2,3,4].map((num) => (
+                  <div key={num} className="border-l-2 border-gold-soft pl-6">
+                    <h4 className="text-lg font-bold mb-2">{t(`net${num}Title` as any)}</h4>
+                    <p className="text-white/70 font-serif">{t(`net${num}Desc` as any)}</p>
+                  </div>
+                ))}
               </div>
-              <div className="pt-6 border-t border-sage-light mt-8">
-                <p className="text-teal-deep font-bold text-xl italic font-serif">
-                  {t('safetyQuote')}
+
+              <div className="pt-6 border-t border-white/20 mt-8">
+                <p className="text-gold-soft font-bold text-xl italic font-serif">
+                  {t('reseauClosing')}
                 </p>
               </div>
             </motion.div>
@@ -276,32 +219,117 @@ export default function AProposPage() {
         </div>
       </section>
 
-      {/* CTA Pro */}
-      <motion.div 
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        className="w-full mt-24"
-      >
-        <div className="relative text-center py-24 md:py-32 shadow-2xl overflow-hidden group">
-          <Image src="/images/unsplash/formulations/formulation_3.jpg" alt="Nos standards de qualité" fill className="object-cover group-hover:scale-105 transition-transform duration-1000" />
-          <div className="absolute inset-0 bg-teal-deep/85 mix-blend-multiply" />
-          <div className="relative z-10 px-4">
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold text-white mb-6">
-              {t('ctaTitle')}
-            </h2>
-            <p className="text-xl md:text-2xl text-white/90 mb-10 max-w-3xl mx-auto font-serif leading-relaxed">
-              {t('ctaSubtitle')}
+      {/* NOS ENGAGEMENTS */}
+      <section className="py-24 bg-white relative">
+        <div className="container mx-auto px-4 max-w-7xl">
+          <div className="text-center max-w-3xl mx-auto space-y-6 mb-16">
+            <p className="text-sm font-bold text-gold-soft uppercase tracking-widest">
+              {t('engagementsSurtitre')}
             </p>
+            <h2 className="text-4xl lg:text-5xl font-heading font-bold text-teal-deep leading-tight">
+              {t('engagementsTitle')}
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {[1,2,3,4].map((num) => (
+              <motion.div 
+                key={num} 
+                initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
+                className="bg-ivory-soft p-8 rounded-[2rem] hover:shadow-lg transition-all text-center border border-sage-light/30"
+              >
+                <h3 className="text-xl font-bold text-teal-deep mb-4">{t(`eng${num}Title` as any)}</h3>
+                <p className="text-anthracite-soft/80 font-serif leading-relaxed">{t(`eng${num}Desc` as any)}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* NOTRE PORTEFEUILLE */}
+      <section className="py-24 relative bg-ivory-soft">
+        <div className="container mx-auto px-4 max-w-7xl">
+           <div className="text-center max-w-3xl mx-auto space-y-6 mb-16">
+            <p className="text-sm font-bold text-gold-soft uppercase tracking-widest">
+              {t('portefeuilleSurtitre')}
+            </p>
+            <h2 className="text-4xl lg:text-5xl font-heading font-bold text-teal-deep leading-tight">
+              {t('portefeuilleTitle')}
+            </h2>
+            <p className="text-lg text-anthracite-soft/80 font-serif leading-relaxed">
+              {t('portefeuilleSubtitle')}
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {[1,2,3].map((num) => (
+              <div key={num} className="bg-white p-8 rounded-[2rem] shadow-sm hover:shadow-xl transition-all border border-sage-light flex flex-col justify-between">
+                <div>
+                  <div className="text-xs font-bold text-gold-soft uppercase tracking-widest mb-4">
+                    {t(`brand${num}Status` as any)}
+                  </div>
+                  <h3 className="text-2xl font-bold text-teal-deep mb-4">{t(`brand${num}Title` as any)}</h3>
+                  <p className="text-anthracite-soft/80 font-serif leading-relaxed mb-8">
+                    {t(`brand${num}Desc` as any)}
+                  </p>
+                </div>
+                <Link href="/produits" className="text-teal-deep font-bold hover:text-gold-soft transition-colors flex items-center gap-2">
+                  {t(`brand${num}Link` as any)} <span>→</span>
+                </Link>
+              </div>
+            ))}
+          </div>
+          
+          <div className="mt-16 text-center">
             <Link
-              href="/produits"
-              className="shimmer-effect inline-block bg-white text-teal-deep font-bold px-12 py-6 rounded-full text-lg hover:bg-gold-soft hover:text-white hover:shadow-2xl transition-all duration-300"
+              href="/marques"
+              className="inline-block bg-teal-deep text-white font-bold px-8 py-4 rounded-xl hover:bg-gold-soft hover:shadow-lg transition-all"
             >
-              {t('ctaButton')}
+              {t('allBrandsBtn')} →
             </Link>
           </div>
         </div>
-      </motion.div>
+      </section>
+
+      {/* NOTRE AMBITION */}
+      <section className="py-24 relative bg-white">
+        <div className="container mx-auto px-4 max-w-7xl">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <motion.div 
+              initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}
+              className="space-y-8"
+            >
+              <p className="text-sm font-bold text-gold-soft uppercase tracking-widest">
+                {t('ambitionSurtitre')}
+              </p>
+              <h2 className="text-4xl lg:text-5xl font-heading font-bold text-teal-deep leading-tight">
+                {t('ambitionTitle')}
+              </h2>
+              <div className="space-y-6 text-lg text-anthracite-soft/80 leading-relaxed font-serif">
+                <p>{t('ambitionText1')}</p>
+                <p>{t('ambitionText2')}</p>
+                <p>{t('ambitionText3')}</p>
+              </div>
+            </motion.div>
+            
+            <motion.div 
+              initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={{ hidden: { opacity: 0, x: 50 }, visible: { opacity: 1, x: 0, transition: { duration: 0.8 } } }}
+              className="relative h-[500px] w-full rounded-[2rem] overflow-hidden shadow-2xl flex items-center justify-center p-12 text-center"
+            >
+              <Image 
+                src="/images/unsplash/science/atibba.jpg" 
+                alt="Ambition" 
+                fill 
+                className="object-cover" 
+              />
+              <div className="absolute inset-0 bg-teal-deep/80" />
+              <p className="relative z-10 text-white font-bold text-2xl lg:text-3xl italic font-serif leading-relaxed">
+                "{t('ambitionHighlight')}"
+              </p>
+            </motion.div>
+          </div>
+        </div>
+      </section>
 
     </div>
   );

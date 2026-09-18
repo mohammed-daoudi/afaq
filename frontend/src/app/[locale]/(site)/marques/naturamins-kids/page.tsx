@@ -36,7 +36,7 @@ export default function NaturaminsKidsPage() {
         >
           <div className="flex flex-wrap justify-center gap-3 mb-4">
             <motion.div variants={fadeUp} className="inline-block px-4 py-1.5 text-xs font-bold tracking-widest text-teal-deep bg-white border border-teal-deep/20 rounded-full uppercase shadow-sm">
-              Exclusivité AFAQ Health
+              Exclusivité AFAQ HEALTH
             </motion.div>
             <motion.div variants={fadeUp} className="inline-block px-4 py-1.5 text-xs font-bold tracking-widest text-gold-soft bg-gold-soft/10 rounded-full uppercase shadow-sm">
               Prochain lancement au Maroc
@@ -51,7 +51,7 @@ export default function NaturaminsKidsPage() {
           </motion.h2>
           <div className="space-y-4">
             <motion.p variants={fadeUp} className="text-xl text-anthracite-soft/80 font-medium max-w-3xl mx-auto leading-relaxed">
-              Naturamins Kids rejoint le portefeuille exclusif d'AFAQ Health au Maroc et en Afrique de l'Ouest.
+              Naturamins Kids rejoint le portefeuille exclusif d'AFAQ HEALTH au Maroc et en Afrique de l'Ouest.
             </motion.p>
             <motion.p variants={fadeUp} className="text-lg text-anthracite-soft/80 max-w-3xl mx-auto leading-relaxed">
               Cette gamme pédiatrique a été sélectionnée pour répondre à des besoins nutritionnels spécifiques des enfants et accompagner les familles dans leur quotidien.

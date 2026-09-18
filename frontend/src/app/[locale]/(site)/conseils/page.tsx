@@ -12,7 +12,7 @@ const faqs = [
     category: 'Professionnels (Pharmacies & Grossistes)',
     questions: [
       {
-        q: 'Comment passer commande auprès d\'AFAQ Health ?',
+        q: 'Comment passer commande auprès d\'AFAQ HEALTH ?',
         a: 'Toutes les commandes s\'effectuent exclusivement via notre portail B2B. Pour y accéder, vous devez créer un compte professionnel qui sera validé par notre équipe. Une fois validé, vous aurez accès à vos tarifs personnalisés et pourrez commander directement en ligne.'
       },
       {
@@ -47,7 +47,7 @@ const faqs = [
     questions: [
       {
         q: 'Puis-je acheter vos produits directement sur ce site ?',
-        a: 'Non, AFAQ Health est un distributeur exclusif aux professionnels de santé. Nos produits sont disponibles uniquement en pharmacie.'
+        a: 'Non, AFAQ HEALTH est un distributeur exclusif aux professionnels de santé. Nos produits sont disponibles uniquement en pharmacie.'
       },
       {
         q: 'Où puis-je trouver vos produits ?',

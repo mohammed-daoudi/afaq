@@ -161,7 +161,7 @@ export default function PharmaciesPage() {
           <p className="text-lg text-anthracite-soft/80 font-sans max-w-2xl">
             {isProductFiltered 
               ? "Les pharmacies ci-dessous ont déclaré avoir ce produit en stock." 
-              : "Recherchez les pharmacies partenaires AFAQ Health distribuant nos références près de chez vous."}
+              : "Recherchez les pharmacies partenaires AFAQ HEALTH distribuant nos références près de chez vous."}
           </p>
         </div>
 
@@ -262,7 +262,7 @@ export default function PharmaciesPage() {
             <div className="p-5 bg-teal-deep text-white text-center mt-auto">
               <p className="text-sm font-semibold mb-2">Vous êtes pharmacien ?</p>
               <Link href="/portal/login" className="text-xs text-gold-soft underline hover:text-white transition-colors">
-                Rejoignez le réseau AFAQ Health →
+                Rejoignez le réseau AFAQ HEALTH →
               </Link>
             </div>
           </div>

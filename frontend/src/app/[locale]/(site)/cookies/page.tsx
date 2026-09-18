@@ -33,7 +33,7 @@ export default function CookiesPage() {
           <Card className="bg-white p-8 md:p-12 shadow-xl border border-sage-light rounded-[2rem] prose prose-teal max-w-none">
             
             <p className="lead">
-              Lors de votre navigation sur le site AFAQ Health, des cookies ou autres traceurs peuvent être déposés sur votre terminal (ordinateur, tablette ou smartphone), sous réserve des choix que vous avez exprimés.
+              Lors de votre navigation sur le site AFAQ HEALTH, des cookies ou autres traceurs peuvent être déposés sur votre terminal (ordinateur, tablette ou smartphone), sous réserve des choix que vous avez exprimés.
             </p>
 
             <h2 className="text-2xl font-bold text-teal-deep mt-10 mb-6">1. Qu'est-ce qu'un cookie ?</h2>

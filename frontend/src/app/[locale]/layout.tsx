@@ -15,8 +15,8 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "AFAQ Health | Plateforme Digitale B2B & Vitrine",
-  description: "Plateforme digitale unifiée d'AFAQ Health - Distribution de marques de santé et nutrition en Afrique de l'Ouest.",
+  title: "AFAQ HEALTH | Plateforme Digitale B2B & Vitrine",
+  description: "Plateforme digitale unifiée d'AFAQ HEALTH - Distribution de marques de santé et nutrition en Afrique de l'Ouest.",
 };
 
 import { NextIntlClientProvider } from 'next-intl';

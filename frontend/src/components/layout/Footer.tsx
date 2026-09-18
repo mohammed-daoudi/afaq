@@ -12,7 +12,7 @@ export function Footer() {
       <div className="container mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
         <div className="space-y-4">
           <div className="flex items-center gap-2 mb-4">
-            <h3 className="font-heading font-bold text-2xl text-white">AFAQ Health</h3>
+            <h3 className="font-heading font-bold text-2xl text-white">AFAQ HEALTH</h3>
           </div>
           <p className="text-sm text-sage-light/80 max-w-xs">
             {t('description')}
@@ -51,7 +51,7 @@ export function Footer() {
       </div>
 
       <div className="container mx-auto px-4 pt-6 border-t border-white/10 text-xs text-sage-light/60 flex flex-col md:flex-row justify-between items-center">
-        <p>&copy; {new Date().getFullYear()} AFAQ Health — Kénitra, Maroc. {t('rights')}</p>
+        <p>&copy; {new Date().getFullYear()} AFAQ HEALTH — Kénitra, Maroc. {t('rights')}</p>
         <div className="flex gap-4 mt-4 md:mt-0">
           <Link href="/mentions-legales" className="hover:text-white transition-colors">{t('legal')}</Link>
           <span>·</span>

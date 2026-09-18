@@ -24,7 +24,7 @@ export default function ColagenovaPage() {
               Prochainement
             </motion.div>
             <motion.div variants={fadeUp} className="inline-block px-4 py-1.5 text-xs font-bold tracking-widest text-teal-deep bg-sage-light rounded-full uppercase shadow-sm">
-              Exclusivité AFAQ Health — Maroc & Afrique de l'Ouest
+              Exclusivité AFAQ HEALTH — Maroc & Afrique de l'Ouest
             </motion.div>
           </div>
           
@@ -35,7 +35,7 @@ export default function ColagenovaPage() {
             La nutrition beauté au cœur de la gamme.
           </motion.h2>
           <motion.p variants={fadeUp} className="text-xl text-anthracite-soft/80 font-medium max-w-3xl mx-auto leading-relaxed">
-            Colagenova est une marque spécialisée dans l'univers du collagène et de la nutrition beauté, qui rejoindra prochainement le portefeuille AFAQ Health.
+            Colagenova est une marque spécialisée dans l'univers du collagène et de la nutrition beauté, qui rejoindra prochainement le portefeuille AFAQ HEALTH.
           </motion.p>
         </motion.div>
 
