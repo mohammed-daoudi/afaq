@@ -5,7 +5,8 @@ import {locales, defaultLocale} from './i18n';
 export const routing = defineRouting({
   locales,
   defaultLocale,
-  localePrefix: 'as-needed'
+  localePrefix: 'as-needed',
+  localeDetection: false
 });
 
 export const {Link, redirect, usePathname, useRouter} =
