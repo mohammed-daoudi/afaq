@@ -258,13 +258,7 @@ export default function PharmaciesPage() {
               )}
             </div>
 
-            {/* Professional Banner */}
-            <div className="p-5 bg-teal-deep text-white text-center mt-auto">
-              <p className="text-sm font-semibold mb-2">Vous êtes pharmacien ?</p>
-              <Link href="/portal/login" className="text-xs text-gold-soft underline hover:text-white transition-colors">
-                Rejoignez le réseau AFAQ HEALTH →
-              </Link>
-            </div>
+
           </div>
 
           {/* Map Area */}

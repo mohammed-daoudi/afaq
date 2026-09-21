@@ -147,6 +147,25 @@ export function ProductTabs({ product, colors }: { product: Product, colors: any
           </div>
         ) : (
           <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
+             {/* Etiquette Image */}
+             {product.labelImagePath && (
+               <div className="mb-8 border-b border-sage-light/50 pb-8">
+                 <h4 className="text-lg font-bold text-teal-deep mb-6 text-center">{t('nutritionalInfo')}</h4>
+                 <div 
+                   className="bg-white rounded-xl shadow-sm border border-sage-light overflow-hidden flex justify-center group hover:border-teal-deep/30 transition-colors"
+                 >
+                   <ImageMagnifier 
+                     src={product.labelImagePath}
+                     alt="Étiquette du produit"
+                     zoomLevel={2}
+                     onClick={() => setFullscreenImage(product.labelImagePath!)}
+                     containerClassName="w-full relative h-[400px] sm:h-[600px] cursor-pointer"
+                     imageClassName="object-contain mix-blend-multiply p-4 max-w-full max-h-full transition-transform duration-300 group-hover:scale-[1.01]"
+                   />
+                 </div>
+               </div>
+             )}
+
              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                <div className="bg-sage-light/20 p-6 rounded-2xl border border-sage-light/50">
                   <h4 className="text-sm font-bold text-anthracite-soft/60 uppercase tracking-wider mb-2">Format</h4>
@@ -177,25 +196,6 @@ export function ProductTabs({ product, colors }: { product: Product, colors: any
                  </div>
                )}
              </div>
-
-             {/* Etiquette Image */}
-             {product.labelImagePath && (
-               <div className="mt-8 border-t border-sage-light/50 pt-8">
-                 <h4 className="text-lg font-bold text-teal-deep mb-6 text-center">{t('nutritionalInfo')}</h4>
-                 <div 
-                   className="bg-white rounded-xl shadow-sm border border-sage-light overflow-hidden flex justify-center group hover:border-teal-deep/30 transition-colors"
-                 >
-                   <ImageMagnifier 
-                     src={product.labelImagePath}
-                     alt="Étiquette du produit"
-                     zoomLevel={2}
-                     onClick={() => setFullscreenImage(product.labelImagePath!)}
-                     containerClassName="w-full relative h-[400px] sm:h-[600px] cursor-pointer"
-                     imageClassName="object-contain mix-blend-multiply p-4 max-w-full max-h-full transition-transform duration-300 group-hover:scale-[1.01]"
-                   />
-                 </div>
-               </div>
-             )}
           </div>
         )}
       </div>
@@ -212,7 +212,7 @@ export function RelatedProducts({ currentProductId, products }: { currentProduct
   if (!current) return null;
 
   const related = products
-    .filter(p => p.category === current.category && p.id !== current.id)
+    .filter(p => p.categories.some(c => current.categories.includes(c)) && p.id !== current.id)
     .slice(0, 4);
 
   if (related.length === 0) return null;

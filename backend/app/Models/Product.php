@@ -17,6 +17,7 @@ class Product extends Model
         'composition',
         'benefits',
         'description',
+        'is_featured',
     ];
 
     public function brand()

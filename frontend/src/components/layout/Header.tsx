@@ -25,7 +25,7 @@ export function Header() {
       {/* Top Section (Solid White) */}
       <div className="bg-white">
         {/* Top Row: Logo, Search, Actions */}
-        <div className="container mx-auto px-4 py-2 flex items-center justify-between gap-4 lg:gap-8">
+        <div className="w-full pl-6 lg:pl-8 pr-4 lg:pr-8 xl:pr-12 py-2 flex items-center justify-between gap-4 lg:gap-8">
 
         {/* Logo */}
         <Logo />

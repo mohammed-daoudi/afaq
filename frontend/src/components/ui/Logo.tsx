@@ -9,12 +9,12 @@ export function Logo({ className = '', size = 'default' }: { className?: string;
 
   return (
     <Link href="/" className={`flex items-center justify-center h-full py-1 ${className}`}>
-      <div className={`relative ${isLarge ? 'w-72 h-36' : 'w-[210px] h-[76px] lg:w-[346px] lg:h-[110px]'} flex items-center justify-center`}>
+      <div className={`relative ${isLarge ? 'w-72 h-36' : 'w-[210px] h-[76px] lg:w-[346px] lg:h-[110px]'} flex items-center justify-start`}>
         <Image
           src="/images/design/lg.jpeg"
           alt="AFAQ HEALTH Logo"
           fill
-          className="object-contain mix-blend-multiply"
+          className="object-contain object-left mix-blend-multiply"
           priority
         />
       </div>

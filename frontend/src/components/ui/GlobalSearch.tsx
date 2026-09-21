@@ -62,7 +62,7 @@ export function GlobalSearch() {
       </div>
 
       {isOpen && query.length > 0 && (
-        <div className="absolute top-full mt-2 w-[320px] right-0 bg-white border border-sage-light/30 rounded-2xl shadow-xl overflow-hidden z-50">
+        <div className="absolute top-full mt-2 left-0 w-full bg-white/95 backdrop-blur-xl border border-sage-light/30 rounded-2xl shadow-[0_10px_40px_-10px_rgba(19,59,58,0.1)] overflow-hidden z-50 transition-all duration-300">
           {filteredProducts.length > 0 ? (
             <ul className="py-2">
               {filteredProducts.map(p => (

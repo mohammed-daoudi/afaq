@@ -2,7 +2,17 @@ import React from 'react';
 import { Link } from '@/navigation';
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
-import { products, FAMILY_COLORS, type TherapeuticFamily } from '@/lib/products';
+import { products } from '@/lib/products';
+
+type TherapeuticFamily = string;
+const FAMILY_COLORS: Record<string, { primary: string, accent: string, light: string }> = {
+  'Énergie & Vitalité': { primary: '#1B4D3E', accent: '#D4AF37', light: '#E8F3F1' },
+  'Stress & Sommeil': { primary: '#2C3E50', accent: '#8E44AD', light: '#F4F6F7' },
+  'Immunité & Défenses': { primary: '#E67E22', accent: '#D35400', light: '#FDEDEC' },
+  'Beauté': { primary: '#D4AF37', accent: '#C0392B', light: '#FDF2E9' },
+  'Articulations & Mobilité': { primary: '#2980B9', accent: '#3498DB', light: '#EAF2F8' },
+  'Nutrition pédiatrique': { primary: '#16A085', accent: '#1ABC9C', light: '#E8F8F5' },
+};
 import { ProductGallery, ProductTabs, RelatedProducts } from './ProductClient';
 import { useTranslations } from 'next-intl';
 
@@ -13,7 +23,7 @@ export default function ProductDetailPage({ params }: { params: { id: string } }
     notFound();
   }
 
-  const colors = FAMILY_COLORS[product.category as TherapeuticFamily];
+  const colors = FAMILY_COLORS[product.categories[0] as TherapeuticFamily] || { primary: '#1B4D3E', accent: '#D4AF37', light: '#E8F3F1' };
   const t = useTranslations('ProductDetail');
 
   return (
@@ -24,7 +34,7 @@ export default function ProductDetailPage({ params }: { params: { id: string } }
         <div className="mb-8 flex items-center text-sm text-anthracite-soft/60 font-medium">
           <Link href="/produits" className="hover:text-teal-deep transition-colors">Produits</Link>
           <span className="mx-2">›</span>
-          <span style={{ color: colors.accent }}>{product.category}</span>
+          <span style={{ color: colors.accent }}>{product.categories[0]}</span>
           <span className="mx-2">›</span>
           <span className="text-teal-deep font-bold">{product.name}</span>
         </div>
@@ -45,7 +55,7 @@ export default function ProductDetailPage({ params }: { params: { id: string } }
                   className="inline-block px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider mb-4 border"
                   style={{ backgroundColor: `${colors.accent}15`, color: colors.accent, borderColor: `${colors.accent}30` }}
                 >
-                  {product.category}
+                  {product.categories.join(' · ')}
                 </div>
                 <h1 className="text-4xl md:text-5xl font-heading font-extrabold text-teal-deep leading-tight mb-2">
                   {product.name}
@@ -87,64 +97,7 @@ export default function ProductDetailPage({ params }: { params: { id: string } }
         {/* Dynamic Tabs: Description / Fiche Technique */}
         <ProductTabs product={product} colors={colors} />
 
-        {/* Scientific Explanation Section */}
-        <div className="max-w-5xl mx-auto space-y-16 mt-24">
-          <div className="text-center mb-16">
-             <h2 className="text-3xl md:text-4xl font-heading font-extrabold text-teal-deep">
-               {t('scientificApproach')}
-             </h2>
-             <p className="text-anthracite-soft/70 mt-4 max-w-2xl mx-auto text-lg">
-               {t('expertFormulation')}
-             </p>
-          </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
-            <div className="order-2 md:order-1 space-y-8">
-              <h3 className="text-3xl font-bold text-teal-deep font-heading">
-                {t('synergy')}
-              </h3>
-              <div className="text-anthracite-soft/80 leading-relaxed text-lg space-y-4">
-                <p>
-                  {t('formulationOf')} <strong>{product.name}</strong> {t('developedInLabs')}
-                </p>
-                <p>
-                  {t('nothingToChance')}
-                </p>
-              </div>
-              <div className="bg-white p-8 rounded-3xl shadow-sm border border-sage-light/50">
-                 <div className="flex items-center gap-3 mb-4">
-                   <span className="text-2xl">🔬</span>
-                   <h4 className="font-bold text-xl text-teal-deep">{t('focusBio')}</h4>
-                 </div>
-                 <p className="text-base text-anthracite-soft/80 leading-relaxed">
-                   {t('eachActive')}
-                 </p>
-              </div>
-            </div>
-            <div className="order-1 md:order-2">
-              <div className="grid grid-cols-2 gap-4">
-                <div className="relative aspect-[4/5] rounded-3xl overflow-hidden shadow-xl mt-8">
-                  <Image 
-                    src="/images/unsplash/science/microscope.jpg" 
-                    alt="Recherche scientifique" 
-                    fill 
-                    className="object-cover"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-tr from-teal-deep to-transparent opacity-20 mix-blend-multiply"></div>
-                </div>
-                <div className="relative aspect-[4/5] rounded-3xl overflow-hidden shadow-xl mb-8">
-                  <Image 
-                    src="/images/unsplash/formulations/formulation_4.jpg" 
-                    alt="Formulation de suppléments" 
-                    fill 
-                    className="object-cover"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-tr from-teal-deep to-transparent opacity-20 mix-blend-multiply"></div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
 
         {/* Related Products */}
         <RelatedProducts currentProductId={product.id} products={products} />

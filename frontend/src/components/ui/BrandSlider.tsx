@@ -60,7 +60,7 @@ export const BrandSlider = () => {
   const prevSlide = () => setCurrent((prev) => (prev - 1 + slides.length) % slides.length);
 
   return (
-    <section className="relative w-full h-[600px] lg:h-[700px] overflow-hidden">
+    <section className="relative w-full h-[460px] md:h-[440px] lg:h-[460px] overflow-hidden">
       <AnimatePresence initial={false} mode="wait">
         <motion.div
           key={current}
@@ -97,12 +97,12 @@ export const BrandSlider = () => {
           {/* Center Area - Text (Overlay on mobile, 35% on desktop) */}
           <div className="absolute inset-0 lg:relative lg:w-[35%] h-full flex flex-col justify-end lg:justify-center items-center text-center px-4 lg:px-8 lg:pl-20 z-20 pb-20 lg:pb-0">
             {/* Overlay Box for Mobile */}
-            <div className="bg-white/95 lg:bg-transparent backdrop-blur-sm lg:backdrop-blur-none p-6 lg:p-0 rounded-3xl lg:rounded-none shadow-2xl lg:shadow-none max-w-[90%] lg:max-w-none w-full flex flex-col items-center">
+            <div className="bg-white/95 lg:bg-transparent backdrop-blur-sm lg:backdrop-blur-none p-5 lg:p-0 rounded-3xl lg:rounded-none shadow-2xl lg:shadow-none max-w-[90%] lg:max-w-none w-full flex flex-col items-center">
               <motion.h2
                 initial={{ y: 20, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ delay: 0.3 }}
-                className={`text-3xl lg:text-5xl xl:text-6xl font-bold font-heading mb-2 lg:mb-4 ${slides[current].textColor}`}
+                className={`text-2xl lg:text-4xl xl:text-5xl font-bold font-heading mb-1 lg:mb-2 leading-tight ${slides[current].textColor}`}
               >
                 {slides[current].title}
               </motion.h2>
@@ -111,9 +111,9 @@ export const BrandSlider = () => {
                 initial={{ scale: 0.8, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
                 transition={{ delay: 0.5 }}
-                className="my-4 lg:my-8"
+                className="my-2 lg:my-4"
               >
-                <h1 className={`text-4xl lg:text-7xl font-extrabold tracking-tighter opacity-90`}
+                <h1 className={`text-3xl lg:text-6xl font-extrabold tracking-tighter opacity-90 leading-none`}
                   style={{ color: slides[current].accentColor.replace('bg-', '') }}
                 >
                   {slides[current].brand}
@@ -127,7 +127,7 @@ export const BrandSlider = () => {
               >
                 <Link
                   href={slides[current].link}
-                  className={`inline-block px-6 lg:px-8 py-3 lg:py-4 text-sm lg:text-base text-white font-bold rounded-full transition-transform hover:scale-105 shadow-lg`}
+                  className={`inline-block px-6 lg:px-8 py-3 text-sm lg:text-base text-white font-bold rounded-full transition-transform hover:scale-105 shadow-lg`}
                   style={{ backgroundColor: slides[current].accentColor.replace('bg-', '') }}
                 >
                   {t('discoverRange')}
@@ -142,7 +142,7 @@ export const BrandSlider = () => {
               initial={{ x: 50, opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}
               transition={{ delay: 0.4, duration: 0.8 }}
-              className="relative w-full h-[80%] max-w-sm drop-shadow-2xl"
+              className="relative w-full h-[90%] max-w-sm drop-shadow-2xl"
             >
               <Image
                 src={slides[current].productImage}

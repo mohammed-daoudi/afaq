@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { useCart } from '@/context/CartContext';
-import { THERAPEUTIC_FAMILIES } from '@/lib/products';
+import { PRODUCT_CATEGORIES } from '@/lib/products';
 import api from '@/lib/api';
 
 export default function CatalogPage() {
@@ -90,7 +90,7 @@ export default function CatalogPage() {
           onChange={(e) => setSelectedFamily(e.target.value)}
         >
           <option>Toutes les familles</option>
-          {THERAPEUTIC_FAMILIES.map(f => <option key={f}>{f}</option>)}
+          {PRODUCT_CATEGORIES.map(f => <option key={f}>{f}</option>)}
         </select>
         <select 
           className="border border-sage-light rounded-xl px-4 py-2.5 focus:outline-none focus:border-teal-deep text-sm text-anthracite-soft font-medium bg-white"

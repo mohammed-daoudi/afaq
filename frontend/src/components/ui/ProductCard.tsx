@@ -3,7 +3,7 @@ import React, { useRef, useState, useEffect } from 'react';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { motion, useMotionValue, useSpring, useTransform, AnimatePresence } from 'framer-motion';
-import { FAMILY_COLORS, type TherapeuticFamily } from '@/lib/products';
+import type { Product } from '@/lib/products';
 import { useTranslations } from 'next-intl';
 
 interface ProductCardProps {
@@ -11,7 +11,7 @@ interface ProductCardProps {
     id: string;
     name: string;
     brand: string;
-    category: string;
+    categories: string[];
     imagePath: string;
     labelImagePath?: string;
     description: string;
@@ -39,8 +39,6 @@ export function ProductCard({ product }: ProductCardProps) {
 
   const rotateX = useTransform(mouseYSpring, [-0.5, 0.5], ["10deg", "-10deg"]);
   const rotateY = useTransform(mouseXSpring, [-0.5, 0.5], ["-10deg", "10deg"]);
-
-  const familyColors = FAMILY_COLORS[product.category as TherapeuticFamily];
 
   useEffect(() => {
     if (window.innerWidth < 768) {
@@ -106,13 +104,19 @@ export function ProductCard({ product }: ProductCardProps) {
         </div>
 
         {/* Text Content */}
-        <div className="flex flex-col flex-1 text-left">
+        <div className="flex flex-col flex-1 text-left mt-2">
+          <span className="text-[10px] font-bold uppercase tracking-wider text-gold-soft mb-1 line-clamp-1">
+            {product.categories.join(' · ')}
+          </span>
           <h3 className="font-heading font-bold text-sm md:text-base text-anthracite-deep leading-snug group-hover:text-teal-deep transition-colors line-clamp-2">
             {product.name}
           </h3>
-          {product.format && (
-            <p className="text-xs md:text-sm text-anthracite-soft mt-1.5 font-medium">{product.format}</p>
-          )}
+          <p className="text-xs text-anthracite-soft mt-1.5 line-clamp-2">
+            {product.format || product.description}
+          </p>
+          <div className="mt-4 flex items-center text-teal-deep text-xs font-bold group-hover:text-gold-soft transition-colors">
+            Découvrir le produit <span className="ml-1">→</span>
+          </div>
         </div>
       </div>
 
@@ -161,7 +165,7 @@ export function ProductCard({ product }: ProductCardProps) {
               {/* Content Section */}
               <div className="w-full md:w-1/2 p-8 md:p-10 flex flex-col justify-center overflow-y-auto">
                 <span className="text-xs font-bold uppercase tracking-wider text-teal-deep/60 mb-2">
-                  {product.category}
+                  {product.categories.join(' · ')}
                 </span>
                 <h2 className="text-3xl font-heading font-extrabold text-teal-deep mb-2">
                   {product.name}

@@ -1,13 +1,13 @@
 /**
  * Product data extracted from the official SOTYA Catalogue 2026
- * Organized into 4 therapeutic families with catalog-accurate colors
+ * Organized into Universes / Needs and Brands
  */
 
 export interface Product {
   id: string;
   name: string;
   brand: string;
-  category: TherapeuticFamily;
+  categories: string[];
   imagePath: string;
   labelImagePath?: string;
   description: string;
@@ -18,74 +18,32 @@ export interface Product {
   certifications: string[];
 }
 
-export type TherapeuticFamily =
-  | 'Stress · Sommeil · Énergie'
-  | 'Immunité & Défenses'
-  | 'Santé Spécifique'
-  | 'Vitalité & Beauté';
-
-export const FAMILY_COLORS: Record<TherapeuticFamily, { bg: string; text: string; accent: string; border: string }> = {
-  'Stress · Sommeil · Énergie': {
-    bg: 'bg-[#1a7fa8]/10',
-    text: 'text-[#1a7fa8]',
-    accent: '#1a7fa8',
-    border: 'border-[#1a7fa8]/20',
-  },
-  'Immunité & Défenses': {
-    bg: 'bg-[#2a8c5a]/10',
-    text: 'text-[#2a8c5a]',
-    accent: '#2a8c5a',
-    border: 'border-[#2a8c5a]/20',
-  },
-  'Santé Spécifique': {
-    bg: 'bg-[#d97b2a]/10',
-    text: 'text-[#d97b2a]',
-    accent: '#d97b2a',
-    border: 'border-[#d97b2a]/20',
-  },
-  'Vitalité & Beauté': {
-    bg: 'bg-[#c4447a]/10',
-    text: 'text-[#c4447a]',
-    accent: '#c4447a',
-    border: 'border-[#c4447a]/20',
-  },
-};
-
-export const FAMILY_DESCRIPTIONS: Record<TherapeuticFamily, string> = {
-  'Stress · Sommeil · Énergie':
-    'Formulations destinées à accompagner le stress, la fatigue physique et mentale, l\'endormissement et le bon fonctionnement nerveux et musculaire.',
-  'Immunité & Défenses':
-    'Vitamine C, cuivre et plantes en synergie pour soutenir les défenses naturelles, en particulier aux changements de saison.',
-  'Santé Spécifique':
-    'Des réponses ciblées sur un besoin précis : santé cardiovasculaire, confort urinaire masculin, équilibre féminin et confort digestif.',
-  'Vitalité & Beauté':
-    'Vitalité quotidienne et beauté de l\'intérieur : collagène, vitamines, minéraux et antioxydants pour la peau, les cheveux, les os et l\'énergie.',
-};
-
-export const FAMILY_COUNTS: Record<TherapeuticFamily, number> = {
-  'Stress · Sommeil · Énergie': 5,
-  'Immunité & Défenses': 2,
-  'Santé Spécifique': 4,
-  'Vitalité & Beauté': 3,
-};
-
-export const THERAPEUTIC_FAMILIES: TherapeuticFamily[] = [
-  'Stress · Sommeil · Énergie',
+export const PRODUCT_CATEGORIES = [
+  'Énergie & Vitalité',
+  'Stress & Sommeil',
   'Immunité & Défenses',
-  'Santé Spécifique',
-  'Vitalité & Beauté',
+  'Beauté',
+  'Articulations & Mobilité',
+  'Nutrition pédiatrique',
+  'Santé Spécifique'
+];
+
+export const PRODUCT_BRANDS = [
+  'SOTYA',
+  'NATURAMINS KIDS',
+  'COLAGENOVA'
 ];
 
 export const products: Product[] = [
-  // ─── STRESS · SOMMEIL · ÉNERGIE (5 références) ────────────────────────
+  // ─── SOTYA ────────────────────────
   {
     id: 'bisglycinate-magnesium',
     name: 'Bisglycinate de Magnésium',
     brand: 'SOTYA',
-    category: 'Stress · Sommeil · Énergie',
+    categories: ['Stress & Sommeil', 'Énergie & Vitalité'],
     imagePath: '/images/products/magnesium.jpeg',
     labelImagePath: '/images/labels/bisglycinate-magnesium.png',
-    description: 'Complément alimentaire à base de Magnésium, Zinc et Vitamine D3. Haute biodisponibilité.',
+    description: 'Complément alimentaire à base de Magnésium, Zinc et Vitamine D3.',
     benefits: ['Stress et fatigue', 'Détente et sommeil', 'Système nerveux'],
     dosage: '3 gélules par jour',
     duration: '33 jours',
@@ -96,7 +54,7 @@ export const products: Product[] = [
     id: 'complexe-vitamines-b',
     name: 'Complexe de Vitamines B',
     brand: 'SOTYA',
-    category: 'Stress · Sommeil · Énergie',
+    categories: ['Énergie & Vitalité'],
     imagePath: '/images/products/vitamines B.jpeg',
     labelImagePath: '/images/labels/complexe-vitamines-b.png',
     description: 'Complément alimentaire à base de 9 Vitamines B et Inositol.',
@@ -110,7 +68,7 @@ export const products: Product[] = [
     id: 'complexe-melatonine',
     name: 'Complexe de Mélatonine',
     brand: 'SOTYA',
-    category: 'Stress · Sommeil · Énergie',
+    categories: ['Stress & Sommeil'],
     imagePath: '/images/products/melatonine.jpeg',
     labelImagePath: '/images/labels/complexe-melatonine.png',
     description: 'Complément alimentaire à base de Mélatonine, L-Tryptophane, Magnésium et Vitamine B6.',
@@ -124,7 +82,7 @@ export const products: Product[] = [
     id: 'melatonine',
     name: 'Mélatonine',
     brand: 'SOTYA',
-    category: 'Stress · Sommeil · Énergie',
+    categories: ['Stress & Sommeil'],
     imagePath: '/images/products/melatonine.jpeg',
     description: 'Complément alimentaire à base de Mélatonine, Extrait de Mélisse, Extrait de Passiflore et Extrait de Tilleul.',
     benefits: ['Relaxation et sommeil naturel', 'Réduction de la fatigue'],
@@ -137,7 +95,7 @@ export const products: Product[] = [
     id: 'ashwagandha',
     name: 'Ashwagandha',
     brand: 'SOTYA',
-    category: 'Stress · Sommeil · Énergie',
+    categories: ['Stress & Sommeil'],
     imagePath: '/images/products/ashwaganda.jpeg',
     labelImagePath: '/images/labels/ashwagandha.png',
     description: 'Complément alimentaire à base d\'Extrait d\'Ashwagandha, Zinc et Vitamine C.',
@@ -147,13 +105,11 @@ export const products: Product[] = [
     format: '60 gélules végétales de 570mg',
     certifications: ['Vegan', 'Sans gluten'],
   },
-
-  // ─── IMMUNITÉ & DÉFENSES (2 références) ──────────────────────────────
   {
     id: 'complexe-vitamine-c',
     name: 'Complexe de Vitamine C',
     brand: 'SOTYA',
-    category: 'Immunité & Défenses',
+    categories: ['Immunité & Défenses', 'Énergie & Vitalité'],
     imagePath: '/images/products/vitamine c.jpeg',
     labelImagePath: '/images/labels/complexe-vitamine-c.png',
     description: 'Complément alimentaire à base de Vitamine C, Bioflavonoïdes et Acérola.',
@@ -167,7 +123,7 @@ export const products: Product[] = [
     id: 'complexe-propolis-forte',
     name: 'Complexe de Propolis Forte',
     brand: 'SOTYA',
-    category: 'Immunité & Défenses',
+    categories: ['Immunité & Défenses'],
     imagePath: '/images/products/propolis.jpeg',
     labelImagePath: '/images/labels/complexe-propolis-forte.png',
     description: 'Complément alimentaire à base d\'Extrait de propolis, Extrait de thym, Extrait d\'échinacée et Vitamine C. À croquer.',
@@ -177,13 +133,11 @@ export const products: Product[] = [
     format: '100 comprimés de 800mg',
     certifications: ['Sans gluten'],
   },
-
-  // ─── SANTÉ SPÉCIFIQUE (4 références) ──────────────────────────────────
   {
     id: 'complexe-omega-369',
     name: 'Complexe d\'Oméga 3, 6, 9',
     brand: 'SOTYA',
-    category: 'Santé Spécifique',
+    categories: ['Beauté', 'Articulations & Mobilité', 'Santé Spécifique'],
     imagePath: '/images/products/omegaa.jpeg',
     labelImagePath: '/images/labels/complexe-omega-369.png',
     description: 'Complément alimentaire à base de Huile de poisson, Huile de lin, Huile d\'onagre et Vitamine E.',
@@ -197,7 +151,7 @@ export const products: Product[] = [
     id: 'prostal',
     name: 'Prostal',
     brand: 'SOTYA',
-    category: 'Santé Spécifique',
+    categories: ['Santé Spécifique'],
     imagePath: '/images/products/prostal.jpeg',
     labelImagePath: '/images/labels/prostal.png',
     description: 'Complément alimentaire à base d\'Extraits de citrouille, trèfle rouge, saw palmetto, thé vert, romarin, lycopène et zinc. Contient de la caféine.',
@@ -211,7 +165,7 @@ export const products: Product[] = [
     id: 'huile-onagre',
     name: 'Huile d\'Onagre',
     brand: 'SOTYA',
-    category: 'Santé Spécifique',
+    categories: ['Beauté', 'Santé Spécifique'],
     imagePath: '/images/products/onagre.jpeg',
     labelImagePath: '/images/labels/huile-onagre.png',
     description: 'Complément alimentaire à base de Huile d\'Onagre, Acide gamma Linolénique et Vitamine E. 10% GLA (Oméga 6).',
@@ -225,7 +179,7 @@ export const products: Product[] = [
     id: 'charbon-actif-probiotiques',
     name: 'Charbon Actif avec Probiotiques',
     brand: 'SOTYA',
-    category: 'Santé Spécifique',
+    categories: ['Santé Spécifique'],
     imagePath: '/images/products/charbon.jpeg',
     labelImagePath: '/images/labels/charbon-actif-probiotiques.png',
     description: 'Complément alimentaire à base de Charbon de bois, probiotiques, prébiotiques et extraits de plantes.',
@@ -235,13 +189,11 @@ export const products: Product[] = [
     format: '90 gélules végétales de 550mg',
     certifications: ['Vegan', 'Sans gluten'],
   },
-
-  // ─── VITALITÉ & BEAUTÉ (3 références) ─────────────────────────────────
   {
     id: 'collagene',
     name: 'Collagène',
     brand: 'SOTYA',
-    category: 'Vitalité & Beauté',
+    categories: ['Beauté', 'Articulations & Mobilité'],
     imagePath: '/images/products/collagene.jpeg',
     labelImagePath: '/images/labels/collagene.png',
     description: 'Complément alimentaire à base de Collagène hydrolysé, Silicium, Magnésium marin et Vitamines D3 et C.',
@@ -255,7 +207,7 @@ export const products: Product[] = [
     id: 'peau-cheveux-ongles',
     name: 'Peau, Cheveux et Ongles',
     brand: 'SOTYA',
-    category: 'Vitalité & Beauté',
+    categories: ['Beauté'],
     imagePath: '/images/products/peau.jpeg',
     labelImagePath: '/images/labels/peau-cheveux-ongles.png',
     description: 'Complément alimentaire à base de Levure de bière, Extraits de plantes, Collagène, Taurine, Vitamines et Minéraux.',
@@ -269,7 +221,7 @@ export const products: Product[] = [
     id: 'multivitamines-mineraux',
     name: 'Multivitamines & Minéraux',
     brand: 'SOTYA',
-    category: 'Vitalité & Beauté',
+    categories: ['Énergie & Vitalité'],
     imagePath: '/images/products/multivitamines.jpeg',
     labelImagePath: '/images/labels/multivitamines-mineraux.png',
     description: 'Complément alimentaire à base de Vitamines et Minéraux avec Lutéine, Q10 et Lycopène.',
@@ -278,5 +230,35 @@ export const products: Product[] = [
     duration: '60 jours',
     format: '60 gélules végétales de 820mg',
     certifications: ['Vegan', 'Sans gluten'],
+  },
+
+  // ─── NATURAMINS KIDS ────────────────────────
+  {
+    id: 'naturamins-kids-multi',
+    name: 'Multivitamines Gummies',
+    brand: 'NATURAMINS KIDS',
+    categories: ['Nutrition pédiatrique', 'Immunité & Défenses'],
+    imagePath: '/images/unsplash/comp/Gemini_Generated_Image_1tkniv1tkniv1tkn.jfif', // placeholder
+    description: 'Complément alimentaire à base de 11 vitamines, zinc et iode. Forme gomme.',
+    benefits: ['Défenses naturelles', 'Croissance saine', 'Énergie'],
+    dosage: '2 gommes par jour',
+    duration: '30 jours',
+    format: '60 gommes fruitées',
+    certifications: ['Sans gluten', 'Sans sucres ajoutés'],
+  },
+
+  // ─── COLAGENOVA ────────────────────────
+  {
+    id: 'colagenova-marine',
+    name: 'Marine Beauty',
+    brand: 'COLAGENOVA',
+    categories: ['Beauté', 'Articulations & Mobilité'],
+    imagePath: '/images/unsplash/welness/capture_welness_2.png', // placeholder
+    description: 'Complément alimentaire à base de Peptides de collagène marin pur, Acide hyaluronique et Vitamine C.',
+    benefits: ['Hydratation de la peau', 'Réduction des rides', 'Souplesse articulaire'],
+    dosage: '2 dosettes par jour',
+    duration: '21 jours',
+    format: 'Poudre 275g (Saveur Vanille)',
+    certifications: ['Sans gluten', 'Arômes naturels'],
   },
 ];

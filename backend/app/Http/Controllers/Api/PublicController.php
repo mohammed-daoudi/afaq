@@ -7,18 +7,22 @@ use App\Models\Brand;
 use App\Models\Product;
 use App\Models\Account;
 use App\Models\BlogPost;
+use Illuminate\Http\Request;
 
 class PublicController extends Controller
 {
     public function brands()
     {
-        return response()->json(Brand::all());
+        return response()->json(Brand::where('is_active', true)->orderBy('display_order')->get());
     }
 
-    public function products()
+    public function products(Request $request)
     {
-        // Public products do not show prices
-        return response()->json(Product::with('brand')->get());
+        $query = Product::with('brand');
+        if ($request->has('featured')) {
+            $query->where('is_featured', true);
+        }
+        return response()->json($query->get());
     }
 
     public function pharmacies()
