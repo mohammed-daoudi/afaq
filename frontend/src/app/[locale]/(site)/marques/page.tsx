@@ -10,7 +10,7 @@ const brands = [
   {
     slug: 'sotya',
     name: 'SOTYA',
-    logo: '/gammelogo/sotyaaa.jfif',
+    logo: '/gammelogo/sotyaaa.jpg',
     cardBg: '#FFFFFF',
     logoClass: 'object-cover scale-90',
     subtitle: 'COMPLÉMENTS ALIMENTAIRES',
@@ -30,7 +30,7 @@ const brands = [
   {
     slug: 'colagenova',
     name: 'Colagenova',
-    logo: '/gammelogo/colagenova.jfif',
+    logo: '/gammelogo/colagenova.jpg',
     cardBg: '#FFFFFF',
     logoClass: 'object-contain scale-90',
     subtitle: 'BEAUTÉ & NUTRITION',

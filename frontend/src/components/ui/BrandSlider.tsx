@@ -29,7 +29,7 @@ export const BrandSlider = () => {
       title: t('naturaminsTitle'),
       subtitle: t('naturaminsSubtitle'),
       link: "/marques/naturamins-kids",
-      leftImage: "/images/unsplash/comp/Gemini_Generated_Image_1tkniv1tkniv1tkn.jfif",
+      leftImage: "/images/unsplash/comp/Gemini_Generated_Image_1tkniv1tkniv1tkn.jpg",
       productImage: "/uploaded/sotya_smile_1786930963164.png",
       bgColor: "bg-[#eaf4ec]",
       accentColor: "bg-[#0f4c3a]",

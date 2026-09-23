@@ -300,7 +300,7 @@ export const products: Product[] = [
     name: 'Multivitamines Gummies',
     brand: 'NATURAMINS KIDS',
     categories: ['Nutrition pédiatrique', 'Immunité & Défenses'],
-    imagePath: '/images/unsplash/comp/Gemini_Generated_Image_1tkniv1tkniv1tkn.jfif', // placeholder
+    imagePath: '/images/unsplash/comp/Gemini_Generated_Image_1tkniv1tkniv1tkn.jpg', // placeholder
     description: 'Complément alimentaire à base de 11 vitamines, zinc et iode. Forme gomme.',
     benefits: ['Défenses naturelles', 'Croissance saine', 'Énergie'],
     dosage: '2 gommes par jour',

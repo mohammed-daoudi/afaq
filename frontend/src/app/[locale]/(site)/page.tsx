@@ -23,7 +23,7 @@ const brands = [
   {
     slug: 'sotya',
     name: 'SOTYA',
-    logo: '/gammelogo/sotyaaa.jfif',
+    logo: '/gammelogo/sotyaaa.jpg',
     cardBg: '#FFFFFF',
     logoClass: 'object-cover scale-90',
     subtitle: 'COMPLÉMENTS ALIMENTAIRES',
@@ -43,7 +43,7 @@ const brands = [
   {
     slug: 'colagenova',
     name: 'Colagenova',
-    logo: '/gammelogo/colagenova.jfif',
+    logo: '/gammelogo/colagenova.jpg',
     cardBg: '#FFFFFF',
     logoClass: 'object-contain scale-90',
     subtitle: 'BEAUTÉ & NUTRITION',
@@ -133,7 +133,7 @@ export default function HomePage() {
           {/* Image Content */}
           <div className="w-full lg:w-[45%] h-[400px] lg:h-[500px] relative overflow-hidden shadow-2xl">
             <Image
-              src="/images/unsplash/science/colabb.jfif"
+              src="/images/unsplash/science/colabb.jpg"
               alt="Présentation"
               fill
               className="object-cover object-center"
@@ -264,7 +264,7 @@ export default function HomePage() {
 
             <Link href="/conseils/les-besoins-nutritionnels-des-enfants" className="group block bg-white rounded-[2rem] overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 border border-gray-100 flex flex-col h-full">
               <div className="relative h-64 w-full shrink-0 overflow-hidden">
-                <Image src="/images/unsplash/comp/Gemini_Generated_Image_1tkniv1tkniv1tkn.jfif" alt="Article 3" fill className="object-cover group-hover:scale-110 transition-transform duration-700" />
+                <Image src="/images/unsplash/comp/Gemini_Generated_Image_1tkniv1tkniv1tkn.jpg" alt="Article 3" fill className="object-cover group-hover:scale-110 transition-transform duration-700" />
               </div>
               <div className="p-8 flex flex-col flex-grow">
                 <span className="text-gold-soft text-xs font-bold uppercase tracking-widest mb-3 block">{t('pediatrics')}</span>
@@ -287,7 +287,7 @@ export default function HomePage() {
         {/* Image de fond en fullscreen */}
         <div className="absolute inset-0 w-full h-full">
           <Image
-            src="/images/unsplash/science/Gemini_Generated_Image_54h96b54h96b54h9.jfif"
+            src="/images/unsplash/science/Gemini_Generated_Image_54h96b54h96b54h9.jpg"
             alt="Espace Professionnel"
             fill
             className="object-cover object-center"

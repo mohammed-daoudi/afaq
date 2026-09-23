@@ -21,7 +21,7 @@ const STATIC_BRANDS = [
     tagline: 'Nutrition adaptée et sûre pour les enfants',
     bg: '#eaf4ec',
     accentColor: '#0f4c3a',
-    heroImage: '/images/unsplash/comp/Gemini_Generated_Image_1tkniv1tkniv1tkn.jfif',
+    heroImage: '/images/unsplash/comp/Gemini_Generated_Image_1tkniv1tkniv1tkn.jpg',
     link: '/marques/naturamins-kids',
   },
   {

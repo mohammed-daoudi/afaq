@@ -97,7 +97,7 @@ export const MOCK_ARTICLES = [
       <h2>Le rôle crucial du foie</h2>
       <p>Le foie joue un rôle central dans la digestion et la détoxification de l'organisme. Il filtre le sang pour neutraliser les toxines (alcool, médicaments, pollution, etc.) et participe au métabolisme des graisses et des sucres.</p>
       
-      <img src="/images/unsplash/comp/Gemini_Generated_Image_1tkniv1tkniv1tkn.jfif" alt="Chardon-Marie" class="rounded-[2.5rem] shadow-xl hover:shadow-2xl hover:scale-[1.02] hover:-rotate-1 transition-all duration-700 ease-out my-14 w-full object-cover max-h-[500px] cursor-pointer border-4 border-white/50" />
+      <img src="/images/unsplash/comp/Gemini_Generated_Image_1tkniv1tkniv1tkn.jpg" alt="Chardon-Marie" class="rounded-[2.5rem] shadow-xl hover:shadow-2xl hover:scale-[1.02] hover:-rotate-1 transition-all duration-700 ease-out my-14 w-full object-cover max-h-[500px] cursor-pointer border-4 border-white/50" />
       
       <h2>La silymarine, principe actif majeur</h2>
       <p>Le chardon-Marie (Silybum marianum) est une plante reconnue depuis l'Antiquité pour ses propriétés hépatoprotectrices. Son secret réside dans la silymarine, un complexe de flavonoïdes extrait de ses graines, qui stimule la régénération des cellules du foie.</p>
@@ -111,7 +111,7 @@ export const MOCK_ARTICLES = [
     slug: 'gestion-stress-equilibre',
     category: 'Bien-être',
     title: 'Gestion du stress et équilibre émotionnel au quotidien',
-    image: '/images/unsplash/comp/Gemini_Generated_Image_3f5zd73f5zd73f5z.jfif',
+    image: '/images/unsplash/comp/Gemini_Generated_Image_3f5zd73f5zd73f5z.jpg',
     date: '10 Septembre 2026',
     readTime: '7 min',
     intro: 'Entre vie professionnelle et personnelle, maintenir l\'équilibre est un défi. Apprenez à mieux gérer votre stress grâce aux plantes adaptogènes et à des habitudes de vie saines.',
@@ -141,7 +141,7 @@ export const MOCK_ARTICLES = [
       <h2>Le cerveau : un organe gourmand en graisses</h2>
       <p>Le cerveau humain est composé à près de 60 % de graisses. Parmi elles, l'acide docosahexaénoïque (DHA), un oméga-3, est le composant structurel principal des membranes des neurones, assurant la fluidité de la transmission de l'influx nerveux.</p>
       
-      <img src="/images/unsplash/comp/Gemini_Generated_Image_2mka8u2mka8u2mka.jfif" alt="Cerveau et Oméga-3" class="rounded-[2.5rem] shadow-xl hover:shadow-2xl hover:scale-[1.02] hover:-rotate-1 transition-all duration-700 ease-out my-14 w-full object-cover max-h-[500px] cursor-pointer border-4 border-white/50" />
+      <img src="/images/unsplash/comp/Gemini_Generated_Image_2mka8u2mka8u2mka.jpg" alt="Cerveau et Oméga-3" class="rounded-[2.5rem] shadow-xl hover:shadow-2xl hover:scale-[1.02] hover:-rotate-1 transition-all duration-700 ease-out my-14 w-full object-cover max-h-[500px] cursor-pointer border-4 border-white/50" />
       
       <h2>Soutenir la mémoire et la concentration</h2>
       <p>Des apports suffisants en oméga-3 sont associés à de meilleures performances cognitives, une capacité d'apprentissage optimisée chez l'enfant et une protection contre le déclin cognitif lié à l'âge chez le senior.</p>

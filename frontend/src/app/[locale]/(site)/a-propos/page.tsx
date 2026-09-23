@@ -31,7 +31,7 @@ const staggerContainer: Variants = {
 
 
 const RESEAU_IMAGES = [
-  "/images/unsplash/science/Gemini_Generated_Image_3luov43luov43luo.jfif",
+  "/images/unsplash/science/Gemini_Generated_Image_3luov43luov43luo.jpg",
   "/images/unsplash/science/prooo.jpg"
 ];
 
@@ -70,8 +70,8 @@ const ReseauSlider = () => {
 };
 
 const VISION_IMAGES = [
-  "/images/unsplash/babies/Gemini_Generated_Image_u3yhh2u3yhh2u3yh.jfif",
-  "/images/unsplash/babies/Gemini_Generated_Image_lxoactlxoactlxoa.jfif",
+  "/images/unsplash/babies/Gemini_Generated_Image_u3yhh2u3yhh2u3yh.jpg",
+  "/images/unsplash/babies/Gemini_Generated_Image_lxoactlxoactlxoa.jpg",
 ];
 
 const VisionSlider = () => {
@@ -144,7 +144,7 @@ export default function AProposPage() {
         {/* Full-bleed right image */}
         <div className="absolute inset-y-0 right-0 w-full lg:w-[50%] h-full hidden lg:block">
           <Image
-            src="/images/unsplash/welness/welness.jfif"
+            src="/images/unsplash/welness/welness.jpg"
             alt="AFAQ Health Expertise"
             fill
             className="object-cover object-center"
@@ -156,7 +156,7 @@ export default function AProposPage() {
         {/* Mobile image strip */}
         <div className="lg:hidden relative w-full h-72 mt-8">
           <Image
-            src="/images/unsplash/welness/welness.jfif"
+            src="/images/unsplash/welness/welness.jpg"
             alt="AFAQ Health Expertise"
             fill
             className="object-cover object-center"

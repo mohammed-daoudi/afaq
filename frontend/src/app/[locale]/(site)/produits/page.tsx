@@ -8,9 +8,9 @@ import { products, PRODUCT_CATEGORIES, PRODUCT_BRANDS } from '@/lib/products';
 import { Link } from '@/navigation';
 
 const BRAND_LOGOS: Record<string, string> = {
-  'SOTYA':           '/gammelogo/sotyaaa.jfif',
+  'SOTYA':           '/gammelogo/sotyaaa.jpg',
   'NATURAMINS KIDS': '/gammelogo/nutramins.png',
-  'COLAGENOVA':      '/gammelogo/colagenova.jfif',
+  'COLAGENOVA':      '/gammelogo/colagenova.jpg',
 };
 
 // Brand-specific accent colors for the filter buttons
