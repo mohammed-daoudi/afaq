@@ -64,7 +64,7 @@ export default function DashboardPage() {
     <div className="space-y-8">
       <div className="flex justify-between items-end">
         <div>
-          <h1 className="text-3xl font-heading font-bold text-teal-deep">Tableau de Bord</h1>
+          <h1 className="text-3xl font-bold text-teal-deep">Tableau de Bord</h1>
           <p className="text-anthracite-soft/60 mt-1">Bienvenue sur votre espace partenaire, <span className="font-bold text-teal-deep">{userName}</span>.</p>
         </div>
       </div>
@@ -83,23 +83,23 @@ export default function DashboardPage() {
             <Card>
               <CardContent className="p-6">
                 <h3 className="text-sm font-semibold text-anthracite-soft/60 mb-2 uppercase tracking-wider">Commandes en cours</h3>
-                <p className="text-4xl font-heading font-bold text-teal-deep">{activeOrders.length}</p>
+                <p className="text-4xl font-bold text-teal-deep">{activeOrders.length}</p>
                 <Link href="/portal/orders" className="text-sm text-gold-soft font-medium mt-2 hover:underline inline-block">Voir le suivi →</Link>
               </CardContent>
             </Card>
             <Card>
               <CardContent className="p-6">
                 <h3 className="text-sm font-semibold text-anthracite-soft/60 mb-2 uppercase tracking-wider">Total Historique</h3>
-                <p className="text-4xl font-heading font-bold text-teal-deep">
+                <p className="text-4xl font-bold text-teal-deep">
                   {orders.reduce((sum, o) => sum + Number(o.total_amount), 0).toFixed(2)} <span className="text-2xl">MAD</span>
                 </p>
                 <p className="text-sm text-teal-deep/60 mt-2">{orders.length} commandes au total</p>
               </CardContent>
             </Card>
-            <Card className="bg-teal-deep text-white">
+            <Card className="bg-teal-deep text-white rounded-xl hover:bg-gold-soft hover:text-teal-deep transition-all shadow-md shimmer-effect">
               <CardContent className="p-6">
                 <h3 className="text-sm font-semibold text-sage-light/60 mb-2 uppercase tracking-wider">Accès Rapide</h3>
-                <p className="text-2xl font-heading font-bold text-gold-soft mb-2">Catalogue B2B</p>
+                <p className="text-2xl font-bold text-gold-soft mb-2">Catalogue B2B</p>
                 <p className="text-sm text-ivory-soft/80 mb-4">Commandez directement aux prix professionnels (PPH).</p>
                 <Link href="/portal/catalog" className="px-4 py-2 bg-gold-soft text-white font-bold rounded-lg text-sm hover:bg-white hover:text-teal-deep transition-colors">
                   Voir le catalogue
@@ -109,7 +109,7 @@ export default function DashboardPage() {
           </div>
 
           <div className="flex justify-between items-center pt-4">
-            <h2 className="text-2xl font-heading font-bold text-teal-deep">Dernières Commandes</h2>
+            <h2 className="text-2xl font-bold text-teal-deep">Dernières Commandes</h2>
             {orders.length > 0 && (
               <Link href="/portal/orders" className="text-sm font-bold text-gold-soft hover:underline">Voir tout →</Link>
             )}

@@ -42,7 +42,7 @@ export default async function RootLayout({
 
   return (
     <html lang={locale} className={`${outfit.variable} ${inter.variable}`} dir={locale === 'ar' ? 'rtl' : 'ltr'}>
-      <body className="font-sans antialiased text-anthracite-soft bg-ivory-soft">
+      <body className="antialiased text-anthracite-soft bg-ivory-soft">
         <NextIntlClientProvider messages={messages}>
           {children}
         </NextIntlClientProvider>

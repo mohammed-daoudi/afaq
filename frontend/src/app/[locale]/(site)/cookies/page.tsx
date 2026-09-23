@@ -19,7 +19,7 @@ export default function CookiesPage() {
           <div className="inline-block px-4 py-1.5 text-xs font-bold tracking-widest text-teal-deep bg-white border border-teal-deep/20 rounded-full uppercase shadow-sm">
             Gestion des données
           </div>
-          <h1 className="text-4xl md:text-5xl font-heading font-black text-teal-deep">
+          <h1 className="text-4xl md:text-5xl font-black text-teal-deep">
             Politique des Cookies
           </h1>
         </motion.div>
@@ -70,7 +70,7 @@ export default function CookiesPage() {
             
             <div className="mt-8 mb-12">
               <button 
-                className="bg-teal-deep text-white font-bold py-3 px-6 rounded-xl hover:bg-gold-soft transition-all"
+                className="bg-teal-deep text-white font-bold py-3 px-6 rounded-xl hover:bg-gold-soft hover:text-teal-deep transition-all shadow-md shimmer-effect"
                 onClick={() => alert('Ouverture du panneau de configuration des cookies (Bientôt disponible)')}
               >
                 Gérer mes préférences cookies

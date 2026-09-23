@@ -39,7 +39,7 @@ export default function RegisterPage() {
       <div className="w-full max-w-2xl bg-white rounded-3xl shadow-xl p-8 border border-sage-light">
         <div className="flex flex-col items-center mb-8">
           <Logo className="mb-6 scale-110" />
-          <h1 className="text-2xl font-heading font-bold text-teal-deep text-center">
+          <h1 className="text-2xl font-bold text-teal-deep text-center">
             {step === 1 ? 'Demande d\'Ouverture de Compte' : 'Demande Envoyée'}
           </h1>
           <p className="text-sm text-anthracite-soft/60 mt-1 text-center">

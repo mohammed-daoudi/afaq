@@ -10,21 +10,7 @@ import {
 } from 'lucide-react';
 import { BrandCarousel } from '@/components/ui/BrandCarousel';
 
-const SAVOIR_FAIRE_ITEMS = [
-  { icon: TrendingUp, title: 'ACCÈS AU MARCHÉ', desc: 'Analyse, positionnement et préparation du lancement.' },
-  { icon: ShieldCheck, title: 'RÉGLEMENTATION & CONFORMITÉ', desc: 'Coordination des démarches et suivi de la documentation produit.' },
-  { icon: Truck, title: 'IMPORTATION & DISTRIBUTION', desc: "Organisation de l&apos;approvisionnement et mise à disposition des produits." },
-  { icon: BarChart, title: 'DÉVELOPPEMENT COMMERCIAL', desc: 'Déploiement des gammes et développement des circuits de distribution.' },
-  { icon: Stethoscope, title: 'PROFESSIONNELS DE SANTÉ', desc: 'Information produit et accompagnement de notre réseau professionnel.' },
-  { icon: Target, title: 'DÉVELOPPEMENT DE LA MARQUE', desc: 'Positionnement, communication et construction d\'une présence durable.' },
-];
 
-const ENGAGEMENTS_ITEMS = [
-  { icon: Star, title: 'QUALITÉ', desc: 'Des marques et des produits sélectionnés selon des critères exigeants.' },
-  { icon: CheckCircle, title: 'CONFORMITÉ', desc: 'Une attention rigoureuse portée aux exigences réglementaires applicables.' },
-  { icon: Handshake, title: 'PARTENARIAT', desc: 'Des relations durables avec nos fabricants et partenaires professionnels.' },
-  { icon: Heart, title: 'RESPONSABILITÉ', desc: 'Une communication claire, responsable et adaptée au cadre réglementaire.' },
-];
 
 const RESEAU_ITEMS = [
   { icon: Factory, title: 'Fabricants européens', desc: 'Des partenaires sélectionnés pour leur savoir-faire et la qualité de leurs produits.' },
@@ -124,7 +110,7 @@ const VisionSlider = () => {
 
 export default function AProposPage() {
   return (
-    <div className="min-h-screen bg-white flex flex-col font-sans overflow-hidden">
+    <div className="min-h-screen bg-white flex flex-col overflow-hidden">
 
 
       {/* ═══════════════════════════════════════════════════════════════
@@ -140,16 +126,16 @@ export default function AProposPage() {
             <motion.div variants={fadeUp} className="text-xs font-bold uppercase tracking-widest text-gold-soft mb-6">
               QUI SOMMES-NOUS ?
             </motion.div>
-            <motion.h1 variants={fadeUp} className="text-4xl md:text-5xl lg:text-6xl font-heading font-extrabold text-teal-deep leading-tight mb-6">
+            <motion.h1 variants={fadeUp} className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-teal-deep leading-tight mb-6">
               AFAQ HEALTH
             </motion.h1>
-            <motion.h2 variants={fadeUp} className="text-2xl md:text-3xl font-serif font-light italic text-anthracite-soft/80 leading-snug mb-8">
+            <motion.h2 variants={fadeUp} className="text-2xl md:text-3xl font-light text-anthracite-soft/80 leading-snug mb-8">
               partenaire du développement des marques de santé
             </motion.h2>
             <motion.p variants={fadeUp} className="text-xl font-bold text-anthracite-deep leading-relaxed mb-4">
               De l'Europe au marché marocain, nous construisons des implantations durables.
             </motion.p>
-            <motion.p variants={fadeUp} className="text-base text-anthracite-soft/75 font-serif leading-relaxed">
+            <motion.p variants={fadeUp} className="text-base text-anthracite-soft/75 leading-relaxed">
               AFAQ HEALTH est une société marocaine spécialisée dans l'importation, le développement et la commercialisation de marques espagnoles de compléments alimentaires, de nutrition et de bien-être.
             </motion.p>
           </motion.div>
@@ -158,7 +144,7 @@ export default function AProposPage() {
         {/* Full-bleed right image */}
         <div className="absolute inset-y-0 right-0 w-full lg:w-[50%] h-full hidden lg:block">
           <Image
-            src="/images/unsplash/welness/capture_welness_1.png"
+            src="/images/unsplash/welness/welness.jfif"
             alt="AFAQ Health Expertise"
             fill
             className="object-cover object-center"
@@ -170,7 +156,7 @@ export default function AProposPage() {
         {/* Mobile image strip */}
         <div className="lg:hidden relative w-full h-72 mt-8">
           <Image
-            src="/images/unsplash/welness/capture_welness_1.png"
+            src="/images/unsplash/welness/welness.jfif"
             alt="AFAQ Health Expertise"
             fill
             className="object-cover object-center"
@@ -187,55 +173,22 @@ export default function AProposPage() {
             <motion.div variants={fadeUp} className="text-xs font-bold uppercase tracking-widest text-gold-soft mb-6">
               NOTRE MISSION
             </motion.div>
-            <motion.h2 variants={fadeUp} className="text-3xl md:text-5xl lg:text-6xl font-heading font-extrabold text-white leading-tight mb-6">
+            <motion.h2 variants={fadeUp} className="text-3xl md:text-5xl lg:text-6xl font-extrabold text-white leading-tight mb-6">
               Sélectionner.{' '}
-              <span className="italic font-serif font-light text-gold-soft">Développer.</span>{' '}
+              <span className="font-light text-gold-soft">Développer.</span>{' '}
               Distribuer.
             </motion.h2>
-            <motion.p variants={fadeUp} className="text-lg md:text-xl text-white/75 font-serif leading-relaxed max-w-3xl mx-auto mt-6">
+            <motion.p variants={fadeUp} className="text-lg md:text-xl text-white/75 leading-relaxed max-w-3xl mx-auto mt-6">
               Notre mission est de construire au Maroc une présence solide et durable pour des marques sélectionnées pour la qualité de leurs produits et la pertinence de leurs gammes.
             </motion.p>
-            <motion.p variants={fadeUp} className="text-base text-white/60 font-serif leading-relaxed max-w-2xl mx-auto mt-4">
+            <motion.p variants={fadeUp} className="text-base text-white/60 leading-relaxed max-w-2xl mx-auto mt-4">
               De la conformité réglementaire au développement commercial, nous coordonnons les différentes étapes nécessaires à leur implantation et à leur développement.
             </motion.p>
           </motion.div>
         </div>
       </section>
 
-      {/* ═══════════════════════════════════════════════════════════════
-          3. NOTRE SAVOIR-FAIRE — 3-column text cards (reference: experience grid)
-         ═══════════════════════════════════════════════════════════════ */}
-      <section className="py-20 md:py-28 bg-white">
-        <div className="container mx-auto px-8 md:px-16 max-w-7xl">
-          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: '-80px' }} variants={staggerContainer} className="text-center mb-16">
-            <motion.div variants={fadeUp} className="text-xs font-bold uppercase tracking-widest text-gold-soft mb-4">
-              NOTRE SAVOIR-FAIRE
-            </motion.div>
-            <motion.h2 variants={fadeUp} className="text-3xl md:text-4xl font-heading font-extrabold text-teal-deep">
-              Une approche intégrée du développement de marque
-            </motion.h2>
-          </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-0 border-l border-t border-sage-light/40">
-            {SAVOIR_FAIRE_ITEMS.map((item, i) => (
-              <motion.div
-                key={i}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-                variants={fadeUp}
-                className="border-r border-b border-sage-light/40 p-10 group hover:bg-teal-deep/[0.03] transition-colors duration-300"
-              >
-                <div className="w-12 h-12 flex items-center justify-center mb-6 text-teal-deep group-hover:text-gold-soft transition-colors duration-300">
-                  <item.icon className="w-7 h-7" strokeWidth={1.5} />
-                </div>
-                <h4 className="text-sm font-bold text-anthracite-deep mb-3 tracking-widest uppercase">{item.title}</h4>
-                <p className="text-anthracite-soft/70 font-serif leading-relaxed text-sm">{item.desc}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* ═══════════════════════════════════════════════════════════════
           4. NOTRE RÉSEAU — HERO style layout (Text left, Slider right)
@@ -253,10 +206,10 @@ export default function AProposPage() {
             <motion.div variants={fadeUp} className="text-xs font-bold uppercase tracking-widest text-gold-soft mb-6">
               NOTRE RÉSEAU
             </motion.div>
-            <motion.h2 variants={fadeUp} className="text-3xl md:text-4xl lg:text-5xl font-heading font-extrabold text-teal-deep leading-tight mb-6">
+            <motion.h2 variants={fadeUp} className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-teal-deep leading-tight mb-6">
               Des partenaires au cœur de notre développement
             </motion.h2>
-            <motion.p variants={fadeUp} className="text-lg text-anthracite-soft/80 font-serif leading-relaxed mb-12">
+            <motion.p variants={fadeUp} className="text-lg text-anthracite-soft/80 leading-relaxed mb-12">
               AFAQ HEALTH travaille avec un réseau de fabricants, distributeurs, grossistes, pharmacies et professionnels de santé afin d{'\''}assurer à chaque marque un environnement de développement cohérent et durable.
             </motion.p>
 
@@ -274,7 +227,7 @@ export default function AProposPage() {
                     <item.icon className="w-6 h-6 text-teal-deep" strokeWidth={1.5} />
                   </div>
                   <h4 className="text-sm font-bold text-anthracite-deep mb-2">{item.title}</h4>
-                  <p className="text-anthracite-soft/75 font-serif text-xs leading-relaxed">{item.desc}</p>
+                  <p className="text-anthracite-soft/75 text-xs leading-relaxed">{item.desc}</p>
                 </motion.div>
               ))}
             </div>
@@ -317,12 +270,12 @@ export default function AProposPage() {
               <motion.div variants={fadeUp} className="text-sm font-bold uppercase tracking-widest text-gold-soft">
                 NOTRE VISION
               </motion.div>
-              <motion.h2 variants={fadeUp} className="text-4xl md:text-5xl font-heading font-extrabold text-teal-deep leading-tight">
+              <motion.h2 variants={fadeUp} className="text-4xl md:text-5xl font-extrabold text-teal-deep leading-tight">
                 Construire et développer un portefeuille de marques{' '}
-                <span className="italic font-serif font-light text-gold-soft">complémentaires</span>{' '}
+                <span className="font-light text-gold-soft">complémentaires</span>{' '}
                 et exigeantes.
               </motion.h2>
-              <motion.p variants={fadeUp} className="text-lg text-anthracite-soft/75 font-serif leading-relaxed">
+              <motion.p variants={fadeUp} className="text-lg text-anthracite-soft/75 leading-relaxed">
                 Notre ambition est de faire grandir progressivement notre portefeuille avec des marques sélectionnées pour leur qualité, leur savoir-faire et leur capacité à répondre durablement aux besoins du marché.
               </motion.p>
             </motion.div>
@@ -330,40 +283,7 @@ export default function AProposPage() {
         </div>
       </section>
 
-      {/* ═══════════════════════════════════════════════════════════════
-          6. NOS ENGAGEMENTS — clean 4-column icon grid on light background
-         ═══════════════════════════════════════════════════════════════ */}
-      <section className="py-20 md:py-28 bg-[#f6f4ef]">
-        <div className="container mx-auto px-8 md:px-16 max-w-7xl">
-          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer} className="text-center mb-16">
-            <motion.div variants={fadeUp} className="text-xs font-bold uppercase tracking-widest text-gold-soft mb-4">
-              NOS ENGAGEMENTS
-            </motion.div>
-            <motion.h2 variants={fadeUp} className="text-3xl md:text-4xl font-heading font-extrabold text-teal-deep">
-              Exigence. Conformité. Transparence.
-            </motion.h2>
-          </motion.div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-0 border-l border-t border-sage-light/50">
-            {ENGAGEMENTS_ITEMS.map((item, i) => (
-              <motion.div
-                key={i}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-                variants={fadeUp}
-                className="border-r border-b border-sage-light/50 p-10 bg-white hover:bg-teal-deep/[0.02] transition-colors duration-300 flex flex-col items-center text-center"
-              >
-                <div className="w-14 h-14 flex items-center justify-center mb-6 text-teal-deep">
-                  <item.icon className="w-6 h-6" strokeWidth={1.5} />
-                </div>
-                <h4 className="text-xs font-bold tracking-widest uppercase text-anthracite-deep mb-3">{item.title}</h4>
-                <p className="text-anthracite-soft/70 font-serif leading-relaxed text-sm">{item.desc}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* ═══════════════════════════════════════════════════════════════
           7. NOS MARQUES — Brand carousel

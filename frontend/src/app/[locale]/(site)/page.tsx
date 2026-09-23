@@ -23,8 +23,8 @@ const brands = [
   {
     slug: 'sotya',
     name: 'SOTYA',
-    logo: '/gammelogo/sotya.jfif',
-    cardBg: '#E52E2E',
+    logo: '/gammelogo/sotyaaa.jfif',
+    cardBg: '#FFFFFF',
     logoClass: 'object-cover scale-90',
     subtitle: 'COMPLÉMENTS ALIMENTAIRES',
     status: 'MARQUE ESPAGNOLE · DISPONIBLE AU MAROC',
@@ -34,7 +34,7 @@ const brands = [
     slug: 'naturamins-kids',
     name: 'Naturamins Kids',
     logo: '/gammelogo/nutramins.png',
-    cardBg: '#D6EFFF',
+    cardBg: '#FFFFFF',
     logoClass: 'object-cover',
     subtitle: 'NUTRITION PÉDIATRIQUE',
     status: 'MARQUE ESPAGNOLE · PROCHAIN LANCEMENT — JANVIER 2027',
@@ -43,9 +43,9 @@ const brands = [
   {
     slug: 'colagenova',
     name: 'Colagenova',
-    logo: '/gammelogo/colagenova.png',
+    logo: '/gammelogo/colagenova.jfif',
     cardBg: '#FFFFFF',
-    logoClass: 'object-cover',
+    logoClass: 'object-contain scale-90',
     subtitle: 'BEAUTÉ & NUTRITION',
     status: 'MARQUE ESPAGNOLE · PROCHAINEMENT AU MAROC',
     description: "Colagenova propose une gamme spécialisée dans la nutrition beauté à base de collagène, développée autour de solutions dédiées notamment à la beauté et au bien-être articulaire.",
@@ -63,8 +63,8 @@ export default function HomePage() {
       <BrandSlider />
 
       {/* MARQUEE — scrolls with page, equal gap above and below */}
-      <div className="mt-8 mb-24">
-        <div className="w-full bg-teal-deep overflow-hidden py-4 flex-shrink-0">
+      <div className="mt-8 mb-12 border-y border-gray-100">
+        <div className="w-full bg-transparent overflow-hidden py-4 flex-shrink-0">
         <style>{`
           @keyframes marquee-scroll {
             0%   { transform: translateX(0); }
@@ -73,37 +73,18 @@ export default function HomePage() {
           .marquee-track {
             display: flex;
             width: max-content;
-            animation: marquee-scroll 24s linear infinite;
-          }
-          @keyframes gold-shine {
-            0%   { background-position: -200% center; }
-            100% { background-position:  200% center; }
-          }
-          .gold-shiny {
-            background: linear-gradient(
-              90deg,
-              #b8952a 0%,
-              #f5d87c 30%,
-              #ffe9a0 50%,
-              #f5d87c 70%,
-              #b8952a 100%
-            );
-            background-size: 200% auto;
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: gold-shine 3s linear infinite;
+            animation: marquee-scroll 45s linear infinite;
           }
         `}</style>
         <div className="marquee-track select-none" aria-hidden="true">
           {[0, 1].map((i) => (
             <span key={i} className="flex items-center whitespace-nowrap">
-              {['ISO 9001', 'ISO 22000', 'MARQUES EUROPÉENNES', 'EXPERTISE NUTRITION & BIEN-ÊTRE'].map((item, j) => (
+              {['ISO 9001 / 22000', 'Marques Européennes', 'Expertise Nutrition & Bien-Être'].map((item, j) => (
                 <span key={j} className="flex items-center mx-10">
-                  <span className="gold-shiny font-bold text-2xl md:text-3xl tracking-[0.22em] uppercase">
+                  <span className="text-black font-normal text-xl md:text-2xl tracking-widest">
                     {item}
                   </span>
-                  <span className="ml-10 text-gold-soft/40 text-sm">·</span>
+                  <span className="ml-10 text-gray-300 text-lg">·</span>
                 </span>
               ))}
             </span>
@@ -113,61 +94,61 @@ export default function HomePage() {
       </div>
 
       {/* PRÉSENTATION AFAQ HEALTH */}
-      <section className="relative w-full bg-[#f6f4ef] overflow-hidden" style={{ minHeight: '600px' }}>
-        <div className="relative z-10 flex flex-col justify-center h-full min-h-[600px] w-full lg:w-[55%] px-8 md:px-16 lg:px-24 py-20 lg:py-28">
-          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer} className="max-w-xl">
+      <section className="relative w-full bg-[#f6f4ef] py-20 lg:py-28">
+        <div className="container mx-auto px-4 md:px-8 lg:px-12 xl:px-24 flex flex-col lg:flex-row items-center justify-between gap-12 lg:gap-8">
+          
+          {/* Text Content */}
+          <motion.div 
+            initial="hidden" 
+            whileInView="visible" 
+            viewport={{ once: true }} 
+            variants={staggerContainer} 
+            className="w-full lg:w-1/2 max-w-xl"
+          >
             <motion.div variants={fadeUp} className="text-sm md:text-base font-bold uppercase tracking-widest text-gold-soft mb-6">
               L&apos;expertise derrière AFAQ Health
             </motion.div>
-            <motion.h1 variants={fadeUp} className="text-5xl md:text-6xl lg:text-7xl font-heading font-extrabold text-teal-deep leading-tight mb-6">
+            <motion.h1 variants={fadeUp} className="text-5xl md:text-6xl lg:text-7xl font-extrabold text-teal-deep leading-tight mb-6">
               AFAQ HEALTH
             </motion.h1>
-            <motion.h2 variants={fadeUp} className="text-3xl md:text-4xl font-serif font-light italic text-anthracite-soft/80 leading-snug mb-8">
+            <motion.h2 variants={fadeUp} className="text-3xl md:text-4xl font-light text-anthracite-soft/80 leading-snug mb-8">
               Un portefeuille de marques européennes sélectionnées avec exigence
             </motion.h2>
-            <motion.p variants={fadeUp} className="text-lg md:text-xl text-anthracite-soft/75 font-serif leading-relaxed mb-4">
+            <motion.p variants={fadeUp} className="text-lg md:text-xl text-anthracite-soft/75 leading-relaxed mb-4">
               AFAQ HEALTH développe et distribue au Maroc un portefeuille de marques européennes sélectionnées pour leur qualité, leur savoir-faire et la pertinence de leurs gammes.
             </motion.p>
-            <motion.p variants={fadeUp} className="text-lg md:text-xl text-anthracite-soft/75 font-serif leading-relaxed mb-8">
+            <motion.p variants={fadeUp} className="text-lg md:text-xl text-anthracite-soft/75 leading-relaxed mb-8">
               Notre portefeuille couvre plusieurs univers complémentaires, de la nutrition et des compléments alimentaires à la nutrition pédiatrique et à la beauté.
             </motion.p>
             <motion.div variants={fadeUp}>
               <Link
                 href="/a-propos"
-                className="inline-block px-8 py-4 bg-teal-deep text-white font-bold text-base tracking-wide uppercase transition-transform hover:scale-105 shadow-md rounded-xl hover:bg-gold-soft hover:text-teal-deep"
+                className="inline-block px-8 py-4 bg-teal-deep text-white font-bold text-base tracking-wide uppercase rounded-xl hover:bg-gold-soft hover:text-teal-deep transition-all shadow-md shimmer-effect"
               >
                 Découvrir → Qui sommes-nous ?
               </Link>
             </motion.div>
           </motion.div>
-        </div>
 
-        <div className="absolute inset-y-0 right-0 w-full lg:w-[50%] h-full hidden lg:block">
-          <Image
-            src="/images/unsplash/science/colabb.jpg"
-            alt="Présentation"
-            fill
-            className="object-cover object-center"
-            priority
-          />
-          <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-[#f6f4ef] to-transparent" />
-        </div>
+          {/* Image Content */}
+          <div className="w-full lg:w-[45%] h-[400px] lg:h-[500px] relative overflow-hidden shadow-2xl">
+            <Image
+              src="/images/unsplash/science/colabb.jfif"
+              alt="Présentation"
+              fill
+              className="object-cover object-center"
+              priority
+            />
+          </div>
 
-        <div className="lg:hidden relative w-full h-72 mt-8">
-          <Image
-            src="/images/unsplash/science/colabb.jpg"
-            alt="Présentation"
-            fill
-            className="object-cover object-center"
-          />
         </div>
       </section>
 
       {/* 2. NOS MARQUES */}
-      <section className="py-24 bg-white">
+      <section className="py-12 bg-white">
         <div className="container mx-auto px-4 max-w-7xl">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-heading font-extrabold text-teal-deep uppercase tracking-wide">NOS MARQUES</h2>
+            <h2 className="text-4xl md:text-5xl font-extrabold text-teal-deep uppercase tracking-wide">NOS MARQUES</h2>
             <div className="w-24 h-1 bg-gold-soft mx-auto mt-6" />
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -176,7 +157,7 @@ export default function HomePage() {
                 key={brand.slug}
                 className="h-full"
               >
-                <Card className="overflow-hidden border-none shadow-lg hover:shadow-2xl transition-all duration-300 bg-white h-full flex flex-col">
+                <Card className="overflow-hidden border-none shadow hover:shadow-xl transition-all duration-300 bg-white h-full flex flex-col">
                   <div
                     className="relative overflow-hidden h-64 shrink-0"
                     style={{ backgroundColor: brand.cardBg }}
@@ -222,10 +203,10 @@ export default function HomePage() {
       </section>
 
       {/* 3. NOS PRODUITS À LA UNE */}
-      <section className="py-24 bg-sage-light/20">
+      <section className="py-12 bg-sage-light/20">
         <div className="container mx-auto px-4 max-w-7xl">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-heading font-extrabold text-teal-deep uppercase tracking-wide">{t('featuredProducts')}</h2>
+            <h2 className="text-4xl md:text-5xl font-extrabold text-teal-deep uppercase tracking-wide">{t('featuredProducts')}</h2>
             <div className="w-24 h-1 bg-gold-soft mx-auto mt-6" />
           </div>
           <div 
@@ -238,14 +219,23 @@ export default function HomePage() {
               </div>
             ))}
           </div>
+
+          <div className="mt-12 text-center">
+            <Link
+              href="/produits"
+              className="inline-block px-8 py-4 bg-teal-deep text-white font-bold text-base tracking-wide uppercase rounded-xl hover:bg-gold-soft hover:text-teal-deep transition-all shadow-md shimmer-effect"
+            >
+              tous les produits 
+            </Link>
+          </div>
         </div>
       </section>
 
       {/* 4. SANTÉ MAGAZINE */}
-      <section className="py-24 bg-white">
+      <section className="py-12 bg-white">
         <div className="container mx-auto px-4 max-w-7xl">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-heading font-extrabold text-teal-deep uppercase tracking-wide">{t('healthMagazine')}</h2>
+            <h2 className="text-4xl md:text-5xl font-extrabold text-teal-deep uppercase tracking-wide">{t('healthMagazine')}</h2>
             <div className="w-24 h-1 bg-gold-soft mx-auto mt-6" />
           </div>
 
@@ -285,7 +275,7 @@ export default function HomePage() {
           </div>
 
           <div className="mt-16 text-center">
-            <Link href="/conseils" className="inline-block px-10 py-5 bg-teal-deep text-white font-bold rounded-full hover:bg-gold-soft transition-colors shadow-xl hover:shadow-2xl hover:-translate-y-1 transform duration-300">
+            <Link href="/conseils" className="inline-block px-10 py-5 bg-teal-deep text-white font-bold rounded-xl hover:bg-gold-soft hover:text-teal-deep transition-all shadow-md shimmer-effect">
               {t('allArticles')}
             </Link>
           </div>
@@ -293,7 +283,7 @@ export default function HomePage() {
       </section>
 
       {/* 5. ESPACE PROFESSIONNEL */}
-      <section className="relative py-24 md:py-32 lg:py-40 overflow-hidden">
+      <section className="relative py-12 md:py-16 lg:py-20 overflow-hidden">
         {/* Image de fond en fullscreen */}
         <div className="absolute inset-0 w-full h-full">
           <Image
@@ -313,16 +303,16 @@ export default function HomePage() {
             <motion.div variants={fadeUp} className="text-sm md:text-base font-extrabold uppercase tracking-[0.2em] text-gold-soft mb-6 drop-shadow-md">
               ESPACE PROFESSIONNEL
             </motion.div>
-            <motion.h2 variants={fadeUp} className="text-3xl md:text-5xl lg:text-6xl font-heading font-extrabold text-white leading-tight mb-6 drop-shadow-md">
+            <motion.h2 variants={fadeUp} className="text-3xl md:text-5xl lg:text-6xl font-extrabold text-white leading-tight mb-6 drop-shadow-md">
               Vous êtes un professionnel de santé ?
             </motion.h2>
-            <motion.p variants={fadeUp} className="text-lg md:text-xl text-white/90 font-serif leading-relaxed max-w-3xl mx-auto mt-6 drop-shadow-md">
+            <motion.p variants={fadeUp} className="text-lg md:text-xl text-white/90 leading-relaxed max-w-3xl mx-auto mt-6 drop-shadow-md">
               Découvrez nos conditions dédiées, notre accompagnement et accédez à l&apos;ensemble de notre catalogue.
             </motion.p>
             <motion.div variants={fadeUp} className="mt-10">
               <Link
                 href="/portal/login"
-                className="inline-block px-8 md:px-10 py-4 bg-teal-deep text-white font-bold text-sm tracking-wide uppercase rounded-xl hover:bg-gold-soft hover:text-teal-deep transition-all shadow-xl hover:shadow-2xl shimmer-effect"
+                className="inline-block px-8 md:px-10 py-4 bg-teal-deep text-white font-bold text-sm tracking-wide uppercase rounded-xl hover:bg-gold-soft hover:text-teal-deep transition-all shadow-md shimmer-effect"
               >
                 Accéder à l&apos;espace pro →
               </Link>

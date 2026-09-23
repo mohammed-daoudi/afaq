@@ -20,7 +20,7 @@ export function CardHeader({ className = '', children, ...props }: CardProps) {
 }
 
 export function CardTitle({ className = '', children, ...props }: CardProps) {
-  return <h3 className={`text-xl font-heading font-semibold text-teal-deep ${className}`} {...props}>{children}</h3>;
+  return <h3 className={`text-xl font-semibold text-teal-deep ${className}`} {...props}>{children}</h3>;
 }
 
 export function CardContent({ className = '', children, ...props }: CardProps) {

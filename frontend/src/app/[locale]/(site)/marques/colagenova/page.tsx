@@ -28,10 +28,10 @@ export default function ColagenovaPage() {
             </motion.div>
           </div>
           
-          <motion.h1 variants={fadeUp} className="text-5xl md:text-7xl font-heading font-black text-teal-deep leading-tight">
+          <motion.h1 variants={fadeUp} className="text-5xl md:text-7xl font-black text-teal-deep leading-tight">
             Colagenova
           </motion.h1>
-          <motion.h2 variants={fadeUp} className="text-2xl md:text-3xl font-heading font-bold text-gold-soft">
+          <motion.h2 variants={fadeUp} className="text-2xl md:text-3xl font-bold text-gold-soft">
             La nutrition beauté au cœur de la gamme.
           </motion.h2>
           <motion.p variants={fadeUp} className="text-xl text-anthracite-soft/80 font-medium max-w-3xl mx-auto leading-relaxed">
@@ -51,7 +51,7 @@ export default function ColagenovaPage() {
             <p className="text-lg text-anthracite-soft/80 mb-8">
               Nous finalisons actuellement les étapes nécessaires pour vous proposer cette gamme de qualité. Plus d'informations seront disponibles lors du lancement officiel.
             </p>
-            <button className="shimmer-effect bg-sage-light text-teal-deep font-bold px-8 py-4 rounded-xl hover:bg-teal-deep hover:text-white transition-all">
+            <button className="bg-sage-light text-teal-deep font-bold px-8 py-4 rounded-xl hover:bg-gold-soft hover:text-teal-deep transition-all shadow-md shimmer-effect">
               Découvrir la marque
             </button>
           </Card>

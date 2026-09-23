@@ -80,10 +80,10 @@ export default function ConseilsPage() {
           <div className="inline-block px-4 py-1.5 text-xs font-bold tracking-widest text-teal-deep bg-sage-light rounded-full uppercase">
             {t('tag')}
           </div>
-          <h1 className="text-4xl md:text-6xl font-heading font-extrabold text-teal-deep">
-            {t('title')} <span className="text-gold-soft text-5xl md:text-7xl font-light italic ml-2">{t('titleHighlight')}</span>
+          <h1 className="text-4xl md:text-6xl font-extrabold text-teal-deep">
+            {t('title')} <span className="text-gold-soft text-5xl md:text-7xl font-light ml-2">{t('titleHighlight')}</span>
           </h1>
-          <p className="text-lg md:text-xl text-anthracite-soft/80 font-sans max-w-2xl mx-auto leading-relaxed">
+          <p className="text-lg md:text-xl text-anthracite-soft/80 max-w-2xl mx-auto leading-relaxed">
             {t('subtitle')}
           </p>
         </div>
@@ -94,11 +94,7 @@ export default function ConseilsPage() {
             <button
               key={category}
               onClick={() => setActiveCategory(category)}
-              className={`px-5 py-2.5 rounded-full text-sm font-semibold transition-all duration-300 ${
-                activeCategory === category
-                  ? 'bg-teal-deep text-white shadow-md transform -translate-y-0.5'
-                  : 'bg-white text-teal-deep border border-sage-light hover:border-teal-deep/30 hover:bg-teal-deep/5'
-              }`}
+              className={`px-5 py-2.5 text-sm font-semibold ${ activeCategory === category ? 'bg-teal-deep text-white -translate-y-0.5' : 'bg-white text-teal-deep border border-sage-light' } rounded-xl hover:bg-gold-soft hover:text-teal-deep transition-all shadow-md shimmer-effect`}
             >
               {category === 'Toutes' ? t('allCategories') : category}
             </button>
@@ -107,10 +103,10 @@ export default function ConseilsPage() {
 
         {activeCategory === 'Actualités AFAQ' ? (
           <div className="max-w-4xl mx-auto space-y-12">
-            <h2 className="text-3xl font-heading font-bold text-teal-deep text-center mb-8">{t('faqTitle')}</h2>
+            <h2 className="text-3xl font-bold text-teal-deep text-center mb-8">{t('faqTitle')}</h2>
             {faqs.map((group, groupIdx) => (
               <div key={groupIdx} className="space-y-6">
-                <h3 className="text-2xl font-heading font-bold text-teal-deep border-b-2 border-sage-light pb-2">
+                <h3 className="text-2xl font-bold text-teal-deep border-b-2 border-sage-light pb-2">
                   {group.category}
                 </h3>
                 <div className="space-y-4">
@@ -187,11 +183,11 @@ export default function ConseilsPage() {
                     </span>
                   </div>
                   
-                  <h3 className="text-2xl font-heading font-bold text-teal-deep leading-snug mb-4 group-hover:text-gold-soft transition-colors duration-300">
+                  <h3 className="text-2xl font-bold text-teal-deep leading-snug mb-4 group-hover:text-gold-soft transition-colors duration-300">
                     {article.title}
                   </h3>
                   
-                  <p className="text-anthracite-soft/80 font-sans leading-relaxed mb-8 flex-grow">
+                  <p className="text-anthracite-soft/80 leading-relaxed mb-8 flex-grow">
                     {article.intro}
                   </p>
                   
@@ -207,7 +203,7 @@ export default function ConseilsPage() {
         
         {filteredArticles.length === 0 && activeCategory !== 'Actualités AFAQ' && (
           <div className="text-center py-24 text-anthracite-soft/60">
-            <p className="text-xl font-heading">{t('noArticles')}</p>
+            <p className="text-xl ">{t('noArticles')}</p>
             <button 
               onClick={() => setActiveCategory('Toutes')}
               className="mt-4 text-teal-deep font-semibold underline underline-offset-4 hover:text-gold-soft transition-colors"

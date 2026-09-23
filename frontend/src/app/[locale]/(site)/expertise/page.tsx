@@ -36,10 +36,10 @@ export default function ExpertisePage() {
             <motion.div variants={fadeUp} className="inline-block px-4 py-1.5 text-xs font-bold tracking-widest text-gold-soft bg-white/10 backdrop-blur-md rounded-full uppercase border border-white/20">
               Notre Expertise
             </motion.div>
-            <motion.h1 variants={fadeUp} className="text-5xl md:text-6xl lg:text-7xl font-heading font-extrabold text-white leading-tight">
-              L'approche <span className="text-gold-soft italic font-serif font-light">scientifique</span>.
+            <motion.h1 variants={fadeUp} className="text-5xl md:text-6xl lg:text-7xl font-extrabold text-white leading-tight">
+              L'approche <span className="text-gold-soft font-light">scientifique</span>.
             </motion.h1>
-            <motion.p variants={fadeUp} className="text-xl text-white/90 font-serif leading-relaxed max-w-2xl">
+            <motion.p variants={fadeUp} className="text-xl text-white/90 leading-relaxed max-w-2xl">
               Au cœur de notre métier se trouve une exigence absolue : celle de la science. Découvrez comment nous sélectionnons et formulons des produits d'exception.
             </motion.p>
           </motion.div>
@@ -54,10 +54,10 @@ export default function ExpertisePage() {
               initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}
               className="space-y-8"
             >
-              <h2 className="text-4xl lg:text-5xl font-heading font-bold text-teal-deep leading-tight">
+              <h2 className="text-4xl lg:text-5xl font-bold text-teal-deep leading-tight">
                 De la recherche à la formulation
               </h2>
-              <div className="space-y-6 text-lg text-anthracite-soft/80 leading-relaxed font-serif">
+              <div className="space-y-6 text-lg text-anthracite-soft/80 leading-relaxed ">
                 <p>
                   Chaque complément alimentaire que nous introduisons sur le marché marocain est le fruit d'une sélection drastique. Notre équipe scientifique évalue les laboratoires partenaires sur des critères stricts : qualité des matières premières, biodisponibilité des actifs et stabilité des formulations.
                 </p>
@@ -89,7 +89,7 @@ export default function ExpertisePage() {
                   <h3 className="text-xl font-bold text-teal-deep mb-3">Biodisponibilité</h3>
                   <p className="text-anthracite-soft/70">Choix des formes galéniques offrant la meilleure absorption par l'organisme.</p>
                 </Card>
-                <Card className="p-8 border-none shadow-md bg-white rounded-3xl bg-teal-deep text-white">
+                <Card className="p-8 border-none bg-white bg-teal-deep text-white rounded-xl hover:bg-gold-soft hover:text-teal-deep transition-all shadow-md shimmer-effect">
                   <div className="w-12 h-12 bg-white/10 flex items-center justify-center rounded-2xl mb-6 text-2xl text-gold-soft">🛡️</div>
                   <h3 className="text-xl font-bold mb-3">Tolérance</h3>
                   <p className="text-white/70">Garantie d'absence d'effets secondaires grâce à des dosages optimisés.</p>
@@ -124,10 +124,10 @@ export default function ExpertisePage() {
               <p className="text-sm font-bold text-gold-soft uppercase tracking-widest">
                 Qualité Intransigeante
               </p>
-              <h2 className="text-4xl lg:text-5xl font-heading font-bold text-teal-deep leading-tight">
+              <h2 className="text-4xl lg:text-5xl font-bold text-teal-deep leading-tight">
                 La sécurité du patient, notre priorité absolue
               </h2>
-              <div className="space-y-6 text-lg text-anthracite-soft/80 leading-relaxed font-serif">
+              <div className="space-y-6 text-lg text-anthracite-soft/80 leading-relaxed ">
                 <p>
                   Dans un marché de la santé de plus en plus complexe, la sécurité est non négociable. Avant d'atteindre les rayons de votre pharmacie, nos produits franchissent des étapes réglementaires exhaustives en accord avec les standards européens et marocains.
                 </p>
@@ -136,7 +136,7 @@ export default function ExpertisePage() {
                 </p>
               </div>
               <div className="pt-6 border-t border-sage-light mt-8">
-                <p className="text-teal-deep font-bold text-xl italic font-serif">
+                <p className="text-teal-deep font-bold text-xl ">
                   "L'innovation n'a de sens que si elle est délivrée avec la garantie d'une sécurité totale."
                 </p>
               </div>
@@ -157,10 +157,10 @@ export default function ExpertisePage() {
           <Image src="/images/unsplash/formulations/formulation_3.jpg" alt="Nos standards de qualité" fill className="object-cover group-hover:scale-105 transition-transform duration-1000" />
           <div className="absolute inset-0 bg-teal-deep/85 mix-blend-multiply" />
           <div className="relative z-10 px-4">
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold text-white mb-6">
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
               Explorez nos standards de qualité
             </h2>
-            <p className="text-xl md:text-2xl text-white/90 mb-10 max-w-3xl mx-auto font-serif leading-relaxed">
+            <p className="text-xl md:text-2xl text-white/90 mb-10 max-w-3xl mx-auto leading-relaxed">
               Découvrez nos gammes de produits, toutes validées par notre pôle scientifique pour vous offrir le meilleur de la nature.
             </p>
             <Link

@@ -19,7 +19,7 @@ export default function MentionsLegalesPage() {
           <div className="inline-block px-4 py-1.5 text-xs font-bold tracking-widest text-teal-deep bg-white border border-teal-deep/20 rounded-full uppercase shadow-sm">
             Informations juridiques
           </div>
-          <h1 className="text-4xl md:text-5xl font-heading font-black text-teal-deep">
+          <h1 className="text-4xl md:text-5xl font-black text-teal-deep">
             Mentions Légales
           </h1>
         </motion.div>
@@ -31,56 +31,79 @@ export default function MentionsLegalesPage() {
           transition={{ duration: 0.6, delay: 0.2 }}
         >
           <Card className="bg-white p-8 md:p-12 shadow-xl border border-sage-light rounded-[2rem] prose prose-teal max-w-none">
-            <h2 className="text-2xl font-bold text-teal-deep mb-6">1. Éditeur du site</h2>
+            <h2 className="text-3xl font-bold text-teal-deep mb-8">Mentions légales</h2>
+            
+            <h3 className="text-xl font-bold text-teal-deep mt-8 mb-4">1. ÉDITEUR DU SITE</h3>
             <p>
-              Le présent site est édité par :<br />
               <strong>AFAQ HEALTH</strong><br />
-              [Forme juridique : ex: S.A.R.L au capital de X MAD]<br />
-              <strong>Siège social :</strong> [Adresse complète, Casablanca, Maroc]<br />
-              <strong>Registre du Commerce (RC) :</strong> [Numéro de RC]<br />
-              <strong>Identifiant Commun de l'Entreprise (ICE) :</strong> [Numéro ICE]<br />
-              <strong>Identifiant Fiscal (IF) :</strong> [Numéro IF]<br />
-              <strong>Taxe Professionnelle (TP) :</strong> [Numéro TP]
+              <strong>Siège social :</strong> Bir Rami Ouest, Kénitra — Maroc<br />
+              <strong>Registre du Commerce (RC) :</strong> 75281<br />
+              <strong>Identifiant Fiscal (IF) :</strong> 66112419
             </p>
 
-            <h2 className="text-2xl font-bold text-teal-deep mt-10 mb-6">2. Nous contacter</h2>
+            <h3 className="text-xl font-bold text-teal-deep mt-8 mb-4">2. CONTACT</h3>
             <p>
-              <strong>Téléphone :</strong> [Numéro de téléphone]<br />
-              <strong>Email :</strong> contact@afaqhealth.ma
+              <strong>Téléphone :</strong> +212 6 17 20 11 29<br />
+              <strong>Email :</strong> contact@afaqhealth.com
             </p>
 
-            <h2 className="text-2xl font-bold text-teal-deep mt-10 mb-6">3. Responsable de la publication</h2>
+            <h3 className="text-xl font-bold text-teal-deep mt-8 mb-4">3. HÉBERGEMENT</h3>
             <p>
-              <strong>Directeur de la publication :</strong> [Nom du représentant légal ou responsable de la publication]
+              <strong>Hostinger International Limited</strong><br />
+              61 Lordou Vironos Street, 6023 Larnaca, Chypre
             </p>
 
-            <h2 className="text-2xl font-bold text-teal-deep mt-10 mb-6">4. Hébergement</h2>
+            <hr className="my-12 border-sage-light" />
+
+            <h2 className="text-3xl font-bold text-teal-deep mb-8 uppercase">Politique de confidentialité</h2>
             <p>
-              Le site est hébergé par :<br />
-              <strong>[Nom de l'hébergeur]</strong><br />
-              [Forme juridique de l'hébergeur]<br />
-              <strong>Siège social de l'hébergeur :</strong> [Adresse complète de l'hébergeur]<br />
-              <strong>Contact de l'hébergeur :</strong> [Téléphone / Email]
+              AFAQ HEALTH accorde une importance particulière à la protection de vos données personnelles. La présente politique explique de manière simple comment vos données peuvent être collectées et utilisées lorsque vous utilisez notre site.
             </p>
 
-            <h2 className="text-2xl font-bold text-teal-deep mt-10 mb-6">5. Propriété intellectuelle</h2>
+            <h3 className="text-xl font-bold text-teal-deep mt-8 mb-4">1. DONNÉES COLLECTÉES</h3>
+            <p>Selon votre utilisation du site, nous pouvons être amenés à collecter notamment :</p>
+            <ul className="list-disc pl-5 space-y-2 mt-4">
+              <li>Nom et prénom</li>
+              <li>Adresse e-mail</li>
+              <li>Numéro de téléphone</li>
+              <li>Société ou établissement</li>
+              <li>Contenu des messages transmis via nos formulaires</li>
+              <li>Données techniques nécessaires au fonctionnement et à la sécurité du site</li>
+            </ul>
+
+            <h3 className="text-xl font-bold text-teal-deep mt-8 mb-4">2. UTILISATION DES DONNÉES</h3>
+            <p>Ces données peuvent être utilisées afin de :</p>
+            <ul className="list-disc pl-5 space-y-2 mt-4">
+              <li>Répondre à vos demandes et messages ;</li>
+              <li>Traiter les demandes de partenariat ou de collaboration ;</li>
+              <li>Assurer le fonctionnement et la sécurité du site ;</li>
+              <li>Améliorer nos services et l'expérience utilisateur.</li>
+            </ul>
+
+            <h3 className="text-xl font-bold text-teal-deep mt-8 mb-4">3. CONFIDENTIALITÉ DES DONNÉES</h3>
             <p>
-              L'ensemble du contenu présent sur ce site (textes, images, logos, vidéos, éléments graphiques, architecture, etc.) est la propriété exclusive d'AFAQ HEALTH, de ses marques partenaires ou fait l'objet d'une autorisation d'utilisation. 
-            </p>
-            <p>
-              Toute reproduction, représentation, modification, publication, adaptation de tout ou partie des éléments du site, quel que soit le moyen ou le procédé utilisé, est interdite, sauf autorisation écrite préalable d'AFAQ HEALTH.
+              AFAQ HEALTH ne vend ni ne loue vos données personnelles.<br /><br />
+              Lorsque cela est nécessaire au fonctionnement du site, certaines données peuvent être accessibles à des prestataires techniques intervenant pour notre compte, notamment pour l'hébergement ou la maintenance du site.
             </p>
 
-            <h2 className="text-2xl font-bold text-teal-deep mt-10 mb-6">6. Responsabilité</h2>
+            <h3 className="text-xl font-bold text-teal-deep mt-8 mb-4">4. VOS DROITS</h3>
             <p>
-              AFAQ HEALTH s'efforce de fournir sur ce site des informations aussi précises que possible. Toutefois, l'entreprise ne pourra être tenue responsable des oublis, des inexactitudes et des carences dans la mise à jour, qu'elles soient de son fait ou du fait des tiers partenaires qui lui fournissent ces informations.
+              Conformément à la réglementation marocaine applicable, notamment la loi n° 09-08, vous disposez de droits concernant vos données personnelles, notamment un droit d'accès, de rectification et d'opposition dans les conditions prévues par la réglementation.
             </p>
+            <p className="mt-4">
+              Pour toute demande relative à vos données personnelles :<br />
+              <strong>Email :</strong> contact@afaqhealth.com<br />
+              <strong>Adresse :</strong> Bir Rami Ouest, Kénitra — Maroc
+            </p>
+
+            <h3 className="text-xl font-bold text-teal-deep mt-8 mb-4">5. COOKIES</h3>
             <p>
-              Les informations publiées sur ce site sont destinées à des fins informatives et éducatives. Elles ne remplacent en aucun cas l'avis d'un professionnel de santé.
+              Le site peut utiliser des cookies ou technologies similaires nécessaires à son fonctionnement et, le cas échéant, à la mesure de son audience.<br /><br />
+              Vous pouvez gérer vos préférences en matière de cookies selon les options proposées sur le site.
             </p>
 
             <div className="mt-12 pt-8 border-t border-sage-light text-sm text-anthracite-soft/60">
-              Dernière mise à jour : {new Date().toLocaleDateString('fr-FR')}
+              Dernière mise à jour : 23 septembre 2026
             </div>
           </Card>
         </motion.div>

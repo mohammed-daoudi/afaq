@@ -57,32 +57,25 @@ export default function ProductDetailPage({ params }: { params: { id: string } }
                 >
                   {product.categories.join(' · ')}
                 </div>
-                <h1 className="text-4xl md:text-5xl font-heading font-extrabold text-teal-deep leading-tight mb-2">
+                <h1 className="text-4xl md:text-5xl font-extrabold text-teal-deep leading-tight mb-2">
                   {product.name}
                 </h1>
-                <p className="text-lg text-anthracite-soft/80 font-medium">
-                  {product.brand}
+                <p className="text-lg font-semibold text-gold-soft mt-2">
+                  {product.format}
                 </p>
               </div>
 
-              {/* Benefits */}
-              <div className="bg-sage-light/30 rounded-2xl p-6 border border-sage-light">
-                <h3 className="font-bold text-teal-deep mb-4 font-heading text-lg">{t('keyBenefits')}</h3>
-                <ul className="space-y-3">
-                  {product.benefits.map((benefit, idx) => (
-                    <li key={idx} className="flex items-start gap-3">
-                      <span className="mt-1" style={{ color: colors.accent }}>✦</span>
-                      <span className="text-anthracite-soft font-medium">{benefit}</span>
-                    </li>
-                  ))}
-                </ul>
+              <div className="space-y-6">
+                <p className="text-base text-anthracite-soft/80 leading-relaxed">
+                  {product.description}
+                </p>
               </div>
 
               {/* CTA */}
               <div className="pt-6">
                 <Link
                   href={`/pharmacies?product_id=${product.id}`}
-                  className="block w-full text-center bg-teal-deep text-white font-bold text-lg px-8 py-4 rounded-xl shadow-lg hover:shadow-xl hover:bg-opacity-95 transition-all transform hover:-translate-y-1 shimmer-effect"
+                  className="block w-full text-center bg-teal-deep text-white font-bold text-lg px-8 py-4 rounded-xl hover:bg-gold-soft hover:text-teal-deep transition-all shadow-md shimmer-effect"
                 >
                   {t('findPharmacy')}
                 </Link>

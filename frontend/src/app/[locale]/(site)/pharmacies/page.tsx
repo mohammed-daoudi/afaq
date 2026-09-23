@@ -155,10 +155,10 @@ export default function PharmaciesPage() {
               </div>
             )}
           </div>
-          <h1 className="text-4xl md:text-5xl font-heading font-extrabold text-teal-deep">
+          <h1 className="text-4xl md:text-5xl font-extrabold text-teal-deep">
             Pharmacies à <span className="text-gold-soft">proximité</span>
           </h1>
-          <p className="text-lg text-anthracite-soft/80 font-sans max-w-2xl">
+          <p className="text-lg text-anthracite-soft/80 max-w-2xl">
             {isProductFiltered 
               ? "Les pharmacies ci-dessous ont déclaré avoir ce produit en stock." 
               : "Recherchez les pharmacies partenaires AFAQ HEALTH distribuant nos références près de chez vous."}
@@ -200,11 +200,7 @@ export default function PharmaciesPage() {
                   <button
                     key={city}
                     onClick={() => setSelectedCity(city)}
-                    className={`whitespace-nowrap px-4 py-1.5 rounded-full text-xs font-semibold transition-all ${
-                      selectedCity === city
-                        ? 'bg-teal-deep text-white shadow-sm'
-                        : 'bg-sage-light text-teal-deep hover:bg-teal-deep/10'
-                    }`}
+                    className={`whitespace-nowrap px-4 py-1.5 text-xs font-semibold ${ selectedCity === city ? 'bg-teal-deep text-white' : 'bg-sage-light text-teal-deep' } rounded-xl hover:bg-gold-soft hover:text-teal-deep transition-all shadow-md shimmer-effect`}
                   >
                     {city}
                   </button>
@@ -242,7 +238,7 @@ export default function PharmaciesPage() {
                           href={`https://www.google.com/maps/dir/?api=1&destination=${pharmacy.lat},${pharmacy.lng}`}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="inline-block w-full text-center bg-teal-deep text-white text-sm py-2 rounded-lg font-semibold hover:bg-opacity-90 transition-colors"
+                          className="inline-block w-full text-center bg-teal-deep text-white text-sm py-2 font-semibold rounded-xl hover:bg-gold-soft hover:text-teal-deep transition-all shadow-md shimmer-effect"
                           onClick={(e) => e.stopPropagation()}
                         >
                           Obtenir l'itinéraire

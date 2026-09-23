@@ -71,7 +71,7 @@ export default function OrdersPage() {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-3xl font-heading font-bold text-teal-deep">Historique des Commandes</h1>
+        <h1 className="text-3xl font-bold text-teal-deep">Historique des Commandes</h1>
         <p className="text-anthracite-soft/60 mt-1">Consultez et suivez l'état de vos commandes B2B.</p>
       </div>
 
@@ -91,7 +91,7 @@ export default function OrdersPage() {
             </div>
             <h3 className="text-lg font-bold text-teal-deep mb-2">Aucune commande</h3>
             <p className="text-anthracite-soft/60 mb-6">Vous n'avez pas encore passé de commande sur le portail.</p>
-            <a href="/portal/catalog" className="px-6 py-2 bg-teal-deep text-white font-bold rounded-lg hover:bg-opacity-90 transition-colors">
+            <a href="/portal/catalog" className="px-6 py-2 bg-teal-deep text-white font-bold rounded-xl hover:bg-gold-soft hover:text-teal-deep transition-all shadow-md shimmer-effect">
               Découvrir le catalogue
             </a>
           </div>

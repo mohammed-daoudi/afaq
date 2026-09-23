@@ -28,10 +28,10 @@ export default function ContactPage() {
           <div className="inline-block px-3 py-1 text-xs font-semibold tracking-wider text-teal-deep bg-sage-light rounded-full uppercase">
             {t('badge')}
           </div>
-          <h1 className="text-4xl md:text-5xl font-heading font-extrabold text-teal-deep">
+          <h1 className="text-4xl md:text-5xl font-extrabold text-teal-deep">
             {t('title')} <span className="text-gold-soft">{t('titleHighlight')}</span>
           </h1>
-          <p className="text-lg text-anthracite-soft/80 font-sans">
+          <p className="text-lg text-anthracite-soft/80 ">
             {t('subtitle')}
           </p>
         </div>
@@ -40,8 +40,8 @@ export default function ContactPage() {
           
           {/* Contact Info Sidebar */}
           <div className="md:col-span-1 space-y-8">
-            <div className="bg-teal-deep text-white p-8 rounded-3xl shadow-lg">
-              <h3 className="text-xl font-bold mb-6 font-heading">{t('coordinates')}</h3>
+            <div className="bg-teal-deep text-white p-8 rounded-xl shadow-md">
+              <h3 className="text-xl font-bold mb-6 ">{t('coordinates')}</h3>
               
               <div className="space-y-6">
                 <div className="flex items-start gap-4">
@@ -122,15 +122,9 @@ export default function ContactPage() {
                 className="w-full px-4 py-3 rounded-xl border border-sage-light focus:border-teal-deep focus:ring-1 focus:ring-teal-deep outline-none bg-ivory-soft/30 transition-all appearance-none cursor-pointer"
               >
                 <option value="" disabled>{t('selectType')}</option>
-                <option value="Consommateur">{t('consumer')}</option>
-                <option value="Produit">{t('product')}</option>
-                <option value="Pharmacie">{t('pharmacy')}</option>
-                <option value="Professionnel">{t('professional')}</option>
-                <option value="Grossiste / distributeur">{t('wholesaler')}</option>
-                <option value="Partenariat">{t('partnership')}</option>
-                <option value="Laboratoire / marque">{t('laboratory')}</option>
-                <option value="Presse">{t('press')}</option>
-                <option value="Autre">{t('other')}</option>
+                <option value="Demande commerciale">{t('commercialRequest')}</option>
+                <option value="Devenir partenaire">{t('becomePartner')}</option>
+                <option value="Autre demande">{t('otherRequest')}</option>
               </select>
             </div>
 
@@ -162,7 +156,7 @@ export default function ContactPage() {
                 <textarea id="message" required rows={5} className="w-full px-4 py-3 rounded-xl border border-sage-light focus:border-teal-deep focus:ring-1 focus:ring-teal-deep outline-none bg-ivory-soft/30 transition-all resize-none" placeholder={t('messagePlaceholder')}></textarea>
               </div>
 
-              <button type="submit" className="w-full md:w-auto px-8 py-4 bg-gold-soft text-teal-deep font-bold rounded-xl hover:bg-teal-deep hover:text-white transition-all shadow-md shimmer-effect">
+              <button type="submit" className="w-full md:w-auto px-8 py-4 bg-teal-deep text-white font-bold rounded-xl hover:bg-gold-soft hover:text-teal-deep transition-all shadow-md shimmer-effect">
                 {t('send')}
               </button>
               

@@ -19,7 +19,7 @@ export default function ConfidentialitePage() {
           <div className="inline-block px-4 py-1.5 text-xs font-bold tracking-widest text-teal-deep bg-white border border-teal-deep/20 rounded-full uppercase shadow-sm">
             Politique de Protection
           </div>
-          <h1 className="text-4xl md:text-5xl font-heading font-black text-teal-deep">
+          <h1 className="text-4xl md:text-5xl font-black text-teal-deep">
             Politique de Confidentialité
           </h1>
         </motion.div>

@@ -84,9 +84,7 @@ export default function CheckoutPage() {
         {[1, 2, 3].map((s) => (
           <div 
             key={s}
-            className={`w-10 h-10 rounded-full flex items-center justify-center font-bold text-sm transition-colors ${
-              step >= s ? 'bg-teal-deep text-white shadow-lg' : 'bg-white text-anthracite-soft/40 border-2 border-sage-light'
-            }`}
+            className={`w-10 h-10 flex items-center justify-center font-bold text-sm ${ step >= s ? 'bg-teal-deep text-white' : 'bg-white text-anthracite-soft/40 border-2 border-sage-light' } rounded-xl hover:bg-gold-soft hover:text-teal-deep transition-all shadow-md shimmer-effect`}
           >
             {s === 1 && '1'}
             {s === 2 && '2'}
@@ -95,7 +93,7 @@ export default function CheckoutPage() {
         ))}
       </div>
 
-      <h1 className="text-3xl font-heading font-bold text-teal-deep mb-8">
+      <h1 className="text-3xl font-bold text-teal-deep mb-8">
         {step === 1 && 'Récapitulatif de la commande'}
         {step === 2 && 'Détails de livraison'}
         {step === 3 && 'Commande confirmée'}
@@ -130,7 +128,7 @@ export default function CheckoutPage() {
           <div className="p-6 flex justify-end">
             <button 
               onClick={() => setStep(2)}
-              className="bg-teal-deep text-white px-8 py-3 rounded-xl font-bold shadow-md hover:bg-opacity-90"
+              className="bg-teal-deep text-white px-8 py-3 font-bold rounded-xl hover:bg-gold-soft hover:text-teal-deep transition-all shadow-md shimmer-effect"
             >
               Continuer vers la livraison
             </button>
@@ -197,11 +195,11 @@ export default function CheckoutPage() {
               </div>
               <div className="flex justify-between items-end mb-8">
                 <span className="font-bold text-teal-deep">Total TTC</span>
-                <span className="text-2xl font-bold font-heading text-teal-deep">{(totalPrice * 1.2).toFixed(2)} MAD</span>
+                <span className="text-2xl font-bold text-teal-deep">{(totalPrice * 1.2).toFixed(2)} MAD</span>
               </div>
               <button 
                 onClick={handleConfirmOrder}
-                className="w-full bg-teal-deep text-white py-3.5 rounded-xl font-bold shadow-md hover:bg-opacity-90 transition-colors"
+                className="w-full bg-teal-deep text-white py-3.5 font-bold rounded-xl hover:bg-gold-soft hover:text-teal-deep transition-all shadow-md shimmer-effect"
               >
                 Confirmer la commande
               </button>
@@ -223,12 +221,12 @@ export default function CheckoutPage() {
               <polyline points="20 6 9 17 4 12"></polyline>
             </svg>
           </div>
-          <h2 className="text-3xl font-heading font-bold text-teal-deep mb-4">Commande Confirmée !</h2>
+          <h2 className="text-3xl font-bold text-teal-deep mb-4">Commande Confirmée !</h2>
           <p className="text-anthracite-soft/80 mb-2">Votre commande <strong className="text-teal-deep">#CMD-2026-0895</strong> a bien été enregistrée.</p>
           <p className="text-anthracite-soft/80 mb-8">Vous recevrez un email de confirmation et la livraison est prévue d'ici 24 à 48 heures.</p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href="/portal/orders" className="bg-sage-light text-teal-deep px-6 py-3 rounded-xl font-bold hover:bg-teal-deep hover:text-white transition-colors">
+            <Link href="/portal/orders" className="bg-sage-light text-teal-deep px-6 py-3 font-bold rounded-xl hover:bg-gold-soft hover:text-teal-deep transition-all shadow-md shimmer-effect">
               Suivre ma commande
             </Link>
             <Link href="/portal/catalog" className="border border-teal-deep text-teal-deep px-6 py-3 rounded-xl font-bold hover:bg-ivory-soft transition-colors">

@@ -81,7 +81,7 @@ export function HistorySlider() {
     <section className="py-24 bg-gray-50 relative overflow-hidden">
       <div className="container mx-auto px-4 max-w-7xl">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-heading font-extrabold text-teal-deep">Notre Histoire</h2>
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-teal-deep">Notre Histoire</h2>
           <p className="text-xl text-anthracite-soft/70 mt-4 max-w-2xl mx-auto">Comment tout a commencé.</p>
         </div>
 
@@ -120,10 +120,10 @@ export function HistorySlider() {
                   <div className="inline-block px-4 py-1.5 rounded-full text-sm font-bold tracking-widest text-[#C5281C] bg-[#C5281C]/10 mb-6 w-max">
                     {currentSlide.year}
                   </div>
-                  <h3 className="text-3xl md:text-4xl font-heading font-bold text-teal-deep mb-6">
+                  <h3 className="text-3xl md:text-4xl font-bold text-teal-deep mb-6">
                     {currentSlide.title}
                   </h3>
-                  <p className="text-lg md:text-xl text-anthracite-soft/80 leading-relaxed font-serif">
+                  <p className="text-lg md:text-xl text-anthracite-soft/80 leading-relaxed ">
                     {currentSlide.description}
                   </p>
                 </div>

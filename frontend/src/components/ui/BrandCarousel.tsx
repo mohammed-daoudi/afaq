@@ -72,10 +72,10 @@ export function BrandCarousel() {
           >
             NOS MARQUES
           </span>
-          <h3 className="text-4xl md:text-5xl font-heading font-extrabold text-anthracite-deep leading-tight mb-4">
+          <h3 className="text-4xl md:text-5xl font-extrabold text-anthracite-deep leading-tight mb-4">
             {brand.name}
           </h3>
-          <p className="text-lg text-anthracite-soft/70 font-serif leading-relaxed mb-8">
+          <p className="text-lg text-anthracite-soft/70 leading-relaxed mb-8">
             {brand.tagline || brand.description}
           </p>
           <Link

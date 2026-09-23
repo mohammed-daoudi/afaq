@@ -8,9 +8,9 @@ import { products, PRODUCT_CATEGORIES, PRODUCT_BRANDS } from '@/lib/products';
 import { Link } from '@/navigation';
 
 const BRAND_LOGOS: Record<string, string> = {
-  'SOTYA':           '/gammelogo/sotya.jfif',
+  'SOTYA':           '/gammelogo/sotyaaa.jfif',
   'NATURAMINS KIDS': '/gammelogo/nutramins.png',
-  'COLAGENOVA':      '/gammelogo/colagenova.png',
+  'COLAGENOVA':      '/gammelogo/colagenova.jfif',
 };
 
 // Brand-specific accent colors for the filter buttons
@@ -43,11 +43,7 @@ const fadeUp = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
 };
 
-const heroImages = [
-  '/images/unsplash/comp/Gemini_Generated_Image_x71gg6x71gg6x71g.jfif', // Main
-  '/images/unsplash/welness/capture_welness_2.png', // Beauty/Colagenova
-  '/images/unsplash/comp/Gemini_Generated_Image_1tkniv1tkniv1tkn.jfif', // Kids
-];
+
 
 // Maps URL slug → exact brand name used in product data
 const SLUG_TO_BRAND: Record<string, string> = {
@@ -63,7 +59,6 @@ export default function ProduitsPage() {
 
   const [activeBrand, setActiveBrand] = useState(initialBrand);
   const [activeCategory, setActiveCategory] = useState('all');
-  const [currentHeroIndex, setCurrentHeroIndex] = useState(0);
   const [isMobileBrandFilterOpen, setIsMobileBrandFilterOpen] = useState(false);
 
   // Sync filter if URL param changes (e.g. back/forward navigation)
@@ -72,13 +67,7 @@ export default function ProduitsPage() {
     setActiveBrand(SLUG_TO_BRAND[slug] ?? 'all');
   }, [searchParams]);
 
-  // Auto-playing hero slider
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentHeroIndex((prev) => (prev + 1) % heroImages.length);
-    }, 5000);
-    return () => clearInterval(interval);
-  }, []);
+
 
   const filtered = products.filter((p) => {
     const matchBrand = activeBrand === 'all' || p.brand === activeBrand;
@@ -90,62 +79,6 @@ export default function ProduitsPage() {
     <div className="min-h-screen bg-ivory-soft pt-32 pb-0 flex flex-col">
       <div className="container mx-auto px-4 max-w-7xl flex-grow mb-12">
 
-        {/* 1. EN-TÊTE DE LA PAGE */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-16">
-          <motion.div
-            initial="hidden" animate="visible" variants={{ hidden: { opacity: 0 }, visible: { opacity: 1, transition: { staggerChildren: 0.1 } } }}
-            className="space-y-6"
-          >
-            <motion.div variants={fadeUp} className="inline-block px-4 py-1.5 text-xs font-bold tracking-widest text-gold-soft bg-white border border-gold-soft/20 rounded-full uppercase shadow-sm">
-              NOS PRODUITS
-            </motion.div>
-            <motion.h1 variants={fadeUp} className="text-5xl md:text-6xl font-heading font-extrabold text-teal-deep leading-tight">
-              Des solutions <br /><span className="text-gold-soft italic font-serif font-light">adaptées à chaque besoin</span>
-            </motion.h1>
-            <motion.p variants={fadeUp} className="text-xl text-anthracite-soft/80 font-serif leading-relaxed max-w-xl">
-              Découvrez l’ensemble des produits de notre portefeuille, proposés par des marques espagnoles sélectionnées pour leur qualité, leur savoir-faire et la pertinence de leurs gammes.
-            </motion.p>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.8 }}
-            className="relative h-[350px] lg:h-[400px] w-full rounded-[2rem] overflow-hidden shadow-2xl bg-teal-deep/5"
-          >
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={currentHeroIndex}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 1 }}
-                className="absolute inset-0"
-              >
-                <Image
-                  src={heroImages[currentHeroIndex]}
-                  alt="AFAQ HEALTH - Marques"
-                  fill
-                  className="object-cover"
-                  priority
-                />
-              </motion.div>
-            </AnimatePresence>
-            <div className="absolute inset-0 bg-teal-deep/10 mix-blend-multiply pointer-events-none" />
-            
-            {/* Slider Indicators */}
-            <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-2 z-10">
-              {heroImages.map((_, i) => (
-                <button
-                  key={i}
-                  onClick={() => setCurrentHeroIndex(i)}
-                  className={`h-2 rounded-full transition-all duration-300 ${
-                    i === currentHeroIndex ? 'w-8 bg-white' : 'w-2 bg-white/50 hover:bg-white/80'
-                  }`}
-                  aria-label={`Go to slide ${i + 1}`}
-                />
-              ))}
-            </div>
-          </motion.div>
-        </div>
 
         {/* Layout: Sidebar + Main Content */}
         <div className="flex flex-col lg:flex-row gap-10">
@@ -155,7 +88,7 @@ export default function ProduitsPage() {
             
             {/* Mobile Filter Toggle */}
             <div className="flex lg:hidden items-center justify-between mb-4">
-              <h2 className="text-xl font-heading font-bold text-teal-deep">
+              <h2 className="text-xl font-bold text-teal-deep">
                 {activeBrand === 'all' ? 'Toutes les marques' : activeBrand}
               </h2>
               <button
@@ -231,11 +164,7 @@ export default function ProduitsPage() {
               <div className="flex flex-wrap gap-2.5">
                 <button
                   onClick={() => setActiveCategory('all')}
-                  className={`px-4 py-2 rounded-full text-xs font-bold tracking-wide transition-all duration-300 ${
-                    activeCategory === 'all'
-                      ? 'bg-teal-deep text-white shadow-md'
-                      : 'bg-white text-anthracite-soft/80 hover:text-anthracite-deep hover:bg-sage-light/50 border border-sage-light/50'
-                  }`}
+                  className={`px-4 py-2 text-xs font-bold tracking-wide ${ activeCategory === 'all' ? 'bg-teal-deep text-white' : 'bg-white text-anthracite-soft/80 border border-sage-light/50' } rounded-xl hover:bg-gold-soft hover:text-teal-deep transition-all shadow-md shimmer-effect`}
                 >
                   Toutes les catégories
                 </button>
@@ -243,11 +172,7 @@ export default function ProduitsPage() {
                   <button
                     key={cat}
                     onClick={() => setActiveCategory(cat)}
-                    className={`px-4 py-2 rounded-full text-xs font-bold tracking-wide transition-all duration-300 ${
-                      activeCategory === cat
-                        ? 'bg-teal-deep text-white shadow-md'
-                        : 'bg-white text-anthracite-soft/80 hover:text-anthracite-deep hover:bg-ivory border border-sage-light/50 hover:border-teal-deep/30'
-                    }`}
+                    className={`px-4 py-2 text-xs font-bold tracking-wide ${ activeCategory === cat ? 'bg-teal-deep text-white' : 'bg-white text-anthracite-soft/80 border border-sage-light/50' } rounded-xl hover:bg-gold-soft hover:text-teal-deep transition-all shadow-md shimmer-effect`}
                   >
                     {cat}
                   </button>
@@ -285,8 +210,8 @@ export default function ProduitsPage() {
                   <div className="w-16 h-16 mb-4 rounded-full bg-ivory-soft flex items-center justify-center text-3xl">
                     🔍
                   </div>
-                  <h3 className="text-xl font-heading font-bold text-teal-deep mb-2">Aucun produit trouvé</h3>
-                  <p className="text-anthracite-soft/80 font-serif">
+                  <h3 className="text-xl font-bold text-teal-deep mb-2">Aucun produit trouvé</h3>
+                  <p className="text-anthracite-soft/80 ">
                     Essayez de modifier vos filtres pour voir d'autres références.
                   </p>
                   <button 
@@ -308,10 +233,10 @@ export default function ProduitsPage() {
       <div className="w-full bg-white py-16 border-t border-sage-light mt-12 relative overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_right,rgba(11,75,81,0.03),transparent_50%)] pointer-events-none" />
         <div className="container mx-auto px-4 max-w-4xl text-center relative z-10">
-          <h2 className="text-2xl md:text-3xl font-heading font-extrabold text-teal-deep mb-4 tracking-tight">
+          <h2 className="text-2xl md:text-3xl font-extrabold text-teal-deep mb-4 tracking-tight">
             VOUS ÊTES PROFESSIONNEL DE SANTÉ ?
           </h2>
-          <p className="text-anthracite-soft/80 font-serif text-lg md:text-xl mb-10 max-w-2xl mx-auto leading-relaxed">
+          <p className="text-anthracite-soft/80 text-lg md:text-xl mb-10 max-w-2xl mx-auto leading-relaxed">
             Accédez à notre espace professionnel pour découvrir notre offre, consulter vos conditions commerciales et passer vos commandes en toute simplicité.
           </p>
           <Link 

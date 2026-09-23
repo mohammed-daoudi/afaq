@@ -334,7 +334,7 @@ export default function AnimatedValueChain() {
   }, []);
 
   return (
-    <section className="animated-vc-section relative overflow-hidden font-sans">
+    <section className="animated-vc-section relative overflow-hidden ">
       <style dangerouslySetInnerHTML={{__html: `
         .animated-vc-section {
           --bg: #0e3532; 
@@ -374,8 +374,8 @@ export default function AnimatedValueChain() {
         @keyframes landIn { from{opacity:0} to{opacity:1} }
         .animated-vc-section .ctx { fill: rgba(255,255,255,.012); stroke: rgba(255,255,255,.1); stroke-width: 1; stroke-linejoin: round; }
         .animated-vc-section .land-label { font: 600 36px var(--font-outfit), sans-serif; fill: rgba(255,255,255,.09); }
-        .animated-vc-section .sea { font: italic 400 13px var(--font-inter), sans-serif; fill: rgba(169,207,197,.6); }
-        .animated-vc-section .strait { text-anchor: end; font: italic 400 13px var(--font-inter), sans-serif; fill: var(--mute); }
+        .animated-vc-section .sea { font: 400 13px var(--font-inter), sans-serif; fill: rgba(169,207,197,.6); }
+        .animated-vc-section .strait { text-anchor: end; font: 400 13px var(--font-inter), sans-serif; fill: var(--mute); }
 
         .animated-vc-section .route-base { fill: none; stroke: rgba(255,255,255,.3); stroke-width: 2; stroke-linecap: round; stroke-dasharray: 2 9; animation: flow 1.1s linear infinite; }
         @keyframes flow { to{ stroke-dashoffset: -11; } }

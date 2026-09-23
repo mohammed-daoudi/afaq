@@ -78,10 +78,10 @@ export default function FaqPage() {
           <motion.div variants={fadeUp} className="inline-block px-3 py-1 text-xs font-semibold tracking-wider text-teal-deep bg-sage-light rounded-full uppercase">
             Centre d'Aide
           </motion.div>
-          <motion.h1 variants={fadeUp} className="text-4xl md:text-5xl font-heading font-extrabold text-teal-deep">
+          <motion.h1 variants={fadeUp} className="text-4xl md:text-5xl font-extrabold text-teal-deep">
             Questions <span className="text-gold-soft">Fréquentes</span>
           </motion.h1>
-          <motion.p variants={fadeUp} className="text-lg text-anthracite-soft/80 font-sans">
+          <motion.p variants={fadeUp} className="text-lg text-anthracite-soft/80 ">
             Retrouvez les réponses aux questions les plus posées par nos partenaires professionnels et le grand public.
           </motion.p>
         </motion.div>
@@ -107,7 +107,7 @@ export default function FaqPage() {
             <div className="absolute bottom-6 left-6 right-6 bg-white/90 backdrop-blur-md p-6 rounded-2xl shadow-lg">
               <h3 className="font-bold text-teal-deep text-lg mb-2">Besoin d'assistance directe ?</h3>
               <p className="text-anthracite-soft/80 text-sm mb-4">Notre équipe de pharmaciens est à votre écoute.</p>
-              <a href="/contact" className="inline-block w-full text-center bg-gold-soft text-teal-deep font-bold px-4 py-2 rounded-xl hover:bg-teal-deep hover:text-white transition-colors">
+              <a href="/contact" className="inline-block w-full text-center bg-gold-soft text-teal-deep font-bold px-4 py-2 rounded-xl hover:bg-gold-soft hover:text-teal-deep transition-all shadow-md shimmer-effect">
                 Nous contacter
               </a>
             </div>
@@ -121,7 +121,7 @@ export default function FaqPage() {
           >
             {faqs.map((group, groupIdx) => (
               <motion.div variants={fadeUp} key={groupIdx} className="space-y-6">
-                <h2 className="text-2xl font-heading font-bold text-teal-deep border-b-2 border-sage-light pb-2">
+                <h2 className="text-2xl font-bold text-teal-deep border-b-2 border-sage-light pb-2">
                   {group.category}
                 </h2>
                 

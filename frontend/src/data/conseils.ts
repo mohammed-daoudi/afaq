@@ -163,7 +163,7 @@ export const MOCK_ARTICLES = [
       <h2>L'hygiène du sommeil</h2>
       <p>Un bon sommeil commence bien avant de se mettre au lit. L'environnement de la chambre (température autour de 18°C, obscurité totale) et l'arrêt des écrans bleus au moins une heure avant le coucher sont indispensables pour sécréter naturellement l'hormone du sommeil.</p>
       
-      <img src="/images/unsplash/comp/Capture d'écran 2026-09-15 125206.png" alt="Femme dormant paisiblement" class="rounded-[2.5rem] shadow-xl hover:shadow-2xl hover:scale-[1.02] hover:-rotate-1 transition-all duration-700 ease-out my-14 w-full object-cover max-h-[500px] cursor-pointer border-4 border-white/50" />
+      <img src="/images/unsplash/comp/capture_comp_2.png" alt="Femme dormant paisiblement" class="rounded-[2.5rem] shadow-xl hover:shadow-2xl hover:scale-[1.02] hover:-rotate-1 transition-all duration-700 ease-out my-14 w-full object-cover max-h-[500px] cursor-pointer border-4 border-white/50" />
       
       <h2>Le coup de pouce de la mélatonine</h2>
       <p>En cas de décalage horaire, de travail à horaires décalés ou de difficultés ponctuelles d'endormissement, la mélatonine en complément aide à réduire le temps d'endormissement sans créer d'accoutumance.</p>

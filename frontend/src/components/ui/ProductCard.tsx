@@ -108,7 +108,7 @@ export function ProductCard({ product }: ProductCardProps) {
           <span className="text-[10px] font-bold uppercase tracking-wider text-gold-soft mb-1 line-clamp-1">
             {product.categories.join(' · ')}
           </span>
-          <h3 className="font-heading font-bold text-sm md:text-base text-anthracite-deep leading-snug group-hover:text-teal-deep transition-colors line-clamp-2">
+          <h3 className="font-bold text-sm md:text-base text-anthracite-deep leading-snug group-hover:text-teal-deep transition-colors line-clamp-2">
             {product.name}
           </h3>
           <p className="text-xs text-anthracite-soft mt-1.5 line-clamp-2">
@@ -167,7 +167,7 @@ export function ProductCard({ product }: ProductCardProps) {
                 <span className="text-xs font-bold uppercase tracking-wider text-teal-deep/60 mb-2">
                   {product.categories.join(' · ')}
                 </span>
-                <h2 className="text-3xl font-heading font-extrabold text-teal-deep mb-2">
+                <h2 className="text-3xl font-extrabold text-teal-deep mb-2">
                   {product.name}
                 </h2>
                 <p className="text-sm font-semibold text-gold-soft mb-4">
@@ -195,7 +195,7 @@ export function ProductCard({ product }: ProductCardProps) {
                 <div className="mt-auto">
                   <button
                     onClick={() => router.push(`/produits/${product.id}`)}
-                    className="w-full bg-teal-deep hover:bg-teal-deep/90 text-white py-3.5 rounded-xl font-bold transition-colors shadow-md hover:shadow-lg"
+                    className="w-full bg-teal-deep text-white py-3.5 font-bold rounded-xl hover:bg-gold-soft hover:text-teal-deep transition-all shadow-md shimmer-effect"
                   >
                     {t('viewDetails')}
                   </button>

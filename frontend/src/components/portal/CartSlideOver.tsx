@@ -32,7 +32,7 @@ export function CartSlideOver() {
           >
             {/* Header */}
             <div className="flex items-center justify-between p-6 border-b border-sage-light bg-ivory-soft/30">
-              <h2 className="text-xl font-heading font-bold text-teal-deep">Votre Panier B2B</h2>
+              <h2 className="text-xl font-bold text-teal-deep">Votre Panier B2B</h2>
               <button
                 onClick={() => setIsOpen(false)}
                 className="p-2 text-anthracite-soft/60 hover:text-teal-deep hover:bg-sage-light rounded-full transition-colors"
@@ -106,13 +106,13 @@ export function CartSlideOver() {
               <div className="border-t border-sage-light p-6 bg-ivory-soft/30">
                 <div className="flex justify-between items-center mb-4 text-teal-deep">
                   <span className="font-medium text-anthracite-soft/80">Total HT (PPH)</span>
-                  <span className="text-2xl font-bold font-heading">{totalPrice.toFixed(2)} <span className="text-sm">MAD</span></span>
+                  <span className="text-2xl font-bold ">{totalPrice.toFixed(2)} <span className="text-sm">MAD</span></span>
                 </div>
                 
                 <Link 
                   href="/portal/checkout"
                   onClick={() => setIsOpen(false)}
-                  className="block w-full text-center bg-teal-deep text-white font-bold py-4 rounded-xl hover:bg-opacity-90 transition-all shadow-md shadow-teal-deep/20"
+                  className="block w-full text-center bg-teal-deep text-white font-bold py-4 rounded-xl hover:bg-gold-soft hover:text-teal-deep transition-all shadow-md shimmer-effect"
                 >
                   Passer la commande
                 </Link>

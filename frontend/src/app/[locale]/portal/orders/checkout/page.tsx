@@ -7,7 +7,7 @@ export default function CheckoutPage() {
     <div className="space-y-8 max-w-4xl mx-auto">
       <div className="flex justify-between items-end">
         <div>
-          <h1 className="text-3xl font-heading font-bold text-teal-deep">Validation de Commande</h1>
+          <h1 className="text-3xl font-bold text-teal-deep">Validation de Commande</h1>
           <p className="text-anthracite-soft/60 mt-1">Veuillez vérifier les informations avant de valider.</p>
         </div>
       </div>
@@ -16,7 +16,7 @@ export default function CheckoutPage() {
       <div className="flex items-center justify-between mb-8">
         {['Panier', 'Validation', 'Paiement', 'Confirmation'].map((step, idx) => (
           <div key={idx} className="flex items-center">
-            <div className={`w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm ${idx === 1 ? 'bg-teal-deep text-white' : 'bg-sage-light text-teal-deep/50'}`}>
+            <div className={`w-8 h-8 flex items-center justify-center font-bold text-sm ${idx === 1 ? 'bg-teal-deep text-white' : 'bg-sage-light text-teal-deep/50'} rounded-xl hover:bg-gold-soft hover:text-teal-deep transition-all shadow-md shimmer-effect`}>
               {idx + 1}
             </div>
             <span className={`ml-2 text-sm font-medium ${idx === 1 ? 'text-teal-deep' : 'text-anthracite-soft/50'}`}>{step}</span>

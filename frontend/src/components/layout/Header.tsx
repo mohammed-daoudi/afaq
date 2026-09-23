@@ -40,7 +40,7 @@ export function Header() {
           <LanguageSwitcher />
           <Link
             href="/portal/login"
-            className="hidden sm:inline-block text-sm font-bold bg-teal-deep text-white px-5 md:px-6 py-2.5 rounded-xl hover:bg-gold-soft hover:text-teal-deep transition-all shadow-md shimmer-effect whitespace-nowrap"
+            className="hidden sm:inline-block text-sm font-bold bg-teal-deep text-white px-5 md:px-6 py-2.5 whitespace-nowrap rounded-xl hover:bg-gold-soft hover:text-teal-deep transition-all shadow-md shimmer-effect"
           >
             {t('proSpace')}
           </Link>

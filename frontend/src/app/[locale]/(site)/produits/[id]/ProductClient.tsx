@@ -91,7 +91,7 @@ export function ProductTabs({ product, colors }: { product: Product, colors: any
       <div className="flex justify-center border-b border-sage-light mb-8 relative">
         <button
           onClick={() => setActiveTab('description')}
-          className={`px-8 py-4 text-lg font-heading font-bold transition-all relative ${
+          className={`px-8 py-4 text-lg font-bold transition-all relative ${
             activeTab === 'description' ? 'text-teal-deep' : 'text-anthracite-soft/60 hover:text-teal-deep/80'
           }`}
         >
@@ -102,7 +102,7 @@ export function ProductTabs({ product, colors }: { product: Product, colors: any
         </button>
         <button
           onClick={() => setActiveTab('fiche')}
-          className={`px-8 py-4 text-lg font-heading font-bold transition-all relative ${
+          className={`px-8 py-4 text-lg font-bold transition-all relative ${
             activeTab === 'fiche' ? 'text-teal-deep' : 'text-anthracite-soft/60 hover:text-teal-deep/80'
           }`}
         >
@@ -117,33 +117,80 @@ export function ProductTabs({ product, colors }: { product: Product, colors: any
       <div className="bg-white rounded-3xl p-8 md:p-12 shadow-sm border border-sage-light/50 transition-all duration-500">
         {activeTab === 'description' ? (
           <div className="space-y-10 animate-in fade-in slide-in-from-bottom-4 duration-500">
+            <h2 className="text-2xl font-bold text-teal-deep uppercase mb-[-1rem]">
+              {product.name}
+            </h2>
+
             <section>
-              <h3 className="text-xl font-bold text-teal-deep font-heading flex items-center gap-2 mb-4">
-                <span style={{ color: colors.accent }}>✧</span> {t('presentation')}
+              <h3 className="text-xl font-bold text-teal-deep flex items-center gap-2 mb-4">
+                <span style={{ color: colors.accent }}>✧</span> Univers :
               </h3>
-              <p className="text-anthracite-soft/80 leading-relaxed text-lg">
-                {product.description}
-              </p>
-            </section>
-            
-            <section>
-              <h3 className="text-xl font-bold text-teal-deep font-heading flex items-center gap-2 mb-4">
-                <span style={{ color: colors.accent }}>✧</span> {t('composition')}
-              </h3>
-              <p className="text-anthracite-soft/80 leading-relaxed text-lg">
-                {t('expertFormula')}
+              <p className="text-anthracite-soft/80 leading-relaxed text-lg whitespace-pre-line">
+                {product.categories.join(', ')}
               </p>
             </section>
 
             <section>
-              <h3 className="text-xl font-bold text-teal-deep font-heading flex items-center gap-2 mb-4">
-                <span style={{ color: colors.accent }}>✧</span> {t('howToUse')}
+              <h3 className="text-xl font-bold text-teal-deep flex items-center gap-2 mb-4">
+                <span style={{ color: colors.accent }}>✧</span> Accroche :
               </h3>
-              <p className="text-anthracite-soft/80 leading-relaxed text-lg">
-                <span className="font-semibold text-teal-deep">{product.dosage}</span>. 
-                {t('doNotExceed')}
+              <p className="text-anthracite-soft/80 leading-relaxed text-lg whitespace-pre-line">
+                {product.description}
               </p>
             </section>
+
+            <section>
+              <h3 className="text-xl font-bold text-teal-deep flex items-center gap-2 mb-4">
+                <span style={{ color: colors.accent }}>✧</span> Présentation :
+              </h3>
+              <p className="text-anthracite-soft/80 leading-relaxed text-lg whitespace-pre-line">
+                {product.format}
+              </p>
+            </section>
+
+            {product.longDescription && (
+              <section>
+                <h3 className="text-xl font-bold text-teal-deep flex items-center gap-2 mb-4">
+                  <span style={{ color: colors.accent }}>✧</span> Description :
+                </h3>
+                <p className="text-anthracite-soft/80 leading-relaxed text-lg whitespace-pre-line">
+                  {product.longDescription}
+                </p>
+              </section>
+            )}
+            
+            {product.composition && (
+              <section>
+                <h3 className="text-xl font-bold text-teal-deep flex items-center gap-2 mb-4">
+                  <span style={{ color: colors.accent }}>✧</span> Apport — dose journalière recommandée :
+                </h3>
+                <p className="text-anthracite-soft/80 leading-relaxed text-lg whitespace-pre-line">
+                  {product.composition}
+                </p>
+              </section>
+            )}
+
+            {product.howToUse && (
+              <section>
+                <h3 className="text-xl font-bold text-teal-deep flex items-center gap-2 mb-4">
+                  <span style={{ color: colors.accent }}>✧</span> Mode d'emploi :
+                </h3>
+                <p className="text-anthracite-soft/80 leading-relaxed text-lg whitespace-pre-line">
+                  {product.howToUse}
+                </p>
+              </section>
+            )}
+
+            {product.warning && (
+              <section>
+                <h3 className="text-xl font-bold text-teal-deep flex items-center gap-2 mb-4">
+                  <span style={{ color: colors.accent }}>✧</span> Avertissement nutritionnel :
+                </h3>
+                <p className="text-anthracite-soft/80 leading-relaxed text-lg whitespace-pre-line">
+                  {product.warning}
+                </p>
+              </section>
+            )}
           </div>
         ) : (
           <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
@@ -151,18 +198,7 @@ export function ProductTabs({ product, colors }: { product: Product, colors: any
              {product.labelImagePath && (
                <div className="mb-8 border-b border-sage-light/50 pb-8">
                  <h4 className="text-lg font-bold text-teal-deep mb-6 text-center">{t('nutritionalInfo')}</h4>
-                 <div 
-                   className="bg-white rounded-xl shadow-sm border border-sage-light overflow-hidden flex justify-center group hover:border-teal-deep/30 transition-colors"
-                 >
-                   <ImageMagnifier 
-                     src={product.labelImagePath}
-                     alt="Étiquette du produit"
-                     zoomLevel={2}
-                     onClick={() => setFullscreenImage(product.labelImagePath!)}
-                     containerClassName="w-full relative h-[400px] sm:h-[600px] cursor-pointer"
-                     imageClassName="object-contain mix-blend-multiply p-4 max-w-full max-h-full transition-transform duration-300 group-hover:scale-[1.01]"
-                   />
-                 </div>
+
                </div>
              )}
 
@@ -213,16 +249,16 @@ export function RelatedProducts({ currentProductId, products }: { currentProduct
 
   const related = products
     .filter(p => p.categories.some(c => current.categories.includes(c)) && p.id !== current.id)
-    .slice(0, 4);
+    .slice(0, 3);
 
   if (related.length === 0) return null;
 
   return (
     <div className="mt-24 max-w-6xl mx-auto">
-      <h2 className="text-3xl font-heading font-extrabold text-teal-deep text-center mb-12">
+      <h2 className="text-3xl font-extrabold text-teal-deep text-center mb-12">
         {t('relatedProducts')}
       </h2>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
         {related.map(product => (
           <ProductCard key={product.id} product={product} />
         ))}

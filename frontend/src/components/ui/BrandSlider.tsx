@@ -102,7 +102,7 @@ export const BrandSlider = () => {
                 initial={{ y: 20, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ delay: 0.3 }}
-                className={`text-2xl lg:text-4xl xl:text-5xl font-bold font-heading mb-1 lg:mb-2 leading-tight ${slides[current].textColor}`}
+                className={`text-2xl lg:text-4xl xl:text-5xl font-bold mb-1 lg:mb-2 leading-tight ${slides[current].textColor}`}
               >
                 {slides[current].title}
               </motion.h2>

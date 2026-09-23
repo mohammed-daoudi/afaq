@@ -64,7 +64,7 @@ export default function DocumentsPage() {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-3xl font-heading font-bold text-teal-deep">Mes Documents</h1>
+        <h1 className="text-3xl font-bold text-teal-deep">Mes Documents</h1>
         <p className="text-anthracite-soft/60 mt-1">Consultez et téléchargez vos factures, bons de livraison et fiches techniques.</p>
       </div>
 
@@ -109,7 +109,7 @@ export default function DocumentsPage() {
                   href={doc.file_url} 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="mt-6 w-full flex items-center justify-center gap-2 px-4 py-2 bg-sage-light/50 text-teal-deep font-bold rounded-lg hover:bg-teal-deep hover:text-white transition-colors"
+                  className="mt-6 w-full flex items-center justify-center gap-2 px-4 py-2 bg-sage-light/50 text-teal-deep font-bold rounded-xl hover:bg-gold-soft hover:text-teal-deep transition-all shadow-md shimmer-effect"
                 >
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                     <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>

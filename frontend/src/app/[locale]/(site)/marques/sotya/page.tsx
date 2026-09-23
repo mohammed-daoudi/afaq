@@ -32,10 +32,10 @@ export default function SotyaPage() {
           <motion.div variants={fadeUp} className="inline-block px-4 py-1.5 text-xs font-bold tracking-widest text-teal-deep bg-white border border-teal-deep/20 rounded-full uppercase mb-4 shadow-sm">
             Distribution exclusive AFAQ HEALTH — Maroc & Afrique de l'Ouest
           </motion.div>
-          <motion.h1 variants={fadeUp} className="text-5xl md:text-6xl lg:text-7xl font-heading font-black text-teal-deep leading-tight">
+          <motion.h1 variants={fadeUp} className="text-5xl md:text-6xl lg:text-7xl font-black text-teal-deep leading-tight">
             SOTYA
           </motion.h1>
-          <motion.h2 variants={fadeUp} className="text-2xl md:text-3xl font-heading font-bold text-gold-soft">
+          <motion.h2 variants={fadeUp} className="text-2xl md:text-3xl font-bold text-gold-soft">
             Des solutions nutritionnelles pour accompagner le quotidien.
           </motion.h2>
           <motion.p variants={fadeUp} className="text-xl text-anthracite-soft/80 font-medium max-w-3xl mx-auto leading-relaxed">
@@ -50,8 +50,8 @@ export default function SotyaPage() {
           viewport={{ once: true, margin: "-100px" }}
           className="max-w-4xl mx-auto bg-white rounded-3xl p-10 shadow-lg border border-sage-light/50 mb-24 text-center"
         >
-          <h3 className="text-3xl font-heading font-bold text-teal-deep mb-6">À propos de la marque</h3>
-          <p className="text-lg text-anthracite-soft/80 leading-relaxed italic">
+          <h3 className="text-3xl font-bold text-teal-deep mb-6">À propos de la marque</h3>
+          <p className="text-lg text-anthracite-soft/80 leading-relaxed ">
             "Fondée en Espagne, SOTYA (Laboratoires Bescorp) a plus de 40 ans d'expérience dans la fabrication de compléments alimentaires. Notre mission est d'offrir des compléments nutritionnels efficaces avec un engagement strict envers la qualité et la traçabilité de nos matières premières. Tous nos produits sont fabriqués selon les normes européennes les plus exigeantes."
           </p>
         </motion.div>
@@ -62,7 +62,7 @@ export default function SotyaPage() {
             initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl font-heading font-extrabold text-teal-deep mb-4">Les univers SOTYA</h2>
+            <h2 className="text-4xl font-extrabold text-teal-deep mb-4">Les univers SOTYA</h2>
             <p className="text-xl text-anthracite-soft/80">Des gammes structurées pour répondre à chaque besoin.</p>
           </motion.div>
           
@@ -86,8 +86,8 @@ export default function SotyaPage() {
           <motion.div 
             initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}
           >
-            <Card className="h-full bg-teal-deep text-white p-12 rounded-[2rem] border-none shadow-xl flex flex-col justify-center items-center text-center">
-              <h3 className="text-3xl font-heading font-bold mb-4">Découvrez la gamme</h3>
+            <Card className="h-full bg-teal-deep text-white p-12 border-none flex flex-col justify-center items-center text-center rounded-xl hover:bg-gold-soft hover:text-teal-deep transition-all shadow-md shimmer-effect">
+              <h3 className="text-3xl font-bold mb-4">Découvrez la gamme</h3>
               <p className="text-white/80 mb-8">
                 Parcourez l'ensemble des références SOTYA homologuées au Maroc et disponibles dans notre catalogue exclusif.
               </p>
@@ -104,13 +104,13 @@ export default function SotyaPage() {
             initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}
           >
             <Card className="h-full bg-white p-12 rounded-[2rem] border border-sage-light shadow-xl flex flex-col justify-center items-center text-center">
-              <h3 className="text-3xl font-heading font-bold text-teal-deep mb-4">Où trouver SOTYA ?</h3>
+              <h3 className="text-3xl font-bold text-teal-deep mb-4">Où trouver SOTYA ?</h3>
               <p className="text-anthracite-soft/80 mb-8">
                 Retrouvez les produits SOTYA auprès des pharmacies partenaires AFAQ HEALTH à travers le Maroc.
               </p>
               <Link
                 href="/pharmacies"
-                className="inline-block bg-teal-deep text-white font-bold px-8 py-4 rounded-xl hover:bg-opacity-95 transition-all shadow-md"
+                className="inline-block bg-teal-deep text-white font-bold px-8 py-4 rounded-xl hover:bg-gold-soft hover:text-teal-deep transition-all shadow-md shimmer-effect"
               >
                 Trouver une pharmacie
               </Link>

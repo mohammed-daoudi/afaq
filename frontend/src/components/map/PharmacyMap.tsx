@@ -118,7 +118,7 @@ export default function PharmacyMap({ pharmacies, activePharmacyId, onMarkerClic
                     href={`https://www.google.com/maps/dir/?api=1&destination=${pharmacy.lat},${pharmacy.lng}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="block w-full text-center bg-teal-deep text-white py-1.5 rounded-lg font-semibold hover:bg-opacity-90 transition-colors"
+                    className="block w-full text-center bg-teal-deep text-white py-1.5 font-semibold rounded-xl hover:bg-gold-soft hover:text-teal-deep transition-all shadow-md shimmer-effect"
                   >
                     📍 Y aller
                   </a>

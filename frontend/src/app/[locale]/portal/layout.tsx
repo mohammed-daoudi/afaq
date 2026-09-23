@@ -84,11 +84,7 @@ export default function PortalLayout({
               key={item.href}
               href={item.href} 
               onClick={() => setIsMobileMenuOpen(false)}
-              className={`block px-4 py-3 text-sm font-medium rounded-lg transition-all flex items-center gap-3 ${
-                isActive 
-                  ? 'bg-teal-deep text-white shadow-md' 
-                  : 'text-anthracite-soft hover:bg-sage-light hover:text-teal-deep'
-              }`}
+              className={`block px-4 py-3 text-sm font-medium flex items-center gap-3 ${ isActive ? 'bg-teal-deep text-white' : 'text-anthracite-soft' } rounded-xl hover:bg-gold-soft hover:text-teal-deep transition-all shadow-md shimmer-effect`}
             >
               <span>{item.icon}</span>
               {item.name}
