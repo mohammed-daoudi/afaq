@@ -4,10 +4,10 @@ import Image from 'next/image';
 import { motion } from 'framer-motion';
 
 const PARTNERS = [
-  '/images/partners/33119370-7ef2-48a3-86b3-b91a27a972a6.jfif',
-  '/images/partners/Gemini_Generated_Image_7imhdx7imhdx7imh.jfif',
-  '/images/partners/Gemini_Generated_Image_jphtsrjphtsrjpht.jfif',
-  '/images/partners/Gemini_Generated_Image_u6jqv2u6jqv2u6jq.jfif',
+  '/images/partners/33119370-7ef2-48a3-86b3-b91a27a972a6.jpg',
+  '/images/partners/Gemini_Generated_Image_7imhdx7imhdx7imh.jpg',
+  '/images/partners/Gemini_Generated_Image_jphtsrjphtsrjpht.jpg',
+  '/images/partners/Gemini_Generated_Image_u6jqv2u6jqv2u6jq.jpg',
 ];
 
 export function PartnersMarquee() {
