@@ -35,6 +35,7 @@ export function Footer() {
           <ul className="space-y-2 text-sm text-sage-light/80">
             <li><Link href="/mentions-legales" className="hover:text-white transition-colors">Mentions légales</Link></li>
             <li><Link href="/confidentialite" className="hover:text-white transition-colors">Politique de confidentialité</Link></li>
+            <li><Link href="/cookies" className="hover:text-white transition-colors">Politique des cookies</Link></li>
           </ul>
         </div>
       </div>
@@ -45,6 +46,8 @@ export function Footer() {
           <Link href="/mentions-legales" className="hover:text-white transition-colors">Mentions légales</Link>
           <span>·</span>
           <Link href="/confidentialite" className="hover:text-white transition-colors">Politique de confidentialité</Link>
+          <span>·</span>
+          <Link href="/cookies" className="hover:text-white transition-colors">Cookies</Link>
         </div>
       </div>
     </footer>

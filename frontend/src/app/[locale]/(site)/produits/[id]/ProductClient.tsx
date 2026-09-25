@@ -121,37 +121,12 @@ export function ProductTabs({ product, colors }: { product: Product, colors: any
               {product.name}
             </h2>
 
-            <section>
-              <h3 className="text-xl font-bold text-teal-deep flex items-center gap-2 mb-4">
-                <span style={{ color: colors.accent }}>✧</span> Univers :
-              </h3>
-              <p className="text-anthracite-soft/80 leading-relaxed text-lg whitespace-pre-line">
-                {product.categories.join(', ')}
-              </p>
-            </section>
 
-            <section>
-              <h3 className="text-xl font-bold text-teal-deep flex items-center gap-2 mb-4">
-                <span style={{ color: colors.accent }}>✧</span> Accroche :
-              </h3>
-              <p className="text-anthracite-soft/80 leading-relaxed text-lg whitespace-pre-line">
-                {product.description}
-              </p>
-            </section>
-
-            <section>
-              <h3 className="text-xl font-bold text-teal-deep flex items-center gap-2 mb-4">
-                <span style={{ color: colors.accent }}>✧</span> Présentation :
-              </h3>
-              <p className="text-anthracite-soft/80 leading-relaxed text-lg whitespace-pre-line">
-                {product.format}
-              </p>
-            </section>
 
             {product.longDescription && (
               <section>
                 <h3 className="text-xl font-bold text-teal-deep flex items-center gap-2 mb-4">
-                  <span style={{ color: colors.accent }}>✧</span> Description :
+                  Description :
                 </h3>
                 <p className="text-anthracite-soft/80 leading-relaxed text-lg whitespace-pre-line">
                   {product.longDescription}
@@ -162,7 +137,7 @@ export function ProductTabs({ product, colors }: { product: Product, colors: any
             {product.composition && (
               <section>
                 <h3 className="text-xl font-bold text-teal-deep flex items-center gap-2 mb-4">
-                  <span style={{ color: colors.accent }}>✧</span> Apport — dose journalière recommandée :
+                  Apport — dose journalière recommandée :
                 </h3>
                 <p className="text-anthracite-soft/80 leading-relaxed text-lg whitespace-pre-line">
                   {product.composition}
@@ -173,7 +148,7 @@ export function ProductTabs({ product, colors }: { product: Product, colors: any
             {product.howToUse && (
               <section>
                 <h3 className="text-xl font-bold text-teal-deep flex items-center gap-2 mb-4">
-                  <span style={{ color: colors.accent }}>✧</span> Mode d'emploi :
+                  Mode d'emploi :
                 </h3>
                 <p className="text-anthracite-soft/80 leading-relaxed text-lg whitespace-pre-line">
                   {product.howToUse}
@@ -184,7 +159,7 @@ export function ProductTabs({ product, colors }: { product: Product, colors: any
             {product.warning && (
               <section>
                 <h3 className="text-xl font-bold text-teal-deep flex items-center gap-2 mb-4">
-                  <span style={{ color: colors.accent }}>✧</span> Avertissement nutritionnel :
+                  Avertissement nutritionnel :
                 </h3>
                 <p className="text-anthracite-soft/80 leading-relaxed text-lg whitespace-pre-line">
                   {product.warning}
@@ -205,18 +180,18 @@ export function ProductTabs({ product, colors }: { product: Product, colors: any
              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                <div className="bg-sage-light/20 p-6 rounded-2xl border border-sage-light/50">
                   <h4 className="text-sm font-bold text-anthracite-soft/60 uppercase tracking-wider mb-2">Format</h4>
-                  <p className="text-xl font-semibold text-teal-deep">{product.format}</p>
+                  <p className="text-base font-medium text-teal-deep">{product.format}</p>
                </div>
-               {product.dosage && (
-                 <div className="bg-sage-light/20 p-6 rounded-2xl border border-sage-light/50">
-                    <h4 className="text-sm font-bold text-anthracite-soft/60 uppercase tracking-wider mb-2">Dosage</h4>
-                    <p className="text-xl font-semibold text-teal-deep">{product.dosage}</p>
-                 </div>
-               )}
                {product.duration && (
                  <div className="bg-sage-light/20 p-6 rounded-2xl border border-sage-light/50">
                     <h4 className="text-sm font-bold text-anthracite-soft/60 uppercase tracking-wider mb-2">Durée</h4>
-                    <p className="text-xl font-semibold text-teal-deep">{product.duration}</p>
+                    <p className="text-base font-medium text-teal-deep">{product.duration}</p>
+                 </div>
+               )}
+               {product.dosage && (
+                 <div className="bg-sage-light/20 p-6 rounded-2xl border border-sage-light/50">
+                    <h4 className="text-sm font-bold text-anthracite-soft/60 uppercase tracking-wider mb-2">Dosage</h4>
+                    <p className="text-base font-medium text-teal-deep">{product.dosage}</p>
                  </div>
                )}
                {product.certifications && product.certifications.length > 0 && (

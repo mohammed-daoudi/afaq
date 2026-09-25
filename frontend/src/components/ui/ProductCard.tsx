@@ -177,20 +177,7 @@ export function ProductCard({ product }: ProductCardProps) {
                   {product.description}
                 </p>
 
-                <div className="space-y-3 mb-8">
-                  {product.dosage && (
-                    <div className="flex items-start gap-2 text-sm">
-                      <span className="text-teal-deep mt-0.5">💊</span>
-                      <span className="text-anthracite-soft font-medium">{product.dosage}</span>
-                    </div>
-                  )}
-                  {product.duration && (
-                    <div className="flex items-start gap-2 text-sm">
-                      <span className="text-teal-deep mt-0.5">⏱️</span>
-                      <span className="text-anthracite-soft font-medium">{product.duration}</span>
-                    </div>
-                  )}
-                </div>
+
 
                 <div className="mt-auto">
                   <button

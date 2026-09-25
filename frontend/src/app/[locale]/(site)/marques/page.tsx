@@ -12,7 +12,7 @@ const brands = [
     name: 'SOTYA',
     logo: '/gammelogo/sotyaaa.jpg',
     cardBg: '#FFFFFF',
-    logoClass: 'object-cover scale-90',
+    logoClass: 'object-cover scale-[0.75]',
     subtitle: 'COMPLÉMENTS ALIMENTAIRES',
     status: 'MARQUE ESPAGNOLE · DISPONIBLE AU MAROC',
     description: 'SOTYA propose une gamme diversifiée de compléments alimentaires dédiés à la nutrition et au bien-être au quotidien.',
@@ -20,7 +20,7 @@ const brands = [
   {
     slug: 'naturamins-kids',
     name: 'Naturamins Kids',
-    logo: '/gammelogo/nutramins.png',
+    logo: '/gammelogo/naturamins.jpeg',
     cardBg: '#FFFFFF',
     logoClass: 'object-cover',
     subtitle: 'NUTRITION PÉDIATRIQUE',
@@ -46,7 +46,7 @@ const fadeUp = {
 
 export default function MarquesPage() {
   return (
-    <div className="min-h-screen bg-sage-light/20 pt-32 pb-24 overflow-hidden">
+    <div className="min-h-screen bg-sage-light/20 pt-8 pb-24 overflow-hidden">
       <div className="container mx-auto px-4">
 
         {/* Page Header */}
@@ -97,24 +97,24 @@ export default function MarquesPage() {
 
                   {/* Brand Info Area */}
                   <div className="p-8 flex flex-col flex-grow">
-                    <h3 className="text-[11px] font-bold text-gold-soft uppercase tracking-widest mb-3">
+                    <h3 className="text-xs font-bold text-gold-soft uppercase tracking-widest mb-3">
                       {brand.subtitle}
                     </h3>
                     
                     <div className="mb-6">
-                      <span className="inline-block px-2 py-1 rounded text-[10px] font-bold bg-sage-light/50 text-teal-deep uppercase tracking-wider">
+                      <span className="inline-block px-3 py-1.5 rounded text-xs font-bold bg-sage-light/50 text-teal-deep uppercase tracking-wider">
                         {brand.status}
                       </span>
                     </div>
                     
-                    <p className="text-sm text-anthracite-soft/80 leading-relaxed mb-8 flex-grow">
+                    <p className="text-base text-anthracite-soft/80 leading-relaxed mb-8 flex-grow">
                       {brand.description}
                     </p>
 
                     <div className="pt-4 border-t border-gray-100">
                       <Link
                         href={`/produits?brand=${brand.slug}`}
-                        className="inline-flex items-center gap-2 font-bold text-teal-deep hover:text-gold-soft transition-colors text-sm"
+                        className="inline-flex items-center gap-2 font-bold text-teal-deep hover:text-gold-soft transition-colors text-base"
                       >
                         Découvrir {brand.name} <span>→</span>
                       </Link>

@@ -9,7 +9,7 @@ import { Link } from '@/navigation';
 
 const BRAND_LOGOS: Record<string, string> = {
   'SOTYA':           '/gammelogo/sotyaaa.jpg',
-  'NATURAMINS KIDS': '/gammelogo/nutramins.png',
+  'NATURAMINS KIDS': '/gammelogo/naturamins.jpeg',
   'COLAGENOVA':      '/gammelogo/colagenova.jpg',
 };
 
@@ -76,7 +76,7 @@ export default function ProduitsPage() {
   });
 
   return (
-    <div className="min-h-screen bg-ivory-soft pt-32 pb-0 flex flex-col">
+    <div className="min-h-screen bg-ivory-soft pt-8 pb-0 flex flex-col">
       <div className="container mx-auto px-4 max-w-7xl flex-grow mb-12">
 
 

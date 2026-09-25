@@ -25,7 +25,7 @@ const brands = [
     name: 'SOTYA',
     logo: '/gammelogo/sotyaaa.jpg',
     cardBg: '#FFFFFF',
-    logoClass: 'object-cover scale-90',
+    logoClass: 'object-contain scale-[0.84]',
     subtitle: 'COMPLÉMENTS ALIMENTAIRES',
     status: 'MARQUE ESPAGNOLE · DISPONIBLE AU MAROC',
     description: 'SOTYA propose une gamme diversifiée de compléments alimentaires dédiés à la nutrition et au bien-être au quotidien.',
@@ -33,9 +33,9 @@ const brands = [
   {
     slug: 'naturamins-kids',
     name: 'Naturamins Kids',
-    logo: '/gammelogo/nutramins.png',
+    logo: '/gammelogo/naturamins.jpeg',
     cardBg: '#FFFFFF',
-    logoClass: 'object-cover',
+    logoClass: 'object-cover -translate-x-6',
     subtitle: 'NUTRITION PÉDIATRIQUE',
     status: 'MARQUE ESPAGNOLE · PROCHAIN LANCEMENT — JANVIER 2027',
     description: 'Naturamins Kids propose une gamme dédiée aux besoins nutritionnels de l’enfant, conçue pour accompagner les familles au quotidien.',
@@ -117,8 +117,11 @@ export default function HomePage() {
             <motion.p variants={fadeUp} className="text-lg md:text-xl text-anthracite-soft/75 leading-relaxed mb-4">
               AFAQ HEALTH développe et distribue au Maroc un portefeuille de marques européennes sélectionnées pour leur qualité, leur savoir-faire et la pertinence de leurs gammes.
             </motion.p>
-            <motion.p variants={fadeUp} className="text-lg md:text-xl text-anthracite-soft/75 leading-relaxed mb-8">
+            <motion.p variants={fadeUp} className="text-lg md:text-xl text-anthracite-soft/75 leading-relaxed mb-4">
               Notre portefeuille couvre plusieurs univers complémentaires, de la nutrition et des compléments alimentaires à la nutrition pédiatrique et à la beauté.
+            </motion.p>
+            <motion.p variants={fadeUp} className="text-lg md:text-xl text-anthracite-soft/75 leading-relaxed mb-8">
+              Nous accompagnons nos partenaires de l&apos;accès au marché à la commercialisation, en associant expertise réglementaire, développement commercial et connaissance du marché marocain.
             </motion.p>
             <motion.div variants={fadeUp}>
               <Link
@@ -133,7 +136,7 @@ export default function HomePage() {
           {/* Image Content */}
           <div className="w-full lg:w-[45%] h-[400px] lg:h-[500px] relative overflow-hidden shadow-2xl">
             <Image
-              src="/images/unsplash/science/colabb.jpg"
+              src="/images/unsplash/science/colabbb.jpg"
               alt="Présentation"
               fill
               className="object-cover object-center"
@@ -157,42 +160,48 @@ export default function HomePage() {
                 key={brand.slug}
                 className="h-full"
               >
-                <Card className="overflow-hidden border-none shadow hover:shadow-xl transition-all duration-300 bg-white h-full flex flex-col">
-                  <div
-                    className="relative overflow-hidden h-64 shrink-0"
-                    style={{ backgroundColor: brand.cardBg }}
-                  >
-                    <Image
-                      src={brand.logo}
-                      alt={brand.name}
-                      fill
-                      className={brand.logoClass}
-                      sizes="(max-width: 768px) 100vw, 33vw"
-                    />
-                  </div>
-
-                  <div className="p-8 flex flex-col flex-grow">
-                    <h3 className="text-[11px] font-bold text-gold-soft uppercase tracking-widest mb-3">
-                      {brand.subtitle}
-                    </h3>
-                    
-                    <div className="mb-6">
-                      <span className="inline-block px-2 py-1 rounded text-[10px] font-bold bg-sage-light/50 text-teal-deep uppercase tracking-wider">
-                        {brand.status}
-                      </span>
+                <Card className="group cursor-pointer overflow-hidden border-none shadow hover:shadow-xl transition-all duration-300 bg-white h-full flex flex-col">
+                  <div className="p-4 md:p-6 flex flex-col flex-1">
+                    <div
+                      className="relative w-full aspect-square mb-4 flex items-center justify-center overflow-hidden rounded-xl"
+                      style={{ backgroundColor: brand.cardBg }}
+                    >
+                      <Image
+                        src={brand.logo}
+                        alt={brand.name}
+                        fill
+                        className={`object-contain transition-transform duration-500 group-hover:scale-105 p-4 mix-blend-multiply ${brand.logoClass.replace('object-contain', '').replace('object-cover', '')}`}
+                        sizes="(max-width: 768px) 100vw, 33vw"
+                      />
                     </div>
-                    
-                    <p className="text-sm text-anthracite-soft/80 leading-relaxed mb-8 flex-grow">
-                      {brand.description}
-                    </p>
 
-                    <div className="pt-4 border-t border-gray-100">
-                      <Link
-                        href={`/produits?brand=${brand.slug}`}
-                        className="inline-flex items-center gap-2 font-bold text-teal-deep hover:text-gold-soft transition-colors text-sm"
-                      >
-                        Découvrir {brand.name} <span>→</span>
-                      </Link>
+                    <div className="flex flex-col flex-1 text-left mt-2">
+                      <span className="text-xs font-bold uppercase tracking-wider text-gold-soft mb-1 line-clamp-1">
+                        {brand.subtitle}
+                      </span>
+                      
+                      <h3 className="font-bold text-base md:text-lg text-anthracite-deep leading-snug group-hover:text-teal-deep transition-colors line-clamp-2 mb-2">
+                        {brand.name}
+                      </h3>
+                      
+                      <div className="mb-2">
+                        <span className="inline-block px-2 py-1.5 rounded text-xs font-bold bg-sage-light/50 text-teal-deep uppercase tracking-wider">
+                          {brand.status}
+                        </span>
+                      </div>
+                      
+                      <p className="text-sm md:text-base text-anthracite-soft mt-1.5 line-clamp-3 flex-grow">
+                        {brand.description}
+                      </p>
+
+                      <div className="mt-4 flex items-center text-teal-deep text-sm font-bold group-hover:text-gold-soft transition-colors border-t border-gray-100 pt-3">
+                        <Link
+                          href={`/produits?brand=${brand.slug}`}
+                          className="w-full flex items-center"
+                        >
+                          Découvrir {brand.name} <span className="ml-1">→</span>
+                        </Link>
+                      </div>
                     </div>
                   </div>
                 </Card>
@@ -240,9 +249,9 @@ export default function HomePage() {
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            <Link href="/conseils/pourquoi-se-supplementer-en-magnesium" className="group block bg-white rounded-[2rem] overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 border border-gray-100 flex flex-col h-full">
+            <Link href="/conseils/magnesium-comment-choisir-bonne-formule" className="group block bg-white rounded-[2rem] overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 border border-gray-100 flex flex-col h-full">
               <div className="relative h-64 w-full shrink-0 overflow-hidden">
-                <Image src="/images/unsplash/comp/kayla-maurais-EZWTMjwAWls-unsplash.jpg" alt="Article 1" fill className="object-cover group-hover:scale-110 transition-transform duration-700" />
+                <Image src="/images/unsplash/formulations/formulation_3.jpg" alt="Article 1" fill className="object-cover group-hover:scale-110 transition-transform duration-700" />
               </div>
               <div className="p-8 flex flex-col flex-grow">
                 <span className="text-gold-soft text-xs font-bold uppercase tracking-widest mb-3 block">{t('specialReport')}</span>
@@ -251,9 +260,9 @@ export default function HomePage() {
               </div>
             </Link>
 
-            <Link href="/conseils/comprendre-le-collagene" className="group block bg-white rounded-[2rem] overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 border border-gray-100 flex flex-col h-full">
+            <Link href="/conseils/cycle-feminin-comprendre-role-huile-onagre" className="group block bg-white rounded-[2rem] overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 border border-gray-100 flex flex-col h-full">
               <div className="relative h-64 w-full shrink-0 overflow-hidden">
-                <Image src="/images/unsplash/welness/jared-rice-NTyBbu66_SI-unsplash.jpg" alt="Article 2" fill className="object-cover group-hover:scale-110 transition-transform duration-700" />
+                <Image src="/images/unsplash/beauty/beauty_3.jpg" alt="Article 2" fill className="object-cover group-hover:scale-110 transition-transform duration-700" />
               </div>
               <div className="p-8 flex flex-col flex-grow">
                 <span className="text-gold-soft text-xs font-bold uppercase tracking-widest mb-3 block">{t('beautySkin')}</span>
@@ -262,9 +271,9 @@ export default function HomePage() {
               </div>
             </Link>
 
-            <Link href="/conseils/les-besoins-nutritionnels-des-enfants" className="group block bg-white rounded-[2rem] overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 border border-gray-100 flex flex-col h-full">
+            <Link href="/conseils/sante-masculine-comprendre-prostate" className="group block bg-white rounded-[2rem] overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 border border-gray-100 flex flex-col h-full">
               <div className="relative h-64 w-full shrink-0 overflow-hidden">
-                <Image src="/images/unsplash/comp/Gemini_Generated_Image_1tkniv1tkniv1tkn.jpg" alt="Article 3" fill className="object-cover group-hover:scale-110 transition-transform duration-700" />
+                <Image src="/images/unsplash/welness/dane-wetton-zdLdgGbi9Ow-unsplash.jpg" alt="Article 3" fill className="object-cover group-hover:scale-110 transition-transform duration-700" />
               </div>
               <div className="p-8 flex flex-col flex-grow">
                 <span className="text-gold-soft text-xs font-bold uppercase tracking-widest mb-3 block">{t('pediatrics')}</span>

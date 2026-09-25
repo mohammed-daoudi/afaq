@@ -55,13 +55,13 @@ const ReseauSlider = () => {
           animate={{ opacity: current === index ? 1 : 0 }}
           transition={{ duration: 1 }}
         >
-          <Image 
-            src={src} 
-            alt="Réseau AFAQ Health" 
-            fill 
-            className="object-cover object-center" 
-            priority={index === 0} 
-            sizes="(max-width: 1024px) 100vw, 50vw" 
+          <Image
+            src={src}
+            alt="Réseau AFAQ Health"
+            fill
+            className="object-cover object-center"
+            priority={index === 0}
+            sizes="(max-width: 1024px) 100vw, 50vw"
           />
         </motion.div>
       ))}
@@ -129,14 +129,12 @@ export default function AProposPage() {
             <motion.h1 variants={fadeUp} className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-teal-deep leading-tight mb-6">
               AFAQ HEALTH
             </motion.h1>
-            <motion.h2 variants={fadeUp} className="text-2xl md:text-3xl font-light text-anthracite-soft/80 leading-snug mb-8">
-              partenaire du développement des marques de santé
-            </motion.h2>
+
             <motion.p variants={fadeUp} className="text-xl font-bold text-anthracite-deep leading-relaxed mb-4">
               De l'Europe au marché marocain, nous construisons des implantations durables.
             </motion.p>
             <motion.p variants={fadeUp} className="text-base text-anthracite-soft/75 leading-relaxed">
-              AFAQ HEALTH est une société marocaine spécialisée dans l'importation, le développement et la commercialisation de marques espagnoles de compléments alimentaires, de nutrition et de bien-être.
+              AFAQ HEALTH est une société marocaine spécialisée dans l'importation, le développement et la commercialisation de marques européenne de compléments alimentaires, de nutrition et de bien-être.
             </motion.p>
           </motion.div>
         </div>

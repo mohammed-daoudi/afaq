@@ -53,54 +53,7 @@ export default function MentionsLegalesPage() {
               61 Lordou Vironos Street, 6023 Larnaca, Chypre
             </p>
 
-            <hr className="my-12 border-sage-light" />
 
-            <h2 className="text-3xl font-bold text-teal-deep mb-8 uppercase">Politique de confidentialité</h2>
-            <p>
-              AFAQ HEALTH accorde une importance particulière à la protection de vos données personnelles. La présente politique explique de manière simple comment vos données peuvent être collectées et utilisées lorsque vous utilisez notre site.
-            </p>
-
-            <h3 className="text-xl font-bold text-teal-deep mt-8 mb-4">1. DONNÉES COLLECTÉES</h3>
-            <p>Selon votre utilisation du site, nous pouvons être amenés à collecter notamment :</p>
-            <ul className="list-disc pl-5 space-y-2 mt-4">
-              <li>Nom et prénom</li>
-              <li>Adresse e-mail</li>
-              <li>Numéro de téléphone</li>
-              <li>Société ou établissement</li>
-              <li>Contenu des messages transmis via nos formulaires</li>
-              <li>Données techniques nécessaires au fonctionnement et à la sécurité du site</li>
-            </ul>
-
-            <h3 className="text-xl font-bold text-teal-deep mt-8 mb-4">2. UTILISATION DES DONNÉES</h3>
-            <p>Ces données peuvent être utilisées afin de :</p>
-            <ul className="list-disc pl-5 space-y-2 mt-4">
-              <li>Répondre à vos demandes et messages ;</li>
-              <li>Traiter les demandes de partenariat ou de collaboration ;</li>
-              <li>Assurer le fonctionnement et la sécurité du site ;</li>
-              <li>Améliorer nos services et l'expérience utilisateur.</li>
-            </ul>
-
-            <h3 className="text-xl font-bold text-teal-deep mt-8 mb-4">3. CONFIDENTIALITÉ DES DONNÉES</h3>
-            <p>
-              AFAQ HEALTH ne vend ni ne loue vos données personnelles.<br /><br />
-              Lorsque cela est nécessaire au fonctionnement du site, certaines données peuvent être accessibles à des prestataires techniques intervenant pour notre compte, notamment pour l'hébergement ou la maintenance du site.
-            </p>
-
-            <h3 className="text-xl font-bold text-teal-deep mt-8 mb-4">4. VOS DROITS</h3>
-            <p>
-              Conformément à la réglementation marocaine applicable, notamment la loi n° 09-08, vous disposez de droits concernant vos données personnelles, notamment un droit d'accès, de rectification et d'opposition dans les conditions prévues par la réglementation.
-            </p>
-            <p className="mt-4">
-              Pour toute demande relative à vos données personnelles :<br />
-              <strong>Email :</strong> contact@afaqhealth.com<br />
-              <strong>Adresse :</strong> Bir Rami Ouest, Kénitra — Maroc
-            </p>
-
-            <h3 className="text-xl font-bold text-teal-deep mt-8 mb-4">5. COOKIES</h3>
-            <p>
-              Le site peut utiliser des cookies ou technologies similaires nécessaires à son fonctionnement et, le cas échéant, à la mesure de son audience.<br /><br />
-              Vous pouvez gérer vos préférences en matière de cookies selon les options proposées sur le site.
-            </p>
 
             <div className="mt-12 pt-8 border-t border-sage-light text-sm text-anthracite-soft/60">
               Dernière mise à jour : 23 septembre 2026
