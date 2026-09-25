@@ -9,6 +9,7 @@ import {
   Star, CheckCircle, Handshake, Heart,
 } from 'lucide-react';
 import { BrandCarousel } from '@/components/ui/BrandCarousel';
+import { PartnersMarquee } from '@/components/ui/PartnersMarquee';
 
 
 
@@ -189,6 +190,11 @@ export default function AProposPage() {
 
 
       {/* ═══════════════════════════════════════════════════════════════
+          3. NOS PARTENAIRES — Marquee slider
+         ═══════════════════════════════════════════════════════════════ */}
+      <PartnersMarquee />
+
+      {/* ═══════════════════════════════════════════════════════════════
           4. NOTRE RÉSEAU — HERO style layout (Text left, Slider right)
          ═══════════════════════════════════════════════════════════════ */}
       <section className="relative w-full bg-[#f6f4ef] overflow-hidden lg:block flex flex-col" style={{ minHeight: '600px' }}>
@@ -224,8 +230,8 @@ export default function AProposPage() {
                   <div className="w-14 h-14 border border-sage-light rounded-xl flex items-center justify-center mb-4 bg-white shadow-sm">
                     <item.icon className="w-6 h-6 text-teal-deep" strokeWidth={1.5} />
                   </div>
-                  <h4 className="text-sm font-bold text-anthracite-deep mb-2">{item.title}</h4>
-                  <p className="text-anthracite-soft/75 text-xs leading-relaxed">{item.desc}</p>
+                  <h4 className="text-base font-bold text-anthracite-deep mb-2">{item.title}</h4>
+                  <p className="text-anthracite-soft/80 text-sm leading-relaxed">{item.desc}</p>
                 </motion.div>
               ))}
             </div>
@@ -281,12 +287,6 @@ export default function AProposPage() {
         </div>
       </section>
 
-
-
-      {/* ═══════════════════════════════════════════════════════════════
-          7. NOS MARQUES — Brand carousel
-         ═══════════════════════════════════════════════════════════════ */}
-      <BrandCarousel />
 
     </div>
   );
