@@ -14,9 +14,9 @@ import { PartnersMarquee } from '@/components/ui/PartnersMarquee';
 
 
 const RESEAU_ITEMS = [
-  { icon: Factory, title: 'Fabricants européens', desc: 'Des partenaires sélectionnés pour leur savoir-faire et la qualité de leurs produits.' },
-  { icon: MapIcon, title: 'Distribution nationale', desc: "Une organisation structurée pour assurer la disponibilité des produits sur le marché marocain." },
-  { icon: Users, title: 'Pharmacies & professionnels de santé', desc: "Un réseau de proximité au service de la connaissance et de l&apos;accès aux produits." },
+  { icon: Factory, title: 'Fabricants européens', desc: 'Des partenaires sélectionnés pour leur savoir-faire, leur exigence et la qualité de leurs produits.' },
+  { icon: MapIcon, title: 'Distribution nationale', desc: "Un établissement pharmaceutique partenaire pour assurer la distribution et la disponibilité de nos produits au Maroc." },
+  { icon: Users, title: 'Pharmacies & professionnels de santé', desc: "Un réseau de proximité favorisant le conseil, la connaissance des gammes et leur accès." },
 ];
 
 const fadeUp: Variants = {
@@ -132,10 +132,10 @@ export default function AProposPage() {
             </motion.h1>
 
             <motion.p variants={fadeUp} className="text-xl font-bold text-anthracite-deep leading-relaxed mb-4">
-              De l'Europe au marché marocain, nous construisons des implantations durables.
+              De l’Europe au marché marocain, nous construisons les conditions d’une implantation durable.
             </motion.p>
             <motion.p variants={fadeUp} className="text-base text-anthracite-soft/75 leading-relaxed">
-              AFAQ HEALTH est une société marocaine spécialisée dans l'importation, le développement et la commercialisation de marques européenne de compléments alimentaires, de nutrition et de bien-être.
+              AFAQ HEALTH est une société marocaine spécialisée dans l’importation, le développement et la commercialisation de marques européennes dans les domaines de la santé, de la nutrition et du bien-être.
             </motion.p>
           </motion.div>
         </div>
@@ -175,10 +175,10 @@ export default function AProposPage() {
             <motion.h2 variants={fadeUp} className="text-3xl md:text-5xl lg:text-6xl font-extrabold text-white leading-tight mb-6">
               Sélectionner.{' '}
               <span className="font-light text-gold-soft">Développer.</span>{' '}
-              Distribuer.
+              Commercialiser.
             </motion.h2>
             <motion.p variants={fadeUp} className="text-lg md:text-xl text-white/75 leading-relaxed max-w-3xl mx-auto mt-6">
-              Notre mission est de construire au Maroc une présence solide et durable pour des marques sélectionnées pour la qualité de leurs produits et la pertinence de leurs gammes.
+              Notre mission est de construire au Maroc une présence solide et durable pour des marques sélectionnées pour la qualité de leurs produits, leur savoir-faire et la pertinence de leurs gammes.
             </motion.p>
             <motion.p variants={fadeUp} className="text-base text-white/60 leading-relaxed max-w-2xl mx-auto mt-4">
               De la conformité réglementaire au développement commercial, nous coordonnons les différentes étapes nécessaires à leur implantation et à leur développement.
@@ -211,10 +211,10 @@ export default function AProposPage() {
               NOTRE RÉSEAU
             </motion.div>
             <motion.h2 variants={fadeUp} className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-teal-deep leading-tight mb-6">
-              Des partenaires au cœur de notre développement
+              Un réseau au service de nos marques
             </motion.h2>
             <motion.p variants={fadeUp} className="text-lg text-anthracite-soft/80 leading-relaxed mb-12">
-              AFAQ HEALTH travaille avec un réseau de fabricants, distributeurs, grossistes, pharmacies et professionnels de santé afin d{'\''}assurer à chaque marque un environnement de développement cohérent et durable.
+              AFAQ HEALTH s’appuie sur un réseau de partenaires sélectionnés pour accompagner le développement de ses marques et assurer leur présence durable sur le marché marocain.
             </motion.p>
 
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
@@ -280,7 +280,7 @@ export default function AProposPage() {
                 et exigeantes.
               </motion.h2>
               <motion.p variants={fadeUp} className="text-lg text-anthracite-soft/75 leading-relaxed">
-                Notre ambition est de faire grandir progressivement notre portefeuille avec des marques sélectionnées pour leur qualité, leur savoir-faire et leur capacité à répondre durablement aux besoins du marché.
+                Notre ambition est de développer progressivement notre portefeuille avec des marques sélectionnées pour leur qualité, leur savoir-faire et leur capacité à répondre durablement aux besoins du marché.
               </motion.p>
             </motion.div>
           </div>

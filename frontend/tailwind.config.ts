@@ -28,7 +28,7 @@ const config: Config = {
         },
       },
       fontFamily: {
-        heading: ["var(--font-outfit)", "sans-serif"],
+        heading: ["var(--font-inter)", "sans-serif"],
         sans: ["var(--font-inter)", "sans-serif"],
       },
     },

@@ -7,20 +7,7 @@ import type { Product } from '@/lib/products';
 import { useTranslations } from 'next-intl';
 
 interface ProductCardProps {
-  product: {
-    id: string;
-    name: string;
-    brand: string;
-    categories: string[];
-    imagePath: string;
-    labelImagePath?: string;
-    description: string;
-    benefits: string[];
-    dosage?: string;
-    duration?: string;
-    format?: string;
-    certifications?: string[];
-  };
+  product: Product;
 }
 
 export function ProductCard({ product }: ProductCardProps) {

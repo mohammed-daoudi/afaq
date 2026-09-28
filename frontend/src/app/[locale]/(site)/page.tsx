@@ -105,22 +105,13 @@ export default function HomePage() {
             variants={staggerContainer} 
             className="w-full lg:w-1/2 max-w-xl"
           >
-            <motion.div variants={fadeUp} className="text-sm md:text-base font-bold uppercase tracking-widest text-gold-soft mb-6">
+            <motion.div variants={fadeUp} className="text-base md:text-lg font-bold uppercase tracking-widest text-gold-soft mb-6">
               L&apos;expertise derrière AFAQ Health
             </motion.div>
-            <motion.h1 variants={fadeUp} className="text-5xl md:text-6xl lg:text-7xl font-extrabold text-teal-deep leading-tight mb-6">
-              AFAQ HEALTH
-            </motion.h1>
-            <motion.h2 variants={fadeUp} className="text-3xl md:text-4xl font-light text-anthracite-soft/80 leading-snug mb-8">
-              Un portefeuille de marques européennes sélectionnées avec exigence
-            </motion.h2>
-            <motion.p variants={fadeUp} className="text-lg md:text-xl text-anthracite-soft/75 leading-relaxed mb-4">
+            <motion.p variants={fadeUp} className="text-xl md:text-2xl font-light text-anthracite-soft/90 leading-relaxed mb-6">
               AFAQ HEALTH développe et distribue au Maroc un portefeuille de marques européennes sélectionnées pour leur qualité, leur savoir-faire et la pertinence de leurs gammes.
             </motion.p>
-            <motion.p variants={fadeUp} className="text-lg md:text-xl text-anthracite-soft/75 leading-relaxed mb-4">
-              Notre portefeuille couvre plusieurs univers complémentaires, de la nutrition et des compléments alimentaires à la nutrition pédiatrique et à la beauté.
-            </motion.p>
-            <motion.p variants={fadeUp} className="text-lg md:text-xl text-anthracite-soft/75 leading-relaxed mb-8">
+            <motion.p variants={fadeUp} className="text-xl md:text-2xl font-light text-anthracite-soft/90 leading-relaxed mb-8">
               Nous accompagnons nos partenaires de l&apos;accès au marché à la commercialisation, en associant expertise réglementaire, développement commercial et connaissance du marché marocain.
             </motion.p>
             <motion.div variants={fadeUp}>

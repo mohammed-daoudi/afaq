@@ -18,10 +18,10 @@ export function PartnersMarquee() {
           NOS PARTENAIRES
         </h2>
         <h3 className="text-3xl md:text-4xl font-extrabold text-teal-deep mb-6 leading-tight">
-          Des alliances au service de l'excellence.
+          Des partenaires sélectionnés avec exigence.
         </h3>
         <p className="text-lg text-anthracite-soft/80 leading-relaxed">
-          AFAQ HEALTH s'appuie sur un réseau de partenaires engagés pour développer des marques de qualité et construire des relations durables.
+          AFAQ HEALTH s’appuie sur des partenaires sélectionnés pour leur savoir-faire, leur expertise et leur capacité à accompagner durablement le développement de nos marques.
         </p>
       </div>
 
@@ -29,7 +29,7 @@ export function PartnersMarquee() {
         {/* We use two containers with identical content for a seamless loop */}
         <div className="inline-flex animate-marquee items-center gap-16 md:gap-24 px-8">
           {[...PARTNERS, ...PARTNERS, ...PARTNERS].map((logo, index) => (
-            <div key={index} className="relative w-40 h-24 md:w-56 md:h-32 shrink-0 filter grayscale hover:grayscale-0 transition-all duration-500 opacity-70 hover:opacity-100">
+            <div key={index} className="relative w-40 h-24 md:w-56 md:h-32 shrink-0 transition-transform duration-500 hover:scale-105">
               <Image 
                 src={logo} 
                 alt={`Partner ${index + 1}`} 

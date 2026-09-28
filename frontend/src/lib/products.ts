@@ -10,6 +10,7 @@ export interface Product {
   categories: string[];
   imagePath: string;
   labelImagePath?: string;
+  imageBadge?: string;
   description: string;
   longDescription?: string;
   composition?: string;
@@ -49,6 +50,7 @@ export const products: Product[] = [
     categories: ['Stress & Sommeil', 'Énergie & Vitalité'],
     imagePath: '/images/products/magnesium.jpeg',
     labelImagePath: '/images/labels/bisglycinate-magnesium.png',
+    imageBadge: '100 gélules',
     description: 'Complément alimentaire à base de magnésium, zinc et vitamine D3. Le magnésium contribue à réduire la fatigue et au fonctionnement normal du système nerveux et musculaire.',
     longDescription: "Cette formule associe du magnésium sous forme de bisglycinate à du zinc et à la vitamine D3. Le magnésium contribue à réduire la fatigue et au fonctionnement normal du système nerveux et musculaire, tandis que le zinc et la vitamine D participent au fonctionnement normal de l'organisme.\nUne formule pensée pour accompagner les besoins quotidiens en magnésium, notamment lors des périodes de fatigue ou lorsque les besoins nutritionnels sont accrus.",
     composition: "Pour 3 gélules : magnésium 327 mg (87 % VNR), zinc 15 mg (150 % VNR), vitamine D 5 µg (100 % VNR).",
@@ -56,8 +58,8 @@ export const products: Product[] = [
     warning: WARNING_TEXT,
     benefits: ['Stress et fatigue', 'Détente et sommeil', 'Système nerveux'],
     dosage: '3 gélules par jour',
-    duration: '33 jours',
-    format: '100 gélules végétales de 750mg',
+    duration: '100 gélules   →   33 jours\n300 gélules   →   100 jours',
+    format: '100 ou 300 gélules végétales de 750mg',
     certifications: ['Vegan', 'Sans gluten'],
   },
   {
@@ -174,6 +176,7 @@ export const products: Product[] = [
     categories: ['Beauté', 'Articulations & Mobilité', 'Santé Spécifique'],
     imagePath: '/images/products/omegaa.jpeg',
     labelImagePath: '/images/labels/complexe-omega-369.png',
+    imageBadge: '50 perles',
     description: 'Complément alimentaire à base de Huile de poisson, Huile de lin, Huile d\'onagre et Vitamine E.',
     longDescription: "Cette formule réunit trois sources d'acides gras : l'huile de poisson, l'huile de lin et l'huile d'onagre. Elle apporte notamment des oméga-3 issus de l'huile de poisson et du lin, des oméga-6 issus de l'onagre et du lin, ainsi que des oméga-9. La formule est complétée par de la vitamine E.\nUne association de sources marines et végétales pour apporter différentes familles d'acides gras dans une même formule.",
     composition: "Pour 3 perles : huile de poisson 996 mg (EPA 180 mg, DHA 120 mg), huile de lin 996 mg (ALA 648 mg, acide linoléique 240 mg, acide oléique 240 mg), huile d'onagre 996 mg (GLA 100 mg), vitamine E 7,5 mg (62,5 % VNR).",
@@ -181,8 +184,8 @@ export const products: Product[] = [
     warning: WARNING_TEXT,
     benefits: ['Santé cardiovasculaire', 'Cholestérol équilibré', 'Peau et articulations'],
     dosage: '3 perles par jour',
-    duration: '16 jours',
-    format: '50 perles de 1400mg',
+    duration: '50 perles   →   16 jours\n100 perles   →   33 jours',
+    format: '50 ou 100 perles de 1400mg',
     certifications: ['Sans gluten'],
   },
   {
@@ -210,6 +213,7 @@ export const products: Product[] = [
     categories: ['Beauté', 'Santé Spécifique'],
     imagePath: '/images/products/onagre.jpeg',
     labelImagePath: '/images/labels/huile-onagre.png',
+    imageBadge: '50 perles',
     description: 'Complément alimentaire à base d\'huile de graines d\'onagre, naturellement riche en acide gamma-linolénique (GLA), et de vitamine E. La vitamine E contribue à protéger les cellules contre le stress oxydatif.',
     longDescription: "Cette formule apporte de l'huile de graines d'onagre naturellement riche en acide gamma-linolénique (GLA), un acide gras de la famille des oméga-6. Elle est complétée par de la vitamine E, qui contribue à protéger les cellules contre le stress oxydatif.\nUne formule simple et ciblée, basée sur une huile végétale reconnue pour sa richesse en GLA et adaptée à une utilisation quotidienne.",
     composition: "Pour 1 à 2 perles : huile d'onagre 2 000 mg, GLA 200 mg, vitamine E 10 mg (83 % VNR).",
@@ -217,8 +221,8 @@ export const products: Product[] = [
     warning: WARNING_TEXT,
     benefits: ['Équilibre hormonal prénatal', 'Santé gynécologique', 'Peau et articulations'],
     dosage: '1 à 2 perles par jour',
-    duration: '25 jours',
-    format: '50 perles de 1405mg',
+    duration: '50 perles   →   25 jours\n100 perles   →   50 jours',
+    format: '50 ou 100 perles de 1405 mg',
     certifications: ['Sans gluten'],
   },
   {
@@ -294,20 +298,6 @@ export const products: Product[] = [
     certifications: ['Vegan', 'Sans gluten'],
   },
 
-  // ─── NATURAMINS KIDS ────────────────────────
-  {
-    id: 'naturamins-kids-multi',
-    name: 'Multivitamines Gummies',
-    brand: 'NATURAMINS KIDS',
-    categories: ['Nutrition pédiatrique', 'Immunité & Défenses'],
-    imagePath: '/images/unsplash/comp/Gemini_Generated_Image_1tkniv1tkniv1tkn.jpg', // placeholder
-    description: 'Complément alimentaire à base de 11 vitamines, zinc et iode. Forme gomme.',
-    benefits: ['Défenses naturelles', 'Croissance saine', 'Énergie'],
-    dosage: '2 gommes par jour',
-    duration: '30 jours',
-    format: '60 gommes fruitées',
-    certifications: ['Sans gluten', 'Sans sucres ajoutés'],
-  },
 
   // ─── COLAGENOVA ────────────────────────
   {

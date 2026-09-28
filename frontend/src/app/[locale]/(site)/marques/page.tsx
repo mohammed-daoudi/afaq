@@ -60,9 +60,7 @@ export default function MarquesPage() {
           <motion.h1 variants={fadeUp} className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-teal-deep">
             Notre portefeuille de marques
           </motion.h1>
-          <motion.h2 variants={fadeUp} className="text-2xl font-medium text-teal-deep/80">
-            Des marques européennes sélectionnées avec exigence
-          </motion.h2>
+
           <motion.p variants={fadeUp} className="text-lg text-anthracite-soft/80 max-w-3xl mx-auto leading-relaxed">
             AFAQ HEALTH construit un portefeuille de marques européennes sélectionnées pour leur qualité, leur savoir-faire et leur capacité à répondre durablement aux besoins en matière de santé et de bien-être.
           </motion.p>
@@ -80,44 +78,48 @@ export default function MarquesPage() {
                 transition={{ duration: 0.6, delay: idx * 0.1 }}
                 className="h-full"
               >
-                <Card className="overflow-hidden border-none shadow hover:shadow-xl transition-all duration-300 bg-white h-full flex flex-col">
-                  {/* Brand Visual Area — logo fills entire card */}
-                  <div
-                    className="relative overflow-hidden h-64 shrink-0"
-                    style={{ backgroundColor: brand.cardBg }}
-                  >
-                    <Image
-                      src={brand.logo}
-                      alt={brand.name}
-                      fill
-                      className={brand.logoClass}
-                      sizes="(max-width: 768px) 100vw, 33vw"
-                    />
-                  </div>
-
-                  {/* Brand Info Area */}
-                  <div className="p-8 flex flex-col flex-grow">
-                    <h3 className="text-xs font-bold text-gold-soft uppercase tracking-widest mb-3">
-                      {brand.subtitle}
-                    </h3>
-                    
-                    <div className="mb-6">
-                      <span className="inline-block px-3 py-1.5 rounded text-xs font-bold bg-sage-light/50 text-teal-deep uppercase tracking-wider">
-                        {brand.status}
-                      </span>
+                <Card className="group cursor-pointer overflow-hidden border-none shadow hover:shadow-xl transition-all duration-300 bg-white h-full flex flex-col">
+                  <div className="p-4 md:p-6 flex flex-col flex-1">
+                    <div
+                      className="relative w-full aspect-square mb-4 flex items-center justify-center overflow-hidden rounded-xl"
+                      style={{ backgroundColor: brand.cardBg }}
+                    >
+                      <Image
+                        src={brand.logo}
+                        alt={brand.name}
+                        fill
+                        className={`object-contain transition-transform duration-500 group-hover:scale-105 p-4 mix-blend-multiply ${brand.logoClass.replace('object-contain', '').replace('object-cover', '')}`}
+                        sizes="(max-width: 768px) 100vw, 33vw"
+                      />
                     </div>
-                    
-                    <p className="text-base text-anthracite-soft/80 leading-relaxed mb-8 flex-grow">
-                      {brand.description}
-                    </p>
 
-                    <div className="pt-4 border-t border-gray-100">
-                      <Link
-                        href={`/produits?brand=${brand.slug}`}
-                        className="inline-flex items-center gap-2 font-bold text-teal-deep hover:text-gold-soft transition-colors text-base"
-                      >
-                        Découvrir {brand.name} <span>→</span>
-                      </Link>
+                    <div className="flex flex-col flex-1 text-left mt-2">
+                      <span className="text-xs font-bold uppercase tracking-wider text-gold-soft mb-1 line-clamp-1">
+                        {brand.subtitle}
+                      </span>
+                      
+                      <h3 className="font-bold text-base md:text-lg text-anthracite-deep leading-snug group-hover:text-teal-deep transition-colors line-clamp-2 mb-2">
+                        {brand.name}
+                      </h3>
+                      
+                      <div className="mb-2">
+                        <span className="inline-block px-2 py-1.5 rounded text-xs font-bold bg-sage-light/50 text-teal-deep uppercase tracking-wider">
+                          {brand.status}
+                        </span>
+                      </div>
+                      
+                      <p className="text-sm md:text-base text-anthracite-soft mt-1.5 line-clamp-3 flex-grow">
+                        {brand.description}
+                      </p>
+
+                      <div className="mt-4 flex items-center text-teal-deep text-sm font-bold group-hover:text-gold-soft transition-colors border-t border-gray-100 pt-3">
+                        <Link
+                          href={`/produits?brand=${brand.slug}`}
+                          className="w-full flex items-center"
+                        >
+                          Découvrir {brand.name} <span className="ml-1">→</span>
+                        </Link>
+                      </div>
                     </div>
                   </div>
                 </Card>

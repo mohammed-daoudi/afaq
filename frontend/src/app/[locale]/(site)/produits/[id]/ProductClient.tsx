@@ -36,7 +36,12 @@ export function ProductGallery({ product }: { product: Product }) {
         ) : <div className="w-12 h-12 flex-shrink-0" />}
 
         {/* Main Image */}
-        <div className="flex-1 max-w-[350px] md:max-w-[450px] aspect-[4/5] mx-auto relative rounded-xl overflow-hidden group">
+        <div className="flex-1 max-w-[350px] md:max-w-[450px] w-full mx-auto relative group">
+          {product.imageBadge && (
+            <div className="absolute bottom-4 right-4 md:bottom-6 md:right-6 z-30 bg-red-600 text-white px-2 py-0.5 md:px-3 md:py-1 rounded-full text-[8px] md:text-[10px] font-bold uppercase tracking-wider shadow-sm border border-red-700">
+              {product.imageBadge}
+            </div>
+          )}
           <ImageMagnifier 
             src={images[activeIndex]} 
             alt={product.name}
@@ -185,7 +190,7 @@ export function ProductTabs({ product, colors }: { product: Product, colors: any
                {product.duration && (
                  <div className="bg-sage-light/20 p-6 rounded-2xl border border-sage-light/50">
                     <h4 className="text-sm font-bold text-anthracite-soft/60 uppercase tracking-wider mb-2">Durée</h4>
-                    <p className="text-base font-medium text-teal-deep">{product.duration}</p>
+                    <p className="text-base font-medium text-teal-deep whitespace-pre-line leading-relaxed">{product.duration}</p>
                  </div>
                )}
                {product.dosage && (

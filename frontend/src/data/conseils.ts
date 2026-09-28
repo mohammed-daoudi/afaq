@@ -60,6 +60,17 @@ export const MOCK_ARTICLES = [
       <p><strong>3. La dose journalière</strong><br/>Un produit fortement dosé mais nécessitant une prise très importante n’offre pas nécessairement la même simplicité d’utilisation qu’une formule pensée pour une prise quotidienne claire.</p>
       <p><strong>4. Les nutriments associés</strong><br/>Zinc, vitamine D ou vitamines du groupe B peuvent être associés selon l’objectif de la formule.</p>
       <p><strong>5. Le besoin recherché</strong><br/>Un complément destiné à accompagner la fatigue et le fonctionnement nerveux ne sera pas forcément formulé de la même manière qu’un produit destiné principalement au sport ou à la fonction musculaire.</p>
+      
+      <div class="mt-12 text-center flex flex-col items-center">
+        <h3 class="text-3xl font-bold text-teal-deep mb-4 mt-0">Envie d'aller plus loin ?</h3>
+        <p class="text-anthracite-soft mb-8 text-xl">Découvrez notre formule synergique associant Magnésium, Zinc et Vitamine D3.</p>
+        
+        <img src="/images/products/magnesium.jpeg" alt="Bisglycinate de Magnésium" class="rounded-[2.5rem] shadow-xl hover:shadow-2xl hover:scale-[1.02] hover:-rotate-1 transition-all duration-700 ease-out mb-10 w-full object-cover max-h-[500px] cursor-pointer border-4 border-white/50" />
+        
+        <a href="/produits/bisglycinate-magnesium" class="inline-block px-10 py-5 bg-teal-deep text-white !text-white font-bold text-base tracking-wide uppercase rounded-xl hover:bg-gold-soft hover:text-teal-deep transition-all shadow-md no-underline">
+          Découvrir le Bisglycinate de Magnésium
+        </a>
+      </div>
     `,
     takeaway: 'Ne regardez pas uniquement la quantité de magnésium annoncée : examinez sa forme, son apport réel, la dose journalière et les éventuels nutriments associés.'
   },
