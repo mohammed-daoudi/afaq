@@ -30,6 +30,7 @@ const config: Config = {
       fontFamily: {
         heading: ["var(--font-inter)", "sans-serif"],
         sans: ["var(--font-inter)", "sans-serif"],
+        poppins: ["var(--font-poppins)", "sans-serif"],
       },
     },
   },

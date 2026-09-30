@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Outfit, Inter } from "next/font/google";
+import { Outfit, Inter, Poppins } from "next/font/google";
 import "../globals.css";
 
 const outfit = Outfit({
@@ -11,6 +11,13 @@ const outfit = Outfit({
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
+  display: "swap",
+});
+
+const poppins = Poppins({
+  weight: ['300', '400', '500', '600', '700'],
+  subsets: ["latin"],
+  variable: "--font-poppins",
   display: "swap",
 });
 
@@ -41,7 +48,7 @@ export default async function RootLayout({
   const messages = await getMessages();
 
   return (
-    <html lang={locale} className={`${outfit.variable} ${inter.variable}`} dir={locale === 'ar' ? 'rtl' : 'ltr'}>
+    <html lang={locale} className={`${outfit.variable} ${inter.variable} ${poppins.variable}`} dir={locale === 'ar' ? 'rtl' : 'ltr'}>
       <body className="antialiased text-anthracite-soft bg-ivory-soft">
         <NextIntlClientProvider messages={messages}>
           {children}

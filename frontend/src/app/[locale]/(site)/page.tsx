@@ -81,7 +81,7 @@ export default function HomePage() {
             <span key={i} className="flex items-center whitespace-nowrap">
               {['ISO 9001 / 22000', 'Marques Européennes', 'Expertise Nutrition & Bien-Être'].map((item, j) => (
                 <span key={j} className="flex items-center mx-10">
-                  <span className="text-black font-normal text-xl md:text-2xl tracking-widest">
+                  <span className="text-black font-medium text-base md:text-lg tracking-wider">
                     {item}
                   </span>
                   <span className="ml-10 text-gray-300 text-lg">·</span>
@@ -105,13 +105,13 @@ export default function HomePage() {
             variants={staggerContainer} 
             className="w-full lg:w-1/2 max-w-xl"
           >
-            <motion.div variants={fadeUp} className="text-base md:text-lg font-bold uppercase tracking-widest text-gold-soft mb-6">
+            <motion.div variants={fadeUp} className="text-sm md:text-base font-bold uppercase tracking-widest text-gold-soft mb-6">
               L&apos;expertise derrière AFAQ Health
             </motion.div>
-            <motion.p variants={fadeUp} className="text-xl md:text-2xl font-light text-anthracite-soft/90 leading-relaxed mb-6">
+            <motion.p variants={fadeUp} className="text-lg md:text-xl font-light text-anthracite-soft/90 leading-relaxed mb-6">
               AFAQ HEALTH développe et distribue au Maroc un portefeuille de marques européennes sélectionnées pour leur qualité, leur savoir-faire et la pertinence de leurs gammes.
             </motion.p>
-            <motion.p variants={fadeUp} className="text-xl md:text-2xl font-light text-anthracite-soft/90 leading-relaxed mb-8">
+            <motion.p variants={fadeUp} className="text-lg md:text-xl font-light text-anthracite-soft/90 leading-relaxed mb-8">
               Nous accompagnons nos partenaires de l&apos;accès au marché à la commercialisation, en associant expertise réglementaire, développement commercial et connaissance du marché marocain.
             </motion.p>
             <motion.div variants={fadeUp}>
