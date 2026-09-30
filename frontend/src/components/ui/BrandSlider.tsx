@@ -267,7 +267,7 @@
                     className="relative w-full h-[90%] max-w-sm drop-shadow-2xl"
                   >
                     <Image
-                      src={slides[current].productImage}
+                      src={slides[current].productImage || ""}
                       alt={`${slides[current].brand} Products`}
                       fill
                       className="object-contain"
