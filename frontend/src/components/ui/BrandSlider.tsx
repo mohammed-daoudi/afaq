@@ -168,14 +168,15 @@
 
                 logo="/images/kidsslider/nobgkids.png"
                 logoAlt="NATURAMINS KIDS"
-                logoClassName="h-[95px] xl:h-[120px]"
+                logoClassName="h-[105px] xl:h-[130px]"
+                logoMobilePosition="top"
+                logoMobileClassName="h-[76px] md:h-[90px]"
 
                 headlinePart1="Des nutriments essentiels"
                 headlineItalic="pour chaque étape"
                 headlinePart2="de l'enfance"
                 headlineClassName="font-poppins text-[22px] md:text-[26px] xl:text-[32px] leading-[1.12] font-light tracking-[-0.01em] bg-clip-text text-transparent bg-gradient-to-r from-blue-900 to-blue-700"
 
-                tagline="NUTRIMENTS PÉDIATRIQUES"
                 availability="Désormais disponible au Maroc"
                 availabilityBg="linear-gradient(90deg, #1e3a8a 0%, #3b82f6 100%)"
 

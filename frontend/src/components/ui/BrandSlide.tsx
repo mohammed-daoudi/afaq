@@ -29,7 +29,7 @@ type BrandSlideProps = {
   headlineItalic: string;
   headlinePart2: string;
 
-  tagline: string;
+  tagline?: string;
   availability: string;
 
   ctaLabel: string;
@@ -48,8 +48,11 @@ type BrandSlideProps = {
   personImageMobileClassName?: string;
   availabilityBg?: string;
   logoClassName?: string;
+  logoMobileClassName?: string;
+  logoMobilePosition?: 'top' | 'bottom';
   headlineClassName?: string;
   taglineClassName?: string;
+  taglineColor?: string;
 };
 
 export default function BrandSlide({
@@ -85,8 +88,11 @@ export default function BrandSlide({
   personImageMobileClassName = "",
   availabilityBg,
   logoClassName,
+  logoMobileClassName,
+  logoMobilePosition = 'bottom',
   headlineClassName,
   taglineClassName,
+  taglineColor,
 }: BrandSlideProps) {
   return (
     <section
@@ -164,17 +170,17 @@ export default function BrandSlide({
             <div className={`mb-6 xl:mb-8 flex items-center justify-center gap-3 ${taglineClassName || ''}`}>
               <span
                 className="block h-px w-8 xl:w-10"
-                style={{ backgroundColor: accentMid }}
+                style={{ backgroundColor: taglineColor || accentMid }}
               />
               <p
                 className="text-[10px] xl:text-[11px] uppercase tracking-[0.22em] font-bold whitespace-nowrap"
-                style={{ color: accentMid }}
+                style={{ color: taglineColor || accentMid }}
               >
                 {tagline}
               </p>
               <span
                 className="block h-px w-8 xl:w-10"
-                style={{ backgroundColor: accentMid }}
+                style={{ backgroundColor: taglineColor || accentMid }}
               />
             </div>
 
@@ -270,6 +276,29 @@ export default function BrandSlide({
           }}
         />
 
+        {/* Mobile Logo & Tagline (Top Position) */}
+        {logoMobilePosition === 'top' && (
+          <div className="absolute top-4 inset-x-0 flex flex-col items-center z-30">
+            <img
+              src={logo}
+              alt={logoAlt}
+              className={`w-auto object-contain mb-2 ${logoMobileClassName || 'h-16 md:h-20'}`}
+            />
+            {tagline && (
+              <div className="flex items-center gap-2">
+                <span className="block h-px w-5" style={{ backgroundColor: taglineColor || accentMid }} />
+                <p
+                  className={`text-[9px] md:text-[10px] uppercase tracking-[0.18em] font-bold ${taglineClassName || ''}`}
+                  style={{ color: taglineColor || accentMid }}
+                >
+                  {tagline}
+                </p>
+                <span className="block h-px w-5" style={{ backgroundColor: taglineColor || accentMid }} />
+              </div>
+            )}
+          </div>
+        )}
+
         {/* Content */}
         <div className="
           absolute inset-x-0 bottom-0 z-20
@@ -277,22 +306,26 @@ export default function BrandSlide({
           flex flex-col items-center text-center
         ">
 
-          <img
-            src={logo}
-            alt={logoAlt}
-            className="h-12 md:h-14 w-auto object-contain mb-1"
-          />
+          {logoMobilePosition === 'bottom' && (
+            <img
+              src={logo}
+              alt={logoAlt}
+              className={`h-12 md:h-14 w-auto object-contain mb-1 ${logoMobileClassName || ''}`}
+            />
+          )}
 
-          <div className="mb-3 flex items-center gap-2">
-            <span className="block h-px w-5" style={{ backgroundColor: accentMid }} />
-            <p
-              className="text-[9px] md:text-[10px] uppercase tracking-[0.18em] font-bold"
-              style={{ color: accentMid }}
-            >
-              {tagline}
-            </p>
-            <span className="block h-px w-5" style={{ backgroundColor: accentMid }} />
-          </div>
+          {logoMobilePosition === 'bottom' && tagline && (
+            <div className="mb-3 flex items-center gap-2">
+              <span className="block h-px w-5" style={{ backgroundColor: taglineColor || accentMid }} />
+              <p
+                className={`text-[9px] md:text-[10px] uppercase tracking-[0.18em] font-bold ${taglineClassName || ''}`}
+                style={{ color: taglineColor || accentMid }}
+              >
+                {tagline}
+              </p>
+              <span className="block h-px w-5" style={{ backgroundColor: taglineColor || accentMid }} />
+            </div>
+          )}
 
           <div style={{ color: accentDark }}>
             <p className={headlineClassName || "font-poppins text-[22px] md:text-[26px] leading-[1.15] font-light"}>
