@@ -105,9 +105,9 @@
                 logoAlt="SOTYA"
                 logoClassName="h-[58px] xl:h-[66px] -translate-x-4 lg:-translate-x-8"
 
-                headlinePart1="La force"
-                headlineItalic="naturelle"
-                headlinePart2="pour votre bien-être"
+                headlinePart1="Le naturel au service de votre"
+                headlineItalic="bien-être"
+                headlinePart2="au quotidien"
 
                 tagline="Compléments Alimentaires"
                 taglineClassName="-translate-x-4 lg:-translate-x-8"
@@ -135,9 +135,9 @@
                 logoAlt="COLAGENOVA"
                 logoClassName="h-[74px] xl:h-[86px] -translate-x-4 lg:-translate-x-8"
 
-                headlinePart1="Le secret de votre"
-                headlineItalic="vitalité"
-                headlinePart2="intérieure"
+                headlinePart1="Le collagène ciblé"
+                headlineItalic="pour chaque"
+                headlinePart2="besoin"
                 headlineClassName="font-poppins text-[20px] md:text-[22px] xl:text-[26px] leading-[1.15] font-light tracking-[-0.01em]"
 
                 tagline="BEAUTÉ & MOBILITÉ"
@@ -172,8 +172,8 @@
                 logoMobilePosition="top"
                 logoMobileClassName="h-[76px] md:h-[90px]"
 
-                headlinePart1="Des nutriments essentiels"
-                headlineItalic="pour chaque étape"
+                headlinePart1="Nourrir"
+                headlineItalic="chaque étape"
                 headlinePart2="de l'enfance"
                 headlineClassName="font-poppins text-[22px] md:text-[26px] xl:text-[32px] leading-[1.12] font-light tracking-[-0.01em] bg-clip-text text-transparent bg-gradient-to-r from-blue-900 to-blue-700"
 
