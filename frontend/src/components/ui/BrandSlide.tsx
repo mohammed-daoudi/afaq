@@ -285,10 +285,10 @@ export default function BrandSlide({
               className={`w-auto object-contain mb-2 ${logoMobileClassName || 'h-16 md:h-20'}`}
             />
             {tagline && (
-              <div className="flex items-center gap-2">
+              <div className={`flex items-center gap-2 ${taglineClassName || ''}`}>
                 <span className="block h-px w-5" style={{ backgroundColor: taglineColor || accentMid }} />
                 <p
-                  className={`text-[9px] md:text-[10px] uppercase tracking-[0.18em] font-bold ${taglineClassName || ''}`}
+                  className="text-[9px] md:text-[10px] uppercase tracking-[0.18em] font-bold"
                   style={{ color: taglineColor || accentMid }}
                 >
                   {tagline}
@@ -315,10 +315,10 @@ export default function BrandSlide({
           )}
 
           {logoMobilePosition === 'bottom' && tagline && (
-            <div className="mb-3 flex items-center gap-2">
+            <div className={`mb-3 flex items-center gap-2 ${taglineClassName || ''}`}>
               <span className="block h-px w-5" style={{ backgroundColor: taglineColor || accentMid }} />
               <p
-                className={`text-[9px] md:text-[10px] uppercase tracking-[0.18em] font-bold ${taglineClassName || ''}`}
+                className="text-[9px] md:text-[10px] uppercase tracking-[0.18em] font-bold"
                 style={{ color: taglineColor || accentMid }}
               >
                 {tagline}
