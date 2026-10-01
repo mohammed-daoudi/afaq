@@ -28,7 +28,7 @@ const brands = [
     logoClass: 'object-contain scale-[0.84]',
     subtitle: 'COMPLÉMENTS ALIMENTAIRES',
     status: 'MARQUE ESPAGNOLE · DISPONIBLE AU MAROC',
-    description: 'SOTYA propose une gamme diversifiée de compléments alimentaires dédiés à la nutrition et au bien-être au quotidien.',
+    description: 'SOTYA propose une gamme diversifiée de produits dédiés au bien-être et à la qualité de vie au quotidien.',
   },
   {
     slug: 'naturamins-kids',
@@ -48,7 +48,7 @@ const brands = [
     logoClass: 'object-contain scale-90',
     subtitle: 'BEAUTÉ & NUTRITION',
     status: 'MARQUE ESPAGNOLE · PROCHAINEMENT AU MAROC',
-    description: "Colagenova propose une gamme spécialisée dans la nutrition beauté à base de collagène, développée autour de solutions dédiées notamment à la beauté et au bien-être articulaire.",
+    description: "COLAGENOVA propose une gamme spécialisée à base de collagène, développée pour accompagner la beauté et le confort articulaire.",
   }
 ];
 
@@ -65,7 +65,7 @@ export default function HomePage() {
       {/* MARQUEE — scrolls with page, equal gap above and below */}
       <div className="mt-8 mb-12 border-y border-gray-100">
         <div className="w-full bg-transparent overflow-hidden py-4 flex-shrink-0">
-        <style>{`
+          <style>{`
           @keyframes marquee-scroll {
             0%   { transform: translateX(0); }
             100% { transform: translateX(-50%); }
@@ -76,33 +76,33 @@ export default function HomePage() {
             animation: marquee-scroll 45s linear infinite;
           }
         `}</style>
-        <div className="marquee-track select-none" aria-hidden="true">
-          {[0, 1].map((i) => (
-            <span key={i} className="flex items-center whitespace-nowrap">
-              {['ISO 9001 / 22000', 'Marques Européennes', 'Expertise Nutrition & Bien-Être'].map((item, j) => (
-                <span key={j} className="flex items-center mx-10">
-                  <span className="text-black font-medium text-base md:text-lg tracking-wider">
-                    {item}
+          <div className="marquee-track select-none" aria-hidden="true">
+            {[0, 1].map((i) => (
+              <span key={i} className="flex items-center whitespace-nowrap">
+                {['ISO 9001 / 22000', 'Marques Européennes', 'Expertise Nutrition & Bien-Être'].map((item, j) => (
+                  <span key={j} className="flex items-center mx-10">
+                    <span className="text-black font-medium text-base md:text-lg tracking-wider">
+                      {item}
+                    </span>
+                    <span className="ml-10 text-gray-300 text-lg">·</span>
                   </span>
-                  <span className="ml-10 text-gray-300 text-lg">·</span>
-                </span>
-              ))}
-            </span>
-          ))}
-        </div>
+                ))}
+              </span>
+            ))}
+          </div>
         </div>
       </div>
 
       {/* PRÉSENTATION AFAQ HEALTH */}
       <section className="relative w-full bg-[#f6f4ef] py-20 lg:py-28">
         <div className="container mx-auto px-4 md:px-8 lg:px-12 xl:px-24 flex flex-col lg:flex-row items-center justify-between gap-12 lg:gap-8">
-          
+
           {/* Text Content */}
-          <motion.div 
-            initial="hidden" 
-            whileInView="visible" 
-            viewport={{ once: true }} 
-            variants={staggerContainer} 
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={staggerContainer}
             className="w-full lg:w-1/2 max-w-xl"
           >
             <motion.div variants={fadeUp} className="text-sm md:text-base font-bold uppercase tracking-widest text-gold-soft mb-6">
@@ -141,47 +141,47 @@ export default function HomePage() {
       {/* 2. NOS MARQUES */}
       <section className="py-12 bg-white">
         <div className="container mx-auto px-4 max-w-7xl">
-          <div className="text-center mb-16">
+          <div className="text-center mb-10">
             <h2 className="text-4xl md:text-5xl font-extrabold text-teal-deep uppercase tracking-wide">NOS MARQUES</h2>
             <div className="w-24 h-1 bg-gold-soft mx-auto mt-6" />
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {brands.map((brand) => (
-              <div 
+              <div
                 key={brand.slug}
                 className="h-full"
               >
                 <Card className="group cursor-pointer overflow-hidden border-none shadow hover:shadow-xl transition-all duration-300 bg-white h-full flex flex-col">
                   <div className="p-4 md:p-6 flex flex-col flex-1">
                     <div
-                      className="relative w-full aspect-square mb-4 flex items-center justify-center overflow-hidden rounded-xl"
+                      className="relative w-full aspect-[4/3] mb-2 flex items-center justify-center overflow-hidden rounded-xl"
                       style={{ backgroundColor: brand.cardBg }}
                     >
                       <Image
                         src={brand.logo}
                         alt={brand.name}
                         fill
-                        className={`object-contain transition-transform duration-500 group-hover:scale-105 p-4 mix-blend-multiply ${brand.logoClass.replace('object-contain', '').replace('object-cover', '')}`}
+                        className={`object-contain transition-transform duration-500 group-hover:scale-105 p-6 mix-blend-multiply ${brand.logoClass.replace('object-contain', '').replace('object-cover', '')}`}
                         sizes="(max-width: 768px) 100vw, 33vw"
                       />
                     </div>
 
-                    <div className="flex flex-col flex-1 text-left mt-2">
+                    <div className="flex flex-col flex-1 text-left">
                       <span className="text-xs font-bold uppercase tracking-wider text-gold-soft mb-1 line-clamp-1">
                         {brand.subtitle}
                       </span>
-                      
+
                       <h3 className="font-bold text-base md:text-lg text-anthracite-deep leading-snug group-hover:text-teal-deep transition-colors line-clamp-2 mb-2">
                         {brand.name}
                       </h3>
-                      
+
                       <div className="mb-2">
                         <span className="inline-block px-2 py-1.5 rounded text-xs font-bold bg-sage-light/50 text-teal-deep uppercase tracking-wider">
                           {brand.status}
                         </span>
                       </div>
-                      
-                      <p className="text-sm md:text-base text-anthracite-soft mt-1.5 line-clamp-3 flex-grow">
+
+                      <p className="text-sm md:text-[15px] text-anthracite-soft mt-1.5 line-clamp-3 flex-grow leading-relaxed">
                         {brand.description}
                       </p>
 
@@ -209,7 +209,7 @@ export default function HomePage() {
             <h2 className="text-4xl md:text-5xl font-extrabold text-teal-deep uppercase tracking-wide">{t('featuredProducts')}</h2>
             <div className="w-24 h-1 bg-gold-soft mx-auto mt-6" />
           </div>
-          <div 
+          <div
             className="flex overflow-x-auto snap-x snap-mandatory gap-6 pb-6 lg:grid lg:grid-cols-2 xl:grid-cols-4 lg:overflow-visible lg:pb-0 [&::-webkit-scrollbar]:hidden"
             style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
           >
@@ -225,7 +225,7 @@ export default function HomePage() {
               href="/produits"
               className="inline-block px-8 py-4 bg-teal-deep text-white font-bold text-base tracking-wide uppercase rounded-xl hover:bg-gold-soft hover:text-teal-deep transition-all shadow-md shimmer-effect"
             >
-              tous les produits 
+              tous les produits
             </Link>
           </div>
         </div>
@@ -240,7 +240,7 @@ export default function HomePage() {
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            <Link href="/conseils/magnesium-comment-choisir-bonne-formule" className="group block bg-white rounded-[2rem] overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 border border-gray-100 flex flex-col h-full">
+            <Link href="/conseils/magnesium-comment-choisir-bonne-formule" className="group block bg-white rounded-none overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 border border-gray-100 flex flex-col h-full">
               <div className="relative h-64 w-full shrink-0 overflow-hidden">
                 <Image src="/images/unsplash/formulations/formulation_3.jpg" alt="Article 1" fill className="object-cover group-hover:scale-110 transition-transform duration-700" />
               </div>
@@ -251,7 +251,7 @@ export default function HomePage() {
               </div>
             </Link>
 
-            <Link href="/conseils/cycle-feminin-comprendre-role-huile-onagre" className="group block bg-white rounded-[2rem] overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 border border-gray-100 flex flex-col h-full">
+            <Link href="/conseils/cycle-feminin-comprendre-role-huile-onagre" className="group block bg-white rounded-none overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 border border-gray-100 flex flex-col h-full">
               <div className="relative h-64 w-full shrink-0 overflow-hidden">
                 <Image src="/images/unsplash/beauty/beauty_3.jpg" alt="Article 2" fill className="object-cover group-hover:scale-110 transition-transform duration-700" />
               </div>
@@ -262,9 +262,9 @@ export default function HomePage() {
               </div>
             </Link>
 
-            <Link href="/conseils/sante-masculine-comprendre-prostate" className="group block bg-white rounded-[2rem] overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 border border-gray-100 flex flex-col h-full">
+            <Link href="/conseils/sante-masculine-comprendre-prostate" className="group block bg-white rounded-none overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 border border-gray-100 flex flex-col h-full">
               <div className="relative h-64 w-full shrink-0 overflow-hidden">
-                <Image src="/images/unsplash/welness/dane-wetton-zdLdgGbi9Ow-unsplash.jpg" alt="Article 3" fill className="object-cover group-hover:scale-110 transition-transform duration-700" />
+                <Image src="/images/unsplash/welness/prostal-man-taking-pill-full-frame.png" alt="Article 3" fill className="object-cover group-hover:scale-110 transition-transform duration-700" />
               </div>
               <div className="p-8 flex flex-col flex-grow">
                 <span className="text-gold-soft text-xs font-bold uppercase tracking-widest mb-3 block">{t('pediatrics')}</span>

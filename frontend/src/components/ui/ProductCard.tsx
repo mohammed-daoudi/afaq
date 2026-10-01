@@ -157,12 +157,14 @@ export function ProductCard({ product }: ProductCardProps) {
                 <h2 className="text-3xl font-extrabold text-teal-deep mb-2">
                   {product.name}
                 </h2>
-                <p className="text-sm font-semibold text-gold-soft mb-4">
+                <div className="text-sm font-semibold text-gold-soft mb-4 whitespace-pre-line">
                   {product.format}
-                </p>
-                <p className="text-sm text-anthracite-soft/80 mb-6 leading-relaxed">
-                  {product.description}
-                </p>
+                </div>
+                <div className="text-sm text-anthracite-soft/80 mb-6 leading-relaxed space-y-2">
+                  {product.description.split('. ').map((sentence, idx, arr) => (
+                    <p key={idx}>{sentence}{idx < arr.length - 1 ? '.' : ''}</p>
+                  ))}
+                </div>
 
 
 

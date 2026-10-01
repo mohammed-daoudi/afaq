@@ -60,15 +60,17 @@ export default function ProductDetailPage({ params }: { params: { id: string } }
                 <h1 className="text-4xl md:text-5xl font-extrabold text-teal-deep leading-tight mb-2">
                   {product.name}
                 </h1>
-                <p className="text-lg font-semibold text-gold-soft mt-2">
+                <div className="text-lg font-semibold text-gold-soft mt-2 whitespace-pre-line">
                   {product.format}
-                </p>
+                </div>
               </div>
 
               <div className="space-y-6">
-                <p className="text-base text-anthracite-soft/80 leading-relaxed">
-                  {product.description}
-                </p>
+                <div className="text-base text-anthracite-soft/80 leading-relaxed space-y-2">
+                  {product.description.split('. ').map((sentence, idx, arr) => (
+                    <p key={idx}>{sentence}{idx < arr.length - 1 ? '.' : ''}</p>
+                  ))}
+                </div>
               </div>
 
               {/* CTA */}

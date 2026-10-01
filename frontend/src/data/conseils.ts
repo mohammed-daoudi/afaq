@@ -129,7 +129,7 @@ export const MOCK_ARTICLES = [
     slug: 'sante-masculine-comprendre-prostate',
     category: 'Bien-être',
     title: 'Santé masculine : comprendre la prostate et le confort urinaire',
-    image: '/images/unsplash/welness/dane-wetton-zdLdgGbi9Ow-unsplash.jpg',
+    image: '/images/unsplash/welness/prostal-man-taking-pill-full-frame.png',
     date: '15 Septembre 2026',
     readTime: '6 min',
     intro: 'La santé de la prostate devient un sujet auquel de nombreux hommes accordent davantage d’attention avec l\'âge.',

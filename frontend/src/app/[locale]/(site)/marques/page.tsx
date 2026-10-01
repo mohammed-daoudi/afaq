@@ -15,7 +15,7 @@ const brands = [
     logoClass: 'object-cover scale-[0.75]',
     subtitle: 'COMPLÉMENTS ALIMENTAIRES',
     status: 'MARQUE ESPAGNOLE · DISPONIBLE AU MAROC',
-    description: 'SOTYA propose une gamme diversifiée de compléments alimentaires dédiés à la nutrition et au bien-être au quotidien.',
+    description: 'SOTYA propose une gamme diversifiée de produits dédiés au bien-être et à la qualité de vie au quotidien.',
   },
   {
     slug: 'naturamins-kids',
@@ -35,7 +35,7 @@ const brands = [
     logoClass: 'object-contain scale-90',
     subtitle: 'BEAUTÉ & NUTRITION',
     status: 'MARQUE ESPAGNOLE · PROCHAINEMENT AU MAROC',
-    description: "Colagenova propose une gamme spécialisée dans la nutrition beauté à base de collagène, développée autour de solutions dédiées notamment à la beauté et au bien-être articulaire.",
+    description: "COLAGENOVA propose une gamme spécialisée à base de collagène, développée pour accompagner la beauté et le confort articulaire.",
   }
 ];
 
@@ -81,7 +81,7 @@ export default function MarquesPage() {
                 <Card className="group cursor-pointer overflow-hidden border-none shadow hover:shadow-xl transition-all duration-300 bg-white h-full flex flex-col">
                   <div className="p-4 md:p-6 flex flex-col flex-1">
                     <div
-                      className="relative w-full aspect-square mb-4 flex items-center justify-center overflow-hidden rounded-xl"
+                      className="relative w-full aspect-[4/3] mb-2 flex items-center justify-center overflow-hidden rounded-xl"
                       style={{ backgroundColor: brand.cardBg }}
                     >
                       <Image
@@ -93,7 +93,7 @@ export default function MarquesPage() {
                       />
                     </div>
 
-                    <div className="flex flex-col flex-1 text-left mt-2">
+                    <div className="flex flex-col flex-1 text-left">
                       <span className="text-xs font-bold uppercase tracking-wider text-gold-soft mb-1 line-clamp-1">
                         {brand.subtitle}
                       </span>
@@ -108,7 +108,7 @@ export default function MarquesPage() {
                         </span>
                       </div>
                       
-                      <p className="text-sm md:text-base text-anthracite-soft mt-1.5 line-clamp-3 flex-grow">
+                      <p className="text-sm md:text-[15px] text-anthracite-soft mt-1.5 line-clamp-3 flex-grow leading-relaxed">
                         {brand.description}
                       </p>
 

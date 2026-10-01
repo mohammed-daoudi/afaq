@@ -52,7 +52,7 @@ export default function ArticlePage({ params }: { params: { slug: string } }) {
 
       {/* Featured Image */}
       <div className="container mx-auto px-4 max-w-5xl mb-16">
-        <div className="relative h-[400px] md:h-[600px] w-full rounded-[2.5rem] overflow-hidden shadow-lg">
+        <div className="relative h-[400px] md:h-[600px] w-full rounded-none overflow-hidden shadow-lg">
           <Image 
             src={article.image}
             alt={article.title}

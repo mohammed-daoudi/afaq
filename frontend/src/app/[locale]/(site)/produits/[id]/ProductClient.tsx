@@ -133,9 +133,15 @@ export function ProductTabs({ product, colors }: { product: Product, colors: any
                 <h3 className="text-xl font-bold text-teal-deep flex items-center gap-2 mb-4">
                   Description :
                 </h3>
-                <p className="text-anthracite-soft/80 leading-relaxed text-lg whitespace-pre-line">
-                  {product.longDescription}
-                </p>
+                <div className="text-anthracite-soft/80 leading-relaxed text-lg space-y-2">
+                  {product.longDescription.split('\n').map((paragraph, pIdx) => (
+                    <div key={pIdx} className="space-y-2">
+                      {paragraph.split('. ').map((sentence, sIdx, arr) => (
+                        <p key={sIdx}>{sentence}{sIdx < arr.length - 1 ? '.' : ''}</p>
+                      ))}
+                    </div>
+                  ))}
+                </div>
               </section>
             )}
             
@@ -185,7 +191,20 @@ export function ProductTabs({ product, colors }: { product: Product, colors: any
              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                <div className="bg-sage-light/20 p-6 rounded-2xl border border-sage-light/50">
                   <h4 className="text-sm font-bold text-anthracite-soft/60 uppercase tracking-wider mb-2">Format</h4>
-                  <p className="text-base font-medium text-teal-deep">{product.format}</p>
+                  <div className="text-base font-medium text-teal-deep whitespace-pre-line leading-relaxed">
+                    {(() => {
+                      if (product.format.includes(' et ')) {
+                        const [firstPart, rest] = product.format.split(' et ');
+                        const match = rest.match(/^(\d+)(.*)$/);
+                        if (match) {
+                          const secondNum = match[1];
+                          const text = match[2];
+                          return `${secondNum}${text}\n${firstPart}${text}`;
+                        }
+                      }
+                      return product.format;
+                    })()}
+                  </div>
                </div>
                {product.duration && (
                  <div className="bg-sage-light/20 p-6 rounded-2xl border border-sage-light/50">

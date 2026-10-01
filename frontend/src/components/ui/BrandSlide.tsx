@@ -1,4 +1,5 @@
 import React from "react";
+import { motion } from "framer-motion";
 
 /**
  * BrandSlide
@@ -44,15 +45,22 @@ type BrandSlideProps = {
   bgTo?: string;
 
   productOffsetClass?: string;
+  productObjectPosition?: string;
+  productScale?: number;
   personOffsetClass?: string;
   personImageMobileClassName?: string;
   availabilityBg?: string;
+  availabilityColor?: string;
+  availabilityClassName?: string;
   logoClassName?: string;
   logoMobileClassName?: string;
   logoMobilePosition?: 'top' | 'bottom';
   headlineClassName?: string;
+  headlineItalicClassName?: string;
   taglineClassName?: string;
   taglineColor?: string;
+  hideTaglineOnMobile?: boolean;
+  contentClassName?: string;
 };
 
 export default function BrandSlide({
@@ -84,15 +92,22 @@ export default function BrandSlide({
   bgMid  = "#F4F1D9",
   bgTo   = "#DCE8C7",
   productOffsetClass = "",
+  productObjectPosition,
+  productScale,
   personOffsetClass = "",
   personImageMobileClassName = "",
   availabilityBg,
+  availabilityColor,
+  availabilityClassName,
   logoClassName,
   logoMobileClassName,
   logoMobilePosition = 'bottom',
   headlineClassName,
+  headlineItalicClassName,
   taglineClassName,
   taglineColor,
+  hideTaglineOnMobile,
+  contentClassName,
 }: BrandSlideProps) {
   return (
     <section
@@ -122,7 +137,9 @@ export default function BrandSlide({
           alt={productImageAlt}
           className={`absolute inset-y-0 left-0 w-[41%] h-full object-cover ${productOffsetClass}`}
           style={{
-            objectPosition: "110% 50%",
+            objectPosition: productObjectPosition || "110% 50%",
+            transform: productScale ? `scale(${productScale})` : undefined,
+            transformOrigin: "center center",
             maskImage:
               "linear-gradient(to right, black 0%, black 78%, transparent 100%)",
             WebkitMaskImage:
@@ -157,7 +174,7 @@ export default function BrandSlide({
             justify-center
           "
         >
-          <div className="w-full max-w-[560px] px-6 xl:px-8 text-center">
+          <div className={`w-full max-w-[560px] px-6 xl:px-8 text-center ${contentClassName || ''}`}>
 
             {/* LOGO */}
             <img
@@ -167,52 +184,74 @@ export default function BrandSlide({
             />
 
             {/* TAGLINE — right under logo */}
-            <div className={`mb-6 xl:mb-8 flex items-center justify-center gap-3 ${taglineClassName || ''}`}>
-              <span
-                className="block h-px w-8 xl:w-10"
-                style={{ backgroundColor: taglineColor || accentMid }}
-              />
-              <p
-                className="text-[10px] xl:text-[11px] uppercase tracking-[0.22em] font-bold whitespace-nowrap"
-                style={{ color: taglineColor || accentMid }}
-              >
-                {tagline}
-              </p>
-              <span
-                className="block h-px w-8 xl:w-10"
-                style={{ backgroundColor: taglineColor || accentMid }}
-              />
-            </div>
+            {tagline && (
+              <div className={`mb-6 xl:mb-8 flex items-center justify-center gap-3 ${taglineClassName || ''}`}>
+                <span className="block h-px w-8 xl:w-10" style={{ backgroundColor: taglineColor || accentMid }} />
+                <p className="text-[10px] xl:text-[11px] uppercase tracking-[0.22em] font-bold whitespace-nowrap" style={{ color: taglineColor || accentMid }}>
+                  {tagline}
+                </p>
+                <span className="block h-px w-8 xl:w-10" style={{ backgroundColor: taglineColor || accentMid }} />
+              </div>
+            )}
 
             {/* HEADLINE */}
             <div style={{ color: accentDark }}>
               <p className={headlineClassName || "font-poppins text-[26px] xl:text-[32px] leading-[1.12] font-light tracking-[-0.01em]"}>
                 {headlinePart1}{" "}
-                <span className="font-semibold">{headlineItalic}</span>
+                <span className={headlineItalicClassName || "font-semibold"}>{headlineItalic}</span>
               </p>
               <p className={headlineClassName || "font-poppins text-[26px] xl:text-[32px] leading-[1.12] font-light tracking-[-0.01em]"}>
                 {headlinePart2}
               </p>
             </div>
 
-            {/* AVAILABILITY — organic marker highlight */}
-            <div className="mt-4 mb-6 relative inline-flex items-center justify-center px-7 py-2.5">
-              <div 
-                className="absolute inset-0 w-full h-full"
-                style={{ 
-                  background: availabilityBg || "#11763b",
-                  opacity: 0.95,
-                  borderRadius: "255px 15px 225px 15px/15px 225px 15px 255px",
-                  transform: "rotate(-1deg) scaleY(1.05) scaleX(1.02)"
+            {/* AVAILABILITY — luxury animated text */}
+            <motion.div
+              initial={{ opacity: 0, y: 14 }}
+              animate={{
+                opacity: 1,
+                y: 0,
+                scale: [1, 1.18, 1, 1.18, 1, 1.18, 1, 1.18, 1, 1, 1, 1],
+              }}
+              transition={{
+                opacity: { duration: 0.7, ease: "easeOut" },
+                y: { duration: 0.7, ease: "easeOut" },
+                scale: { duration: 2.8, repeat: Infinity, ease: [0.2, 0, 0.6, 1], delay: 1.2,
+                  times: [0, 0.04, 0.10, 0.16, 0.22, 0.29, 0.35, 0.44, 0.50, 0.60, 0.72, 0.86, 1] },
+              }}
+              className={`mt-4 mb-6 inline-flex flex-col items-center ${availabilityClassName || ''}`}
+            >
+              <style>{`
+                @keyframes availability-shimmer {
+                  0%   { background-position: 200% center; }
+                  100% { background-position: -200% center; }
+                }
+              `}</style>
+              <span
+                className="text-[17px] xl:text-[18px] font-semibold tracking-[0.06em] uppercase"
+                style={{
+                  background: `linear-gradient(90deg, ${availabilityColor || accentMid} 25%, rgba(255,255,255,0.85) 50%, ${availabilityColor || accentMid} 75%)`,
+                  backgroundSize: "200% auto",
+                  WebkitBackgroundClip: "text",
+                  WebkitTextFillColor: "transparent",
+                  backgroundClip: "text",
+                  animation: "availability-shimmer 4s linear 1.8s infinite",
                 }}
-              />
-              <p
-                className="relative text-[15px] xl:text-[18px] font-bold tracking-[0.04em] whitespace-nowrap"
-                style={{ color: "#ffffff" }}
               >
-                {availability}
-              </p>
-            </div>
+                {availability?.replace("Maroc", "")}{
+                  availability?.includes("Maroc") && (
+                    <span style={{ fontWeight: 800, filter: `drop-shadow(0 0 4px ${(availabilityColor || accentMid) + "80"})` }}>Maroc</span>
+                  )
+                }
+              </span>
+              <motion.span
+                initial={{ scaleX: 0 }}
+                animate={{ scaleX: 1 }}
+                transition={{ duration: 0.8, delay: 0.8, ease: "easeOut" }}
+                className="block h-px mt-0.5 origin-left"
+                style={{ width: "100%", background: availabilityColor || accentMid, opacity: 0.45 }}
+              />
+            </motion.div>
 
             {/* CTA */}
             <a
@@ -279,20 +318,11 @@ export default function BrandSlide({
         {/* Mobile Logo & Tagline (Top Position) */}
         {logoMobilePosition === 'top' && (
           <div className="absolute top-4 inset-x-0 flex flex-col items-center z-30">
-            <img
-              src={logo}
-              alt={logoAlt}
-              className={`w-auto object-contain mb-2 ${logoMobileClassName || 'h-16 md:h-20'}`}
-            />
-            {tagline && (
+            <img src={logo} alt={logoAlt} className={`w-auto object-contain mb-2 ${logoMobileClassName || 'h-16 md:h-20'}`} />
+            {tagline && !hideTaglineOnMobile && (
               <div className={`flex items-center gap-2 ${taglineClassName || ''}`}>
                 <span className="block h-px w-5" style={{ backgroundColor: taglineColor || accentMid }} />
-                <p
-                  className="text-[9px] md:text-[10px] uppercase tracking-[0.18em] font-bold"
-                  style={{ color: taglineColor || accentMid }}
-                >
-                  {tagline}
-                </p>
+                <p className="text-[9px] md:text-[10px] uppercase tracking-[0.18em] font-bold" style={{ color: taglineColor || accentMid }}>{tagline}</p>
                 <span className="block h-px w-5" style={{ backgroundColor: taglineColor || accentMid }} />
               </div>
             )}
@@ -314,15 +344,10 @@ export default function BrandSlide({
             />
           )}
 
-          {logoMobilePosition === 'bottom' && tagline && (
+          {logoMobilePosition === 'bottom' && tagline && !hideTaglineOnMobile && (
             <div className={`mb-3 flex items-center gap-2 ${taglineClassName || ''}`}>
               <span className="block h-px w-5" style={{ backgroundColor: taglineColor || accentMid }} />
-              <p
-                className="text-[9px] md:text-[10px] uppercase tracking-[0.18em] font-bold"
-                style={{ color: taglineColor || accentMid }}
-              >
-                {tagline}
-              </p>
+              <p className="text-[9px] md:text-[10px] uppercase tracking-[0.18em] font-bold" style={{ color: taglineColor || accentMid }}>{tagline}</p>
               <span className="block h-px w-5" style={{ backgroundColor: taglineColor || accentMid }} />
             </div>
           )}
@@ -330,31 +355,54 @@ export default function BrandSlide({
           <div style={{ color: accentDark }}>
             <p className={headlineClassName || "font-poppins text-[22px] md:text-[26px] leading-[1.15] font-light"}>
               {headlinePart1}{" "}
-              <span className="font-semibold">{headlineItalic}</span>
+              <span className={headlineItalicClassName || "font-semibold"}>{headlineItalic}</span>
             </p>
             <p className={headlineClassName || "font-poppins text-[22px] md:text-[26px] leading-[1.15] font-light"}>
               {headlinePart2}
             </p>
           </div>
 
-          {/* AVAILABILITY — organic marker highlight */}
-          <div className="mt-3 mb-5 relative inline-flex items-center justify-center px-5 py-2">
-            <div 
-              className="absolute inset-0 w-full h-full"
-              style={{ 
-                background: availabilityBg || "#11763b",
-                opacity: 0.95,
-                borderRadius: "255px 15px 225px 15px/15px 225px 15px 255px",
-                transform: "rotate(-1deg) scaleY(1.05) scaleX(1.02)"
+          {/* AVAILABILITY — luxury animated text */}
+          <motion.div
+            initial={{ opacity: 0, y: 14 }}
+            animate={{
+              opacity: 1,
+              y: 0,
+              scale: [1, 1.18, 1, 1.18, 1, 1.18, 1, 1.18, 1, 1, 1, 1],
+            }}
+            transition={{
+              opacity: { duration: 0.7, ease: "easeOut" },
+              y: { duration: 0.7, ease: "easeOut" },
+              scale: { duration: 2.8, repeat: Infinity, ease: [0.2, 0, 0.6, 1], delay: 1.2,
+                times: [0, 0.04, 0.10, 0.16, 0.22, 0.29, 0.35, 0.44, 0.50, 0.60, 0.72, 0.86, 1] },
+            }}
+            className={`mt-3 mb-5 inline-flex flex-col items-center ${availabilityClassName || ''}`}
+          >
+            <span
+              className="text-[14px] md:text-[15px] font-semibold tracking-[0.06em] uppercase"
+              style={{
+                background: `linear-gradient(90deg, ${availabilityColor || accentMid} 25%, rgba(255,255,255,0.85) 50%, ${availabilityColor || accentMid} 75%)`,
+                backgroundSize: "200% auto",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+                backgroundClip: "text",
+                animation: "availability-shimmer 4s linear 1.8s infinite",
               }}
-            />
-            <p
-              className="relative text-[12px] md:text-[14px] font-bold tracking-[0.04em] whitespace-nowrap"
-              style={{ color: "#ffffff" }}
             >
-              {availability}
-            </p>
-          </div>
+              {availability?.replace("Maroc", "")}{
+                availability?.includes("Maroc") && (
+                  <span style={{ fontWeight: 800, filter: `drop-shadow(0 0 4px ${(availabilityColor || accentMid) + "80"})` }}>Maroc</span>
+                )
+              }
+            </span>
+            <motion.span
+              initial={{ scaleX: 0 }}
+              animate={{ scaleX: 1 }}
+              transition={{ duration: 0.8, delay: 0.8, ease: "easeOut" }}
+              className="block h-px mt-0.5 origin-left"
+              style={{ width: "100%", background: availabilityColor || accentMid, opacity: 0.45 }}
+            />
+          </motion.div>
 
           <a
             href={ctaHref}

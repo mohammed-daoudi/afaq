@@ -140,25 +140,22 @@ export default function PharmaciesPage() {
   }
 
   return (
-    <div className="min-h-screen bg-ivory-soft pt-12 pb-24 flex flex-col">
+    <div className="min-h-screen bg-ivory-soft pt-8 pb-24 flex flex-col">
       <div className="container mx-auto px-4 flex-grow flex flex-col h-full">
         
         {/* Page Header */}
-        <div className="max-w-4xl mx-auto mb-8 space-y-4 text-center flex flex-col items-center">
-          <div className="flex items-center justify-center gap-3">
-            <div className="inline-block px-3 py-1 text-xs font-semibold tracking-wider text-teal-deep bg-sage-light rounded-full uppercase">
-              Notre Réseau
-            </div>
-            {isProductFiltered && (
+        <div className="max-w-4xl mx-auto mb-6 space-y-3 text-center flex flex-col items-center">
+          {isProductFiltered && (
+            <div className="flex items-center justify-center gap-3">
               <div className="inline-block px-3 py-1 text-xs font-semibold tracking-wider text-white bg-gold-soft rounded-full uppercase">
                 Stock Vérifié ✓
               </div>
-            )}
-          </div>
-          <h1 className="text-4xl md:text-5xl font-extrabold text-teal-deep">
+            </div>
+          )}
+          <h1 className="text-3xl md:text-4xl font-extrabold text-teal-deep">
             Pharmacies à <span className="text-gold-soft">proximité</span>
           </h1>
-          <p className="text-lg text-anthracite-soft/80 max-w-2xl mx-auto">
+          <p className="text-base text-anthracite-soft/80 max-w-2xl mx-auto">
             {isProductFiltered 
               ? "Les pharmacies ci-dessous ont déclaré avoir ce produit en stock." 
               : "Recherchez les pharmacies partenaires AFAQ HEALTH distribuant nos références près de chez vous."}
@@ -169,7 +166,7 @@ export default function PharmaciesPage() {
         <div className="flex-grow flex flex-col lg:flex-row-reverse gap-6 lg:h-[70vh] lg:min-h-[600px]">
           
           {/* Sidebar (Search & List) */}
-          <div className="w-full lg:w-5/12 xl:w-1/3 bg-white rounded-3xl shadow-sm border border-sage-light flex flex-col overflow-hidden h-[500px] lg:h-auto">
+          <div className="w-full lg:w-1/2 xl:w-5/12 bg-white rounded-3xl shadow-sm border border-sage-light flex flex-col overflow-hidden h-[500px] lg:h-auto">
             
             {/* Search Header */}
             <div className="p-6 border-b border-sage-light/50 bg-ivory-soft/30 space-y-4">
@@ -177,14 +174,14 @@ export default function PharmaciesPage() {
                 <input 
                   type="text" 
                   placeholder="Rechercher une pharmacie, un quartier..." 
-                  className="w-full sm:w-[60%] lg:w-1/2 px-4 py-3 rounded-xl border border-sage-light focus:border-teal-deep focus:ring-1 focus:ring-teal-deep outline-none bg-white transition-all text-sm"
+                  className="flex-1 px-4 py-3 rounded-xl border border-sage-light focus:border-teal-deep focus:ring-1 focus:ring-teal-deep outline-none bg-white transition-all text-sm"
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
                 />
                 <button
                   onClick={handleLocateMe}
                   disabled={isLocating}
-                  className="flex items-center justify-center gap-2 bg-white border border-teal-deep text-teal-deep px-4 py-3 rounded-xl hover:bg-sage-light transition-all text-sm font-semibold whitespace-nowrap disabled:opacity-50"
+                  className="flex-shrink-0 flex items-center justify-center gap-2 bg-white border border-teal-deep text-teal-deep px-4 py-3 rounded-xl hover:bg-sage-light transition-all text-sm font-semibold whitespace-nowrap disabled:opacity-50"
                   title="Trouver les pharmacies autour de moi"
                 >
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -258,7 +255,7 @@ export default function PharmaciesPage() {
           </div>
 
           {/* Map Area */}
-          <div className="w-full lg:w-7/12 xl:w-2/3 bg-white rounded-3xl shadow-sm border border-sage-light relative overflow-hidden flex flex-col z-0 h-[300px] sm:h-[400px] lg:h-auto lg:min-h-0">
+          <div className="w-full lg:w-1/2 xl:w-7/12 bg-white rounded-3xl shadow-sm border border-sage-light relative overflow-hidden flex flex-col z-0 h-[300px] sm:h-[400px] lg:h-auto lg:min-h-0">
             {isLoading ? (
               <div className="absolute inset-0 flex items-center justify-center bg-[#f4f7f6]">
                 <div className="text-teal-deep font-semibold">Chargement de la carte...</div>

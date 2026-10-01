@@ -18,7 +18,7 @@
         brand: "SOTYA",
         title: t('sotyaTitle'),
         subtitle: t('sotyaSubtitle'),
-        link: "/marques/sotya",
+        link: "/produits?brand=sotya",
 
         bgColor: "bg-[#f4f1d9]",
         accentColor: "bg-[#176747]",
@@ -29,7 +29,7 @@
         brand: "NATURAMINS KIDS",
         title: t('naturaminsTitle'),
         subtitle: t('naturaminsSubtitle'),
-        link: "/marques/naturamins-kids",
+        link: "/produits?brand=naturamins-kids",
         leftImage: "/images/unsplash/comp/Gemini_Generated_Image_1tkniv1tkniv1tkn.jpg",
         productImage: "/uploaded/sotya_smile_1786930963164.png",
         bgColor: "bg-[#eaf4ec]",
@@ -41,7 +41,7 @@
         brand: "COLAGENOVA",
         title: t('colagenovaTitle'),
         subtitle: t('colagenovaSubtitle'),
-        link: "/marques/colagenova",
+        link: "/produits?brand=colagenova",
         leftImage: "/images/unsplash/welness/capture_welness_2.png",
         productImage: "/uploaded/onagre_bottle_final_1786939944849.png",
         bgColor: "bg-[#fcf5f5]",
@@ -103,15 +103,18 @@
 
                 logo="/images/sotyaslider/nobgsotya.png"
                 logoAlt="SOTYA"
-                logoClassName="h-[58px] xl:h-[66px] -translate-x-4 lg:-translate-x-8"
+                logoClassName="h-[68px] xl:h-[78px] -translate-x-2 lg:-translate-x-4"
 
                 headlinePart1="Le naturel au service de votre"
                 headlineItalic="bien-être"
                 headlinePart2="au quotidien"
+                headlineClassName="font-poppins text-[26px] xl:text-[32px] leading-[1.12] font-light tracking-[-0.01em]"
 
                 tagline="Compléments Alimentaires"
-                taglineClassName="-translate-x-4 lg:-translate-x-8"
+                taglineClassName="-translate-x-2 lg:-translate-x-4"
                 availability="Désormais disponible au Maroc"
+                availabilityColor="#176747"
+                availabilityClassName="-translate-x-6 lg:-translate-x-16"
 
                 ctaLabel="Découvrir la gamme"
                 ctaHref={slides[current].link}
@@ -125,7 +128,7 @@
               />
             ) : slides[current].id === 3 ? (
               <BrandSlide
-                productImage="/images/collagenslider/collagenat.png"
+                productImage="/images/collagenslider/zyounat.png"
                 productImageAlt="Gamme COLAGENOVA"
 
                 personImage="/images/collagenslider/madamcollagene.png"
@@ -133,7 +136,7 @@
 
                 logo="/images/collagenslider/nobgcollagene.png"
                 logoAlt="COLAGENOVA"
-                logoClassName="h-[74px] xl:h-[86px] -translate-x-4 lg:-translate-x-8"
+                logoClassName="h-[84px] xl:h-[98px] -translate-x-2 lg:-translate-x-4 -translate-y-4 lg:-translate-y-6"
 
                 headlinePart1="Le collagène ciblé"
                 headlineItalic="pour chaque"
@@ -141,9 +144,11 @@
                 headlineClassName="font-poppins text-[20px] md:text-[22px] xl:text-[26px] leading-[1.15] font-light tracking-[-0.01em]"
 
                 tagline="BEAUTÉ & MOBILITÉ"
-                taglineClassName="-translate-x-4 lg:-translate-x-8"
+                taglineClassName="-translate-x-2 lg:-translate-x-4 -translate-y-4 lg:-translate-y-6"
                 availability="Désormais disponible au Maroc"
-                availabilityBg="linear-gradient(90deg, #be185d 0%, #f472b6 100%)"
+                availabilityColor="#be185d"
+                availabilityClassName="-translate-x-6 lg:-translate-x-16"
+                contentClassName="translate-x-1 lg:translate-x-2"
 
                 ctaLabel="Découvrir la gamme"
                 ctaHref={slides[current].link}
@@ -157,8 +162,10 @@
               />
             ) : slides[current].id === 2 ? (
               <BrandSlide
-                productImage="/images/kidsslider/natuu.png"
+                productImage="/images/kidsslider/fishkid.png"
                 productImageAlt="Produits NATURAMINS KIDS"
+                productObjectPosition="50% 50%"
+                productScale={1.08}
 
                 personImage="/images/kidsslider/nizz.png"
                 personImageMobile="/images/kidsslider/nizarr.png"
@@ -168,24 +175,29 @@
 
                 logo="/images/kidsslider/nobgkids.png"
                 logoAlt="NATURAMINS KIDS"
-                logoClassName="h-[105px] xl:h-[130px]"
+                logoClassName="h-[120px] xl:h-[150px]"
                 logoMobilePosition="top"
-                logoMobileClassName="h-[76px] md:h-[90px]"
+                logoMobileClassName="h-[86px] md:h-[100px]"
 
                 headlinePart1="Nourrir"
                 headlineItalic="chaque étape"
                 headlinePart2="de l'enfance"
-                headlineClassName="font-poppins text-[22px] md:text-[26px] xl:text-[32px] leading-[1.12] font-light tracking-[-0.01em] bg-clip-text text-transparent bg-gradient-to-r from-blue-900 to-blue-700"
+                headlineClassName="font-sans font-light text-blue-700 text-[24px] md:text-[28px] xl:text-[34px] leading-[1.4] tracking-wide"
+                headlineItalicClassName="font-serif italic font-normal text-blue-800"
+
+                tagline="NUTRITION PÉDIATRIQUE"
+                taglineColor="#1d4ed8"
+                hideTaglineOnMobile
 
                 availability="Désormais disponible au Maroc"
-                availabilityBg="linear-gradient(90deg, #1e3a8a 0%, #3b82f6 100%)"
+                availabilityColor="#1d4ed8"
 
                 ctaLabel="Découvrir la gamme"
                 ctaHref={slides[current].link}
                 ctaBg="linear-gradient(90deg, #1e3a8a 0%, #3b82f6 100%)"
 
-                accentDark="#0f4c3a"
-                accentMid="#176747"
+                accentDark="#1e3a8a"
+                accentMid="#2563eb"
 
                 bgFrom="#eaf4ec"
                 bgMid="#f3f9f4"
