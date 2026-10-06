@@ -24,7 +24,7 @@ const brands = [
     cardBg: '#FFFFFF',
     logoClass: 'object-cover',
     subtitle: 'NUTRITION PÉDIATRIQUE',
-    status: 'MARQUE ESPAGNOLE · PROCHAIN LANCEMENT — JANVIER 2027',
+    status: 'MARQUE ESPAGNOLE · Lancement en Janvier 2027',
     description: 'Naturamins Kids propose une gamme dédiée aux besoins nutritionnels de l’enfant, conçue pour accompagner les familles au quotidien.',
   },
   {

@@ -47,6 +47,7 @@ export function ProductGallery({ product }: { product: Product }) {
             alt={product.name}
             zoomLevel={2}
             onClick={() => setFullscreenImage(images[activeIndex])}
+            imageClassName={activeIndex === 0 ? product.imageScaleClass : undefined}
           />
         </div>
 

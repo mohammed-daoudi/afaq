@@ -32,6 +32,18 @@ type BrandSlideProps = {
 
   tagline?: string;
   availability: string;
+  availabilityVariant?: "default" | "announcement";
+  supportText?: string;
+  mobileHeadlinePart1?: string;
+  mobileHeadlineItalic?: string;
+  mobileHeadlinePart2?: string;
+  mobileHeadlineClassName?: string;
+  mobileHeadlineItalicClassName?: string;
+  mobileTagline?: string;
+  mobileTaglineClassName?: string;
+  mobileAvailability?: string;
+  mobileAvailabilityVariant?: "default" | "announcement";
+  mobileSupportText?: string | null;
 
   ctaLabel: string;
   ctaHref: string;
@@ -49,7 +61,6 @@ type BrandSlideProps = {
   productScale?: number;
   personOffsetClass?: string;
   personImageMobileClassName?: string;
-  availabilityBg?: string;
   availabilityColor?: string;
   availabilityClassName?: string;
   logoClassName?: string;
@@ -57,6 +68,7 @@ type BrandSlideProps = {
   logoMobilePosition?: 'top' | 'bottom';
   headlineClassName?: string;
   headlineItalicClassName?: string;
+  supportTextClassName?: string;
   taglineClassName?: string;
   taglineColor?: string;
   hideTaglineOnMobile?: boolean;
@@ -80,6 +92,18 @@ export default function BrandSlide({
 
   tagline,
   availability,
+  availabilityVariant = "default",
+  supportText,
+  mobileHeadlinePart1,
+  mobileHeadlineItalic,
+  mobileHeadlinePart2,
+  mobileHeadlineClassName,
+  mobileHeadlineItalicClassName,
+  mobileTagline,
+  mobileTaglineClassName,
+  mobileAvailability,
+  mobileAvailabilityVariant,
+  mobileSupportText,
 
   ctaLabel,
   ctaHref,
@@ -89,14 +113,13 @@ export default function BrandSlide({
   accentMid = "#3E8B61",
 
   bgFrom = "#E4DDBD",
-  bgMid  = "#F4F1D9",
-  bgTo   = "#DCE8C7",
+  bgMid = "#F4F1D9",
+  bgTo = "#DCE8C7",
   productOffsetClass = "",
   productObjectPosition,
   productScale,
   personOffsetClass = "",
   personImageMobileClassName = "",
-  availabilityBg,
   availabilityColor,
   availabilityClassName,
   logoClassName,
@@ -104,15 +127,88 @@ export default function BrandSlide({
   logoMobilePosition = 'bottom',
   headlineClassName,
   headlineItalicClassName,
+  supportTextClassName,
   taglineClassName,
   taglineColor,
   hideTaglineOnMobile,
   contentClassName,
 }: BrandSlideProps) {
+  const availabilityTone = availabilityColor || accentMid;
+  const resolvedMobileHeadlinePart1 = mobileHeadlinePart1 ?? headlinePart1;
+  const resolvedMobileHeadlineItalic = mobileHeadlineItalic ?? headlineItalic;
+  const resolvedMobileHeadlinePart2 = mobileHeadlinePart2 ?? headlinePart2;
+  const resolvedMobileHeadlineClassName = mobileHeadlineClassName ?? headlineClassName;
+  const resolvedMobileHeadlineItalicClassName = mobileHeadlineItalicClassName ?? headlineItalicClassName;
+  const resolvedMobileTagline = mobileTagline ?? tagline;
+  const resolvedMobileTaglineClassName = mobileTaglineClassName ?? taglineClassName;
+  const resolvedMobileAvailability = mobileAvailability ?? availability;
+  const resolvedMobileAvailabilityVariant = mobileAvailabilityVariant ?? availabilityVariant;
+  const resolvedMobileSupportText = mobileSupportText === undefined ? supportText : mobileSupportText;
+
+  const renderAvailability = (
+    mobile = false,
+    variant = availabilityVariant,
+    text = availability,
+  ) => {
+    if (variant === "announcement") return null;
+    const shouldShimmer = text?.includes("Maroc");
+
+    return (
+      <motion.div
+        initial={{ opacity: 0, y: 14 }}
+        animate={{
+          opacity: 1,
+          y: 0,
+          scale: [1, 1.18, 1, 1.18, 1, 1.18, 1, 1.18, 1, 1, 1, 1],
+        }}
+        transition={{
+          opacity: { duration: 0.7, ease: "easeOut" },
+          y: { duration: 0.7, ease: "easeOut" },
+          scale: {
+            duration: 2.8, repeat: Infinity, ease: [0.2, 0, 0.6, 1], delay: 1.2,
+            times: [0, 0.04, 0.10, 0.16, 0.22, 0.29, 0.35, 0.44, 0.50, 0.60, 0.72, 0.86, 1]
+          },
+        }}
+        className={`${mobile ? "mt-3 mb-5" : "mt-4 mb-6"} inline-flex flex-col items-center ${availabilityClassName || ''}`}
+      >
+        <span
+          className={`${mobile ? "text-[14px] md:text-[15px]" : "text-[17px] xl:text-[18px]"} font-semibold uppercase tracking-[0.06em]`}
+          style={shouldShimmer ? {
+            background: `linear-gradient(90deg, ${availabilityTone} 25%, rgba(255,255,255,0.85) 50%, ${availabilityTone} 75%)`,
+            backgroundSize: "200% auto",
+            WebkitBackgroundClip: "text",
+            WebkitTextFillColor: "transparent",
+            backgroundClip: "text",
+            animation: "availability-shimmer 4s linear 1.8s infinite",
+          } : { color: availabilityTone }}
+        >
+          {text?.replace("Maroc", "")}{
+            text?.includes("Maroc") && (
+              <span style={{ fontWeight: 800, filter: `drop-shadow(0 0 4px ${availabilityTone + "80"})` }}>Maroc</span>
+            )
+          }
+        </span>
+        <motion.span
+          initial={{ scaleX: 0 }}
+          animate={{ scaleX: 1 }}
+          transition={{ duration: 0.8, delay: 0.8, ease: "easeOut" }}
+          className="mt-0.5 block h-px origin-left"
+          style={{ width: "100%", background: availabilityTone, opacity: 0.45 }}
+        />
+      </motion.div>
+    );
+  };
+
   return (
     <section
       className="relative w-full h-[460px] md:h-[440px] lg:h-[460px] overflow-hidden"
     >
+      <style>{`
+        @keyframes availability-shimmer {
+          0%   { background-position: 200% center; }
+          100% { background-position: -200% center; }
+        }
+      `}</style>
 
       {/* =========================================================
           DESKTOP  ≥ lg
@@ -205,59 +301,20 @@ export default function BrandSlide({
               </p>
             </div>
 
-            {/* AVAILABILITY — luxury animated text */}
-            <motion.div
-              initial={{ opacity: 0, y: 14 }}
-              animate={{
-                opacity: 1,
-                y: 0,
-                scale: [1, 1.18, 1, 1.18, 1, 1.18, 1, 1.18, 1, 1, 1, 1],
-              }}
-              transition={{
-                opacity: { duration: 0.7, ease: "easeOut" },
-                y: { duration: 0.7, ease: "easeOut" },
-                scale: { duration: 2.8, repeat: Infinity, ease: [0.2, 0, 0.6, 1], delay: 1.2,
-                  times: [0, 0.04, 0.10, 0.16, 0.22, 0.29, 0.35, 0.44, 0.50, 0.60, 0.72, 0.86, 1] },
-              }}
-              className={`mt-4 mb-6 inline-flex flex-col items-center ${availabilityClassName || ''}`}
-            >
-              <style>{`
-                @keyframes availability-shimmer {
-                  0%   { background-position: 200% center; }
-                  100% { background-position: -200% center; }
-                }
-              `}</style>
-              <span
-                className="text-[17px] xl:text-[18px] font-semibold tracking-[0.06em] uppercase"
-                style={{
-                  background: `linear-gradient(90deg, ${availabilityColor || accentMid} 25%, rgba(255,255,255,0.85) 50%, ${availabilityColor || accentMid} 75%)`,
-                  backgroundSize: "200% auto",
-                  WebkitBackgroundClip: "text",
-                  WebkitTextFillColor: "transparent",
-                  backgroundClip: "text",
-                  animation: "availability-shimmer 4s linear 1.8s infinite",
-                }}
-              >
-                {availability?.replace("Maroc", "")}{
-                  availability?.includes("Maroc") && (
-                    <span style={{ fontWeight: 800, filter: `drop-shadow(0 0 4px ${(availabilityColor || accentMid) + "80"})` }}>Maroc</span>
-                  )
-                }
-              </span>
-              <motion.span
-                initial={{ scaleX: 0 }}
-                animate={{ scaleX: 1 }}
-                transition={{ duration: 0.8, delay: 0.8, ease: "easeOut" }}
-                className="block h-px mt-0.5 origin-left"
-                style={{ width: "100%", background: availabilityColor || accentMid, opacity: 0.45 }}
-              />
-            </motion.div>
+            {supportText && (
+              <p className={`mx-auto mt-3 max-w-[480px] text-[15px] xl:text-[16px] leading-relaxed text-[#26443a]/80 ${supportTextClassName || ""}`}>
+                {supportText}
+              </p>
+            )}
+
+            {renderAvailability(false)}
 
             {/* CTA */}
             <a
               href={ctaHref}
               className="
                 inline-flex items-center justify-center gap-2
+                mt-3
                 rounded-full px-6 py-2.5
                 text-xs md:text-sm font-semibold
                 transition-transform hover:scale-105
@@ -319,10 +376,10 @@ export default function BrandSlide({
         {logoMobilePosition === 'top' && (
           <div className="absolute top-4 inset-x-0 flex flex-col items-center z-30">
             <img src={logo} alt={logoAlt} className={`w-auto object-contain mb-2 ${logoMobileClassName || 'h-16 md:h-20'}`} />
-            {tagline && !hideTaglineOnMobile && (
-              <div className={`flex items-center gap-2 ${taglineClassName || ''}`}>
+            {resolvedMobileTagline && !hideTaglineOnMobile && (
+              <div className={`flex items-center gap-2 ${resolvedMobileTaglineClassName || ''}`}>
                 <span className="block h-px w-5" style={{ backgroundColor: taglineColor || accentMid }} />
-                <p className="text-[9px] md:text-[10px] uppercase tracking-[0.18em] font-bold" style={{ color: taglineColor || accentMid }}>{tagline}</p>
+                <p className="text-[9px] md:text-[10px] uppercase tracking-[0.18em] font-bold" style={{ color: taglineColor || accentMid }}>{resolvedMobileTagline}</p>
                 <span className="block h-px w-5" style={{ backgroundColor: taglineColor || accentMid }} />
               </div>
             )}
@@ -344,65 +401,31 @@ export default function BrandSlide({
             />
           )}
 
-          {logoMobilePosition === 'bottom' && tagline && !hideTaglineOnMobile && (
-            <div className={`mb-3 flex items-center gap-2 ${taglineClassName || ''}`}>
+          {logoMobilePosition === 'bottom' && resolvedMobileTagline && !hideTaglineOnMobile && (
+            <div className={`mb-3 flex items-center gap-2 ${resolvedMobileTaglineClassName || ''}`}>
               <span className="block h-px w-5" style={{ backgroundColor: taglineColor || accentMid }} />
-              <p className="text-[9px] md:text-[10px] uppercase tracking-[0.18em] font-bold" style={{ color: taglineColor || accentMid }}>{tagline}</p>
+              <p className="text-[9px] md:text-[10px] uppercase tracking-[0.18em] font-bold" style={{ color: taglineColor || accentMid }}>{resolvedMobileTagline}</p>
               <span className="block h-px w-5" style={{ backgroundColor: taglineColor || accentMid }} />
             </div>
           )}
 
           <div style={{ color: accentDark }}>
-            <p className={headlineClassName || "font-poppins text-[22px] md:text-[26px] leading-[1.15] font-light"}>
-              {headlinePart1}{" "}
-              <span className={headlineItalicClassName || "font-semibold"}>{headlineItalic}</span>
+            <p className={resolvedMobileHeadlineClassName || "font-poppins text-[22px] md:text-[26px] leading-[1.15] font-light"}>
+              {resolvedMobileHeadlinePart1}{" "}
+              <span className={resolvedMobileHeadlineItalicClassName || "font-semibold"}>{resolvedMobileHeadlineItalic}</span>
             </p>
-            <p className={headlineClassName || "font-poppins text-[22px] md:text-[26px] leading-[1.15] font-light"}>
-              {headlinePart2}
+            <p className={resolvedMobileHeadlineClassName || "font-poppins text-[22px] md:text-[26px] leading-[1.15] font-light"}>
+              {resolvedMobileHeadlinePart2}
             </p>
           </div>
 
-          {/* AVAILABILITY — luxury animated text */}
-          <motion.div
-            initial={{ opacity: 0, y: 14 }}
-            animate={{
-              opacity: 1,
-              y: 0,
-              scale: [1, 1.18, 1, 1.18, 1, 1.18, 1, 1.18, 1, 1, 1, 1],
-            }}
-            transition={{
-              opacity: { duration: 0.7, ease: "easeOut" },
-              y: { duration: 0.7, ease: "easeOut" },
-              scale: { duration: 2.8, repeat: Infinity, ease: [0.2, 0, 0.6, 1], delay: 1.2,
-                times: [0, 0.04, 0.10, 0.16, 0.22, 0.29, 0.35, 0.44, 0.50, 0.60, 0.72, 0.86, 1] },
-            }}
-            className={`mt-3 mb-5 inline-flex flex-col items-center ${availabilityClassName || ''}`}
-          >
-            <span
-              className="text-[14px] md:text-[15px] font-semibold tracking-[0.06em] uppercase"
-              style={{
-                background: `linear-gradient(90deg, ${availabilityColor || accentMid} 25%, rgba(255,255,255,0.85) 50%, ${availabilityColor || accentMid} 75%)`,
-                backgroundSize: "200% auto",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-                backgroundClip: "text",
-                animation: "availability-shimmer 4s linear 1.8s infinite",
-              }}
-            >
-              {availability?.replace("Maroc", "")}{
-                availability?.includes("Maroc") && (
-                  <span style={{ fontWeight: 800, filter: `drop-shadow(0 0 4px ${(availabilityColor || accentMid) + "80"})` }}>Maroc</span>
-                )
-              }
-            </span>
-            <motion.span
-              initial={{ scaleX: 0 }}
-              animate={{ scaleX: 1 }}
-              transition={{ duration: 0.8, delay: 0.8, ease: "easeOut" }}
-              className="block h-px mt-0.5 origin-left"
-              style={{ width: "100%", background: availabilityColor || accentMid, opacity: 0.45 }}
-            />
-          </motion.div>
+          {resolvedMobileSupportText && (
+            <p className={`mx-auto mt-2 max-w-[350px] text-[13px] leading-[1.6] text-[#26443a]/80 md:text-[14.5px] ${supportTextClassName || ""}`}>
+              {resolvedMobileSupportText}
+            </p>
+          )}
+
+          {renderAvailability(true, resolvedMobileAvailabilityVariant, resolvedMobileAvailability)}
 
           <a
             href={ctaHref}

@@ -14,6 +14,7 @@ export const MOCK_ARTICLES = [
     category: 'Nutrition',
     title: 'Magnésium : comment choisir la bonne formule ?',
     image: '/images/unsplash/formulations/formulation_3.jpg',
+    video: '/videos/vidmag.mp4',
     date: '25 Septembre 2026',
     readTime: '4 min',
     intro: 'Fatigue, périodes de stress, activité intense ou rythme de vie soutenu peuvent amener certaines personnes à s’intéresser davantage à leurs apports en magnésium.',
@@ -22,8 +23,6 @@ export const MOCK_ARTICLES = [
       <p>Le magnésium participe à de nombreux processus physiologiques. Il contribue notamment au fonctionnement normal du système nerveux, à une fonction musculaire normale et à la réduction de la fatigue.</p>
       <p>Les besoins peuvent varier selon l’alimentation, le mode de vie et les périodes de vie.</p>
       <p>Une alimentation variée reste la première source de nutriments. Les aliments tels que les fruits à coque, les légumineuses et certaines céréales complètes constituent notamment des sources alimentaires de magnésium.</p>
-      
-      <img src="/images/unsplash/formulations/formulation_4.jpg" alt="Magnésium" class="rounded-[2.5rem] shadow-xl hover:shadow-2xl hover:scale-[1.02] hover:-rotate-1 transition-all duration-700 ease-out my-14 w-full object-cover max-h-[500px] cursor-pointer border-4 border-white/50" />
       
       <h2>Toutes les formules de magnésium se valent-elles ?</h2>
       <p>Pas nécessairement.</p>
@@ -51,8 +50,6 @@ export const MOCK_ARTICLES = [
       </ul>
       <p>Elle est positionnée autour de trois axes : <strong>Stress & fatigue</strong>, <strong>Détente & sommeil</strong>, <strong>Système nerveux</strong>.</p>
       
-      <img src="/images/unsplash/formulations/plants_2.png" alt="Ingrédients" class="rounded-[2.5rem] shadow-xl hover:shadow-2xl hover:scale-[1.02] hover:-rotate-1 transition-all duration-700 ease-out my-14 w-full object-cover max-h-[500px] cursor-pointer border-4 border-white/50" />
-      
       <h2>Comment choisir son magnésium ?</h2>
       <p>Avant de choisir, vérifiez principalement :</p>
       <p><strong>1. La forme du magnésium</strong><br/>La forme utilisée constitue un premier élément de comparaison.</p>
@@ -61,14 +58,11 @@ export const MOCK_ARTICLES = [
       <p><strong>4. Les nutriments associés</strong><br/>Zinc, vitamine D ou vitamines du groupe B peuvent être associés selon l’objectif de la formule.</p>
       <p><strong>5. Le besoin recherché</strong><br/>Un complément destiné à accompagner la fatigue et le fonctionnement nerveux ne sera pas forcément formulé de la même manière qu’un produit destiné principalement au sport ou à la fonction musculaire.</p>
       
-      <div class="mt-12 text-center flex flex-col items-center">
+      <div class="mt-12 text-center hidden lg:flex flex-col items-center">
         <h3 class="text-3xl font-bold text-teal-deep mb-4 mt-0">Envie d'aller plus loin ?</h3>
         <p class="text-anthracite-soft mb-8 text-xl">Découvrez notre formule synergique associant Magnésium, Zinc et Vitamine D3.</p>
-        
-        <img src="/images/products/magnesium.jpeg" alt="Bisglycinate de Magnésium" class="rounded-[2.5rem] shadow-xl hover:shadow-2xl hover:scale-[1.02] hover:-rotate-1 transition-all duration-700 ease-out mb-10 w-full object-cover max-h-[500px] cursor-pointer border-4 border-white/50" />
-        
-        <a href="/produits/bisglycinate-magnesium" class="inline-block px-10 py-5 bg-teal-deep text-white !text-white font-bold text-base tracking-wide uppercase rounded-xl hover:bg-gold-soft hover:text-teal-deep transition-all shadow-md no-underline">
-          Découvrir le Bisglycinate de Magnésium
+        <a href="/produits/bisglycinate-magnesium" class="inline-block text-sm font-bold bg-teal-deep text-white px-6 py-3 whitespace-nowrap rounded-xl hover:bg-gold-soft hover:text-teal-deep transition-all shadow-md shimmer-effect no-underline uppercase tracking-wider">
+          DÉCOUVRIR LE BISGLYCINATE DE MAGNÉSIUM
         </a>
       </div>
     `,
@@ -87,8 +81,6 @@ export const MOCK_ARTICLES = [
       <p>La mélatonine est une hormone naturellement produite par l’organisme, notamment en lien avec le cycle veille-sommeil. Elle est particulièrement connue pour son rôle dans la régulation du rythme veille-sommeil.</p>
       <p>Dans une formule alimentaire, il est donc intéressant de regarder non seulement la présence de mélatonine, mais également <strong>les autres ingrédients qui l’accompagnent</strong>.</p>
       <p>C’est là que deux formules SOTYA se différencient : <strong>Complexe de Mélatonine</strong> et <strong>Mélatonine — Plantes</strong>.</p>
-
-      <img src="/images/unsplash/comp/capture_comp_2.png" alt="Sommeil" class="rounded-[2.5rem] shadow-xl hover:shadow-2xl hover:scale-[1.02] hover:-rotate-1 transition-all duration-700 ease-out my-14 w-full object-cover max-h-[500px] cursor-pointer border-4 border-white/50" />
 
       <h2>1. Complexe de Mélatonine</h2>
       <p>Cette formule associe :</p>
@@ -112,8 +104,6 @@ export const MOCK_ARTICLES = [
       <p>Les plantes sont apportées avec leurs composés caractéristiques, notamment l’acide rosmarinique et les flavonoïdes.</p>
       <p>Cette approche s’adresse davantage à une personne qui recherche une formule combinant <strong>mélatonine et plantes traditionnellement associées à la relaxation</strong>.</p>
       
-      <img src="/images/unsplash/welness/laura-ohlman-sW6TRpgZLMw-unsplash.jpg" alt="Relaxation" class="rounded-[2.5rem] shadow-xl hover:shadow-2xl hover:scale-[1.02] hover:-rotate-1 transition-all duration-700 ease-out my-14 w-full object-cover max-h-[500px] cursor-pointer border-4 border-white/50" />
-
       <h2>Comment choisir entre les deux ?</h2>
       <p>Il ne s’agit pas de dire qu’une formule est meilleure que l’autre. La question est plutôt : <strong>quel est le besoin recherché ?</strong></p>
       <p>Si vous recherchez principalement une aide autour de l’endormissement, le <strong>Complexe de Mélatonine</strong> est idéal. Si vous recherchez une approche davantage orientée relaxation, <strong>Mélatonine — Plantes</strong> sera plus approprié.</p>
@@ -130,6 +120,7 @@ export const MOCK_ARTICLES = [
     category: 'Bien-être',
     title: 'Santé masculine : comprendre la prostate et le confort urinaire',
     image: '/images/unsplash/welness/prostal-man-taking-pill-full-frame.png',
+    video: '/images/unsplash/welness/chwirf.mp4',
     date: '15 Septembre 2026',
     readTime: '6 min',
     intro: 'La santé de la prostate devient un sujet auquel de nombreux hommes accordent davantage d’attention avec l\'âge.',
@@ -139,8 +130,6 @@ export const MOCK_ARTICLES = [
       <p>Certaines modifications peuvent notamment se traduire par un besoin d’uriner plus fréquemment, des réveils nocturnes ou une sensation de confort urinaire différente.</p>
       <p>Ces manifestations ne doivent toutefois pas être automatiquement attribuées à la prostate. Lorsqu’elles apparaissent, persistent ou changent, <strong>un avis médical reste important</strong>.</p>
       
-      <img src="/images/unsplash/comp/Gemini_Generated_Image_3f5zd73f5zd73f5z.jpg" alt="Homme en bonne santé" class="rounded-[2.5rem] shadow-xl hover:shadow-2xl hover:scale-[1.02] hover:-rotate-1 transition-all duration-700 ease-out my-14 w-full object-cover max-h-[500px] cursor-pointer border-4 border-white/50" />
-
       <h2>Pourquoi plusieurs actifs dans les formules pour la prostate ?</h2>
       <p>Les formules destinées à la santé masculine peuvent associer plusieurs familles d’ingrédients : des extraits végétaux traditionnellement utilisés autour du confort urinaire, des micronutriments, des composés végétaux recherchés pour leur apport antioxydant.</p>
       <p>L’intérêt d’une formule multi-actifs est donc de proposer une approche globale plutôt que de reposer sur un seul ingrédient.</p>
@@ -162,6 +151,14 @@ export const MOCK_ARTICLES = [
       <p><strong>3. Vérifier les dosages :</strong> Les quantités apportées par la dose journalière sont essentielles.</p>
       <p><strong>4. Vérifier la simplicité de prise :</strong> Prostal se prend à raison de 1 gélule par jour (cure de 30 jours).</p>
       <p><strong>5. Ne pas remplacer le suivi médical :</strong> En cas de troubles urinaires persistants, il est important de consulter un professionnel de santé.</p>
+      
+      <div class="mt-12 text-center hidden lg:flex flex-col items-center">
+        <h3 class="text-3xl font-bold text-teal-deep mb-4 mt-0">Envie d'aller plus loin ?</h3>
+        <p class="text-anthracite-soft mb-8 text-xl">Découvrez notre formule synergique associant plusieurs extraits végétaux et du zinc pour la santé masculine.</p>
+        <a href="/produits/prostal" class="inline-block text-sm font-bold bg-teal-deep text-white px-6 py-3 whitespace-nowrap rounded-xl hover:bg-gold-soft hover:text-teal-deep transition-all shadow-md shimmer-effect no-underline uppercase tracking-wider">
+          DÉCOUVRIR PROSTAL
+        </a>
+      </div>
     `,
     takeaway: 'Pour choisir un complément destiné à la santé masculine, ne vous arrêtez pas au nom d’un seul ingrédient. Regardez la formule dans son ensemble : les actifs, leurs dosages, les associations proposées et la simplicité de prise.'
   },
@@ -177,8 +174,6 @@ export const MOCK_ARTICLES = [
       <h2>Qu’est-ce que l’huile d’onagre ?</h2>
       <p>L’huile d’onagre est une huile végétale naturellement riche en acides gras de la famille des oméga-6. Elle est notamment connue pour sa teneur en <strong>acide gamma-linolénique, ou GLA</strong>.</p>
       <p>C’est cette teneur en GLA qui constitue un élément important lorsqu’on compare différentes formules.</p>
-
-      <img src="/images/unsplash/beauty/beauty_hands.png" alt="Huile d'onagre" class="rounded-[2.5rem] shadow-xl hover:shadow-2xl hover:scale-[1.02] hover:-rotate-1 transition-all duration-700 ease-out my-14 w-full object-cover max-h-[500px] cursor-pointer border-4 border-white/50" />
 
       <h2>Pourquoi le GLA compte-t-il ?</h2>
       <p>Deux produits peuvent afficher une quantité importante d’huile d’onagre tout en apportant des quantités différentes de GLA. Prenons un exemple simple :</p>
@@ -201,8 +196,6 @@ export const MOCK_ARTICLES = [
         <li><strong>5. La dose journalière :</strong> La quantité réellement consommée chaque jour doit toujours être prise en compte dans la comparaison.</li>
       </ul>
       
-      <img src="/images/unsplash/beauty/beauty_cream.png" alt="Beauté et équilibre" class="rounded-[2.5rem] shadow-xl hover:shadow-2xl hover:scale-[1.02] hover:-rotate-1 transition-all duration-700 ease-out my-14 w-full object-cover max-h-[500px] cursor-pointer border-4 border-white/50" />
-
       <h2>La formule SOTYA</h2>
       <p>Pour la dose journalière recommandée de <strong>1 à 2 perles</strong> :</p>
       <ul>

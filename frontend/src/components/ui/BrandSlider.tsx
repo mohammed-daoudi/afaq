@@ -3,7 +3,7 @@
   import Image from "next/image";
   import { Link } from '@/navigation';
   import { motion, AnimatePresence } from "framer-motion";
-  import { ChevronLeft, ChevronRight, Leaf, Sprout, ShieldCheck, Heart } from "lucide-react";
+  import { ChevronLeft, ChevronRight } from "lucide-react";
   import BrandSlide from "./BrandSlide";
   import { useTranslations } from 'next-intl';
 
@@ -103,16 +103,26 @@
 
                 logo="/images/sotyaslider/nobgsotya.png"
                 logoAlt="SOTYA"
-                logoClassName="h-[68px] xl:h-[78px] -translate-x-2 lg:-translate-x-4"
+                logoClassName="h-[64px] xl:h-[74px]"
 
-                headlinePart1="Le naturel au service de votre"
-                headlineItalic="bien-être"
-                headlinePart2="au quotidien"
-                headlineClassName="font-poppins text-[26px] xl:text-[32px] leading-[1.12] font-light tracking-[-0.01em]"
+                headlinePart1="SOTYA est désormais"
+                headlineItalic="disponible"
+                headlinePart2="au Maroc"
+                headlineClassName="font-poppins text-[25px] md:text-[28px] xl:text-[36px] leading-[1.08] font-medium tracking-normal"
+                headlineItalicClassName="font-extrabold"
+                supportText="SOTYA propose une gamme diversifiée de produits dédiés au bien-être et à la qualité de vie au quotidien."
+                mobileHeadlinePart1="Le naturel au service de votre"
+                mobileHeadlineItalic="bien-être"
+                mobileHeadlinePart2="au quotidien"
+                mobileHeadlineClassName="font-poppins text-[26px] xl:text-[32px] leading-[1.12] font-light tracking-[-0.01em]"
+                mobileTagline="Compléments Alimentaires"
+                mobileTaglineClassName="-translate-x-2 lg:-translate-x-4"
+                mobileAvailabilityVariant="default"
+                mobileSupportText={null}
 
-                tagline="Compléments Alimentaires"
-                taglineClassName="-translate-x-2 lg:-translate-x-4"
+                tagline="Compléments alimentaires"
                 availability="Désormais disponible au Maroc"
+                availabilityVariant="announcement"
                 availabilityColor="#176747"
                 availabilityClassName="-translate-x-6 lg:-translate-x-16"
 
@@ -162,10 +172,9 @@
               />
             ) : slides[current].id === 2 ? (
               <BrandSlide
-                productImage="/images/kidsslider/fishkid.png"
+                productImage="/images/kidsslider/naturamins-kids-fdf5e6-left.png"
                 productImageAlt="Produits NATURAMINS KIDS"
-                productObjectPosition="50% 50%"
-                productScale={1.08}
+                productObjectPosition="0% 50%"
 
                 personImage="/images/kidsslider/nizz.png"
                 personImageMobile="/images/kidsslider/nizarr.png"
@@ -182,26 +191,26 @@
                 headlinePart1="Nourrir"
                 headlineItalic="chaque étape"
                 headlinePart2="de l'enfance"
-                headlineClassName="font-sans font-light text-blue-700 text-[24px] md:text-[28px] xl:text-[34px] leading-[1.4] tracking-wide"
-                headlineItalicClassName="font-serif italic font-normal text-blue-800"
+                headlineClassName="font-sans font-light text-[#245C42] text-[24px] md:text-[28px] xl:text-[34px] leading-[1.4] tracking-wide"
+                headlineItalicClassName="font-serif italic font-semibold text-[#D9822B]"
 
                 tagline="NUTRITION PÉDIATRIQUE"
-                taglineColor="#1d4ed8"
+                taglineColor="#2F8B5B"
                 hideTaglineOnMobile
 
-                availability="Désormais disponible au Maroc"
-                availabilityColor="#1d4ed8"
+                availability="Lancement en Janvier 2027"
+                availabilityColor="#D9822B"
 
                 ctaLabel="Découvrir la gamme"
                 ctaHref={slides[current].link}
-                ctaBg="linear-gradient(90deg, #1e3a8a 0%, #3b82f6 100%)"
+                ctaBg="linear-gradient(90deg, #247A50 0%, #F2A23A 100%)"
 
-                accentDark="#1e3a8a"
-                accentMid="#2563eb"
+                accentDark="#245C42"
+                accentMid="#F2A23A"
 
-                bgFrom="#eaf4ec"
-                bgMid="#f3f9f4"
-                bgTo="#eaf4ec"
+                bgFrom="#EAF6EA"
+                bgMid="#FFF8EA"
+                bgTo="#ECF7EF"
               />
             ) : (
               <>

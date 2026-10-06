@@ -11,6 +11,7 @@ export interface Product {
   imagePath: string;
   labelImagePath?: string;
   imageBadge?: string;
+  videoPath?: string;
   description: string;
   longDescription?: string;
   composition?: string;
@@ -21,6 +22,7 @@ export interface Product {
   duration: string;
   format: string;
   certifications: string[];
+  imageScaleClass?: string;
 }
 
 export const PRODUCT_CATEGORIES = [
@@ -51,6 +53,7 @@ export const products: Product[] = [
     imagePath: '/images/products/magnesium-cutout.png',
     labelImagePath: '/images/labels/bisglycinate-magnesium.png',
     imageBadge: '100 gélules',
+    videoPath: '/videos/vidmag.mp4',
     description: 'Complément alimentaire à base de magnésium, zinc et vitamine D3. Le magnésium contribue à réduire la fatigue et au fonctionnement normal du système nerveux et musculaire.',
     longDescription: "Cette formule associe du magnésium sous forme de bisglycinate à du zinc et à la vitamine D3. Le magnésium contribue à réduire la fatigue et au fonctionnement normal du système nerveux et musculaire, tandis que le zinc et la vitamine D participent au fonctionnement normal de l'organisme.\nUne formule pensée pour accompagner les besoins quotidiens en magnésium, notamment lors des périodes de fatigue ou lorsque les besoins nutritionnels sont accrus.",
     composition: "Pour 3 gélules : magnésium 327 mg (87 % VNR), zinc 15 mg (150 % VNR), vitamine D 5 µg (100 % VNR).",
@@ -187,6 +190,7 @@ export const products: Product[] = [
     duration: '33 jours\n16 jours',
     format: '50 et 100 perles de 1400mg',
     certifications: ['Sans gluten'],
+    imageScaleClass: '!p-12 md:!p-16',
   },
   {
     id: 'prostal',
@@ -278,6 +282,7 @@ export const products: Product[] = [
     duration: '30 jours',
     format: '60 gélules de 522mg',
     certifications: ['Sans gluten'],
+    imageScaleClass: '!p-6 md:!p-8',
   },
   {
     id: 'multivitamines-mineraux',
@@ -296,21 +301,10 @@ export const products: Product[] = [
     duration: '60 jours',
     format: '60 gélules végétales de 820mg',
     certifications: ['Vegan', 'Sans gluten'],
+    imageScaleClass: '!p-6 md:!p-8',
   },
 
 
   // ─── COLAGENOVA ────────────────────────
-  {
-    id: 'colagenova-marine',
-    name: 'Marine Beauty',
-    brand: 'COLAGENOVA',
-    categories: ['Beauté', 'Articulations & Mobilité'],
-    imagePath: '/images/unsplash/welness/capture_welness_2.png', // placeholder
-    description: 'Complément alimentaire à base de Peptides de collagène marin pur, Acide hyaluronique et Vitamine C.',
-    benefits: ['Hydratation de la peau', 'Réduction des rides', 'Souplesse articulaire'],
-    dosage: '2 dosettes par jour',
-    duration: '21 jours',
-    format: 'Poudre 275g (Saveur Vanille)',
-    certifications: ['Sans gluten', 'Arômes naturels'],
-  },
+  
 ];

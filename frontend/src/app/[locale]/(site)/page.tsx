@@ -37,7 +37,7 @@ const brands = [
     cardBg: '#FFFFFF',
     logoClass: 'object-cover -translate-x-6',
     subtitle: 'NUTRITION PÉDIATRIQUE',
-    status: 'MARQUE ESPAGNOLE · PROCHAIN LANCEMENT — JANVIER 2027',
+    status: 'MARQUE ESPAGNOLE · Lancement en Janvier 2027',
     description: 'Naturamins Kids propose une gamme dédiée aux besoins nutritionnels de l’enfant, conçue pour accompagner les familles au quotidien.',
   },
   {
@@ -62,34 +62,60 @@ export default function HomePage() {
       {/* 1. SLIDER MARQUES */}
       <BrandSlider />
 
-      {/* MARQUEE — scrolls with page, equal gap above and below */}
-      <div className="mt-8 mb-12 border-y border-gray-100">
-        <div className="w-full bg-transparent overflow-hidden py-4 flex-shrink-0">
-          <style>{`
-          @keyframes marquee-scroll {
+      {/* CERTIFICATIONS MARQUEE */}
+      <div className="py-4 md:py-6 border-y border-gray-100 relative overflow-hidden bg-ivory-soft/30">
+        <style>{`
+          @keyframes marquee-scroll-icons {
             0%   { transform: translateX(0); }
             100% { transform: translateX(-50%); }
           }
-          .marquee-track {
+          .marquee-track-icons {
             display: flex;
             width: max-content;
-            animation: marquee-scroll 45s linear infinite;
+            animation: marquee-scroll-icons 35s linear infinite;
           }
         `}</style>
-          <div className="marquee-track select-none" aria-hidden="true">
-            {[0, 1].map((i) => (
-              <span key={i} className="flex items-center whitespace-nowrap">
-                {['ISO 9001 / 22000', 'Marques Européennes', 'Expertise Nutrition & Bien-Être'].map((item, j) => (
-                  <span key={j} className="flex items-center mx-10">
-                    <span className="text-black font-medium text-base md:text-lg tracking-wider">
-                      {item}
-                    </span>
-                    <span className="ml-10 text-gray-300 text-lg">·</span>
-                  </span>
-                ))}
-              </span>
-            ))}
-          </div>
+        
+        <div className="marquee-track-icons" aria-hidden="true">
+          {[0, 1].map((i) => (
+            <div key={i} className="flex items-start gap-12 md:gap-24 pr-12 md:pr-24">
+              
+              {/* Item 1: AMMPS */}
+              <div className="flex flex-col items-center text-center group w-32 md:w-40">
+                <div className="w-16 h-16 md:w-20 md:h-20 mb-3 relative transition-transform duration-300 group-hover:scale-105">
+                  <Image src="/iso/logo-ammps-transparent.png" alt="Enregistrement AMMPS" fill className="object-contain" />
+                </div>
+                <p className="text-anthracite-soft font-medium text-[11px] md:text-sm">Enregistrement AMMPS</p>
+              </div>
+              
+              {/* Item 2: GMP */}
+              <div className="flex flex-col items-center text-center group w-32 md:w-40">
+                <div className="w-16 h-16 md:w-20 md:h-20 mb-3 relative transition-transform duration-300 group-hover:scale-105">
+                  <Image src="/iso/logo-gmp-transparent.png" alt="Certification BPF" fill className="object-contain" />
+                </div>
+                <p className="text-anthracite-soft font-medium text-[11px] md:text-sm">Certification BPF</p>
+              </div>
+              
+              {/* Item 3: EU */}
+              <div className="flex flex-col items-center text-center group w-32 md:w-40">
+                <div className="w-16 h-16 md:w-20 md:h-20 mb-3 relative transition-transform duration-300 group-hover:scale-105">
+                  <Image src="/iso/logo-eu-transparent.png" alt="Fabriqué en Europe" fill className="object-contain" />
+                </div>
+                <p className="text-anthracite-soft font-medium text-[11px] md:text-sm">Fabriqué en Europe</p>
+              </div>
+              
+              {/* Item 4: ISO */}
+              <div className="flex flex-col items-center text-center group w-32 md:w-40">
+                <div className="w-16 h-16 md:w-20 md:h-20 mb-3 relative transition-transform duration-300 group-hover:scale-105">
+                  <Image src="/iso/logo-iso-transparent.png" alt="Certification ISO 9001 / 22000" fill className="object-contain" />
+                </div>
+                <p className="text-anthracite-soft font-medium text-[11px] md:text-sm leading-tight">
+                  Certification<br />ISO 9001 / 22000
+                </p>
+              </div>
+
+            </div>
+          ))}
         </div>
       </div>
 
@@ -114,7 +140,9 @@ export default function HomePage() {
             <motion.p variants={fadeUp} className="text-lg md:text-xl font-light text-anthracite-soft/90 leading-relaxed mb-8">
               Nous accompagnons nos partenaires de l&apos;accès au marché à la commercialisation, en associant expertise réglementaire, développement commercial et connaissance du marché marocain.
             </motion.p>
-            <motion.div variants={fadeUp}>
+            
+            {/* Desktop Button */}
+            <motion.div variants={fadeUp} className="hidden lg:block">
               <Link
                 href="/a-propos"
                 className="inline-block px-8 py-4 bg-teal-deep text-white font-bold text-base tracking-wide uppercase rounded-xl hover:bg-gold-soft hover:text-teal-deep transition-all shadow-md shimmer-effect"
@@ -125,15 +153,31 @@ export default function HomePage() {
           </motion.div>
 
           {/* Image Content */}
-          <div className="w-full lg:w-[45%] h-[400px] lg:h-[500px] relative overflow-hidden shadow-2xl">
+          <div className="w-full lg:w-[45%] h-[400px] lg:h-[500px] relative overflow-hidden shadow-2xl rounded-2xl">
             <Image
-              src="/images/unsplash/science/colabbb.jpg"
+              src="/images/unsplash/science/khallliii.png"
               alt="Présentation"
               fill
-              className="object-cover object-center"
+              className="object-cover object-center scale-110"
               priority
             />
           </div>
+          
+          {/* Mobile Button */}
+          <motion.div 
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeUp}
+            className="w-full flex justify-center lg:hidden"
+          >
+            <Link
+              href="/a-propos"
+              className="inline-block text-center w-full px-8 py-4 bg-teal-deep text-white font-bold text-base tracking-wide uppercase rounded-xl hover:bg-gold-soft hover:text-teal-deep transition-all shadow-md shimmer-effect"
+            >
+              Découvrir → Qui sommes-nous ?
+            </Link>
+          </motion.div>
 
         </div>
       </section>

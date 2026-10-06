@@ -1,13 +1,12 @@
 'use client';
 import React from 'react';
 import Image from 'next/image';
-import { motion } from 'framer-motion';
 
 const PARTNERS = [
-  '/images/partners/33119370-7ef2-48a3-86b3-b91a27a972a6.jpg',
-  '/images/partners/Gemini_Generated_Image_7imhdx7imhdx7imh.jpg',
-  '/images/partners/Gemini_Generated_Image_jphtsrjphtsrjpht.jpg',
-  '/images/partners/Gemini_Generated_Image_u6jqv2u6jqv2u6jq.jpg',
+  '/images/partners/dawa.jpg',
+  '/images/partners/vaminter.jpg',
+  '/images/partners/dietisur.jpg',
+  '/images/partners/bescorp.jpg',
 ];
 
 export function PartnersMarquee() {
@@ -28,14 +27,16 @@ export function PartnersMarquee() {
       <div className="relative w-full overflow-hidden whitespace-nowrap bg-white py-8">
         {/* We use two containers with identical content for a seamless loop */}
         <div className="inline-flex animate-marquee items-center gap-16 md:gap-24 px-8">
-          {[...PARTNERS, ...PARTNERS, ...PARTNERS].map((logo, index) => (
-            <div key={index} className="relative w-40 h-24 md:w-56 md:h-32 shrink-0 transition-transform duration-500 hover:scale-105">
-              <Image 
-                src={logo} 
-                alt={`Partner ${index + 1}`} 
-                fill 
-                className="object-contain" 
-              />
+          {[...PARTNERS, ...PARTNERS, ...PARTNERS].map((partner, index) => (
+            <div key={index} className="relative w-40 h-24 md:w-56 md:h-32 shrink-0 transition-transform duration-500 hover:scale-105 flex items-center justify-center">
+              <div className="relative w-full h-full flex items-center justify-center">
+                <Image 
+                  src={partner} 
+                  alt={`Partner ${index + 1}`} 
+                  fill 
+                  className="object-contain" 
+                />
+              </div>
             </div>
           ))}
         </div>

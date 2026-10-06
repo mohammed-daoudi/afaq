@@ -83,7 +83,7 @@ export default function ConfidentialitePage() {
             <p>
               Pour exercer ces droits, vous pouvez nous contacter à l'adresse suivante :<br />
               <strong>Email :</strong> contact@afaqhealth.ma<br />
-              <strong>Courrier :</strong> [Adresse postale d'AFAQ HEALTH, Casablanca, Maroc]
+              <strong>Courrier :</strong> Bir Rami Ouest, 14000 Kénitra — Maroc
             </p>
 
             <h2 className="text-2xl font-bold text-teal-deep mt-10 mb-6">6. Cookies</h2>

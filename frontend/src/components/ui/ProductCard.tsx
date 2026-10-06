@@ -1,8 +1,8 @@
 'use client';
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
-import { motion, useMotionValue, useSpring, useTransform, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import type { Product } from '@/lib/products';
 import { useTranslations } from 'next-intl';
 
@@ -10,28 +10,32 @@ interface ProductCardProps {
   product: Product;
 }
 
+const PRODUCT_CARD_IMAGE_ADJUSTMENTS: Record<string, { scale: number; translateX: string; bottom: string }> = {
+  'bisglycinate-magnesium': { scale: 0.95, translateX: '0.1%', bottom: '0%' },
+  'complexe-vitamines-b': { scale: 1.03, translateX: '-0.4%', bottom: '-3.9%' },
+  'complexe-melatonine': { scale: 1.05, translateX: '0.2%', bottom: '-2.3%' },
+  'melatonine': { scale: 1.05, translateX: '0.2%', bottom: '-2.3%' },
+  'ashwagandha': { scale: 1.04, translateX: '0%', bottom: '-2.3%' },
+  'complexe-vitamine-c': { scale: 1.01, translateX: '0%', bottom: '-0.5%' },
+  'complexe-propolis-forte': { scale: 1.08, translateX: '-0.3%', bottom: '-1%' },
+  'complexe-omega-369': { scale: 0.96, translateX: '0.1%', bottom: '-0.1%' },
+  'prostal': { scale: 1.55, translateX: '1.4%', bottom: '-25%' },
+  'huile-onagre': { scale: 1, translateX: '0%', bottom: '0%' },
+  'charbon-actif-probiotiques': { scale: 1.04, translateX: '0.4%', bottom: '0.8%' },
+  'collagene': { scale: 1.04, translateX: '0%', bottom: '0%' },
+  'peau-cheveux-ongles': { scale: 0.92, translateX: '-0.3%', bottom: '0%' },
+  'multivitamines-mineraux': { scale: 0.94, translateX: '-0.1%', bottom: '-0.4%' },
+};
+
 export function ProductCard({ product }: ProductCardProps) {
-  const cardRef = useRef<HTMLDivElement>(null);
-  const [isHovered, setIsHovered] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const router = useRouter();
   const t = useTranslations('ProductCard');
-
-  const x = useMotionValue(0);
-  const y = useMotionValue(0);
-
-  const mouseXSpring = useSpring(x, { stiffness: 300, damping: 20 });
-  const mouseYSpring = useSpring(y, { stiffness: 300, damping: 20 });
-
-  const rotateX = useTransform(mouseYSpring, [-0.5, 0.5], ["10deg", "-10deg"]);
-  const rotateY = useTransform(mouseXSpring, [-0.5, 0.5], ["-10deg", "10deg"]);
-
-  useEffect(() => {
-    if (window.innerWidth < 768) {
-      setIsMobile(true);
-    }
-  }, []);
+  const imageAdjustment = PRODUCT_CARD_IMAGE_ADJUSTMENTS[product.id] ?? {
+    scale: 1,
+    translateX: '0%',
+    bottom: '0%',
+  };
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -43,23 +47,6 @@ export function ProductCard({ product }: ProductCardProps) {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [isModalOpen]);
 
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (isMobile) return;
-    if (!cardRef.current) return;
-    const rect = cardRef.current.getBoundingClientRect();
-    const xPct = (e.clientX - rect.left) / rect.width - 0.5;
-    const yPct = (e.clientY - rect.top) / rect.height - 0.5;
-    x.set(xPct);
-    y.set(yPct);
-  };
-
-  const handleMouseLeave = () => {
-    if (isMobile) return;
-    x.set(0);
-    y.set(0);
-    setIsHovered(false);
-  };
-
   return (
     <>
       {/* Simple Product Item */}
@@ -68,14 +55,23 @@ export function ProductCard({ product }: ProductCardProps) {
         onClick={() => setIsModalOpen(true)}
       >
         {/* Image Container */}
-        <div className="relative w-full aspect-square mb-4 flex items-center justify-center overflow-hidden">
-          <Image
-            src={product.imagePath}
-            alt={product.name}
-            fill
-            className="object-contain mix-blend-multiply transition-transform duration-500 group-hover:scale-105"
-            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-          />
+        <div className="relative w-full aspect-square mb-4 overflow-hidden">
+          <div
+            className="absolute left-0 right-0 h-full w-full"
+            style={{
+              bottom: imageAdjustment.bottom,
+              transform: `translateX(${imageAdjustment.translateX}) scale(${imageAdjustment.scale})`,
+              transformOrigin: 'bottom center',
+            }}
+          >
+            <Image
+              src={product.imagePath}
+              alt={product.name}
+              fill
+              className="object-contain mix-blend-multiply opacity-90 transition-transform duration-500 group-hover:scale-105"
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            />
+          </div>
           
           {/* Optional Badges (like Vegan/Gluten Free) */}
           {product.certifications && product.certifications.length > 0 && (
@@ -143,7 +139,7 @@ export function ProductCard({ product }: ProductCardProps) {
                     src={product.imagePath}
                     alt={`${product.name}`}
                     fill
-                    className="object-contain mix-blend-multiply p-4"
+                    className="object-contain mix-blend-multiply opacity-90 p-4"
                     sizes="(max-width: 768px) 100vw, 50vw"
                   />
                 </div>

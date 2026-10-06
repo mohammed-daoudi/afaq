@@ -62,7 +62,7 @@ export function ImageMagnifier({
           src={src}
           alt={alt}
           fill
-          className={imageClassName ?? 'object-contain mix-blend-multiply p-8'}
+          className={`object-contain mix-blend-multiply p-8 ${imageClassName || ''}`}
           sizes="(max-width: 768px) 100vw, 50vw"
           priority
         />
@@ -92,7 +92,7 @@ export function ImageMagnifier({
               src={src}
               alt={alt}
               fill
-              className="object-contain mix-blend-multiply p-8"
+              className={`object-contain mix-blend-multiply p-8 ${imageClassName || ''}`}
             />
           </div>
         </div>

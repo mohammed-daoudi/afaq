@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Link } from '@/navigation';
+import { Link, usePathname } from '@/navigation';
 import { Logo } from '@/components/ui/Logo';
 import { GlobalSearch } from '@/components/ui/GlobalSearch';
 import { LanguageSwitcher } from '@/components/ui/LanguageSwitcher';
@@ -9,6 +9,7 @@ import { useTranslations } from 'next-intl';
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const pathname = usePathname();
   const t = useTranslations('Header');
 
   const navLinks = [

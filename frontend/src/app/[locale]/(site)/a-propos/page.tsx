@@ -71,8 +71,8 @@ const ReseauSlider = () => {
 };
 
 const VISION_IMAGES = [
-  "/images/unsplash/babies/Gemini_Generated_Image_u3yhh2u3yhh2u3yh.jpg",
-  "/images/unsplash/babies/Gemini_Generated_Image_lxoactlxoactlxoa.jpg",
+  "/images/unsplash/welness/family-supplements-table-naturamins-sotya-antiox.png",
+  "/images/unsplash/welness/family-walking-away-green-meadow-professional-8k.png"
 ];
 
 const VisionSlider = () => {
@@ -87,6 +87,13 @@ const VisionSlider = () => {
 
   return (
     <>
+      <Image
+        src={VISION_IMAGES[0]}
+        alt="Spacer"
+        width={800}
+        height={800}
+        className="w-full h-auto opacity-0 pointer-events-none block"
+      />
       {VISION_IMAGES.map((src, index) => (
         <motion.div
           key={src}
@@ -99,7 +106,7 @@ const VisionSlider = () => {
             src={src}
             alt="Notre Vision AFAQ Health"
             fill
-            className="object-cover object-center"
+            className="object-contain object-center"
             priority={index === 0}
             sizes="(max-width: 1024px) 100vw, 50vw"
           />
@@ -258,7 +265,7 @@ export default function AProposPage() {
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
               viewport={{ once: true }}
-              className="relative w-full aspect-[4/3] overflow-hidden"
+              className="relative w-full lg:w-[120%] lg:-ml-[20%] max-w-none"
             >
               <VisionSlider />
             </motion.div>
@@ -269,17 +276,15 @@ export default function AProposPage() {
               whileInView="visible"
               viewport={{ once: true }}
               variants={staggerContainer}
-              className="space-y-6"
+              className="space-y-6 lg:pl-10"
             >
               <motion.div variants={fadeUp} className="text-sm font-bold uppercase tracking-widest text-gold-soft">
                 NOTRE VISION
               </motion.div>
-              <motion.h2 variants={fadeUp} className="text-4xl md:text-5xl font-extrabold text-teal-deep leading-tight">
-                Construire et développer un portefeuille de marques{' '}
-                <span className="font-light text-gold-soft">complémentaires</span>{' '}
-                et exigeantes.
+              <motion.h2 variants={fadeUp} className="text-3xl lg:text-4xl font-extrabold text-teal-deep leading-tight">
+                Construire et développer un portefeuille de marques complémentaires et exigeantes.
               </motion.h2>
-              <motion.p variants={fadeUp} className="text-lg text-anthracite-soft/75 leading-relaxed">
+              <motion.p variants={fadeUp} className="text-base lg:text-lg text-anthracite-soft/75 leading-relaxed">
                 Notre ambition est de développer progressivement notre portefeuille avec des marques sélectionnées pour leur qualité, leur savoir-faire et leur capacité à répondre durablement aux besoins du marché.
               </motion.p>
             </motion.div>

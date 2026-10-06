@@ -237,7 +237,7 @@ export default function ProduitsPage() {
             VOUS ÊTES PROFESSIONNEL DE SANTÉ ?
           </h2>
           <p className="text-anthracite-soft/80 text-lg md:text-xl mb-10 max-w-2xl mx-auto leading-relaxed">
-            Accédez à notre espace professionnel pour découvrir notre offre, consulter vos conditions commerciales et passer vos commandes en toute simplicité.
+            Accédez à notre espace professionnel pour découvrir nos offres, consulter nos conditions commerciales et passer vos commandes en toute simplicité.
           </p>
           <Link 
             href="/portal/login" 
