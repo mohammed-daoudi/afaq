@@ -62,60 +62,46 @@ export default function HomePage() {
       {/* 1. SLIDER MARQUES */}
       <BrandSlider />
 
-      {/* CERTIFICATIONS MARQUEE */}
-      <div className="py-4 md:py-6 border-y border-gray-100 relative overflow-hidden bg-ivory-soft/30">
-        <style>{`
-          @keyframes marquee-scroll-icons {
+      {/* MARQUEE — scrolls with page, equal gap above and below */}
+      <div className="mt-8 mb-12 border-y border-gold-soft/30 shadow-md">
+        <div className="w-full bg-[#135a3b] overflow-hidden py-4 flex-shrink-0">
+          <style>{`
+          @keyframes marquee-scroll {
             0%   { transform: translateX(0); }
             100% { transform: translateX(-50%); }
           }
-          .marquee-track-icons {
+          .marquee-track {
             display: flex;
             width: max-content;
-            animation: marquee-scroll-icons 35s linear infinite;
+            animation: marquee-scroll 45s linear infinite;
+          }
+          @keyframes marquee-shimmer {
+            0%   { background-position: 200% center; }
+            100% { background-position: -200% center; }
+          }
+          .marquee-shine {
+            background-image: linear-gradient(100deg, #d9a05b 0%, #d9a05b 35%, #ecc07e 50%, #d9a05b 65%, #d9a05b 100%);
+            background-size: 250% auto;
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: marquee-shimmer 4s linear infinite;
           }
         `}</style>
-        
-        <div className="marquee-track-icons" aria-hidden="true">
-          {[0, 1].map((i) => (
-            <div key={i} className="flex items-start gap-12 md:gap-24 pr-12 md:pr-24">
-              
-              {/* Item 1: AMMPS */}
-              <div className="flex flex-col items-center text-center group w-32 md:w-40">
-                <div className="w-16 h-16 md:w-20 md:h-20 mb-3 relative transition-transform duration-300 group-hover:scale-105">
-                  <Image src="/iso/logo-ammps-transparent.png" alt="Enregistrement AMMPS" fill className="object-contain" />
-                </div>
-                <p className="text-anthracite-soft font-medium text-[11px] md:text-sm">Enregistrement AMMPS</p>
-              </div>
-              
-              {/* Item 2: GMP */}
-              <div className="flex flex-col items-center text-center group w-32 md:w-40">
-                <div className="w-16 h-16 md:w-20 md:h-20 mb-3 relative transition-transform duration-300 group-hover:scale-105">
-                  <Image src="/iso/logo-gmp-transparent.png" alt="Certification BPF" fill className="object-contain" />
-                </div>
-                <p className="text-anthracite-soft font-medium text-[11px] md:text-sm">Certification BPF</p>
-              </div>
-              
-              {/* Item 3: EU */}
-              <div className="flex flex-col items-center text-center group w-32 md:w-40">
-                <div className="w-16 h-16 md:w-20 md:h-20 mb-3 relative transition-transform duration-300 group-hover:scale-105">
-                  <Image src="/iso/logo-eu-transparent.png" alt="Fabriqué en Europe" fill className="object-contain" />
-                </div>
-                <p className="text-anthracite-soft font-medium text-[11px] md:text-sm">Fabriqué en Europe</p>
-              </div>
-              
-              {/* Item 4: ISO */}
-              <div className="flex flex-col items-center text-center group w-32 md:w-40">
-                <div className="w-16 h-16 md:w-20 md:h-20 mb-3 relative transition-transform duration-300 group-hover:scale-105">
-                  <Image src="/iso/logo-iso-transparent.png" alt="Certification ISO 9001 / 22000" fill className="object-contain" />
-                </div>
-                <p className="text-anthracite-soft font-medium text-[11px] md:text-sm leading-tight">
-                  Certification<br />ISO 9001 / 22000
-                </p>
-              </div>
-
-            </div>
-          ))}
+          <div className="marquee-track select-none" aria-hidden="true">
+            {[0, 1].map((i) => (
+              <span key={i} className="flex items-center whitespace-nowrap">
+                {['ISO 9001 / 22000', 'Marques Européennes', 'Expertise Nutrition & Bien-Être'].map((item, j) => (
+                  <span key={j} className="flex items-center mx-10">
+                    <span className="marquee-shine font-extrabold text-base md:text-xl tracking-wider">
+                      {item}
+                    </span>
+                    <span className="ml-10 text-gold-soft/60 text-lg">·</span>
+                  </span>
+                ))}
+              </span>
+            ))}
+          </div>
         </div>
       </div>
 
@@ -140,7 +126,7 @@ export default function HomePage() {
             <motion.p variants={fadeUp} className="text-lg md:text-xl font-light text-anthracite-soft/90 leading-relaxed mb-8">
               Nous accompagnons nos partenaires de l&apos;accès au marché à la commercialisation, en associant expertise réglementaire, développement commercial et connaissance du marché marocain.
             </motion.p>
-            
+
             {/* Desktop Button */}
             <motion.div variants={fadeUp} className="hidden lg:block">
               <Link
@@ -155,16 +141,16 @@ export default function HomePage() {
           {/* Image Content */}
           <div className="w-full lg:w-[45%] h-[400px] lg:h-[500px] relative overflow-hidden shadow-2xl rounded-2xl">
             <Image
-              src="/images/unsplash/science/khallliii.png"
+              src="/images/unsplash/science/khallliii-doctors-closer.png"
               alt="Présentation"
               fill
-              className="object-cover object-center scale-110"
+              className="object-cover object-[25%_top] lg:object-left-top"
               priority
             />
           </div>
-          
+
           {/* Mobile Button */}
-          <motion.div 
+          <motion.div
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}

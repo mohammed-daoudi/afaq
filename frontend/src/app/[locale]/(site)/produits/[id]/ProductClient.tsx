@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ImageMagnifier } from '@/components/ui/ImageMagnifier';
 import { ProductCard } from '@/components/ui/ProductCard';
@@ -277,7 +278,18 @@ function FullscreenModal({ src, onClose }: { src: string | null, onClose: () => 
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [src, onClose]);
 
-  return (
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
+  useEffect(() => {
+    if (!src) return;
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    return () => { document.body.style.overflow = prev; };
+  }, [src]);
+
+  if (!mounted) return null;
+
+  return createPortal(
     <AnimatePresence>
       {src && (
         <motion.div
@@ -307,12 +319,13 @@ function FullscreenModal({ src, onClose }: { src: string | null, onClose: () => 
               src={src} 
               alt="Fullscreen view" 
               zoomLevel={2.5}
-              containerClassName="w-full h-full"
-              imageClassName="object-contain drop-shadow-2xl bg-white/5 rounded-2xl p-2"
+              containerClassName="w-full h-full bg-white rounded-2xl"
+              imageClassName="object-contain"
             />
           </motion.div>
         </motion.div>
       )}
-    </AnimatePresence>
+    </AnimatePresence>,
+    document.body
   );
 }

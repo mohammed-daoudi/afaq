@@ -104,17 +104,18 @@
                 logo="/images/sotyaslider/nobgsotya.png"
                 logoAlt="SOTYA"
                 logoClassName="h-[64px] xl:h-[74px]"
+                centerAreaClassName="left-[29%] right-[22%]"
+                contentClassName="translate-x-1 xl:translate-x-2"
 
-                headlinePart1="SOTYA est désormais"
-                headlineItalic="disponible"
-                headlinePart2="au Maroc"
-                headlineClassName="font-poppins text-[25px] md:text-[28px] xl:text-[36px] leading-[1.08] font-medium tracking-normal"
-                headlineItalicClassName="font-extrabold"
-                supportText="SOTYA propose une gamme diversifiée de produits dédiés au bien-être et à la qualité de vie au quotidien."
-                mobileHeadlinePart1="Le naturel au service de votre"
-                mobileHeadlineItalic="bien-être"
+                headlinePart1="SOTYA propose une gamme diversifiée de produits"
+                headlineItalic="dédiés au bien-être"
+                headlinePart2="et à la qualité de vie au quotidien"
+                headlineClassName="font-poppins text-[18px] md:text-[20px] xl:text-[24px] leading-[1.24] font-medium tracking-normal"
+                headlineItalicClassName="font-sans italic font-semibold text-[#176747]"
+                mobileHeadlinePart1="Une gamme diversifiée"
+                mobileHeadlineItalic="dédiée au bien-être"
                 mobileHeadlinePart2="au quotidien"
-                mobileHeadlineClassName="font-poppins text-[26px] xl:text-[32px] leading-[1.12] font-light tracking-[-0.01em]"
+                mobileHeadlineClassName="font-poppins text-[23px] md:text-[27px] leading-[1.12] font-light tracking-normal"
                 mobileTagline="Compléments Alimentaires"
                 mobileTaglineClassName="-translate-x-2 lg:-translate-x-4"
                 mobileAvailabilityVariant="default"
@@ -122,7 +123,6 @@
 
                 tagline="Compléments alimentaires"
                 availability="Désormais disponible au Maroc"
-                availabilityVariant="announcement"
                 availabilityColor="#176747"
                 availabilityClassName="-translate-x-6 lg:-translate-x-16"
 
@@ -146,19 +146,26 @@
 
                 logo="/images/collagenslider/nobgcollagene.png"
                 logoAlt="COLAGENOVA"
-                logoClassName="h-[84px] xl:h-[98px] -translate-x-2 lg:-translate-x-4 -translate-y-4 lg:-translate-y-6"
+                logoClassName="h-[74px] xl:h-[88px]"
+                centerAreaClassName="left-[29%] right-[22%]"
+                contentClassName="translate-x-1 xl:translate-x-2"
 
-                headlinePart1="Le collagène ciblé"
-                headlineItalic="pour chaque"
-                headlinePart2="besoin"
-                headlineClassName="font-poppins text-[20px] md:text-[22px] xl:text-[26px] leading-[1.15] font-light tracking-[-0.01em]"
+                headlinePart1="COLAGENOVA propose une gamme spécialisée"
+                headlineItalic="à base de collagène"
+                headlinePart2="pour la beauté et le confort articulaire"
+                headlineClassName="font-poppins text-[18px] md:text-[20px] xl:text-[24px] leading-[1.24] font-medium tracking-normal"
+                headlineItalicClassName="font-sans italic font-semibold text-[#db2777]"
+                mobileHeadlinePart1="Une gamme collagène"
+                mobileHeadlineItalic="dédiée à la beauté"
+                mobileHeadlinePart2="et au confort articulaire"
+                mobileHeadlineClassName="font-poppins text-[23px] md:text-[27px] leading-[1.12] font-light tracking-normal"
+                mobileAvailabilityVariant="default"
+                mobileSupportText={null}
 
                 tagline="BEAUTÉ & MOBILITÉ"
-                taglineClassName="-translate-x-2 lg:-translate-x-4 -translate-y-4 lg:-translate-y-6"
-                availability="Désormais disponible au Maroc"
+                availability="Lancement en Janvier 2027"
                 availabilityColor="#be185d"
                 availabilityClassName="-translate-x-6 lg:-translate-x-16"
-                contentClassName="translate-x-1 lg:translate-x-2"
 
                 ctaLabel="Découvrir la gamme"
                 ctaHref={slides[current].link}
@@ -184,22 +191,33 @@
 
                 logo="/images/kidsslider/nobgkids.png"
                 logoAlt="NATURAMINS KIDS"
-                logoClassName="h-[120px] xl:h-[150px]"
+                logoClassName="h-[86px] xl:h-[108px]"
                 logoMobilePosition="top"
                 logoMobileClassName="h-[86px] md:h-[100px]"
+                centerAreaClassName="left-[29%] right-[22%]"
+                contentClassName="translate-x-1 xl:translate-x-2"
 
                 headlinePart1="Nourrir"
                 headlineItalic="chaque étape"
-                headlinePart2="de l'enfance"
-                headlineClassName="font-sans font-light text-[#245C42] text-[24px] md:text-[28px] xl:text-[34px] leading-[1.4] tracking-wide"
-                headlineItalicClassName="font-serif italic font-semibold text-[#D9822B]"
+                headlinePart2="de l’enfance"
+                headlineClassName="font-poppins text-[17px] md:text-[19px] xl:text-[23px] leading-[1.18] font-medium tracking-normal"
+                headlineItalicClassName="font-sans italic font-semibold text-[#D9822B]"
+                mobileHeadlinePart1="Nourrir"
+                mobileHeadlineItalic="chaque étape"
+                mobileHeadlinePart2="de l’enfance"
+                mobileHeadlineClassName="font-poppins text-[23px] md:text-[27px] leading-[1.12] font-light tracking-normal"
+                mobileHeadlineItalicClassName="font-sans italic font-semibold text-[#D9822B]"
+                mobileAvailabilityVariant="default"
+                mobileSupportText={null}
 
                 tagline="NUTRITION PÉDIATRIQUE"
+                taglineClassName="!mb-4"
                 taglineColor="#2F8B5B"
                 hideTaglineOnMobile
 
                 availability="Lancement en Janvier 2027"
                 availabilityColor="#D9822B"
+                availabilityLineColor="#245C42"
 
                 ctaLabel="Découvrir la gamme"
                 ctaHref={slides[current].link}

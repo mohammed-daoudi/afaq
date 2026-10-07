@@ -1,0 +1,255 @@
+- generic [ref=e2]:
+  - banner [ref=e3]:
+    - generic [ref=e5]:
+      - link [ref=e6] [cursor=pointer]:
+        - /url: /
+        - img "AFAQ HEALTH Logo" [ref=e8]
+      - textbox "Consulter nos produits, nos marques..." [ref=e12]
+      - generic [ref=e17]:
+        - button "FR" [ref=e19] [cursor=pointer]
+        - link "Espace Pro" [ref=e22] [cursor=pointer]:
+          - /url: /portal/login
+    - navigation [ref=e25]:
+      - link "Qui sommes-nous ?" [ref=e26] [cursor=pointer]:
+        - /url: /a-propos
+      - link "Nos marques" [ref=e27] [cursor=pointer]:
+        - /url: /marques
+      - link "Nos produits" [ref=e28] [cursor=pointer]:
+        - /url: /produits
+      - link "Conseils" [ref=e29] [cursor=pointer]:
+        - /url: /conseils
+      - link "Où acheter ?" [ref=e30] [cursor=pointer]:
+        - /url: /pharmacies
+      - link "Contact" [ref=e31] [cursor=pointer]:
+        - /url: /contact
+  - main [ref=e32]:
+    - generic [ref=e33]:
+      - generic [ref=e34]:
+        - generic [ref=e37]:
+          - img "Gamme de compléments alimentaires SOTYA" [ref=e38]
+          - img "Femme avec un complément alimentaire SOTYA" [ref=e39]
+          - generic [ref=e41]:
+            - img "SOTYA" [ref=e42]
+            - paragraph [ref=e45]: Compléments alimentaires européens
+            - generic [ref=e47]:
+              - paragraph [ref=e48]: SOTYA est désormais disponible
+              - paragraph [ref=e49]: au Maroc
+            - paragraph [ref=e50]: SOTYA propose une gamme diversifiée de produits dédiés au bien-être et à la qualité de vie au quotidien.
+            - link "Découvrir la gamme" [ref=e51] [cursor=pointer]:
+              - /url: /produits?brand=sotya
+              - text: Découvrir la gamme
+              - generic [aria-hidden] [ref=e52]: →
+        - button [ref=e53] [cursor=pointer]
+        - button [ref=e56] [cursor=pointer]
+        - generic [ref=e59]:
+          - button [ref=e60] [cursor=pointer]
+          - button [ref=e61] [cursor=pointer]
+          - button [ref=e62] [cursor=pointer]
+      - generic [aria-hidden] [ref=e65]:
+        - generic [ref=e66]:
+          - generic [ref=e67]:
+            - generic [ref=e68]: ISO 9001 / 22000
+            - generic [ref=e69]: ·
+          - generic [ref=e70]:
+            - generic [ref=e71]: Marques Européennes
+            - generic [ref=e72]: ·
+          - generic [ref=e73]:
+            - generic [ref=e74]: Expertise Nutrition & Bien-Être
+            - generic [ref=e75]: ·
+        - generic [ref=e76]:
+          - generic [ref=e77]:
+            - generic [ref=e78]: ISO 9001 / 22000
+            - generic [ref=e79]: ·
+          - generic [ref=e80]:
+            - generic [ref=e81]: Marques Européennes
+            - generic [ref=e82]: ·
+          - generic [ref=e83]:
+            - generic [ref=e84]: Expertise Nutrition & Bien-Être
+            - generic [ref=e85]: ·
+      - generic [ref=e87]:
+        - generic [ref=e88]:
+          - generic [ref=e89]: L'expertise derrière AFAQ Health
+          - paragraph [ref=e90]: AFAQ HEALTH développe et distribue au Maroc un portefeuille de marques européennes sélectionnées pour leur qualité, leur savoir-faire et la pertinence de leurs gammes.
+          - paragraph [ref=e91]: Nous accompagnons nos partenaires de l'accès au marché à la commercialisation, en associant expertise réglementaire, développement commercial et connaissance du marché marocain.
+          - link "Découvrir → Qui sommes-nous ?" [ref=e93] [cursor=pointer]:
+            - /url: /a-propos
+        - img "Présentation" [ref=e95]
+      - generic [ref=e97]:
+        - heading "NOS MARQUES" [level=2] [ref=e99]
+        - generic [ref=e101]:
+          - generic [ref=e104] [cursor=pointer]:
+            - img "SOTYA" [ref=e106]
+            - generic [ref=e107]:
+              - generic [ref=e108]: COMPLÉMENTS ALIMENTAIRES
+              - heading "SOTYA" [level=3] [ref=e109]
+              - generic [ref=e110]: MARQUE ESPAGNOLE · DISPONIBLE AU MAROC
+              - paragraph [ref=e112]: SOTYA propose une gamme diversifiée de produits dédiés au bien-être et à la qualité de vie au quotidien.
+              - link "Découvrir SOTYA →" [ref=e114]:
+                - /url: /produits?brand=sotya
+                - text: Découvrir SOTYA
+                - generic [ref=e115]: →
+          - generic [ref=e118] [cursor=pointer]:
+            - img "Naturamins Kids" [ref=e120]
+            - generic [ref=e121]:
+              - generic [ref=e122]: NUTRITION PÉDIATRIQUE
+              - heading "Naturamins Kids" [level=3] [ref=e123]
+              - generic [ref=e124]: MARQUE ESPAGNOLE · PROCHAIN LANCEMENT — JANVIER 2027
+              - paragraph [ref=e126]: Naturamins Kids propose une gamme dédiée aux besoins nutritionnels de l’enfant, conçue pour accompagner les familles au quotidien.
+              - link "Découvrir Naturamins Kids →" [ref=e128]:
+                - /url: /produits?brand=naturamins-kids
+                - text: Découvrir Naturamins Kids
+                - generic [ref=e129]: →
+          - generic [ref=e132] [cursor=pointer]:
+            - img "Colagenova" [ref=e134]
+            - generic [ref=e135]:
+              - generic [ref=e136]: BEAUTÉ & NUTRITION
+              - heading "Colagenova" [level=3] [ref=e137]
+              - generic [ref=e138]: MARQUE ESPAGNOLE · PROCHAINEMENT AU MAROC
+              - paragraph [ref=e140]: COLAGENOVA propose une gamme spécialisée à base de collagène, développée pour accompagner la beauté et le confort articulaire.
+              - link "Découvrir Colagenova →" [ref=e142]:
+                - /url: /produits?brand=colagenova
+                - text: Découvrir Colagenova
+                - generic [ref=e143]: →
+      - generic [ref=e145]:
+        - heading "Nos Produits à la Une" [level=2] [ref=e147]
+        - generic [ref=e149]:
+          - generic [ref=e151] [cursor=pointer]:
+            - generic [ref=e152]:
+              - img "Bisglycinate de Magnésium" [ref=e154]
+              - generic [ref=e155]:
+                - generic [ref=e156]: 🌿
+                - generic [ref=e157]: SG
+            - generic [ref=e158]:
+              - generic [ref=e159]: Stress & Sommeil · Énergie & Vitalité
+              - heading "Bisglycinate de Magnésium" [level=3] [ref=e160]
+              - paragraph [ref=e161]: 100 et 300 gélules végétales de 750mg
+              - generic [ref=e162]:
+                - text: Découvrir le produit
+                - generic [ref=e163]: →
+          - generic [ref=e165] [cursor=pointer]:
+            - generic [ref=e166]:
+              - img "Complexe de Vitamines B" [ref=e168]
+              - generic [ref=e169]:
+                - generic [ref=e170]: 🌿
+                - generic [ref=e171]: SG
+            - generic [ref=e172]:
+              - generic [ref=e173]: Énergie & Vitalité
+              - heading "Complexe de Vitamines B" [level=3] [ref=e174]
+              - paragraph [ref=e175]: 60 gélules végétales de 620mg
+              - generic [ref=e176]:
+                - text: Découvrir le produit
+                - generic [ref=e177]: →
+          - generic [ref=e179] [cursor=pointer]:
+            - generic [ref=e180]:
+              - img "Complexe de Mélatonine" [ref=e182]
+              - generic [ref=e183]:
+                - generic [ref=e184]: 🌿
+                - generic [ref=e185]: SG
+            - generic [ref=e186]:
+              - generic [ref=e187]: Stress & Sommeil
+              - heading "Complexe de Mélatonine" [level=3] [ref=e188]
+              - paragraph [ref=e189]: 60 gélules végétales de 550mg
+              - generic [ref=e190]:
+                - text: Découvrir le produit
+                - generic [ref=e191]: →
+          - generic [ref=e193] [cursor=pointer]:
+            - generic [ref=e194]:
+              - img "Mélatonine" [ref=e196]
+              - generic [ref=e197]:
+                - generic [ref=e198]: 🌿
+                - generic [ref=e199]: SG
+            - generic [ref=e200]:
+              - generic [ref=e201]: Stress & Sommeil
+              - heading "Mélatonine" [level=3] [ref=e202]
+              - paragraph [ref=e203]: 60 gélules végétales de 650mg
+              - generic [ref=e204]:
+                - text: Découvrir le produit
+                - generic [ref=e205]: →
+        - link "tous les produits" [ref=e207] [cursor=pointer]:
+          - /url: /produits
+      - generic [ref=e209]:
+        - heading "Conseils" [level=2] [ref=e211]
+        - generic [ref=e213]:
+          - 'link "Article 1 Nutrition Magnésium : comment choisir la bonne formule ? Fatigue, périodes de stress, activité intense ou rythme de vie soutenu peuvent amener certaines personnes à s’intéresser davantage à leurs apports en magnésium." [ref=e214] [cursor=pointer]':
+            - /url: /conseils/magnesium-comment-choisir-bonne-formule
+            - img "Article 1" [ref=e216]
+            - generic [ref=e217]:
+              - generic [ref=e218]: Nutrition
+              - 'heading "Magnésium : comment choisir la bonne formule ?" [level=4] [ref=e219]'
+              - paragraph [ref=e220]: Fatigue, périodes de stress, activité intense ou rythme de vie soutenu peuvent amener certaines personnes à s’intéresser davantage à leurs apports en magnésium.
+          - 'link "Article 2 Bien-être Cycle féminin : comprendre le rôle de l’huile d’onagre Certaines femmes recherchent une complémentation autour de l’équilibre féminin, notamment avant les règles ou lors de la période de ménopause." [ref=e221] [cursor=pointer]':
+            - /url: /conseils/cycle-feminin-comprendre-role-huile-onagre
+            - img "Article 2" [ref=e223]
+            - generic [ref=e224]:
+              - generic [ref=e225]: Bien-être
+              - 'heading "Cycle féminin : comprendre le rôle de l’huile d’onagre" [level=4] [ref=e226]'
+              - paragraph [ref=e227]: Certaines femmes recherchent une complémentation autour de l’équilibre féminin, notamment avant les règles ou lors de la période de ménopause.
+          - 'link "Article 3 Bien-être Santé masculine : comprendre la prostate et le confort urinaire La santé de la prostate devient un sujet auquel de nombreux hommes accordent davantage d’attention avec l''âge." [ref=e228] [cursor=pointer]':
+            - /url: /conseils/sante-masculine-comprendre-prostate
+            - img "Article 3" [ref=e230]
+            - generic [ref=e231]:
+              - generic [ref=e232]: Bien-être
+              - 'heading "Santé masculine : comprendre la prostate et le confort urinaire" [level=4] [ref=e233]'
+              - paragraph [ref=e234]: La santé de la prostate devient un sujet auquel de nombreux hommes accordent davantage d’attention avec l'âge.
+        - link "[ Tous les articles ]" [ref=e236] [cursor=pointer]:
+          - /url: /conseils
+      - generic [ref=e237]:
+        - img "Espace Professionnel" [ref=e239]
+        - generic [ref=e243]:
+          - generic [ref=e244]: ESPACE PROFESSIONNEL
+          - heading "Vous êtes un professionnel de santé ?" [level=2] [ref=e245]
+          - paragraph [ref=e246]: Découvrez nos conditions dédiées, notre accompagnement et accédez à l'ensemble de notre catalogue.
+          - link "Accéder à l'espace pro →" [ref=e248] [cursor=pointer]:
+            - /url: /portal/login
+  - contentinfo [ref=e249]:
+    - generic [ref=e250]:
+      - generic [ref=e251]:
+        - heading "AFAQ HEALTH" [level=3] [ref=e253]
+        - paragraph [ref=e254]: Partenaire du développement des marques de santé européennes sur le marché marocain.
+      - generic [ref=e255]:
+        - heading "NAVIGATION" [level=4] [ref=e256]
+        - list [ref=e257]:
+          - listitem [ref=e258]:
+            - link "Accueil" [ref=e259] [cursor=pointer]:
+              - /url: /
+          - listitem [ref=e260]:
+            - link "Qui sommes-nous ?" [ref=e261] [cursor=pointer]:
+              - /url: /a-propos
+          - listitem [ref=e262]:
+            - link "Nos marques" [ref=e263] [cursor=pointer]:
+              - /url: /marques
+          - listitem [ref=e264]:
+            - link "Nos produits" [ref=e265] [cursor=pointer]:
+              - /url: /produits
+          - listitem [ref=e266]:
+            - link "Nos conseils" [ref=e267] [cursor=pointer]:
+              - /url: /conseils
+          - listitem [ref=e268]:
+            - link "Où acheter ?" [ref=e269] [cursor=pointer]:
+              - /url: /pharmacies
+          - listitem [ref=e270]:
+            - link "Contact" [ref=e271] [cursor=pointer]:
+              - /url: /contact
+      - generic [ref=e272]:
+        - heading "INFORMATIONS LÉGALES" [level=4] [ref=e273]
+        - list [ref=e274]:
+          - listitem [ref=e275]:
+            - link "Mentions légales" [ref=e276] [cursor=pointer]:
+              - /url: /mentions-legales
+          - listitem [ref=e277]:
+            - link "Politique de confidentialité" [ref=e278] [cursor=pointer]:
+              - /url: /confidentialite
+          - listitem [ref=e279]:
+            - link "Politique des cookies" [ref=e280] [cursor=pointer]:
+              - /url: /cookies
+    - generic [ref=e281]:
+      - paragraph [ref=e282]: © 2026 AFAQ HEALTH — Kénitra, Maroc. Tous droits réservés.
+      - generic [ref=e283]:
+        - link "Mentions légales" [ref=e284] [cursor=pointer]:
+          - /url: /mentions-legales
+        - generic [ref=e285]: ·
+        - link "Politique de confidentialité" [ref=e286] [cursor=pointer]:
+          - /url: /confidentialite
+        - generic [ref=e287]: ·
+        - link "Cookies" [ref=e288] [cursor=pointer]:
+          - /url: /cookies

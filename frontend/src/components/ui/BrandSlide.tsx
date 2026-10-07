@@ -62,6 +62,7 @@ type BrandSlideProps = {
   personOffsetClass?: string;
   personImageMobileClassName?: string;
   availabilityColor?: string;
+  availabilityLineColor?: string;
   availabilityClassName?: string;
   logoClassName?: string;
   logoMobileClassName?: string;
@@ -73,6 +74,7 @@ type BrandSlideProps = {
   taglineColor?: string;
   hideTaglineOnMobile?: boolean;
   contentClassName?: string;
+  centerAreaClassName?: string;
 };
 
 export default function BrandSlide({
@@ -121,6 +123,7 @@ export default function BrandSlide({
   personOffsetClass = "",
   personImageMobileClassName = "",
   availabilityColor,
+  availabilityLineColor,
   availabilityClassName,
   logoClassName,
   logoMobileClassName,
@@ -132,8 +135,10 @@ export default function BrandSlide({
   taglineColor,
   hideTaglineOnMobile,
   contentClassName,
+  centerAreaClassName = "left-[32%] right-[21%]",
 }: BrandSlideProps) {
   const availabilityTone = availabilityColor || accentMid;
+  const availabilityLineTone = availabilityLineColor || availabilityTone;
   const resolvedMobileHeadlinePart1 = mobileHeadlinePart1 ?? headlinePart1;
   const resolvedMobileHeadlineItalic = mobileHeadlineItalic ?? headlineItalic;
   const resolvedMobileHeadlinePart2 = mobileHeadlinePart2 ?? headlinePart2;
@@ -159,15 +164,10 @@ export default function BrandSlide({
         animate={{
           opacity: 1,
           y: 0,
-          scale: [1, 1.18, 1, 1.18, 1, 1.18, 1, 1.18, 1, 1, 1, 1],
         }}
         transition={{
           opacity: { duration: 0.7, ease: "easeOut" },
           y: { duration: 0.7, ease: "easeOut" },
-          scale: {
-            duration: 2.8, repeat: Infinity, ease: [0.2, 0, 0.6, 1], delay: 1.2,
-            times: [0, 0.04, 0.10, 0.16, 0.22, 0.29, 0.35, 0.44, 0.50, 0.60, 0.72, 0.86, 1]
-          },
         }}
         className={`${mobile ? "mt-3 mb-5" : "mt-4 mb-6"} inline-flex flex-col items-center ${availabilityClassName || ''}`}
       >
@@ -193,7 +193,7 @@ export default function BrandSlide({
           animate={{ scaleX: 1 }}
           transition={{ duration: 0.8, delay: 0.8, ease: "easeOut" }}
           className="mt-0.5 block h-px origin-left"
-          style={{ width: "100%", background: availabilityTone, opacity: 0.45 }}
+          style={{ width: "100%", background: availabilityLineTone, opacity: 0.45 }}
         />
       </motion.div>
     );
@@ -259,16 +259,15 @@ export default function BrandSlide({
 
         {/* ── CENTER : wide clean zone ── */}
         <div
-          className="
+          className={`
             absolute
             inset-y-0
-            left-[32%]
-            right-[21%]
+            ${centerAreaClassName}
             z-20
             flex
             items-center
             justify-center
-          "
+          `}
         >
           <div className={`w-full max-w-[560px] px-6 xl:px-8 text-center ${contentClassName || ''}`}>
 

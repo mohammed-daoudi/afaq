@@ -167,6 +167,7 @@ export const MOCK_ARTICLES = [
     category: 'Bien-être',
     title: 'Cycle féminin : comprendre le rôle de l’huile d’onagre',
     image: '/images/unsplash/beauty/beauty_3.jpg',
+    video: '/images/unsplash/welness/period.mp4',
     date: '28 Septembre 2026',
     readTime: '4 min',
     intro: 'Certaines femmes recherchent une complémentation autour de l’équilibre féminin, notamment avant les règles ou lors de la période de ménopause.',
@@ -208,6 +209,14 @@ export const MOCK_ARTICLES = [
       <h2>À qui cette formule peut-elle s’adresser ?</h2>
       <p>Elle peut intéresser les femmes qui recherchent une complémentation à base d’huile d’onagre dans le cadre d’une approche autour de l’équilibre féminin, notamment pendant la période de ménopause ou en lien avec le syndrome prémenstruel.</p>
       <p>En cas de traitement, de situation particulière ou de doute sur l’utilisation d’un complément alimentaire, le conseil d’un professionnel de santé reste recommandé.</p>
+      
+      <div class="mt-12 text-center hidden lg:flex flex-col items-center">
+        <h3 class="text-3xl font-bold text-teal-deep mb-4 mt-0">Envie d'aller plus loin ?</h3>
+        <p class="text-anthracite-soft mb-8 text-xl">Découvrez notre formule à base d’huile de graines d’onagre, riche en GLA, et de vitamine E.</p>
+        <a href="/produits/huile-onagre" class="inline-block text-sm font-bold bg-teal-deep text-white px-6 py-3 whitespace-nowrap rounded-xl hover:bg-gold-soft hover:text-teal-deep transition-all shadow-md shimmer-effect no-underline uppercase tracking-wider">
+          DÉCOUVRIR L'HUILE D'ONAGRE
+        </a>
+      </div>
     `,
     takeaway: 'Pour bien comprendre une formule, regardez surtout la concentration en GLA et la quantité réellement apportée par la dose journalière.'
   }

@@ -1,0 +1,26 @@
+[   29070ms] [INFO] %cDownload the React DevTools for a better development experience: https://reactjs.org/link/react-devtools font-weight:bold @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:38559
+[   29634ms] [WARNING] Image with src "/images/design/lg.jpeg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/shared/lib/utils/warn-once.js:15
+[   29635ms] [WARNING] Image with src "/images/unsplash/science/khallliii-doctors-closer.png" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/shared/lib/utils/warn-once.js:15
+[  304962ms] [LOG] [Fast Refresh] rebuilding @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/react-dev-overlay/app/hot-reloader-client.js:186
+[  307087ms] [LOG] [Fast Refresh] done in 2124ms @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/react-dev-overlay/app/hot-reloader-client.js:43
+[  351299ms] [LOG] [Fast Refresh] rebuilding @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/react-dev-overlay/app/hot-reloader-client.js:186
+[  353132ms] [LOG] [Fast Refresh] done in 1833ms @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/react-dev-overlay/app/hot-reloader-client.js:43
+[  548819ms] [LOG] [Fast Refresh] rebuilding @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/react-dev-overlay/app/hot-reloader-client.js:186
+[  550705ms] [LOG] [Fast Refresh] done in 1886ms @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/react-dev-overlay/app/hot-reloader-client.js:43
+[  732710ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_RESET @ http://localhost:3010/?_rsc=1wi7o:0
+[  732712ms] [ERROR] Failed to fetch RSC payload for http://localhost:3010/. Falling back to browser navigation. TypeError: Failed to fetch
+    at fetchServerResponse (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/router-reducer/fetch-server-response.js:59:27)
+    at fastRefreshReducerImpl (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/router-reducer/reducers/fast-refresh-reducer.js:33:67)
+    at clientReducer (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/router-reducer/router-reducer.js:41:67)
+    at Object.action (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/shared/lib/router/action-queue.js:150:55)
+    at runAction (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/shared/lib/router/action-queue.js:56:38)
+    at dispatchAction (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/shared/lib/router/action-queue.js:113:9)
+    at Object.dispatch (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/shared/lib/router/action-queue.js:145:40)
+    at eval (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/use-reducer-with-devtools.js:130:21)
+    at eval (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/app-router.js:304:25)
+    at startTransition (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react/cjs/react.development.js:2597:25)
+    at Object.fastRefresh (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/app-router.js:303:48)
+    at eval (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/react-dev-overlay/app/hot-reloader-client.js:277:28)
+    at startTransition (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react/cjs/react.development.js:2597:25)
+    at processMessage (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/react-dev-overlay/app/hot-reloader-client.js:276:44)
+    at WebSocket.handler (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/react-dev-overlay/app/hot-reloader-client.js:395:17) @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/app-index.js:32

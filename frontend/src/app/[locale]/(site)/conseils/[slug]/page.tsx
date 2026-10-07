@@ -29,15 +29,15 @@ export default function ArticlePage({ params }: { params: { slug: string } }) {
         </Link>
 
         <div className="space-y-6 lg:w-2/3">
-          <div className="inline-block px-4 py-1.5 text-xs font-bold tracking-widest text-teal-deep bg-sage-light rounded-full uppercase">
+          <div className="inline-block px-4 py-1.5 text-xs font-bold tracking-widest text-black bg-sage-light rounded-full uppercase">
             {article.category}
           </div>
 
-          <h1 className="text-4xl md:text-5xl font-extrabold text-teal-deep leading-tight">
+          <h1 className="text-4xl md:text-5xl font-semibold text-black leading-tight">
             {article.title}
           </h1>
 
-          <div className="flex items-center gap-6 text-sm text-anthracite-soft/70 font-semibold uppercase tracking-wider border-y border-sage-light/50 py-4">
+          <div className="flex items-center gap-6 text-sm text-black font-semibold uppercase tracking-wider border-y border-sage-light/50 py-4">
             <span className="flex items-center gap-2">
               <Calendar size={16} className="text-gold-soft" />
               {article.date}
@@ -54,13 +54,13 @@ export default function ArticlePage({ params }: { params: { slug: string } }) {
 
         {/* Left Column: Content */}
         <div className="lg:w-2/3 flex flex-col">
-          <div className="text-xl md:text-2xl text-teal-deep font-medium leading-relaxed mb-12 border-l-4 border-gold-soft pl-6">
+          <div className="text-xl text-black font-bold leading-relaxed mb-12 border-l-4 border-gold-soft pl-6">
             {article.intro}
           </div>
 
           {/* Prose Content */}
           <div
-            className="mb-16 max-w-none [&_h2]:text-3xl md:[&_h2]:text-4xl [&_h2]:text-black [&_h2]:font-semibold [&_h2]:mt-12 [&_h2]:mb-6 [&_p]:text-lg md:[&_p]:text-xl [&_p]:text-anthracite-soft/90 [&_p]:leading-loose [&_p]:mb-6 [&_ul]:list-disc [&_ul]:pl-8 [&_ul]:mb-6 [&_ul]:text-lg md:[&_ul]:text-xl [&_ul]:text-anthracite-soft/90 [&_ul]:space-y-2 [&_a]:text-gold-soft hover:[&_a]:text-teal-deep [&_strong]:text-gold-soft [&_strong]:font-bold"
+            className="mb-16 max-w-none [&_h2]:text-3xl md:[&_h2]:text-4xl [&_h2]:text-black [&_h2]:font-semibold [&_h2]:leading-tight [&_h2]:mt-12 [&_h2]:mb-6 [&_p]:text-lg [&_h3]:text-black [&_h3]:font-semibold [&_p]:text-black [&_p]:leading-relaxed [&_p]:mb-6 [&_ul]:list-disc [&_ul]:pl-8 [&_ul]:mb-6 [&_ul]:text-lg [&_ul]:leading-relaxed [&_ul]:text-black [&_li]:text-black [&_ul]:space-y-2 [&_a:not(.shimmer-effect)]:text-black [&_a:not(.shimmer-effect)]:underline [&_strong]:text-black [&_strong]:font-semibold"
             dangerouslySetInnerHTML={{ __html: article.content }}
           />
 
@@ -89,8 +89,8 @@ export default function ArticlePage({ params }: { params: { slug: string } }) {
           {/* CTA Box (Mobile Only) */}
           {article.slug === 'magnesium-comment-choisir-bonne-formule' && (
             <div className="lg:hidden bg-white border border-sage-light rounded-2xl p-6 mb-12 shadow-md text-center">
-              <h3 className="text-xl font-bold text-teal-deep mb-3">Envie d'aller plus loin ?</h3>
-              <p className="text-anthracite-soft/80 mb-6 font-medium">Découvrez notre formule synergique associant Magnésium, Zinc et Vitamine D3.</p>
+              <h3 className="text-xl font-bold text-black mb-3">Envie d'aller plus loin ?</h3>
+              <p className="text-black mb-6 font-medium">Découvrez notre formule synergique associant Magnésium, Zinc et Vitamine D3.</p>
               <Link href="/produits/bisglycinate-magnesium" className="inline-block text-sm font-bold bg-teal-deep text-white px-6 py-3 whitespace-nowrap rounded-xl hover:bg-gold-soft hover:text-teal-deep transition-all shadow-md shimmer-effect uppercase tracking-wider">
                 DÉCOUVRIR LE BISGLYCINATE DE MAGNÉSIUM
               </Link>
@@ -98,10 +98,19 @@ export default function ArticlePage({ params }: { params: { slug: string } }) {
           )}
           {article.slug === 'sante-masculine-comprendre-prostate' && (
             <div className="lg:hidden bg-white border border-sage-light rounded-2xl p-6 mb-12 shadow-md text-center">
-              <h3 className="text-xl font-bold text-teal-deep mb-3">Envie d'aller plus loin ?</h3>
-              <p className="text-anthracite-soft/80 mb-6 font-medium">Découvrez notre formule synergique associant plusieurs extraits végétaux et du zinc pour la santé masculine.</p>
+              <h3 className="text-xl font-bold text-black mb-3">Envie d'aller plus loin ?</h3>
+              <p className="text-black mb-6 font-medium">Découvrez notre formule synergique associant plusieurs extraits végétaux et du zinc pour la santé masculine.</p>
               <Link href="/produits/prostal" className="inline-block text-sm font-bold bg-teal-deep text-white px-6 py-3 whitespace-nowrap rounded-xl hover:bg-gold-soft hover:text-teal-deep transition-all shadow-md shimmer-effect uppercase tracking-wider">
                 DÉCOUVRIR PROSTAL
+              </Link>
+            </div>
+          )}
+          {article.slug === 'cycle-feminin-comprendre-role-huile-onagre' && (
+            <div className="lg:hidden bg-white border border-sage-light rounded-2xl p-6 mb-12 shadow-md text-center">
+              <h3 className="text-xl font-bold text-black mb-3">Envie d'aller plus loin ?</h3>
+              <p className="text-black mb-6 font-medium">Découvrez notre formule à base d’huile de graines d’onagre, riche en GLA, et de vitamine E.</p>
+              <Link href="/produits/huile-onagre" className="inline-block text-sm font-bold bg-teal-deep text-white px-6 py-3 whitespace-nowrap rounded-xl hover:bg-gold-soft hover:text-teal-deep transition-all shadow-md shimmer-effect uppercase tracking-wider">
+                DÉCOUVRIR L'HUILE D'ONAGRE
               </Link>
             </div>
           )}
@@ -117,8 +126,8 @@ export default function ArticlePage({ params }: { params: { slug: string } }) {
                   <Lightbulb size={24} />
                 </div>
                 <div>
-                  <h3 className="text-xl font-bold text-teal-deep mb-2">{t('takeaway')}</h3>
-                  <p className="text-anthracite-soft/90 font-medium leading-relaxed">
+                  <h3 className="text-xl font-bold text-black mb-2">{t('takeaway')}</h3>
+                  <p className="text-black font-medium leading-relaxed">
                     {article.takeaway}
                   </p>
                 </div>
@@ -155,8 +164,8 @@ export default function ArticlePage({ params }: { params: { slug: string } }) {
             <div className="bg-white rounded-3xl p-6 border border-teal-light/20 shadow-sm flex items-start gap-4">
               <AlertTriangle className="text-gold-soft flex-shrink-0 mt-1" size={24} />
               <div>
-                <h4 className="font-bold text-teal-deep text-sm uppercase tracking-wider mb-1">{t('importantInfo')}</h4>
-                <p className="text-sm text-anthracite-soft/70 leading-relaxed ">
+                <h4 className="font-bold text-black text-sm uppercase tracking-wider mb-1">{t('importantInfo')}</h4>
+                <p className="text-sm text-black leading-relaxed ">
                   {t('disclaimer')}
                 </p>
               </div>
