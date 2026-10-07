@@ -82,7 +82,7 @@ export default function ConfidentialitePage() {
             </ul>
             <p>
               Pour exercer ces droits, vous pouvez nous contacter à l'adresse suivante :<br />
-              <strong>Email :</strong> contact@afaqhealth.ma<br />
+              <strong>Email :</strong> contact@afaqhealth.com<br />
               <strong>Courrier :</strong> Bir Rami Ouest, 14000 Kénitra — Maroc
             </p>
 
