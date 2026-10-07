@@ -70,49 +70,17 @@ const ReseauSlider = () => {
   );
 };
 
-const VISION_IMAGES = [
-  "/images/unsplash/welness/family-supplements-table-naturamins-sotya-antiox.png",
-  "/images/unsplash/welness/family-walking-away-green-meadow-professional-8k.png"
-];
-
-const VisionSlider = () => {
-  const [current, setCurrent] = useState(0);
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrent((prev) => (prev + 1) % VISION_IMAGES.length);
-    }, 4000);
-    return () => clearInterval(timer);
-  }, []);
-
+const VisionImage = () => {
   return (
-    <>
-      <Image
-        src={VISION_IMAGES[0]}
-        alt="Spacer"
-        width={800}
-        height={800}
-        className="w-full h-auto opacity-0 pointer-events-none block"
-      />
-      {VISION_IMAGES.map((src, index) => (
-        <motion.div
-          key={src}
-          className="absolute inset-0 w-full h-full"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: current === index ? 1 : 0 }}
-          transition={{ duration: 1 }}
-        >
-          <Image
-            src={src}
-            alt="Notre Vision AFAQ Health"
-            fill
-            className="object-contain object-center"
-            priority={index === 0}
-            sizes="(max-width: 1024px) 100vw, 50vw"
-          />
-        </motion.div>
-      ))}
-    </>
+    <Image
+      src="/images/unsplash/welness/family-walking-away-green-meadow-professional-8k.png"
+      alt="Notre Vision AFAQ Health"
+      width={800}
+      height={800}
+      className="w-full h-auto object-contain object-center"
+      priority
+      sizes="(max-width: 1024px) 100vw, 50vw"
+    />
   );
 };
 
@@ -267,7 +235,7 @@ export default function AProposPage() {
               viewport={{ once: true }}
               className="relative w-full lg:w-[120%] lg:-ml-[20%] max-w-none"
             >
-              <VisionSlider />
+              <VisionImage />
             </motion.div>
 
             {/* Text right */}
