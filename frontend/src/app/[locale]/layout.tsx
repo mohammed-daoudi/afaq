@@ -30,6 +30,7 @@ import { NextIntlClientProvider } from 'next-intl';
 import { getMessages } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import { locales } from '@/i18n';
+import { DisableInspect } from '@/components/ui/DisableInspect';
 
 export default async function RootLayout({
   children,
@@ -52,6 +53,7 @@ export default async function RootLayout({
   return (
     <html lang={locale} className={`${outfit.variable} ${inter.variable} ${poppins.variable}`} dir={locale === 'ar' ? 'rtl' : 'ltr'}>
       <body className="antialiased text-anthracite-soft bg-ivory-soft">
+        <DisableInspect />
         <NextIntlClientProvider messages={messages}>
           {children}
         </NextIntlClientProvider>
