@@ -68,7 +68,7 @@ export function ProductCard({ product }: ProductCardProps) {
               src={product.imagePath}
               alt={product.name}
               fill
-              className="object-contain mix-blend-multiply opacity-90 transition-transform duration-500 group-hover:scale-105"
+              className="object-contain mix-blend-multiply opacity-90 transition-transform duration-500 md:group-hover:scale-105"
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             />
           </div>

@@ -124,7 +124,7 @@ export default function CatalogPage() {
                     src={product.imagePath} 
                     alt={product.name}
                     fill
-                    className="object-contain p-2 drop-shadow-md group-hover:scale-105 transition-transform duration-500"
+                    className="object-contain p-2 drop-shadow-md md:group-hover:scale-105 transition-transform duration-500"
                   />
                   <div className="absolute top-2 left-2 bg-white/80 backdrop-blur px-2 py-1 rounded text-[10px] font-bold text-teal-deep uppercase">
                     {product.brand}
