@@ -107,15 +107,15 @@
                 centerAreaClassName="left-[29%] right-[22%]"
                 contentClassName="translate-x-1 xl:translate-x-2"
 
-                headlinePart1="Le naturel au service de votre"
-                headlineItalic="bien-être"
-                headlinePart2="au quotidien"
-                headlineClassName="font-poppins text-[18px] md:text-[20px] xl:text-[24px] leading-[1.24] font-normal tracking-normal"
-                headlineItalicClassName="font-poppins not-italic font-bold text-[#176747]"
-                mobileHeadlinePart1="Le naturel au service de votre"
-                mobileHeadlineItalic="bien-être"
+                headlinePart1="SOTYA propose une gamme diversifiée de produits"
+                headlineItalic="dédiés au bien-être"
+                headlinePart2="et à la qualité de vie au quotidien"
+                headlineClassName="font-poppins text-[18px] md:text-[20px] xl:text-[24px] leading-[1.24] font-medium tracking-normal"
+                headlineItalicClassName="font-sans italic font-semibold text-[#176747]"
+                mobileHeadlinePart1="Une gamme diversifiée"
+                mobileHeadlineItalic="dédiée au bien-être"
                 mobileHeadlinePart2="au quotidien"
-                mobileHeadlineClassName="font-poppins text-[23px] md:text-[27px] leading-[1.12] font-normal tracking-normal"
+                mobileHeadlineClassName="font-poppins text-[23px] md:text-[27px] leading-[1.12] font-light tracking-normal"
                 mobileTagline="Compléments Alimentaires"
                 mobileTaglineClassName="-translate-x-2 lg:-translate-x-4"
                 mobileAvailabilityVariant="default"
@@ -142,30 +142,28 @@
                 productImageAlt="Gamme COLAGENOVA"
 
                 personImage="/images/collagenslider/madamcollagene.png"
-                personImageAlt="Beauté et articulations au naturel"
+                personImageAlt="Beauté et mobilité au naturel"
 
                 logo="/images/collagenslider/nobgcollagene.png"
                 logoAlt="COLAGENOVA"
                 logoClassName="h-[74px] xl:h-[88px]"
                 centerAreaClassName="left-[29%] right-[22%]"
-                contentClassName="translate-x-1 -translate-y-6 xl:translate-x-2 xl:-translate-y-8"
+                contentClassName="translate-x-1 xl:translate-x-2"
 
-                headlinePart1="Le collagène"
-                headlineItalic="ciblé"
-                headlineAfterItalic="pour"
-                headlinePart2="chaque besoin"
-                headlineClassName="font-poppins text-[18px] md:text-[20px] xl:text-[24px] leading-[1.24] font-normal tracking-normal"
-                headlineItalicClassName="font-poppins not-italic font-bold text-[#db2777]"
-                mobileHeadlinePart1="Le collagène"
-                mobileHeadlineItalic="ciblé"
-                mobileHeadlineAfterItalic="pour"
-                mobileHeadlinePart2="chaque besoin"
-                mobileHeadlineClassName="font-poppins text-[23px] md:text-[27px] leading-[1.12] font-normal tracking-normal"
+                headlinePart1="COLAGENOVA propose une gamme spécialisée"
+                headlineItalic="à base de collagène"
+                headlinePart2="pour la beauté et le confort articulaire"
+                headlineClassName="font-poppins text-[18px] md:text-[20px] xl:text-[24px] leading-[1.24] font-medium tracking-normal"
+                headlineItalicClassName="font-sans italic font-semibold text-[#db2777]"
+                mobileHeadlinePart1="Une gamme collagène"
+                mobileHeadlineItalic="dédiée à la beauté"
+                mobileHeadlinePart2="et au confort articulaire"
+                mobileHeadlineClassName="font-poppins text-[23px] md:text-[27px] leading-[1.12] font-light tracking-normal"
                 mobileAvailabilityVariant="default"
                 mobileSupportText={null}
 
-                tagline="BEAUTÉ & ARTICULATIONS"
-                availability="Lancement en 2027"
+                tagline="BEAUTÉ & MOBILITÉ"
+                availability="Lancement en Janvier 2027"
                 availabilityColor="#be185d"
                 availabilityClassName="-translate-x-6 lg:-translate-x-16"
 
@@ -193,41 +191,39 @@
 
                 logo="/images/kidsslider/nobgkids.png"
                 logoAlt="NATURAMINS KIDS"
-                logoClassName="h-[104px] xl:h-[132px]"
+                logoClassName="h-[86px] xl:h-[108px]"
                 logoMobilePosition="top"
-                logoMobileClassName="h-[96px] md:h-[116px]"
+                logoMobileClassName="h-[86px] md:h-[100px]"
                 centerAreaClassName="left-[29%] right-[22%]"
-                contentClassName="translate-x-1 -translate-y-6 xl:translate-x-2 xl:-translate-y-8"
+                contentClassName="translate-x-1 xl:translate-x-2"
 
-                headlinePart1="Nourrir chaque étape"
-                headlineItalic=""
-                headlinePart2="de"
-                headlinePart2Italic="l’enfance"
-                headlineClassName="font-poppins text-[20px] md:text-[24px] xl:text-[30px] leading-[1.16] font-normal tracking-normal"
-                headlineItalicClassName="font-poppins not-italic font-semibold text-[#1F3763]"
-                mobileHeadlinePart1="Nourrir chaque étape"
-                mobileHeadlineItalic=""
-                mobileHeadlinePart2="de"
-                mobileHeadlinePart2Italic="l’enfance"
-                mobileHeadlineClassName="font-poppins text-[25px] md:text-[29px] leading-[1.1] font-normal tracking-normal"
-                mobileHeadlineItalicClassName="font-poppins not-italic font-semibold text-[#1F3763]"
+                headlinePart1="Nourrir"
+                headlineItalic="chaque étape"
+                headlinePart2="de l’enfance"
+                headlineClassName="font-poppins text-[17px] md:text-[19px] xl:text-[23px] leading-[1.18] font-medium tracking-normal"
+                headlineItalicClassName="font-sans italic font-semibold text-[#D9822B]"
+                mobileHeadlinePart1="Nourrir"
+                mobileHeadlineItalic="chaque étape"
+                mobileHeadlinePart2="de l’enfance"
+                mobileHeadlineClassName="font-poppins text-[23px] md:text-[27px] leading-[1.12] font-light tracking-normal"
+                mobileHeadlineItalicClassName="font-sans italic font-semibold text-[#D9822B]"
                 mobileAvailabilityVariant="default"
                 mobileSupportText={null}
 
                 tagline="NUTRITION PÉDIATRIQUE"
                 taglineClassName="!mb-4"
-                taglineColor="#344469"
+                taglineColor="#2F8B5B"
                 hideTaglineOnMobile
 
-                availability="Lancement en 2027"
-                availabilityColor="#284F8C"
+                availability="Lancement en Janvier 2027"
+                availabilityColor="#D9822B"
                 availabilityLineColor="#245C42"
 
                 ctaLabel="Découvrir la gamme"
                 ctaHref={slides[current].link}
-                ctaBg="linear-gradient(90deg, #294A7F 0%, #3F63BC 100%)"
+                ctaBg="linear-gradient(90deg, #247A50 0%, #F2A23A 100%)"
 
-                accentDark="#344469"
+                accentDark="#245C42"
                 accentMid="#F2A23A"
 
                 bgFrom="#EAF6EA"
@@ -338,7 +334,7 @@
         </button>
 
         {/* Pagination Dots */}
-        <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-3 z-30 lg:bottom-8">
+        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex gap-3 z-30">
           {slides.map((_, idx) => (
             <button
               key={idx}

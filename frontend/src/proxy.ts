@@ -1,5 +1,5 @@
 import createMiddleware from 'next-intl/middleware';
-import { type NextRequest } from 'next/server';
+import { type NextRequest, NextResponse } from 'next/server';
 import { routing } from './navigation';
 
 const intlMiddleware = createMiddleware(routing);
@@ -31,7 +31,7 @@ function buildContentSecurityPolicy(nonce: string) {
     "object-src 'none'",
     "form-action 'self'",
     "frame-ancestors 'none'",
-    `script-src 'self' 'nonce-${nonce}' 'strict-dynamic'`,
+    `script-src 'self' 'nonce-${nonce}' 'strict-dynamic' ${!isProduction ? "'unsafe-eval'" : ""}`.trim(),
     "style-src 'self' 'unsafe-inline'",
     "font-src 'self' data:",
     [
@@ -57,6 +57,19 @@ function buildContentSecurityPolicy(nonce: string) {
 }
 
 export function proxy(request: NextRequest) {
+  const pathname = request.nextUrl.pathname;
+  const isPortalPath = /^\/(?:fr|en|ar)?\/?portal(?:\/.*)?$/.test(pathname);
+  const isAuthPage = /^\/(?:fr|en|ar)?\/?portal\/(?:login|register)$/.test(pathname);
+
+  if (isPortalPath && !isAuthPage) {
+    const token = request.cookies.get('auth_token');
+    if (!token) {
+      const localeMatch = pathname.match(/^\/(fr|en|ar)\//);
+      const prefix = localeMatch ? `/${localeMatch[1]}` : '';
+      return NextResponse.redirect(new URL(`${prefix}/portal/login`, request.url));
+    }
+  }
+
   const nonce = Buffer.from(crypto.randomUUID()).toString('base64');
   const contentSecurityPolicy = buildContentSecurityPolicy(nonce);
 

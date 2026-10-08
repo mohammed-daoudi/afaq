@@ -1,13 +1,17 @@
 export const CATEGORIES = [
   'Toutes',
-  'Stress & Sommeil',
-  'Santé Spécifique'
+  'Nutrition',
+  'Bien-être',
+  'Enfants',
+  'Beauté',
+  'Compléments alimentaires',
+  'Actualités AFAQ'
 ];
 
 export const MOCK_ARTICLES = [
   {
     slug: 'magnesium-comment-choisir-bonne-formule',
-    category: 'Stress & Sommeil',
+    category: 'Nutrition',
     title: 'Magnésium : comment choisir la bonne formule ?',
     image: '/images/unsplash/formulations/formulation_3.jpg',
     video: '/videos/vidmag.mp4',
@@ -66,7 +70,7 @@ export const MOCK_ARTICLES = [
   },
   {
     slug: 'sommeil-quelle-formule-melatonine-choisir',
-    category: 'Stress & Sommeil',
+    category: 'Bien-être',
     title: 'Sommeil : quelle formule de mélatonine choisir selon son besoin ?',
     image: '/images/unsplash/welness/rachel-mcdermott-mEKhOVkOcKE-unsplash.jpg',
     date: '20 Septembre 2026',
@@ -113,7 +117,7 @@ export const MOCK_ARTICLES = [
   },
   {
     slug: 'sante-masculine-comprendre-prostate',
-    category: 'Santé Spécifique',
+    category: 'Bien-être',
     title: 'Santé masculine : comprendre la prostate et le confort urinaire',
     image: '/images/unsplash/welness/prostal-man-taking-pill-full-frame.png',
     video: '/images/unsplash/welness/chwirf.mp4',
@@ -160,7 +164,7 @@ export const MOCK_ARTICLES = [
   },
   {
     slug: 'cycle-feminin-comprendre-role-huile-onagre',
-    category: 'Santé Spécifique',
+    category: 'Bien-être',
     title: 'Cycle féminin : comprendre le rôle de l’huile d’onagre',
     image: '/images/unsplash/beauty/beauty_3.jpg',
     video: '/images/unsplash/welness/period.mp4',

@@ -32,10 +32,10 @@ export default function ColagenovaPage() {
             Colagenova
           </motion.h1>
           <motion.h2 variants={fadeUp} className="text-2xl md:text-3xl font-bold text-gold-soft">
-            La beauté et les articulations au cœur de la gamme.
+            La nutrition beauté au cœur de la gamme.
           </motion.h2>
           <motion.p variants={fadeUp} className="text-xl text-anthracite-soft/80 font-medium max-w-3xl mx-auto leading-relaxed">
-            Colagenova est une marque spécialisée dans l'univers du collagène, de la beauté et des articulations, qui rejoindra prochainement le portefeuille AFAQ HEALTH.
+            Colagenova est une marque spécialisée dans l'univers du collagène et de la nutrition beauté, qui rejoindra prochainement le portefeuille AFAQ HEALTH.
           </motion.p>
         </motion.div>
 

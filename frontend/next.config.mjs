@@ -7,6 +7,7 @@ const nextConfig = {
   poweredByHeader: false,
   productionBrowserSourceMaps: false,
   images: {
+    qualities: [75, 90],
     localPatterns: [
       {
         pathname: '/**',

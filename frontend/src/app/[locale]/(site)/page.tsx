@@ -37,7 +37,7 @@ const brands = [
     cardBg: '#FFFFFF',
     logoClass: 'object-cover -translate-x-6',
     subtitle: 'NUTRITION PÉDIATRIQUE',
-    status: 'MARQUE ESPAGNOLE · Lancement en 2027',
+    status: 'MARQUE ESPAGNOLE · Lancement en Janvier 2027',
     description: 'Naturamins Kids propose une gamme dédiée aux besoins nutritionnels de l’enfant, conçue pour accompagner les familles au quotidien.',
   },
   {
@@ -46,8 +46,8 @@ const brands = [
     logo: '/gammelogo/colagenova.jpg',
     cardBg: '#FFFFFF',
     logoClass: 'object-contain scale-90',
-    subtitle: 'BEAUTÉ & ARTICULATIONS',
-    status: 'MARQUE ESPAGNOLE · Lancement en 2027',
+    subtitle: 'BEAUTÉ & NUTRITION',
+    status: 'MARQUE ESPAGNOLE · PROCHAINEMENT AU MAROC',
     description: "COLAGENOVA propose une gamme spécialisée à base de collagène, développée pour accompagner la beauté et le confort articulaire.",
   }
 ];
@@ -320,7 +320,7 @@ export default function HomePage() {
             src="/images/unsplash/science/Gemini_Generated_Image_54h96b54h96b54h9.jpg"
             alt="Espace Professionnel"
             fill
-            className="object-cover object-[center_30%]"
+            className="object-cover object-center"
             quality={90}
           />
           {/* Calques d'assombrissement pour garantir la lisibilité du texte */}
@@ -337,7 +337,7 @@ export default function HomePage() {
               Vous êtes un professionnel de santé ?
             </motion.h2>
             <motion.p variants={fadeUp} className="text-lg md:text-xl text-white/90 leading-relaxed max-w-3xl mx-auto mt-6 drop-shadow-md">
-              Découvrez nos conditions dédiées, notre accompagnement et accédez à notre portail B2B.
+              Découvrez nos conditions dédiées, notre accompagnement et accédez à l&apos;ensemble de notre catalogue.
             </motion.p>
             <motion.div variants={fadeUp} className="mt-10">
               <Link

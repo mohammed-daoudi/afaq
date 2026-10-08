@@ -32,7 +32,8 @@ const staggerContainer: Variants = {
 
 
 const RESEAU_IMAGES = [
-  "/images/unsplash/science/dawadelivry.png"
+  "/images/unsplash/science/Gemini_Generated_Image_3luov43luov43luo.jpg",
+  "/images/unsplash/science/prooo.jpg"
 ];
 
 const ReseauSlider = () => {
@@ -232,7 +233,7 @@ export default function AProposPage() {
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
               viewport={{ once: true }}
-              className="relative w-full lg:w-[135%] lg:-ml-[28%] max-w-none"
+              className="relative w-full lg:w-[120%] lg:-ml-[20%] max-w-none"
             >
               <VisionImage />
             </motion.div>

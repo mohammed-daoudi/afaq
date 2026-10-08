@@ -241,7 +241,7 @@ export default function ProduitsPage() {
           </p>
           <Link 
             href="/portal/login" 
-            className="inline-flex items-center gap-3 bg-teal-deep text-white px-8 py-4 rounded-xl font-bold hover:bg-gold-soft hover:text-teal-deep transition-all shadow-lg hover:shadow-xl hover:-translate-y-1 text-lg group shimmer-effect"
+            className="inline-flex items-center gap-3 bg-gold-soft hover:bg-gold-deep text-white px-8 py-4 rounded-xl font-bold transition-all shadow-lg hover:shadow-xl hover:-translate-y-1 text-lg group"
           >
             Accéder à l'espace professionnel 
             <span className="transform group-hover:translate-x-1 transition-transform">→</span>
