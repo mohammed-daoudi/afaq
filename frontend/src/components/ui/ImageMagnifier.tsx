@@ -70,7 +70,7 @@ export function ImageMagnifier({
 
       {showMagnifier && (
         <div
-          className="pointer-events-none absolute border-4 border-sage-light shadow-2xl rounded-2xl z-50 overflow-hidden bg-white"
+          className="hidden md:block pointer-events-none absolute border-4 border-sage-light shadow-2xl rounded-2xl z-50 overflow-hidden bg-white"
           style={{
             display: showMagnifier ? '' : 'none',
             top: `${y - magnifierHeight / 2}px`,
