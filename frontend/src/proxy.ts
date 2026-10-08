@@ -38,9 +38,6 @@ function buildContentSecurityPolicy(nonce: string) {
       "img-src 'self' data: blob:",
       'https://afaq-lilac.vercel.app',
       'https://images.unsplash.com',
-      'https://via.placeholder.com',
-      'https://unpkg.com',
-      'https://raw.githubusercontent.com',
       'https://*.tile.openstreetmap.org',
     ].join(' '),
     "media-src 'self' blob:",
@@ -92,6 +89,20 @@ export function proxy(request: NextRequest) {
       'Strict-Transport-Security',
       'max-age=31536000; includeSubDomains; preload',
     );
+  }
+
+  if (isPortalPath) {
+    response.headers.set('X-Robots-Tag', 'noindex');
+  }
+
+  if (isProduction) {
+    const localeCookie = response.cookies.get('NEXT_LOCALE');
+    if (localeCookie) {
+      response.cookies.set({
+        ...localeCookie,
+        secure: true,
+      });
+    }
   }
 
   return response;

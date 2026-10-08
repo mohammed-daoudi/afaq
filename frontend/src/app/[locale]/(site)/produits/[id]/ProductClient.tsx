@@ -124,7 +124,7 @@ export function ProductTabs({ product, colors }: { product: Product, colors: any
       <div className="bg-white rounded-3xl p-8 md:p-12 shadow-sm border border-sage-light/50 transition-all duration-500">
         {activeTab === 'description' ? (
           <div className="space-y-10 animate-in fade-in slide-in-from-bottom-4 duration-500">
-            <h2 className="text-2xl font-bold text-teal-deep uppercase mb-[-1rem]">
+            <h2 className="text-2xl font-bold text-teal-deep uppercase mb-8">
               {product.name}
             </h2>
 
