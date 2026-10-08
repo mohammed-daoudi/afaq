@@ -14,7 +14,6 @@ export function Logo({ className = '', size = 'default' }: { className?: string;
           src="/images/design/lg.jpeg"
           alt="AFAQ HEALTH Logo"
           fill
-          sizes="(max-width: 1024px) 210px, 346px"
           className="object-contain object-left mix-blend-multiply"
           priority
         />

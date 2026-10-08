@@ -24,7 +24,7 @@ const brands = [
     cardBg: '#FFFFFF',
     logoClass: 'object-cover',
     subtitle: 'NUTRITION PÉDIATRIQUE',
-    status: 'MARQUE ESPAGNOLE · Lancement en Janvier 2027',
+    status: 'MARQUE ESPAGNOLE · Lancement en 2027',
     description: 'Naturamins Kids propose une gamme dédiée aux besoins nutritionnels de l’enfant, conçue pour accompagner les familles au quotidien.',
   },
   {
@@ -33,8 +33,8 @@ const brands = [
     logo: '/gammelogo/colagenova.jpg',
     cardBg: '#FFFFFF',
     logoClass: 'object-contain scale-90',
-    subtitle: 'BEAUTÉ & NUTRITION',
-    status: 'MARQUE ESPAGNOLE · PROCHAINEMENT AU MAROC',
+    subtitle: 'BEAUTÉ & ARTICULATIONS',
+    status: 'MARQUE ESPAGNOLE · Lancement en 2027',
     description: "COLAGENOVA propose une gamme spécialisée à base de collagène, développée pour accompagner la beauté et le confort articulaire.",
   }
 ];

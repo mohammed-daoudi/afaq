@@ -8,23 +8,27 @@ type TherapeuticFamily = string;
 const FAMILY_COLORS: Record<string, { primary: string, accent: string, light: string }> = {
   'Énergie & Vitalité': { primary: '#1B4D3E', accent: '#D4AF37', light: '#E8F3F1' },
   'Stress & Sommeil': { primary: '#2C3E50', accent: '#8E44AD', light: '#F4F6F7' },
-  'Immunité & Défenses': { primary: '#E67E22', accent: '#D35400', light: '#FDEDEC' },
+  'Santé Spécifique': { primary: '#7A4E2D', accent: '#B7791F', light: '#FFF7ED' },
+  'Cardio-vasculaire': { primary: '#8B1E3F', accent: '#C0392B', light: '#FDECEF' },
+  'Digestion': { primary: '#2F6F4E', accent: '#4A8F61', light: '#EAF6EF' },
+  'Articulation': { primary: '#2980B9', accent: '#3498DB', light: '#EAF2F8' },
   'Beauté': { primary: '#D4AF37', accent: '#C0392B', light: '#FDF2E9' },
-  'Articulations & Mobilité': { primary: '#2980B9', accent: '#3498DB', light: '#EAF2F8' },
+  'Immunité': { primary: '#E67E22', accent: '#D35400', light: '#FDEDEC' },
   'Nutrition pédiatrique': { primary: '#16A085', accent: '#1ABC9C', light: '#E8F8F5' },
 };
 import { ProductGallery, ProductTabs, RelatedProducts } from './ProductClient';
-import { useTranslations } from 'next-intl';
+import { getTranslations } from 'next-intl/server';
 
-export default function ProductDetailPage({ params }: { params: { id: string } }) {
-  const product = products.find(p => p.id === params.id);
+export default async function ProductDetailPage({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = await params;
+  const product = products.find(p => p.id === id);
 
   if (!product) {
     notFound();
   }
 
   const colors = FAMILY_COLORS[product.categories[0] as TherapeuticFamily] || { primary: '#1B4D3E', accent: '#D4AF37', light: '#E8F3F1' };
-  const t = useTranslations('ProductDetail');
+  const t = await getTranslations('ProductDetail');
 
   return (
     <div className="min-h-screen bg-ivory-soft pt-24 pb-24">
