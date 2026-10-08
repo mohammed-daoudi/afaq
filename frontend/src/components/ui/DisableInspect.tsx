@@ -4,6 +4,8 @@ import { useEffect } from "react";
 
 export function DisableInspect() {
   useEffect(() => {
+    if (process.env.NODE_ENV !== "production") return;
+
     if (typeof window !== "undefined") {
       // Désactiver le clic droit
       const handleContextMenu = (e: MouseEvent) => {
