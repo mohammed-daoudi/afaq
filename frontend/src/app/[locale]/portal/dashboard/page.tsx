@@ -31,8 +31,7 @@ export default function DashboardPage() {
       try {
         const response = await api.get('/b2b/orders');
         setOrders(response.data);
-      } catch (err: any) {
-        console.error('Failed to fetch orders:', err);
+      } catch {
         setError('Impossible de charger vos données.');
       } finally {
         setLoading(false);

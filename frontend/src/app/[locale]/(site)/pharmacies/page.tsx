@@ -1,9 +1,8 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { Link } from '@/navigation';
 import dynamic from 'next/dynamic';
-import axios from 'axios';
+import api from '@/lib/api';
 
 // Dynamically import the map component since Leaflet requires window
 const MapComponent = dynamic(() => import('@/components/map/PharmacyMap'), { 
@@ -29,16 +28,16 @@ interface PharmacyWithDistance extends Pharmacy {
 }
 
 function getDistanceFromLatLonInKm(lat1: number, lon1: number, lat2: number, lon2: number) {
-  var R = 6371; // Radius of the earth in km
-  var dLat = deg2rad(lat2-lat1);
-  var dLon = deg2rad(lon2-lon1); 
-  var a = 
+  const R = 6371; // Radius of the earth in km
+  const dLat = deg2rad(lat2-lat1);
+  const dLon = deg2rad(lon2-lon1); 
+  const a = 
     Math.sin(dLat/2) * Math.sin(dLat/2) +
     Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) * 
     Math.sin(dLon/2) * Math.sin(dLon/2)
     ; 
-  var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
-  var d = R * c; // Distance in km
+  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
+  const d = R * c; // Distance in km
   return d;
 }
 
@@ -61,24 +60,27 @@ export default function PharmaciesPage() {
   useEffect(() => {
     const fetchPharmacies = async () => {
       try {
-        const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://127.0.0.1:8000/api';
-        
         // Check if we are filtering by a specific product
         const searchParams = new URLSearchParams(window.location.search);
         const productId = searchParams.get('product_id');
+        const safeProductId = productId && /^[A-Za-z0-9_-]{1,80}$/.test(productId) ? productId : null;
         
-        if (productId) {
+        if (productId && !safeProductId) {
+          setPharmacies([]);
+          return;
+        }
+        
+        if (safeProductId) {
           setIsProductFiltered(true);
         }
         
-        const endpoint = productId 
-          ? `${apiUrl}/products/${productId}/pharmacies`
-          : `${apiUrl}/public/pharmacies`;
+        const endpoint = safeProductId 
+          ? `/public/products/${safeProductId}/pharmacies`
+          : '/public/pharmacies';
           
-        const response = await axios.get(endpoint);
+        const response = await api.get(endpoint);
         setPharmacies(response.data);
-      } catch (error) {
-        console.warn('Backend non disponible, fallback aux données de test.');
+      } catch {
         setPharmacies([
           { id: 1, name: 'Pharmacie Centrale', city: 'Rabat', address: '15 Avenue Mohammed V, Rabat', lat: 34.020882, lng: -6.841650 },
           { id: 2, name: 'Pharmacie Al Amal', city: 'Rabat', address: 'Quartier Agdal, Rabat', lat: 34.004413, lng: -6.847582 },
@@ -109,7 +111,7 @@ export default function PharmaciesPage() {
         setSelectedCity('Toutes'); // Reset city to see all nearest pharmacies across boundaries
         setIsLocating(false);
       },
-      (error) => {
+      () => {
         alert("Impossible de récupérer votre position. Veuillez vérifier vos autorisations.");
         setIsLocating(false);
       }
@@ -127,7 +129,7 @@ export default function PharmaciesPage() {
   });
 
   // Calculate distance and sort if userLocation is known
-  let pharmaciesWithDistance: PharmacyWithDistance[] = filteredPharmacies.map(pharmacy => {
+  const pharmaciesWithDistance: PharmacyWithDistance[] = filteredPharmacies.map(pharmacy => {
     if (userLocation) {
       const distance = getDistanceFromLatLonInKm(userLocation.lat, userLocation.lng, pharmacy.lat, pharmacy.lng);
       return { ...pharmacy, distance };

@@ -4,9 +4,8 @@ const withNextIntl = createNextIntlPlugin('./src/i18n.ts');
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  eslint: {
-    ignoreDuringBuilds: true,
-  },
+  poweredByHeader: false,
+  productionBrowserSourceMaps: false,
   images: {
     localPatterns: [
       {

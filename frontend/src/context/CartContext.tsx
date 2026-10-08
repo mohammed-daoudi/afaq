@@ -34,8 +34,8 @@ export function CartProvider({ children }: { children: ReactNode }) {
     if (savedCart) {
       try {
         setItems(JSON.parse(savedCart));
-      } catch (e) {
-        console.error("Failed to parse cart from local storage", e);
+      } catch {
+        localStorage.removeItem('afaq_b2b_cart');
       }
     }
     setIsInitialized(true);

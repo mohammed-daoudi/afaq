@@ -35,8 +35,7 @@ export default function OrdersPage() {
       try {
         const response = await api.get('/b2b/orders');
         setOrders(response.data);
-      } catch (err: any) {
-        console.error('Failed to fetch orders:', err);
+      } catch {
         setError('Impossible de charger l\'historique de vos commandes.');
       } finally {
         setLoading(false);

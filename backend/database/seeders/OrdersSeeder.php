@@ -8,11 +8,15 @@ use App\Models\OrderItem;
 use App\Models\Account;
 use App\Models\Product;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 class OrdersSeeder extends Seeder
 {
     public function run()
     {
+        $seedPassword = env('SEED_USER_PASSWORD') ?: Str::random(32);
+
         // First wipe the old fake orders to avoid duplicates
         Order::truncate();
         OrderItem::truncate();
@@ -32,7 +36,7 @@ class OrdersSeeder extends Seeder
             $user = \App\Models\User::create([
                 'name' => 'Propriétaire ' . $i,
                 'email' => 'fake_pharmacie' . $i . '@test.com',
-                'password' => bcrypt('password'),
+                'password' => Hash::make($seedPassword),
                 'created_at' => $date,
                 'updated_at' => $date,
             ]);

@@ -5,6 +5,9 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use App\Models\User;
 use App\Models\Account;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 class DatabaseSeeder extends Seeder
 {
@@ -15,11 +18,13 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        $seedPassword = env('SEED_USER_PASSWORD') ?: Str::random(32);
+
         // 1. Create Admin User
         \App\Models\User::create([
             'name' => 'Admin Afaq',
             'email' => 'admin@afaq.ma',
-            'password' => \Illuminate\Support\Facades\Hash::make('password'),
+            'password' => Hash::make($seedPassword),
         ]);
 
         $pharmacies = [
@@ -37,7 +42,7 @@ class DatabaseSeeder extends Seeder
                 'name' => 'Dr. ' . $pharmacyData['name'],
                 // Add contact@pharmacie.ma specifically so the user can login with that email
                 'email' => $index === 0 ? 'contact@pharmacie.ma' : 'contact' . $index . '@' . strtolower(str_replace(' ', '', $pharmacyData['city'])) . '.ma',
-                'password' => \Illuminate\Support\Facades\Hash::make('password'),
+                'password' => Hash::make($seedPassword),
             ]);
 
             $accountData = [
@@ -54,7 +59,7 @@ class DatabaseSeeder extends Seeder
                 $accountData['lat'] = $pharmacyData['lat'];
                 $accountData['lng'] = $pharmacyData['lng'];
             } else {
-                $accountData['location'] = \Illuminate\Support\Facades\DB::raw("ST_PointFromText('POINT({$pharmacyData['lng']} {$pharmacyData['lat']})')");
+                $accountData['location'] = DB::raw("ST_PointFromText('POINT({$pharmacyData['lng']} {$pharmacyData['lat']})')");
             }
             
             $account = Account::create($accountData);
@@ -65,7 +70,7 @@ class DatabaseSeeder extends Seeder
              $user = User::create([
                 'name' => 'Pharmacie Test',
                 'email' => 'contact@pharmacie.ma',
-                'password' => \Illuminate\Support\Facades\Hash::make('password'),
+                'password' => Hash::make($seedPassword),
             ]);
             Account::create([
                 'user_id' => $user->id,

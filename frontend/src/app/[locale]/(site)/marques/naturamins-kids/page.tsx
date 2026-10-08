@@ -39,7 +39,7 @@ export default function NaturaminsKidsPage() {
               Exclusivité AFAQ HEALTH
             </motion.div>
             <motion.div variants={fadeUp} className="inline-block px-4 py-1.5 text-xs font-bold tracking-widest text-gold-soft bg-gold-soft/10 rounded-full uppercase shadow-sm">
-              Prochain lancement au Maroc
+              Lancement en 2027
             </motion.div>
           </div>
           

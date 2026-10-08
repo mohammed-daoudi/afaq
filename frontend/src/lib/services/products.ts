@@ -10,7 +10,6 @@ export const ProductService = {
     // const response = await api.get('/products');
     // return response.data.data;
     
-    console.warn('Using mock public products as API is not connected.');
     return [];
   },
 
@@ -21,7 +20,6 @@ export const ProductService = {
     // const response = await api.get('/b2b/products');
     // return response.data.data;
     
-    console.warn('Using mock B2B products as API is not connected.');
     return [];
   }
 };

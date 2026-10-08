@@ -1,0 +1,49 @@
+# Dependencies
+node_modules/
+vendor/
+
+# Builds and caches
+.next/
+out/
+dist/
+build/
+coverage/
+.cache/
+*.tsbuildinfo
+
+# Logs and generated test artifacts
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.playwright-cli/
+frontend/.playwright-cli/
+output/
+test-results/
+
+# Local environment and secrets
+.env
+.env.*
+!.env.example
+!.env.local.example
+*.pem
+*.key
+*.cert
+credentials.json
+serviceAccountKey.json
+
+# OS/editor files
+.DS_Store
+Thumbs.db
+desktop.ini
+.idea/
+.vscode/
+*.iml
+
+# Backups and scratch files
+*.bak
+*_old.*
+*_backup.*
+*_copy.*
+*.tmp
+*.temp

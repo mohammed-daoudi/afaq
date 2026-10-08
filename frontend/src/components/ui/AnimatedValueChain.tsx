@@ -335,7 +335,7 @@ export default function AnimatedValueChain() {
 
   return (
     <section className="animated-vc-section relative overflow-hidden ">
-      <style dangerouslySetInnerHTML={{__html: `
+      <style>{`
         .animated-vc-section {
           --bg: #0e3532; 
           --bg2: #092624; 
@@ -474,7 +474,7 @@ export default function AnimatedValueChain() {
           .animated-vc-section *, .animated-vc-section *::before, .animated-vc-section *::after { animation: none !important; transition: none !important; }
           .animated-vc-section .stamp.show { opacity: 1; }
         }
-      `}} />
+      `}</style>
 
       <main className="stage">
         <header className="head">

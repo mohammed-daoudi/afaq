@@ -1,8 +1,14 @@
 import axios from 'axios';
 
-// Create a custom axios instance
+const apiBaseUrl = process.env.NEXT_PUBLIC_API_URL;
+
+if (!apiBaseUrl) {
+  throw new Error('NEXT_PUBLIC_API_URL is not configured.');
+}
+
+// Create a custom axios instance.
 const api = axios.create({
-  baseURL: process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000',
+  baseURL: apiBaseUrl.replace(/\/$/, ''),
   headers: {
     'X-Requested-With': 'XMLHttpRequest',
     'Accept': 'application/json',
@@ -15,7 +21,7 @@ api.interceptors.request.use((config) => {
   if (typeof document !== 'undefined') {
     const match = document.cookie.match(/(?:^|;\s*)auth_token=([^;]*)/);
     if (match) {
-      config.headers.Authorization = `Bearer ${match[1]}`;
+      config.headers.Authorization = `Bearer ${decodeURIComponent(match[1])}`;
     }
   }
   return config;

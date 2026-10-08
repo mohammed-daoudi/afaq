@@ -5,30 +5,45 @@ import { Logo } from '@/components/ui/Logo';
 import { Input } from '@/components/ui/Input';
 import { Button } from '@/components/ui/Button';
 import api from '@/lib/api';
+import { z } from 'zod';
+
+const loginSchema = z.object({
+  email: z.string().trim().email('Email professionnel invalide.'),
+  password: z.string().min(1, 'Mot de passe requis.'),
+});
 
 export default function LoginPage() {
   const router = useRouter();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [formError, setFormError] = useState('');
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
+    setFormError('');
+
+    const parsed = loginSchema.safeParse({ email, password });
+    if (!parsed.success) {
+      setFormError(parsed.error.issues[0]?.message || 'Veuillez vérifier vos informations.');
+      return;
+    }
+
     setIsLoading(true);
     
     try {
-      const response = await api.post('/login', { email, password });
+      const response = await api.post('/login', parsed.data);
       
       if (response.data.access_token) {
-        document.cookie = `auth_token=${response.data.access_token}; path=/`;
-        localStorage.setItem('user', JSON.stringify(response.data.user));
+        const secureCookie = window.location.protocol === 'https:' ? '; Secure' : '';
+        document.cookie = `auth_token=${encodeURIComponent(response.data.access_token)}; Path=/; Max-Age=28800; SameSite=Lax${secureCookie}`;
+        localStorage.setItem('afaq_b2b_user', JSON.stringify(response.data.user));
         router.push('/portal/dashboard');
         router.refresh(); 
       }
     } catch (error: any) {
-      console.error('Login error:', error);
-      const message = error?.response?.data?.message || "Erreur de connexion au serveur";
-      alert(message);
+      const status = error?.response?.status;
+      setFormError(status === 401 || status === 422 ? 'Identifiants invalides.' : 'Erreur de connexion au serveur.');
     } finally {
       setIsLoading(false);
     }
@@ -51,6 +66,7 @@ export default function LoginPage() {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
+            autoComplete="email"
           />
           <Input 
             label="Mot de passe" 
@@ -59,7 +75,14 @@ export default function LoginPage() {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
+            autoComplete="current-password"
           />
+
+          {formError && (
+            <div className="rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
+              {formError}
+            </div>
+          )}
           
           <div className="flex items-center justify-between text-sm">
             <label className="flex items-center gap-2 cursor-pointer">

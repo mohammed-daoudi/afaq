@@ -14,13 +14,13 @@ use App\Http\Controllers\Api\B2bController;
 */
 
 // Public Routes
-Route::post('/login', [AuthController::class, 'login']);
+Route::post('/login', [AuthController::class, 'login'])->middleware('throttle:login');
 
 Route::prefix('public')->group(function () {
     Route::get('/brands', [PublicController::class, 'brands']);
     Route::get('/products', [PublicController::class, 'products']);
     Route::get('/pharmacies', [PublicController::class, 'pharmacies']);
-    Route::get('/products/{id}/pharmacies', [PublicController::class, 'productPharmacies']);
+    Route::get('/products/{id}/pharmacies', [PublicController::class, 'productPharmacies'])->where('id', '[A-Za-z0-9_-]{1,80}');
     Route::get('/blog', [PublicController::class, 'blogPosts']);
 });
 

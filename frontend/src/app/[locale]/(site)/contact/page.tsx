@@ -2,10 +2,23 @@
 
 import React, { useState } from 'react';
 import { useTranslations } from 'next-intl';
+import { z } from 'zod';
+
+const contactFormSchema = z.object({
+  formType: z.enum(['Demande commerciale', 'Devenir partenaire', 'Autre demande']),
+  name: z.string().trim().min(2, 'Indiquez votre nom complet.').max(120, 'Le nom est trop long.'),
+  company: z.string().trim().min(2, 'Indiquez votre société.').max(120, 'Le nom de société est trop long.'),
+  email: z.string().trim().email('Indiquez une adresse email valide.').max(160, 'L’email est trop long.'),
+  phone: z.string().trim().max(40, 'Le téléphone est trop long.').optional(),
+  message: z.string().trim().min(10, 'Votre message doit contenir au moins 10 caractères.').max(2000, 'Le message est trop long.'),
+  website: z.string().max(0, 'Demande refusée.'),
+});
 
 export default function ContactPage() {
   const [formType, setFormType] = useState('');
   const [copied, setCopied] = useState<string | null>(null);
+  const [errors, setErrors] = useState<Record<string, string>>({});
+  const [lastSubmittedAt, setLastSubmittedAt] = useState(0);
   const t = useTranslations('ContactPage');
 
   const handleCopy = (text: string, id: string) => {
@@ -14,8 +27,32 @@ export default function ContactPage() {
     setTimeout(() => setCopied(null), 2000);
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    const now = Date.now();
+    if (now - lastSubmittedAt < 10_000) {
+      setErrors({ form: 'Veuillez patienter quelques secondes avant un nouvel envoi.' });
+      return;
+    }
+
+    const data = Object.fromEntries(new FormData(e.currentTarget));
+    const result = contactFormSchema.safeParse(data);
+
+    if (!result.success) {
+      const fieldErrors: Record<string, string> = {};
+      for (const issue of result.error.issues) {
+        const field = issue.path[0];
+        if (typeof field === 'string' && !fieldErrors[field]) {
+          fieldErrors[field] = issue.message;
+        }
+      }
+      setErrors(fieldErrors);
+      return;
+    }
+
+    setErrors({});
+    setLastSubmittedAt(now);
     alert(t('successAlert'));
   };
 
@@ -111,50 +148,68 @@ export default function ContactPage() {
           {/* Contact Form */}
           <div className="md:col-span-2 bg-white p-8 md:p-10 rounded-3xl shadow-sm border border-sage-light">
             
-            {/* Form Type Selector */}
-            <div className="mb-6 space-y-2">
-              <label htmlFor="formType" className="text-sm font-semibold text-teal-deep">{t('requestType')}</label>
-              <select 
-                id="formType" 
-                required
-                value={formType}
-                onChange={(e) => setFormType(e.target.value)}
-                className="w-full px-4 py-3 rounded-xl border border-sage-light focus:border-teal-deep focus:ring-1 focus:ring-teal-deep outline-none bg-ivory-soft/30 transition-all appearance-none cursor-pointer"
-              >
-                <option value="" disabled>{t('selectType')}</option>
-                <option value="Demande commerciale">{t('commercialRequest')}</option>
-                <option value="Devenir partenaire">{t('becomePartner')}</option>
-                <option value="Autre demande">{t('otherRequest')}</option>
-              </select>
-            </div>
-
             <form onSubmit={handleSubmit} className="space-y-6">
+              <div className="space-y-2">
+                <label htmlFor="formType" className="text-sm font-semibold text-teal-deep">{t('requestType')}</label>
+                <select
+                  id="formType"
+                  name="formType"
+                  required
+                  value={formType}
+                  onChange={(e) => setFormType(e.target.value)}
+                  className="w-full px-4 py-3 rounded-xl border border-sage-light focus:border-teal-deep focus:ring-1 focus:ring-teal-deep outline-none bg-ivory-soft/30 transition-all appearance-none cursor-pointer"
+                  aria-invalid={Boolean(errors.formType)}
+                >
+                  <option value="" disabled>{t('selectType')}</option>
+                  <option value="Demande commerciale">{t('commercialRequest')}</option>
+                  <option value="Devenir partenaire">{t('becomePartner')}</option>
+                  <option value="Autre demande">{t('otherRequest')}</option>
+                </select>
+                {errors.formType && <p className="text-xs text-red-600">{errors.formType}</p>}
+              </div>
+
+              <div className="hidden" aria-hidden="true">
+                <label htmlFor="website">Website</label>
+                <input id="website" name="website" type="text" tabIndex={-1} autoComplete="off" />
+              </div>
+
               <div className="grid md:grid-cols-2 gap-6">
                 <div className="space-y-2">
                   <label htmlFor="name" className="text-sm font-semibold text-teal-deep">{t('fullName')}</label>
-                  <input type="text" id="name" required className="w-full px-4 py-3 rounded-xl border border-sage-light focus:border-teal-deep focus:ring-1 focus:ring-teal-deep outline-none bg-ivory-soft/30 transition-all" placeholder={t('fullNamePlaceholder')} />
+                  <input type="text" id="name" name="name" required className="w-full px-4 py-3 rounded-xl border border-sage-light focus:border-teal-deep focus:ring-1 focus:ring-teal-deep outline-none bg-ivory-soft/30 transition-all" placeholder={t('fullNamePlaceholder')} aria-invalid={Boolean(errors.name)} />
+                  {errors.name && <p className="text-xs text-red-600">{errors.name}</p>}
                 </div>
                 <div className="space-y-2">
                   <label htmlFor="company" className="text-sm font-semibold text-teal-deep">{t('company')}</label>
-                  <input type="text" id="company" required className="w-full px-4 py-3 rounded-xl border border-sage-light focus:border-teal-deep focus:ring-1 focus:ring-teal-deep outline-none bg-ivory-soft/30 transition-all" placeholder={t('companyPlaceholder')} />
+                  <input type="text" id="company" name="company" required className="w-full px-4 py-3 rounded-xl border border-sage-light focus:border-teal-deep focus:ring-1 focus:ring-teal-deep outline-none bg-ivory-soft/30 transition-all" placeholder={t('companyPlaceholder')} aria-invalid={Boolean(errors.company)} />
+                  {errors.company && <p className="text-xs text-red-600">{errors.company}</p>}
                 </div>
               </div>
 
               <div className="grid md:grid-cols-2 gap-6">
                 <div className="space-y-2">
                   <label htmlFor="email" className="text-sm font-semibold text-teal-deep">{t('proEmail')}</label>
-                  <input type="email" id="email" required className="w-full px-4 py-3 rounded-xl border border-sage-light focus:border-teal-deep focus:ring-1 focus:ring-teal-deep outline-none bg-ivory-soft/30 transition-all" placeholder="contact@..." />
+                  <input type="email" id="email" name="email" required className="w-full px-4 py-3 rounded-xl border border-sage-light focus:border-teal-deep focus:ring-1 focus:ring-teal-deep outline-none bg-ivory-soft/30 transition-all" placeholder="contact@..." aria-invalid={Boolean(errors.email)} />
+                  {errors.email && <p className="text-xs text-red-600">{errors.email}</p>}
                 </div>
                 <div className="space-y-2">
                   <label htmlFor="phone" className="text-sm font-semibold text-teal-deep">{t('phone')}</label>
-                  <input type="tel" id="phone" className="w-full px-4 py-3 rounded-xl border border-sage-light focus:border-teal-deep focus:ring-1 focus:ring-teal-deep outline-none bg-ivory-soft/30 transition-all" placeholder={t('phonePlaceholder')} />
+                  <input type="tel" id="phone" name="phone" className="w-full px-4 py-3 rounded-xl border border-sage-light focus:border-teal-deep focus:ring-1 focus:ring-teal-deep outline-none bg-ivory-soft/30 transition-all" placeholder={t('phonePlaceholder')} aria-invalid={Boolean(errors.phone)} />
+                  {errors.phone && <p className="text-xs text-red-600">{errors.phone}</p>}
                 </div>
               </div>
 
               <div className="space-y-2">
                 <label htmlFor="message" className="text-sm font-semibold text-teal-deep">{t('yourMessage')}</label>
-                <textarea id="message" required rows={5} className="w-full px-4 py-3 rounded-xl border border-sage-light focus:border-teal-deep focus:ring-1 focus:ring-teal-deep outline-none bg-ivory-soft/30 transition-all resize-none" placeholder={t('messagePlaceholder')}></textarea>
+                <textarea id="message" name="message" required rows={5} className="w-full px-4 py-3 rounded-xl border border-sage-light focus:border-teal-deep focus:ring-1 focus:ring-teal-deep outline-none bg-ivory-soft/30 transition-all resize-none" placeholder={t('messagePlaceholder')} aria-invalid={Boolean(errors.message)}></textarea>
+                {errors.message && <p className="text-xs text-red-600">{errors.message}</p>}
               </div>
+
+              {errors.form && (
+                <div className="rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
+                  {errors.form}
+                </div>
+              )}
 
               <button type="submit" className="w-full md:w-auto px-8 py-4 bg-teal-deep text-white font-bold rounded-xl hover:bg-gold-soft hover:text-teal-deep transition-all shadow-md shimmer-effect">
                 {t('send')}

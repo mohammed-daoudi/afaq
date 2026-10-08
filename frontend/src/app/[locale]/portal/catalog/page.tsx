@@ -27,8 +27,7 @@ export default function CatalogPage() {
           category: p.category,
         }));
         setProducts(mappedProducts);
-      } catch (error) {
-        console.error('Failed to fetch catalog', error);
+      } catch {
       } finally {
         setIsLoading(false);
       }

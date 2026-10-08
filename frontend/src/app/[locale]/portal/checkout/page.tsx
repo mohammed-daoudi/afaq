@@ -28,7 +28,7 @@ export default function CheckoutPage() {
     }
     
     // Load user data
-    const userStr = localStorage.getItem('user');
+    const userStr = localStorage.getItem('afaq_b2b_user');
     if (userStr) {
       try {
         const user = JSON.parse(userStr);
@@ -41,7 +41,7 @@ export default function CheckoutPage() {
             phone: user.account.phone || prev.phone,
           }));
         }
-      } catch (e) {}
+      } catch {}
     }
   }, [items.length, step, router]);
 
@@ -52,6 +52,11 @@ export default function CheckoutPage() {
         quantity: item.quantity,
         unit_price: item.pph
       }));
+
+      if (orderItems.length === 0 || orderItems.some(item => !item.product_id || item.quantity < 1 || item.unit_price < 0)) {
+        alert('Votre panier contient des informations invalides.');
+        return;
+      }
       
       const response = await api.post('/b2b/orders', {
         items: orderItems
@@ -61,8 +66,7 @@ export default function CheckoutPage() {
         setStep(3);
         clearCart();
       }
-    } catch (error) {
-      console.error('Failed to create order', error);
+    } catch {
       alert('Erreur lors de la confirmation de la commande');
     }
   };

@@ -35,8 +35,8 @@ export default function PortalLayout({
           setUserInitials(initials);
         }
       }
-    } catch (e) {
-      console.error("Failed to parse user data", e);
+    } catch {
+      localStorage.removeItem('afaq_b2b_user');
     }
   }, []);
 
@@ -109,7 +109,7 @@ export default function PortalLayout({
         <button 
           className="mt-4 w-full text-center px-4 py-2.5 text-sm font-bold text-red-500 border border-red-200 hover:bg-red-50 rounded-lg transition-colors"
           onClick={() => {
-            document.cookie = "auth_token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+            document.cookie = `auth_token=; Path=/; Max-Age=0; SameSite=Lax${window.location.protocol === 'https:' ? '; Secure' : ''}`;
             localStorage.removeItem('afaq_b2b_user');
             window.location.href = '/portal/login';
           }}
