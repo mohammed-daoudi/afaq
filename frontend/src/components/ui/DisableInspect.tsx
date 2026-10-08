@@ -4,7 +4,8 @@ import { useEffect } from "react";
 
 export function DisableInspect() {
   useEffect(() => {
-    if (process.env.NODE_ENV !== "production") return;
+    // Allow inspect on localhost
+    if (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1") return;
 
     if (typeof window !== "undefined") {
       // Désactiver le clic droit
