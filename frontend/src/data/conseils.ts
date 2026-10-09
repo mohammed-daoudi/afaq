@@ -68,7 +68,7 @@ export const MOCK_ARTICLES = [
     slug: 'sommeil-quelle-formule-melatonine-choisir',
     category: 'Stress & Sommeil',
     title: 'Sommeil : quelle formule de mélatonine choisir selon son besoin ?',
-    image: '/images/unsplash/welness/rachel-mcdermott-mEKhOVkOcKE-unsplash.jpg',
+    image: '/images/unsplash/welness/melatonine-bedside-ad-v2.png',
     date: '20 Septembre 2026',
     readTime: '5 min',
     intro: 'Le sommeil n’est pas toujours perturbé de la même manière. Certaines personnes ont surtout du mal à s’endormir. D’autres recherchent davantage de relaxation avant la nuit.',

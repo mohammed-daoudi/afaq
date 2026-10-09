@@ -15,6 +15,12 @@ const ARTICLE_CTAS: Record<string, { title: string; text: string; href: string; 
     href: '/produits/bisglycinate-magnesium',
     label: 'DÉCOUVRIR LE BISGLYCINATE DE MAGNÉSIUM',
   },
+  'sommeil-quelle-formule-melatonine-choisir': {
+    title: "Envie d'aller plus loin ?",
+    text: 'Découvrez notre formule Mélatonine — Plantes, associant mélatonine, mélisse, passiflore et tilleul.',
+    href: '/produits/melatonine',
+    label: 'DÉCOUVRIR LA MÉLATONINE',
+  },
   'sante-masculine-comprendre-prostate': {
     title: "Envie d'aller plus loin ?",
     text: 'Découvrez notre formule synergique associant plusieurs extraits végétaux et du zinc pour la santé masculine.',
@@ -130,6 +136,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
   const t = await getTranslations('ConseilsPage');
   const articleCta = ARTICLE_CTAS[article.slug];
   const articleBody = getArticleBody(article.content);
+  const hasLandscapeFeaturedImage = article.slug === 'sommeil-quelle-formule-melatonine-choisir';
 
   return (
     <div className="min-h-screen bg-ivory-soft pt-12 pb-24">
@@ -190,7 +197,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
           )}
 
           {/* Featured Media (Mobile Only) */}
-          <div className="lg:hidden relative h-[300px] sm:h-[400px] w-full rounded-3xl overflow-hidden shadow-2xl mb-8">
+          <div className={`lg:hidden relative w-full rounded-3xl overflow-hidden shadow-2xl mb-8 ${hasLandscapeFeaturedImage ? 'aspect-[3/2]' : 'h-[300px] sm:h-[400px]'}`}>
             {(article as any).video ? (
               <video
                 src={(article as any).video}
@@ -244,7 +251,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
         {/* Right Column: Sidebar (Image & Disclaimer) */}
         <div className="w-full min-w-0 lg:w-1/3 lg:sticky top-[160px] flex flex-col gap-8">
             {/* Featured Media (Desktop Only) */}
-            <div className="hidden lg:block relative h-[450px] w-full rounded-3xl overflow-hidden shadow-2xl">
+            <div className={`hidden lg:block relative w-full rounded-3xl overflow-hidden shadow-2xl ${hasLandscapeFeaturedImage ? 'aspect-[3/2]' : 'h-[450px]'}`}>
               {(article as any).video ? (
                 <video
                   src={(article as any).video}

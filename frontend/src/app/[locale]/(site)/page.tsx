@@ -325,7 +325,9 @@ export default function HomePage() {
           />
           {/* Calques d'assombrissement pour garantir la lisibilité du texte */}
           <div className="absolute inset-0 bg-teal-deep/80 md:bg-teal-deep/60 mix-blend-multiply" />
-          <div className="absolute inset-0 bg-gradient-to-t from-teal-deep/90 via-teal-deep/40 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-teal-deep via-teal-deep/40 to-transparent" />
+          {/* Degradation footer */}
+          <div className="absolute bottom-0 inset-x-0 h-32 md:h-48 bg-gradient-to-t from-teal-deep to-transparent" />
         </div>
 
         <div className="relative z-10 container mx-auto px-8 md:px-16 max-w-5xl text-center">
