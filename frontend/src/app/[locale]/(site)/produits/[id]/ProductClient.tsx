@@ -38,9 +38,9 @@ export function ProductGallery({ product }: { product: Product }) {
 
         {/* Main Image */}
         <div className="flex-1 max-w-[350px] md:max-w-[450px] w-full mx-auto relative group">
-          {product.imageBadge && (
+          {(activeIndex === 0 ? product.imageBadge : (product.labelImageBadge || product.imageBadge)) && (
             <div className="absolute bottom-4 right-4 md:bottom-6 md:right-6 z-30 bg-red-600 text-white px-2 py-0.5 md:px-3 md:py-1 rounded-full text-[8px] md:text-[10px] font-bold uppercase tracking-wider shadow-sm border border-red-700">
-              {product.imageBadge}
+              {activeIndex === 0 ? product.imageBadge : (product.labelImageBadge || product.imageBadge)}
             </div>
           )}
           <ImageMagnifier 

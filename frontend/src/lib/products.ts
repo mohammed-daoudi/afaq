@@ -11,6 +11,7 @@ export interface Product {
   imagePath: string;
   labelImagePath?: string;
   imageBadge?: string;
+  labelImageBadge?: string;
   videoPath?: string;
   description: string;
   longDescription?: string;
@@ -54,7 +55,8 @@ export const products: Product[] = [
     categories: ['Stress & Sommeil', 'Énergie & Vitalité'],
     imagePath: '/images/products/magnesium-cutout.png',
     labelImagePath: '/images/labels/bisglycinate-magnesium.png',
-    imageBadge: '300 gélules',
+    imageBadge: '100 gélules',
+    labelImageBadge: '300 gélules',
     videoPath: '/videos/vidmag.mp4',
     description: 'Complément alimentaire à base de magnésium, zinc et vitamine D3. Le magnésium contribue à réduire la fatigue et au fonctionnement normal du système nerveux et musculaire.',
     longDescription: "Cette formule associe du magnésium sous forme de bisglycinate à du zinc et à la vitamine D3. Le magnésium contribue à réduire la fatigue et au fonctionnement normal du système nerveux et musculaire, tandis que le zinc et la vitamine D participent au fonctionnement normal de l'organisme.\nUne formule pensée pour accompagner les besoins quotidiens en magnésium, notamment lors des périodes de fatigue ou lorsque les besoins nutritionnels sont accrus.",
@@ -181,7 +183,8 @@ export const products: Product[] = [
     categories: ['Cardio-vasculaire'],
     imagePath: '/images/products/omegaa-cutout.png',
     labelImagePath: '/images/labels/complexe-omega-369.png',
-    imageBadge: '100 perles',
+    imageBadge: '50 perles',
+    labelImageBadge: '100 perles',
     description: 'Complément alimentaire à base de Huile de poisson, Huile de lin, Huile d\'onagre et Vitamine E.',
     longDescription: "Cette formule réunit trois sources d'acides gras : l'huile de poisson, l'huile de lin et l'huile d'onagre. Elle apporte notamment des oméga-3 issus de l'huile de poisson et du lin, des oméga-6 issus de l'onagre et du lin, ainsi que des oméga-9. La formule est complétée par de la vitamine E.\nUne association de sources marines et végétales pour apporter différentes familles d'acides gras dans une même formule.",
     composition: "Pour 3 perles : huile de poisson 996 mg (EPA 180 mg, DHA 120 mg), huile de lin 996 mg (ALA 648 mg, acide linoléique 240 mg, acide oléique 240 mg), huile d'onagre 996 mg (GLA 100 mg), vitamine E 7,5 mg (62,5 % VNR).",
