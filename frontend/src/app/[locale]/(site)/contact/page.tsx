@@ -6,6 +6,9 @@ import { z } from 'zod';
 import HCaptcha from '@hcaptcha/react-hcaptcha';
 
 const WEB3FORMS_ENDPOINT = 'https://api.web3forms.com/submit';
+// Public access key (safe to expose by design); env var overrides it if set
+const WEB3FORMS_KEY =
+  process.env.NEXT_PUBLIC_WEB3FORMS_KEY || '2ff09186-67a8-4fbc-a2f4-7d86e1181d9b';
 // Public hCaptcha sitekey provided by Web3Forms for free plans
 const HCAPTCHA_SITEKEY =
   process.env.NEXT_PUBLIC_HCAPTCHA_SITEKEY || '50b2fe65-b00b-4b9e-ad62-3ba471098be2';
@@ -71,7 +74,7 @@ export default function ContactPage() {
       return;
     }
 
-    const accessKey = process.env.NEXT_PUBLIC_WEB3FORMS_KEY;
+    const accessKey = WEB3FORMS_KEY;
     if (!accessKey) {
       setErrors({ form: 'Le formulaire est temporairement indisponible. Veuillez nous écrire par email.' });
       return;
@@ -129,7 +132,7 @@ export default function ContactPage() {
   return (
     <div className="min-h-screen bg-ivory-soft pt-12 pb-24">
       <div className="container mx-auto px-4">
-        
+
         {/* Header */}
         <div className="max-w-3xl mx-auto text-center mb-16 space-y-6">
           <div className="inline-block px-3 py-1 text-xs font-semibold tracking-wider text-teal-deep bg-sage-light rounded-full uppercase">
@@ -144,12 +147,12 @@ export default function ContactPage() {
         </div>
 
         <div className="max-w-6xl mx-auto grid md:grid-cols-3 gap-12">
-          
+
           {/* Contact Info Sidebar */}
           <div className="md:col-span-1 space-y-8">
             <div className="bg-teal-deep text-white p-8 rounded-xl shadow-md">
               <h3 className="text-xl font-bold mb-6 ">{t('coordinates')}</h3>
-              
+
               <div className="space-y-6">
                 <div className="flex items-start gap-4">
                   <div className="mt-1 text-gold-soft">📍</div>
@@ -168,7 +171,7 @@ export default function ContactPage() {
                     <p className="font-semibold">{t('phone')}</p>
                     <div className="flex items-center gap-2 mt-1">
                       <p className="text-sm text-sage-light">+212 6 17 20 11 29</p>
-                      <button 
+                      <button
                         onClick={() => handleCopy('+212617201129', 'phone')}
                         className="text-sage-light hover:text-gold-soft transition-colors"
                       >
@@ -188,7 +191,7 @@ export default function ContactPage() {
                     <p className="font-semibold">{t('email')}</p>
                     <div className="flex items-center gap-2 mt-1">
                       <p className="text-sm text-sage-light">contact@afaqhealth.com</p>
-                      <button 
+                      <button
                         onClick={() => handleCopy('contact@afaqhealth.com', 'email')}
                         className="text-sage-light hover:text-gold-soft transition-colors"
                       >
@@ -217,7 +220,7 @@ export default function ContactPage() {
 
           {/* Contact Form */}
           <div className="md:col-span-2 bg-white p-8 md:p-10 rounded-3xl shadow-sm border border-sage-light">
-            
+
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="space-y-2">
                 <label htmlFor="formType" className="text-sm font-semibold text-teal-deep">{t('requestType')}</label>
@@ -309,7 +312,7 @@ export default function ContactPage() {
               >
                 {status === 'sending' ? 'Envoi en cours…' : t('send')}
               </button>
-              
+
               <p className="text-xs text-anthracite-soft/60 mt-4">
                 {t('privacyNotice')}
               </p>
