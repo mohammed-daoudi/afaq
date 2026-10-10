@@ -1,4 +1,5 @@
 import React from 'react';
+import { Metadata } from 'next';
 import { Link } from '@/navigation';
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
@@ -19,6 +20,37 @@ const FAMILY_COLORS: Record<string, { primary: string, accent: string, light: st
 import { ProductGallery, ProductTabs, RelatedProducts } from './ProductClient';
 import { getTranslations } from 'next-intl/server';
 
+export async function generateMetadata({ params }: { params: Promise<{ id: string }> }): Promise<Metadata> {
+  const { id } = await params;
+  const product = products.find(p => p.id === id);
+
+  if (!product) {
+    return {
+      title: 'Produit introuvable | AFAQ Health'
+    };
+  }
+
+  // Use the first sentence or truncate for description
+  const shortDesc = product.description.split('.')[0] + '.';
+
+  return {
+    title: `${product.name} | Pharmacie & Parapharmacie Maroc - AFAQ Health`,
+    description: shortDesc,
+    openGraph: {
+      title: `${product.name} | AFAQ Health`,
+      description: shortDesc,
+      images: [{ url: product.imagePath }],
+      type: 'website',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: `${product.name} | AFAQ Health`,
+      description: shortDesc,
+      images: [product.imagePath],
+    }
+  };
+}
+
 export default async function ProductDetailPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
   const product = products.find(p => p.id === id);
@@ -30,8 +62,27 @@ export default async function ProductDetailPage({ params }: { params: Promise<{ 
   const colors = FAMILY_COLORS[product.categories[0] as TherapeuticFamily] || { primary: '#1B4D3E', accent: '#D4AF37', light: '#E8F3F1' };
   const t = await getTranslations('ProductDetail');
 
+  // Schema.org JSON-LD for the product
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Product',
+    name: product.name,
+    image: product.imagePath,
+    description: product.description,
+    brand: {
+      '@type': 'Brand',
+      name: product.brand
+    },
+    category: product.categories.join(', ')
+  };
+
   return (
     <div className="min-h-screen bg-ivory-soft pt-24 pb-24">
+      {/* Inject JSON-LD structured data for Google */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <div className="container mx-auto px-4 max-w-6xl">
         
         {/* Breadcrumbs */}
