@@ -7,6 +7,7 @@ import MarkerClusterGroup from 'react-leaflet-cluster';
 // Fix for default Leaflet markers in Next.js/Webpack
 let icon: L.Icon | undefined;
 let userIcon: L.Icon | undefined;
+let regionalLabelCoverIcon: L.DivIcon | undefined;
 
 if (typeof window !== 'undefined') {
   icon = L.icon({
@@ -27,6 +28,13 @@ if (typeof window !== 'undefined') {
     iconAnchor: [12, 41],
     popupAnchor: [1, -34],
     shadowSize: [41, 41]
+  });
+
+  regionalLabelCoverIcon = L.divIcon({
+    className: '',
+    html: '<div style="width: 250px; height: 190px; border-radius: 22px; background: #f5e8bf; box-shadow: 0 0 20px 16px #f5e8bf; pointer-events: none;"></div>',
+    iconSize: [250, 190],
+    iconAnchor: [125, 95]
   });
 }
 
@@ -83,6 +91,16 @@ export default function PharmacyMap({ pharmacies, activePharmacyId, onMarkerClic
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
+
+      {regionalLabelCoverIcon && (
+        <Marker
+          position={[23.25, -12.55]}
+          icon={regionalLabelCoverIcon}
+          interactive={false}
+          keyboard={false}
+          zIndexOffset={1000}
+        />
+      )}
       
       <MapCenterController center={currentCenter} zoom={currentZoom} />
 
