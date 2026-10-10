@@ -3,6 +3,8 @@
 import React, { useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { z } from 'zod';
+import Image from 'next/image';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const WEB3FORMS_ENDPOINT = 'https://api.web3forms.com/submit';
 // Public access key (safe to expose by design); env var overrides it if set
@@ -277,11 +279,56 @@ export default function ContactPage() {
                 </div>
               )}
 
-              {status === 'success' && (
-                <div className="rounded-xl border border-green-200 bg-green-50 px-4 py-3 text-sm text-green-800" role="status">
-                  {t('successAlert')}
-                </div>
-              )}
+              <AnimatePresence>
+                {status === 'success' && (
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-anthracite-deep/80 backdrop-blur-sm"
+                  >
+                    <motion.div
+                      initial={{ scale: 0.9, y: 20 }}
+                      animate={{ scale: 1, y: 0 }}
+                      exit={{ scale: 0.9, y: 20 }}
+                      className="bg-white rounded-3xl p-8 md:p-10 shadow-2xl max-w-md w-full text-center relative border border-sage-light"
+                    >
+                      <button
+                        onClick={() => setStatus('idle')}
+                        type="button"
+                        className="absolute top-4 right-4 text-anthracite-soft hover:text-black transition-colors"
+                      >
+                        <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                      </button>
+                      
+                      <div className="flex justify-center mb-6">
+                        <Image
+                          src="/images/logo.png"
+                          alt="Afaq Health"
+                          width={160}
+                          height={160}
+                          className="object-contain drop-shadow-sm"
+                        />
+                      </div>
+                      
+                      <h3 className="text-3xl font-bold text-teal-deep mb-3">Merci !</h3>
+                      <p className="text-anthracite-soft mb-8 font-medium">
+                        Votre message a bien été envoyé.<br/>Notre équipe reviendra vers vous très rapidement.
+                      </p>
+                      
+                      <button
+                        onClick={() => setStatus('idle')}
+                        type="button"
+                        className="w-full px-6 py-4 bg-teal-deep text-white font-bold rounded-xl hover:bg-gold-soft hover:text-teal-deep transition-all shadow-md shimmer-effect uppercase tracking-wide text-sm"
+                      >
+                        Fermer
+                      </button>
+                    </motion.div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
 
               <button
                 type="submit"

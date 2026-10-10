@@ -22,8 +22,8 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  title: "AFAQ HEALTH | Plateforme Digitale B2B & Vitrine",
-  description: "Plateforme digitale unifiée d'AFAQ HEALTH - Distribution de marques de santé et nutrition en Afrique de l'Ouest.",
+  title: "AFAQ Health | Laboratoire & Compléments Alimentaires au Maroc",
+  description: "AFAQ HEALTH est votre partenaire de confiance en compléments alimentaires et produits de santé au Maroc et en Afrique.",
 };
 
 import { NextIntlClientProvider } from 'next-intl';

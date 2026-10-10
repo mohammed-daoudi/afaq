@@ -13,9 +13,12 @@ export function GlobalSearch() {
   const wrapperRef = useRef<HTMLDivElement>(null);
   const t = useTranslations('Header');
 
+  const normalizeString = (str: string) => 
+    str.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+
   const filteredProducts = products.filter(p => {
-    const q = query.toLowerCase();
-    return p.name.toLowerCase().includes(q) || p.brand.toLowerCase().includes(q);
+    const q = normalizeString(query);
+    return normalizeString(p.name).includes(q) || normalizeString(p.brand).includes(q);
   }).slice(0, 5);
 
   useEffect(() => {
