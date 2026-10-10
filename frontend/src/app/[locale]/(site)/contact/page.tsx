@@ -1,8 +1,14 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { z } from 'zod';
+import HCaptcha from '@hcaptcha/react-hcaptcha';
+
+const WEB3FORMS_ENDPOINT = 'https://api.web3forms.com/submit';
+// Public hCaptcha sitekey provided by Web3Forms for free plans
+const HCAPTCHA_SITEKEY =
+  process.env.NEXT_PUBLIC_HCAPTCHA_SITEKEY || '50b2fe65-b00b-4b9e-ad62-3ba471098be2';
 
 const contactFormSchema = z.object({
   formType: z.enum(['Demande commerciale', 'Devenir partenaire', 'Autre demande']),
@@ -14,11 +20,16 @@ const contactFormSchema = z.object({
   website: z.string().max(0, 'Demande refusée.'),
 });
 
+type Status = 'idle' | 'sending' | 'success';
+
 export default function ContactPage() {
   const [formType, setFormType] = useState('');
   const [copied, setCopied] = useState<string | null>(null);
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [lastSubmittedAt, setLastSubmittedAt] = useState(0);
+  const [status, setStatus] = useState<Status>('idle');
+  const [captchaToken, setCaptchaToken] = useState('');
+  const captchaRef = useRef<HCaptcha>(null);
   const t = useTranslations('ContactPage');
 
   const handleCopy = (text: string, id: string) => {
@@ -27,17 +38,19 @@ export default function ContactPage() {
     setTimeout(() => setCopied(null), 2000);
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if (status === 'sending') return;
 
+    const form = e.currentTarget;
     const now = Date.now();
     if (now - lastSubmittedAt < 10_000) {
       setErrors({ form: 'Veuillez patienter quelques secondes avant un nouvel envoi.' });
       return;
     }
 
-    const data = Object.fromEntries(new FormData(e.currentTarget));
-    const result = contactFormSchema.safeParse(data);
+    const raw = Object.fromEntries(new FormData(form));
+    const result = contactFormSchema.safeParse(raw);
 
     if (!result.success) {
       const fieldErrors: Record<string, string> = {};
@@ -48,12 +61,69 @@ export default function ContactPage() {
         }
       }
       setErrors(fieldErrors);
+      setStatus('idle');
       return;
     }
 
+    if (!captchaToken) {
+      setErrors({ form: 'Veuillez valider le captcha avant d’envoyer.' });
+      setStatus('idle');
+      return;
+    }
+
+    const accessKey = process.env.NEXT_PUBLIC_WEB3FORMS_KEY;
+    if (!accessKey) {
+      setErrors({ form: 'Le formulaire est temporairement indisponible. Veuillez nous écrire par email.' });
+      return;
+    }
+
+    const d = result.data;
+    const payload = {
+      access_key: accessKey,
+      subject: `Site AFAQ HEALTH — ${d.formType} — ${d.name}`,
+      from_name: 'Site AFAQ HEALTH',
+      formType: d.formType,
+      name: d.name,
+      company: d.company,
+      email: d.email,
+      phone: d.phone || '-',
+      message: d.message,
+      botcheck: raw.botcheck ? true : undefined,
+      'h-captcha-response': captchaToken,
+    };
+
     setErrors({});
+    setStatus('sending');
     setLastSubmittedAt(now);
-    alert(t('successAlert'));
+
+    const controller = new AbortController();
+    const timer = setTimeout(() => controller.abort(), 15_000);
+
+    try {
+      const res = await fetch(WEB3FORMS_ENDPOINT, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify(payload),
+        signal: controller.signal,
+      });
+      const json = await res.json();
+
+      if (res.ok && json.success) {
+        form.reset();
+        setFormType('');
+        setStatus('success');
+      } else {
+        throw new Error('submit_failed');
+      }
+    } catch {
+      setStatus('idle');
+      setErrors({ form: 'L’envoi a échoué. Veuillez réessayer ou nous écrire directement par email.' });
+    } finally {
+      clearTimeout(timer);
+      // hCaptcha tokens are single-use
+      captchaRef.current?.resetCaptcha();
+      setCaptchaToken('');
+    }
   };
 
   return (
@@ -168,9 +238,11 @@ export default function ContactPage() {
                 {errors.formType && <p className="text-xs text-red-600">{errors.formType}</p>}
               </div>
 
+              {/* Honeypots (hidden from humans) */}
               <div className="hidden" aria-hidden="true">
                 <label htmlFor="website">Website</label>
                 <input id="website" name="website" type="text" tabIndex={-1} autoComplete="off" />
+                <input type="checkbox" name="botcheck" tabIndex={-1} autoComplete="off" />
               </div>
 
               <div className="grid md:grid-cols-2 gap-6">
@@ -205,14 +277,37 @@ export default function ContactPage() {
                 {errors.message && <p className="text-xs text-red-600">{errors.message}</p>}
               </div>
 
+              {/* Standard hCaptcha widget is 303px wide: scale it down on narrow phones */}
+              <div className="max-w-full overflow-hidden max-[420px]:h-[67px]">
+                <div className="origin-top-left max-[420px]:scale-[0.85]">
+                  <HCaptcha
+                    ref={captchaRef}
+                    sitekey={HCAPTCHA_SITEKEY}
+                    onVerify={(token) => setCaptchaToken(token)}
+                    onExpire={() => setCaptchaToken('')}
+                    onError={() => setCaptchaToken('')}
+                  />
+                </div>
+              </div>
+
               {errors.form && (
-                <div className="rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
+                <div className="rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700" role="alert">
                   {errors.form}
                 </div>
               )}
 
-              <button type="submit" className="w-full md:w-auto px-8 py-4 bg-teal-deep text-white font-bold rounded-xl hover:bg-gold-soft hover:text-teal-deep transition-all shadow-md shimmer-effect">
-                {t('send')}
+              {status === 'success' && (
+                <div className="rounded-xl border border-green-200 bg-green-50 px-4 py-3 text-sm text-green-800" role="status">
+                  {t('successAlert')}
+                </div>
+              )}
+
+              <button
+                type="submit"
+                disabled={status === 'sending'}
+                className="w-full md:w-auto px-8 py-4 bg-teal-deep text-white font-bold rounded-xl hover:bg-gold-soft hover:text-teal-deep transition-all shadow-md shimmer-effect disabled:opacity-60 disabled:cursor-not-allowed"
+              >
+                {status === 'sending' ? 'Envoi en cours…' : t('send')}
               </button>
               
               <p className="text-xs text-anthracite-soft/60 mt-4">

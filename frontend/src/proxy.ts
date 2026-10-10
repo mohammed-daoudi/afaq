@@ -23,6 +23,9 @@ function buildContentSecurityPolicy(nonce: string) {
     "'self'",
     apiOrigin,
     'https://*.tile.openstreetmap.org',
+    'https://api.web3forms.com',
+    'https://hcaptcha.com',
+    'https://*.hcaptcha.com',
   ].filter(Boolean);
 
   const directives = [
@@ -31,8 +34,9 @@ function buildContentSecurityPolicy(nonce: string) {
     "object-src 'none'",
     "form-action 'self'",
     "frame-ancestors 'none'",
-    `script-src 'self' 'nonce-${nonce}' 'strict-dynamic' ${!isProduction ? "'unsafe-eval'" : ""}`.trim(),
-    "style-src 'self' 'unsafe-inline'",
+    `script-src 'self' 'nonce-${nonce}' 'strict-dynamic' https://hcaptcha.com https://*.hcaptcha.com ${!isProduction ? "'unsafe-eval'" : ""}`.trim(),
+    "style-src 'self' 'unsafe-inline' https://hcaptcha.com https://*.hcaptcha.com",
+    "frame-src https://hcaptcha.com https://*.hcaptcha.com",
     "font-src 'self' data:",
     [
       "img-src 'self' data: blob:",
