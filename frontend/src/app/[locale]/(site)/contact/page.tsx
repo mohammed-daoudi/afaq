@@ -1,17 +1,13 @@
 'use client';
 
-import React, { useRef, useState } from 'react';
+import React, { useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { z } from 'zod';
-import HCaptcha from '@hcaptcha/react-hcaptcha';
 
 const WEB3FORMS_ENDPOINT = 'https://api.web3forms.com/submit';
 // Public access key (safe to expose by design); env var overrides it if set
 const WEB3FORMS_KEY =
   process.env.NEXT_PUBLIC_WEB3FORMS_KEY || '2ff09186-67a8-4fbc-a2f4-7d86e1181d9b';
-// Public hCaptcha sitekey provided by Web3Forms for free plans
-const HCAPTCHA_SITEKEY =
-  process.env.NEXT_PUBLIC_HCAPTCHA_SITEKEY || '50b2fe65-b00b-4b9e-ad62-3ba471098be2';
 
 const contactFormSchema = z.object({
   formType: z.enum(['Demande commerciale', 'Devenir partenaire', 'Autre demande']),
@@ -31,8 +27,8 @@ export default function ContactPage() {
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [lastSubmittedAt, setLastSubmittedAt] = useState(0);
   const [status, setStatus] = useState<Status>('idle');
-  const [captchaToken, setCaptchaToken] = useState('');
-  const captchaRef = useRef<HCaptcha>(null);
+  // Bots submit instantly: reject sends made within 3s of the page loading
+  const [loadedAt] = useState(() => Date.now());
   const t = useTranslations('ContactPage');
 
   const handleCopy = (text: string, id: string) => {
@@ -52,6 +48,11 @@ export default function ContactPage() {
       return;
     }
 
+    if (now - loadedAt < 3_000) {
+      setErrors({ form: 'Veuillez patienter quelques secondes avant d’envoyer.' });
+      return;
+    }
+
     const raw = Object.fromEntries(new FormData(form));
     const result = contactFormSchema.safeParse(raw);
 
@@ -64,12 +65,6 @@ export default function ContactPage() {
         }
       }
       setErrors(fieldErrors);
-      setStatus('idle');
-      return;
-    }
-
-    if (!captchaToken) {
-      setErrors({ form: 'Veuillez valider le captcha avant d’envoyer.' });
       setStatus('idle');
       return;
     }
@@ -92,7 +87,6 @@ export default function ContactPage() {
       phone: d.phone || '-',
       message: d.message,
       botcheck: raw.botcheck ? true : undefined,
-      'h-captcha-response': captchaToken,
     };
 
     setErrors({});
@@ -123,9 +117,6 @@ export default function ContactPage() {
       setErrors({ form: 'L’envoi a échoué. Veuillez réessayer ou nous écrire directement par email.' });
     } finally {
       clearTimeout(timer);
-      // hCaptcha tokens are single-use
-      captchaRef.current?.resetCaptcha();
-      setCaptchaToken('');
     }
   };
 
@@ -278,16 +269,6 @@ export default function ContactPage() {
                 <label htmlFor="message" className="text-sm font-semibold text-teal-deep">{t('yourMessage')}</label>
                 <textarea id="message" name="message" required rows={5} className="w-full px-4 py-3 rounded-xl border border-sage-light focus:border-teal-deep focus:ring-1 focus:ring-teal-deep outline-none bg-ivory-soft/30 transition-all resize-none" placeholder={t('messagePlaceholder')} aria-invalid={Boolean(errors.message)}></textarea>
                 {errors.message && <p className="text-xs text-red-600">{errors.message}</p>}
-              </div>
-
-              <div className="relative z-20 max-w-full">
-                <HCaptcha
-                  ref={captchaRef}
-                  sitekey={HCAPTCHA_SITEKEY}
-                  onVerify={(token) => setCaptchaToken(token)}
-                  onExpire={() => setCaptchaToken('')}
-                  onError={() => setCaptchaToken('')}
-                />
               </div>
 
               {errors.form && (
