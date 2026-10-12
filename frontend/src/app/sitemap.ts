@@ -20,7 +20,7 @@ const staticPaths = [
 ];
 
 function getSiteUrl() {
-  return (process.env.NEXT_PUBLIC_SITE_URL || 'https://afaq-lilac.vercel.app').replace(/\/$/, '');
+  return (process.env.NEXT_PUBLIC_SITE_URL || 'https://www.afaqhealth.com').replace(/\/$/, '');
 }
 
 function getLocalizedPath(locale: string, path: string) {
