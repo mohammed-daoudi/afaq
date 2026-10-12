@@ -22,8 +22,8 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  title: "AFAQ Health | Laboratoire & Compléments Alimentaires au Maroc",
-  description: "AFAQ HEALTH est votre partenaire de confiance en compléments alimentaires et produits de santé au Maroc et en Afrique.",
+  title: "AFAQ Health | Marques Européennes de Compléments Alimentaires au Maroc",
+  description: "AFAQ HEALTH distribue des marques européennes certifiées de compléments alimentaires et produits de santé au Maroc. Retrouvez nos produits en pharmacie.",
 };
 
 import { NextIntlClientProvider } from 'next-intl';
