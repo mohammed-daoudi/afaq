@@ -201,7 +201,7 @@ export function ProductTabs({ product, colors }: { product: Product, colors: any
                         if (match) {
                           const secondNum = match[1];
                           const text = match[2];
-                          return `${secondNum}${text}\n${firstPart}${text}`;
+                          return `${firstPart}${text}\n${secondNum}${text}`;
                         }
                       }
                       return product.format;
