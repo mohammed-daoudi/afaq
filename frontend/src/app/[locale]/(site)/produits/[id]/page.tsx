@@ -19,61 +19,90 @@ const FAMILY_COLORS: Record<string, { primary: string, accent: string, light: st
 };
 import { ProductGallery, ProductTabs, RelatedProducts } from './ProductClient';
 import { getTranslations } from 'next-intl/server';
+import { buildPageMetadata, getSiteUrl } from '@/lib/seo';
 
-export async function generateMetadata({ params }: { params: Promise<{ id: string }> }): Promise<Metadata> {
-  const { id } = await params;
-  const product = products.find(p => p.id === id);
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ id: string; locale?: string }>;
+}): Promise<Metadata> {
+  const { id, locale = 'fr' } = await params;
+  const product = products.find((p) => p.id === id);
 
   if (!product) {
     return {
-      title: 'Produit introuvable | AFAQ Health'
+      title: 'Produit introuvable | AFAQ HEALTH',
     };
   }
 
-  // Use the first sentence or truncate for description
   const shortDesc = product.description.split('.')[0] + '.';
 
-  return {
-    title: `${product.name} | Pharmacie & Parapharmacie Maroc - AFAQ Health`,
-    description: shortDesc,
-    openGraph: {
-      title: `${product.name} | AFAQ Health`,
-      description: shortDesc,
-      images: [{ url: product.imagePath }],
-      type: 'website',
-    },
-    twitter: {
-      card: 'summary_large_image',
-      title: `${product.name} | AFAQ Health`,
-      description: shortDesc,
-      images: [product.imagePath],
-    }
-  };
+  return buildPageMetadata({
+    locale,
+    path: `/produits/${product.id}`,
+    title: `${product.name} | Complément Alimentaire en Pharmacie au Maroc - AFAQ HEALTH`,
+    description: `${shortDesc} Retrouvez ${product.name} de la marque ${product.brand} en pharmacie et parapharmacie au Maroc.`,
+    image: product.imagePath,
+  });
 }
 
-export default async function ProductDetailPage({ params }: { params: Promise<{ id: string }> }) {
+export default async function ProductDetailPage({
+  params,
+}: {
+  params: Promise<{ id: string; locale?: string }>;
+}) {
   const { id } = await params;
-  const product = products.find(p => p.id === id);
+  const product = products.find((p) => p.id === id);
 
   if (!product) {
     notFound();
   }
 
-  const colors = FAMILY_COLORS[product.categories[0] as TherapeuticFamily] || { primary: '#1B4D3E', accent: '#D4AF37', light: '#E8F3F1' };
+  const colors = FAMILY_COLORS[product.categories[0] as TherapeuticFamily] || {
+    primary: '#1B4D3E',
+    accent: '#D4AF37',
+    light: '#E8F3F1',
+  };
   const t = await getTranslations('ProductDetail');
+  const siteUrl = getSiteUrl();
 
-  // Schema.org JSON-LD for the product
-  const jsonLd = {
+  // Schema.org JSON-LD for the product (strictly no Offers/price - Web-to-store vitrine)
+  const productJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'Product',
     name: product.name,
-    image: product.imagePath,
+    image: `${siteUrl}${product.imagePath}`,
     description: product.description,
     brand: {
       '@type': 'Brand',
-      name: product.brand
+      name: product.brand,
     },
-    category: product.categories.join(', ')
+    category: product.categories.join(', '),
+  };
+
+  const breadcrumbJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Accueil',
+        item: siteUrl,
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Produits',
+        item: `${siteUrl}/produits`,
+      },
+      {
+        '@type': 'ListItem',
+        position: 3,
+        name: product.name,
+        item: `${siteUrl}/produits/${product.id}`,
+      },
+    ],
   };
 
   return (
@@ -81,7 +110,11 @@ export default async function ProductDetailPage({ params }: { params: Promise<{ 
       {/* Inject JSON-LD structured data for Google */}
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(productJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
       />
       <div className="container mx-auto px-4 max-w-6xl">
         

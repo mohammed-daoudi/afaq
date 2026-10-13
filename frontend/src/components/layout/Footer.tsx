@@ -25,6 +25,7 @@ export function Footer() {
             <li><Link href="/marques" className="hover:text-white transition-colors">Nos marques</Link></li>
             <li><Link href="/produits" className="hover:text-white transition-colors">Nos produits</Link></li>
             <li><Link href="/conseils" className="hover:text-white transition-colors">Nos conseils</Link></li>
+            <li><Link href="/faq" className="hover:text-white transition-colors">FAQ</Link></li>
             <li><Link href="/pharmacies" className="hover:text-white transition-colors">Où acheter ?</Link></li>
             <li><Link href="/contact" className="hover:text-white transition-colors">Contact</Link></li>
           </ul>

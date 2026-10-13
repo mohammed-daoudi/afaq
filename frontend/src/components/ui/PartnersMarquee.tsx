@@ -32,7 +32,7 @@ export function PartnersMarquee() {
               <div className="relative w-full h-full flex items-center justify-center">
                 <Image 
                   src={partner} 
-                  alt={`Partner ${index + 1}`} 
+                  alt={`Partenaire pharmaceutique AFAQ HEALTH ${(index % PARTNERS.length) + 1}`} 
                   fill 
                   className="object-contain" 
                 />

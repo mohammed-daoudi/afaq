@@ -71,7 +71,7 @@ export function WorldMap({
       <Image
         src={`data:image/svg+xml;utf8,${encodeURIComponent(svgMap)}`}
         className="h-full w-full [mask-image:linear-gradient(to_bottom,transparent,white_10%,white_90%,transparent)] pointer-events-none select-none object-cover"
-        alt="world map"
+        alt="Carte des partenariats et réseau de pharmacies AFAQ HEALTH au Maroc"
         height="495"
         width="1056"
         draggable={false}

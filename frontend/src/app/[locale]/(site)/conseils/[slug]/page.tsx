@@ -1,10 +1,36 @@
 import React from 'react';
+import type { Metadata } from 'next';
 import Image from 'next/image';
 import { Link } from '@/navigation';
 import { notFound } from 'next/navigation';
 import { ArrowLeft, Calendar, Clock, AlertTriangle, Lightbulb } from 'lucide-react';
 import { MOCK_ARTICLES } from '@/data/conseils';
 import { getTranslations } from 'next-intl/server';
+import { buildPageMetadata, getSiteUrl } from '@/lib/seo';
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string; locale?: string }>;
+}): Promise<Metadata> {
+  const { slug, locale = 'fr' } = await params;
+  const article = MOCK_ARTICLES.find((a) => a.slug === slug);
+
+  if (!article) {
+    return {
+      title: 'Article introuvable | AFAQ HEALTH',
+    };
+  }
+
+  return buildPageMetadata({
+    locale,
+    path: `/conseils/${article.slug}`,
+    title: `${article.title} | Conseils Santé & Micronutrition au Maroc - AFAQ HEALTH`,
+    description: `${article.intro.slice(0, 155)}... Retrouvez les conseils d'experts AFAQ HEALTH au Maroc.`,
+    image: article.image,
+    type: 'article',
+  });
+}
 
 const DESKTOP_CTA_MARKER = '<div class="mt-12 text-center hidden lg:flex flex-col items-center">';
 
@@ -137,9 +163,72 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
   const articleCta = ARTICLE_CTAS[article.slug];
   const articleBody = getArticleBody(article.content);
   const hasLandscapeFeaturedImage = article.slug === 'sommeil-quelle-formule-melatonine-choisir';
+  const siteUrl = getSiteUrl();
+  const articleUrl = `${siteUrl}/conseils/${article.slug}`;
+  const imageUrl = article.image.startsWith('http') ? article.image : `${siteUrl}${article.image}`;
+
+  const articleJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': articleUrl,
+    },
+    headline: article.title,
+    description: article.intro,
+    image: [imageUrl],
+    author: {
+      '@type': 'Organization',
+      name: 'AFAQ HEALTH',
+      url: siteUrl,
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: 'AFAQ HEALTH',
+      logo: {
+        '@type': 'ImageObject',
+        url: `${siteUrl}/icon.png`,
+      },
+    },
+    datePublished: '2025-01-15T08:00:00+01:00',
+    dateModified: '2026-03-01T08:00:00+01:00',
+  };
+
+  const breadcrumbJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Accueil',
+        item: siteUrl,
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Conseils Santé',
+        item: `${siteUrl}/conseils`,
+      },
+      {
+        '@type': 'ListItem',
+        position: 3,
+        name: article.title,
+        item: articleUrl,
+      },
+    ],
+  };
 
   return (
     <div className="min-h-screen bg-ivory-soft pt-12 pb-24">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
       {/* Article Header */}
       <div className="container mx-auto px-4 max-w-7xl mb-12">
         <Link
@@ -177,13 +266,13 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
         {/* Left Column: Content */}
         <div className="w-full min-w-0 lg:w-2/3 flex flex-col">
           <div className="lg:mb-16 lg:rounded-[2rem] lg:border lg:border-[#d7ceb9]/60 lg:bg-gradient-to-br lg:from-[#f3eedf]/80 lg:via-[#eee6d4]/55 lg:to-[#e6dcc7]/45 lg:p-8 xl:p-10 lg:shadow-[0_18px_50px_rgba(23,103,71,0.06)]">
-            <div className="text-lg md:text-xl text-black font-bold leading-relaxed mb-12 lg:mb-10 border-l-4 border-gold-soft pl-5 md:pl-6">
+            <div className="text-lg md:text-xl text-black font-normal leading-relaxed mb-12 lg:mb-10 border-l-4 border-gold-soft pl-5 md:pl-6">
               {article.intro}
             </div>
 
             {/* Prose Content */}
             <div
-              className="mb-16 lg:mb-0 max-w-none [&_h2]:text-2xl md:[&_h2]:text-4xl [&_h2]:text-black [&_h2]:font-semibold [&_h2]:leading-tight [&_h2]:mt-12 [&_h2]:mb-6 [&_p]:text-base md:[&_p]:text-lg [&_h3]:text-black [&_h3]:font-semibold [&_p]:text-black [&_p]:leading-relaxed [&_p]:mb-6 [&_ul]:list-disc [&_ul]:pl-6 md:[&_ul]:pl-8 [&_ul]:mb-6 [&_ul]:text-base md:[&_ul]:text-lg [&_ul]:leading-relaxed [&_ul]:text-black [&_li]:text-black [&_ul]:space-y-2 [&_img]:max-w-full [&_img]:h-auto [&_a:not(.shimmer-effect)]:text-black [&_a:not(.shimmer-effect)]:underline [&_strong]:text-black [&_strong]:font-semibold"
+              className="mb-16 lg:mb-0 max-w-none [&_h2]:text-xl md:[&_h2]:text-2xl [&_h2]:text-black [&_h2]:font-medium [&_h2]:leading-tight [&_h2]:mt-10 [&_h2]:mb-4 [&_p]:text-base md:[&_p]:text-lg [&_h3]:text-black [&_h3]:font-semibold [&_p]:text-black [&_p]:leading-relaxed [&_p]:mb-6 [&_ul]:list-disc [&_ul]:pl-6 md:[&_ul]:pl-8 [&_ul]:mb-6 [&_ul]:text-base md:[&_ul]:text-lg [&_ul]:leading-relaxed [&_ul]:text-black [&_li]:text-black [&_ul]:space-y-2 [&_img]:max-w-full [&_img]:h-auto [&_a:not(.shimmer-effect)]:text-black [&_a:not(.shimmer-effect)]:underline [&_strong]:text-black [&_strong]:font-normal"
             >
               {renderArticleBlocks(articleBody)}
             </div>

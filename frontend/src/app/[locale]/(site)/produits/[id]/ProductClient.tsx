@@ -317,7 +317,7 @@ function FullscreenModal({ src, onClose }: { src: string | null, onClose: () => 
           >
             <ImageMagnifier 
               src={src} 
-              alt="Fullscreen view" 
+              alt="Vue détaillée haute définition du produit AFAQ HEALTH" 
               zoomLevel={2.5}
               containerClassName="w-full h-full bg-white rounded-2xl"
               imageClassName="object-contain"

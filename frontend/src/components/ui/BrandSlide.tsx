@@ -31,6 +31,7 @@ type BrandSlideProps = {
   headlineAfterItalic?: string;
   headlinePart2: string;
   headlinePart2Italic?: string;
+  headlinePart2ItalicFirst?: boolean;
 
   tagline?: string;
   availability: string;
@@ -41,6 +42,7 @@ type BrandSlideProps = {
   mobileHeadlineAfterItalic?: string;
   mobileHeadlinePart2?: string;
   mobileHeadlinePart2Italic?: string;
+  mobileHeadlinePart2ItalicFirst?: boolean;
   mobileHeadlineClassName?: string;
   mobileHeadlineItalicClassName?: string;
   mobileTagline?: string;
@@ -97,6 +99,7 @@ export default function BrandSlide({
   headlineAfterItalic,
   headlinePart2,
   headlinePart2Italic,
+  headlinePart2ItalicFirst,
 
   tagline,
   availability,
@@ -107,6 +110,7 @@ export default function BrandSlide({
   mobileHeadlineAfterItalic,
   mobileHeadlinePart2,
   mobileHeadlinePart2Italic,
+  mobileHeadlinePart2ItalicFirst,
   mobileHeadlineClassName,
   mobileHeadlineItalicClassName,
   mobileTagline,
@@ -152,6 +156,7 @@ export default function BrandSlide({
   const resolvedMobileHeadlineAfterItalic = mobileHeadlineAfterItalic ?? headlineAfterItalic;
   const resolvedMobileHeadlinePart2 = mobileHeadlinePart2 ?? headlinePart2;
   const resolvedMobileHeadlinePart2Italic = mobileHeadlinePart2Italic ?? headlinePart2Italic;
+  const resolvedMobileHeadlinePart2ItalicFirst = mobileHeadlinePart2ItalicFirst ?? headlinePart2ItalicFirst;
   const resolvedMobileHeadlineClassName = mobileHeadlineClassName ?? headlineClassName;
   const resolvedMobileHeadlineItalicClassName = mobileHeadlineItalicClassName ?? headlineItalicClassName;
   const resolvedMobileTagline = mobileTagline ?? tagline;
@@ -305,8 +310,14 @@ export default function BrandSlide({
                 {headlineAfterItalic && <> {headlineAfterItalic}</>}
               </p>
               <p className={headlineClassName || "font-poppins text-[26px] xl:text-[32px] leading-[1.12] font-light tracking-[-0.01em]"}>
+                {headlinePart2ItalicFirst && headlinePart2Italic && (
+                  <>
+                    <span className={headlineItalicClassName || "font-semibold"}>{headlinePart2Italic}</span>
+                    {headlinePart2 && " "}
+                  </>
+                )}
                 {headlinePart2}
-                {headlinePart2Italic && (
+                {!headlinePart2ItalicFirst && headlinePart2Italic && (
                   <>
                     {" "}
                     <span className={headlineItalicClassName || "font-semibold"}>{headlinePart2Italic}</span>
@@ -435,8 +446,14 @@ export default function BrandSlide({
               {resolvedMobileHeadlineAfterItalic && <> {resolvedMobileHeadlineAfterItalic}</>}
             </p>
             <p className={resolvedMobileHeadlineClassName || "font-poppins text-[22px] md:text-[26px] leading-[1.15] font-light"}>
+              {resolvedMobileHeadlinePart2ItalicFirst && resolvedMobileHeadlinePart2Italic && (
+                <>
+                  <span className={resolvedMobileHeadlineItalicClassName || "font-semibold"}>{resolvedMobileHeadlinePart2Italic}</span>
+                  {resolvedMobileHeadlinePart2 && " "}
+                </>
+              )}
               {resolvedMobileHeadlinePart2}
-              {resolvedMobileHeadlinePart2Italic && (
+              {!resolvedMobileHeadlinePart2ItalicFirst && resolvedMobileHeadlinePart2Italic && (
                 <>
                   {" "}
                   <span className={resolvedMobileHeadlineItalicClassName || "font-semibold"}>{resolvedMobileHeadlinePart2Italic}</span>

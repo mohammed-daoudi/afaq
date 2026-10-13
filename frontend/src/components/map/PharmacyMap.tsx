@@ -1,55 +1,6 @@
-import React, { useEffect } from 'react';
-import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet';
-import L from 'leaflet';
-import 'leaflet/dist/leaflet.css';
-import MarkerClusterGroup from 'react-leaflet-cluster';
+'use client';
 
-// Fix for default Leaflet markers in Next.js/Webpack
-let icon: L.Icon | undefined;
-let userIcon: L.Icon | undefined;
-let regionalLabelCoverIcon: L.DivIcon | undefined;
-
-if (typeof window !== 'undefined') {
-  icon = L.icon({
-    iconUrl: '/images/markers/marker-icon.png',
-    iconRetinaUrl: '/images/markers/marker-icon-2x.png',
-    shadowUrl: '/images/markers/marker-shadow.png',
-    iconSize: [25, 41],
-    iconAnchor: [12, 41],
-    popupAnchor: [1, -34],
-    tooltipAnchor: [16, -28],
-    shadowSize: [41, 41]
-  });
-
-  userIcon = L.icon({
-    iconUrl: '/images/markers/marker-icon-2x-red.png',
-    shadowUrl: '/images/markers/marker-shadow.png',
-    iconSize: [25, 41],
-    iconAnchor: [12, 41],
-    popupAnchor: [1, -34],
-    shadowSize: [41, 41]
-  });
-
-  regionalLabelCoverIcon = L.divIcon({
-    className: '',
-    html: '<div style="width: 250px; height: 190px; border-radius: 22px; background: #f5e8bf; box-shadow: 0 0 20px 16px #f5e8bf; pointer-events: none;"></div>',
-    iconSize: [250, 190],
-    iconAnchor: [125, 95]
-  });
-}
-
-// A component to dynamically center the map when the active pharmacy changes
-function MapCenterController({ center, zoom }: { center: [number, number], zoom: number }) {
-  const map = useMap();
-  useEffect(() => {
-    map.setView(center, zoom, {
-      animate: true,
-      duration: 1
-    });
-  }, [center, zoom, map]);
-  
-  return null;
-}
+import { useEffect, useState } from 'react';
 
 interface Pharmacy {
   id: number;
@@ -64,92 +15,69 @@ interface PharmacyMapProps {
   pharmacies: Pharmacy[];
   activePharmacyId: number | null;
   onMarkerClick: (id: number) => void;
-  userLocation?: { lat: number, lng: number } | null;
+  userLocation?: { lat: number; lng: number } | null;
 }
 
-export default function PharmacyMap({ pharmacies, activePharmacyId, onMarkerClick, userLocation }: PharmacyMapProps) {
-  // Default center (Morocco)
-  const defaultCenter: [number, number] = [33.5928, -7.6192];
-  
-  const activePharmacy = pharmacies.find(p => p.id === activePharmacyId);
-  const currentCenter: [number, number] = activePharmacy && activePharmacy.lat && activePharmacy.lng
-    ? [activePharmacy.lat, activePharmacy.lng] 
-    : userLocation 
-      ? [userLocation.lat, userLocation.lng]
-      : (pharmacies.length > 0 && pharmacies[0].lat && pharmacies[0].lng ? [pharmacies[0].lat, pharmacies[0].lng] : defaultCenter);
-    
-  const currentZoom = activePharmacy ? 15 : 6;
+function buildGoogleMapsEmbedUrl(query: string, zoom = 13) {
+  const params = new URLSearchParams({
+    q: query,
+    z: String(zoom),
+    output: 'embed',
+  });
+
+  return `https://www.google.com/maps?${params.toString()}`;
+}
+
+function buildGoogleMapsViewportUrl(center: { lat: number; lng: number }, zoom = 6) {
+  const params = new URLSearchParams({
+    ll: `${center.lat},${center.lng}`,
+    z: String(zoom),
+    output: 'embed',
+  });
+
+  return `https://www.google.com/maps?${params.toString()}`;
+}
+
+const MOROCCO_CENTER = { lat: 31.7917, lng: -7.0926 };
+const DESKTOP_MOROCCO_ZOOM = 6;
+const MOBILE_MOROCCO_ZOOM = 5;
+
+export default function PharmacyMap({
+  activePharmacyId,
+  pharmacies,
+  userLocation,
+}: PharmacyMapProps) {
+  const [defaultZoom, setDefaultZoom] = useState(DESKTOP_MOROCCO_ZOOM);
+  const activePharmacy = pharmacies.find((pharmacy) => pharmacy.id === activePharmacyId);
+
+  useEffect(() => {
+    const updateDefaultZoom = () => {
+      setDefaultZoom(window.innerWidth < 640 ? MOBILE_MOROCCO_ZOOM : DESKTOP_MOROCCO_ZOOM);
+    };
+
+    updateDefaultZoom();
+    window.addEventListener('resize', updateDefaultZoom);
+
+    return () => window.removeEventListener('resize', updateDefaultZoom);
+  }, []);
+
+  const mapUrl = activePharmacy
+    ? buildGoogleMapsEmbedUrl(`${activePharmacy.lat},${activePharmacy.lng}`, 16)
+    : userLocation
+      ? buildGoogleMapsEmbedUrl(`${userLocation.lat},${userLocation.lng}`, 13)
+      : buildGoogleMapsViewportUrl(MOROCCO_CENTER, defaultZoom);
 
   return (
-    <MapContainer 
-      center={currentCenter} 
-      zoom={currentZoom} 
-      style={{ height: '100%', width: '100%' }}
-      className="z-10"
-    >
-      <TileLayer
-        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+    <div className="relative h-full w-full bg-[#f4f7f6]">
+      <iframe
+        key={mapUrl}
+        title="Carte Google Maps des pharmacies partenaires AFAQ HEALTH"
+        src={mapUrl}
+        className="absolute inset-0 h-full w-full border-0"
+        loading="lazy"
+        referrerPolicy="no-referrer-when-downgrade"
+        allowFullScreen
       />
-
-      {regionalLabelCoverIcon && (
-        <Marker
-          position={[23.25, -12.55]}
-          icon={regionalLabelCoverIcon}
-          interactive={false}
-          keyboard={false}
-          zIndexOffset={1000}
-        />
-      )}
-      
-      <MapCenterController center={currentCenter} zoom={currentZoom} />
-
-      {userLocation && (
-        <Marker 
-          position={[userLocation.lat, userLocation.lng]} 
-          icon={userIcon}
-          zIndexOffset={1000}
-        >
-          <Popup>
-            <div className="font-bold text-center text-teal-deep">Vous êtes ici</div>
-          </Popup>
-        </Marker>
-      )}
-
-      <MarkerClusterGroup
-        chunkedLoading
-      >
-        {pharmacies.map((pharmacy) => {
-          if (!pharmacy.lat || !pharmacy.lng) return null;
-          
-          return (
-            <Marker 
-              key={pharmacy.id} 
-              position={[pharmacy.lat, pharmacy.lng]} 
-              icon={icon}
-              eventHandlers={{
-                click: () => onMarkerClick(pharmacy.id),
-              }}
-            >
-              <Popup>
-                <div className="text-sm min-w-[150px]">
-                  <p className="font-bold text-teal-deep mb-1">{pharmacy.name}</p>
-                  <p className="text-gray-600 mb-1">{pharmacy.address}</p>
-                  <p className="text-gray-600 mb-3">{pharmacy.city}</p>
-                  <a 
-                    href={`https://www.google.com/maps/dir/?api=1&destination=${pharmacy.lat},${pharmacy.lng}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="block w-full text-center bg-teal-deep text-white py-1.5 font-semibold rounded-xl hover:bg-gold-soft hover:text-teal-deep transition-all shadow-md shimmer-effect"
-                  >
-                    📍 Y aller
-                  </a>
-                </div>
-              </Popup>
-            </Marker>
-          );
-        })}
-      </MarkerClusterGroup>
-    </MapContainer>
+    </div>
   );
 }

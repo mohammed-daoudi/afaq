@@ -17,6 +17,7 @@ export function Header() {
     { href: '/marques', label: t('brands') },
     { href: '/produits', label: t('products') },
     { href: '/conseils', label: t('advice') },
+    { href: '/faq', label: t('faq') },
     { href: '/pharmacies', label: t('pharmacies') },
     { href: '/contact', label: t('contact') },
   ];

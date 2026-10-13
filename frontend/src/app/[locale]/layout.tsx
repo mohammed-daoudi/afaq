@@ -21,9 +21,47 @@ const poppins = Poppins({
   display: "swap",
 });
 
+import { getSiteUrl } from "@/lib/seo";
+
 export const metadata: Metadata = {
-  title: "AFAQ Health | Marques Européennes de Compléments Alimentaires au Maroc",
-  description: "AFAQ HEALTH distribue des marques européennes certifiées de compléments alimentaires et produits de santé au Maroc. Retrouvez nos produits en pharmacie.",
+  metadataBase: new URL(getSiteUrl()),
+  title: {
+    default: "AFAQ HEALTH | Compléments Alimentaires & Santé au Maroc",
+    template: "%s | AFAQ HEALTH",
+  },
+  description: "AFAQ HEALTH représente des marques européennes certifiées de compléments alimentaires au Maroc. Retrouvez nos produits en pharmacie.",
+  alternates: {
+    canonical: getSiteUrl(),
+    languages: {
+      'fr': getSiteUrl(),
+      'en': `${getSiteUrl()}/en`,
+      'ar': `${getSiteUrl()}/ar`,
+      'x-default': getSiteUrl(),
+    },
+  },
+  openGraph: {
+    type: "website",
+    locale: "fr_FR",
+    alternateLocale: ["en_US", "ar_MA"],
+    url: getSiteUrl(),
+    siteName: "AFAQ HEALTH",
+    title: "AFAQ HEALTH | Compléments Alimentaires & Santé au Maroc",
+    description: "AFAQ HEALTH représente des marques européennes certifiées de compléments alimentaires au Maroc. Retrouvez nos produits en pharmacie.",
+    images: [
+      {
+        url: `${getSiteUrl()}/icon.png`,
+        width: 512,
+        height: 512,
+        alt: "AFAQ HEALTH Maroc",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "AFAQ HEALTH | Compléments Alimentaires & Santé au Maroc",
+    description: "AFAQ HEALTH représente des marques européennes certifiées de compléments alimentaires au Maroc. Retrouvez nos produits en pharmacie.",
+    images: [`${getSiteUrl()}/icon.png`],
+  },
 };
 
 import { NextIntlClientProvider } from 'next-intl';

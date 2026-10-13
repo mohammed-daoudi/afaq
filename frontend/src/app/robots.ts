@@ -1,8 +1,5 @@
 import type { MetadataRoute } from 'next';
-
-function getSiteUrl() {
-  return (process.env.NEXT_PUBLIC_SITE_URL || 'https://www.afaqhealth.com').replace(/\/$/, '');
-}
+import { getSiteUrl } from '@/lib/seo';
 
 export default function robots(): MetadataRoute.Robots {
   const siteUrl = getSiteUrl();
@@ -12,7 +9,15 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: '*',
         allow: '/',
-        disallow: ['/portal'],
+        disallow: [
+          '/portal',
+          '/portal/',
+          '/en/portal',
+          '/en/portal/',
+          '/ar/portal',
+          '/ar/portal/',
+          '/api/',
+        ],
       },
     ],
     sitemap: `${siteUrl}/sitemap.xml`,

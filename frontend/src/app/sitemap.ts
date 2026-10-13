@@ -2,12 +2,15 @@ import type { MetadataRoute } from 'next';
 import { MOCK_ARTICLES } from '@/data/conseils';
 import { products } from '@/lib/products';
 import { defaultLocale, locales } from '@/i18n';
+import { getSiteUrl, getLocalizedUrl } from '@/lib/seo';
 
 const staticPaths = [
   '',
   '/a-propos',
+  '/confidentialite',
   '/conseils',
   '/contact',
+  '/cookies',
   '/expertise',
   '/faq',
   '/marques',
@@ -19,28 +22,31 @@ const staticPaths = [
   '/produits',
 ];
 
-function getSiteUrl() {
-  return (process.env.NEXT_PUBLIC_SITE_URL || 'https://www.afaqhealth.com').replace(/\/$/, '');
-}
-
-function getLocalizedPath(locale: string, path: string) {
-  const localizedPrefix = locale === defaultLocale ? '' : `/${locale}`;
-  return `${localizedPrefix}${path || ''}` || '/';
-}
-
 export default function sitemap(): MetadataRoute.Sitemap {
-  const siteUrl = getSiteUrl();
   const dynamicPaths = [
     ...products.map((product) => `/produits/${product.id}`),
     ...MOCK_ARTICLES.map((article) => `/conseils/${article.slug}`),
   ];
 
+  const allPaths = [...staticPaths, ...dynamicPaths];
+
   return locales.flatMap((locale) =>
-    [...staticPaths, ...dynamicPaths].map((path) => ({
-      url: `${siteUrl}${getLocalizedPath(locale, path)}`,
-      lastModified: new Date(),
-      changeFrequency: path === '' ? 'weekly' : 'monthly',
-      priority: path === '' ? 1 : 0.7,
-    })),
+    allPaths.map((path) => {
+      const languages: Record<string, string> = {};
+      locales.forEach((loc) => {
+        languages[loc] = getLocalizedUrl(loc, path);
+      });
+      languages['x-default'] = getLocalizedUrl(defaultLocale, path);
+
+      return {
+        url: getLocalizedUrl(locale, path),
+        lastModified: new Date(),
+        changeFrequency: path === '' ? ('weekly' as const) : ('monthly' as const),
+        priority: path === '' ? 1 : path.startsWith('/produits') || path === '/pharmacies' ? 0.9 : 0.7,
+        alternates: {
+          languages,
+        },
+      };
+    }),
   );
 }

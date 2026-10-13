@@ -4,12 +4,11 @@ import React, { useState, useEffect } from 'react';
 import dynamic from 'next/dynamic';
 import api from '@/lib/api';
 
-// Dynamically import the map component since Leaflet requires window
 const MapComponent = dynamic(() => import('@/components/map/PharmacyMap'), { 
   ssr: false,
   loading: () => (
     <div className="absolute inset-0 flex items-center justify-center bg-[#f4f7f6]">
-      <div className="text-teal-deep font-semibold">Chargement de la carte interactive...</div>
+      <div className="text-teal-deep font-semibold">Chargement de Google Maps...</div>
     </div>
   )
 });
@@ -43,6 +42,10 @@ function getDistanceFromLatLonInKm(lat1: number, lon1: number, lat2: number, lon
 
 function deg2rad(deg: number) {
   return deg * (Math.PI/180);
+}
+
+function formatDistance(distance: number) {
+  return distance < 1 ? `${Math.round(distance * 1000)} m` : `${distance.toFixed(1)} km`;
 }
 
 export default function PharmaciesPage() {
@@ -222,28 +225,27 @@ export default function PharmaciesPage() {
                   >
                     <div className="flex justify-between items-start gap-2">
                       <h3 className="font-bold text-teal-deep text-lg leading-tight mb-1">{pharmacy.name}</h3>
-                      {pharmacy.distance !== null && (
-                        <span className="inline-block px-2 py-1 bg-gold-soft/20 text-teal-deep text-xs font-bold rounded-lg whitespace-nowrap">
-                          {pharmacy.distance < 1 ? Math.round(pharmacy.distance * 1000) + ' m' : pharmacy.distance.toFixed(1) + ' km'}
-                        </span>
-                      )}
                     </div>
                     <p className="text-sm text-anthracite-soft/80 flex items-start gap-1.5 mt-2">
-                      <span className="text-gold-soft">📍</span> {pharmacy.address}
+                      <span className="text-gold-soft">📍</span>
+                      <span>
+                        {pharmacy.address}
+                        {pharmacy.distance !== null && (
+                          <span className="ml-2 font-semibold text-teal-deep">{formatDistance(pharmacy.distance)}</span>
+                        )}
+                      </span>
                     </p>
-                    {activePharmacy === pharmacy.id && (
-                      <div className="mt-3">
-                        <a 
-                          href={`https://www.google.com/maps/dir/?api=1&destination=${pharmacy.lat},${pharmacy.lng}`}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="inline-block w-full text-center bg-teal-deep text-white text-sm py-2 font-semibold rounded-xl hover:bg-gold-soft hover:text-teal-deep transition-all shadow-md shimmer-effect"
-                          onClick={(e) => e.stopPropagation()}
-                        >
-                          Obtenir l'itinéraire
-                        </a>
-                      </div>
-                    )}
+                    <div className="mt-3">
+                      <a
+                        href={`https://www.google.com/maps/dir/?api=1&destination=${pharmacy.lat},${pharmacy.lng}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-block w-full text-center bg-teal-deep text-white text-sm py-2 font-semibold rounded-xl hover:bg-gold-soft hover:text-teal-deep transition-all shadow-md shimmer-effect"
+                        onClick={(e) => e.stopPropagation()}
+                      >
+                        Obtenir l'itinéraire
+                      </a>
+                    </div>
                   </div>
                 ))
               ) : (

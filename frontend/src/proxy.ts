@@ -22,7 +22,6 @@ function buildContentSecurityPolicy(nonce: string) {
   const connectSources = [
     "'self'",
     apiOrigin,
-    'https://*.tile.openstreetmap.org',
     'https://api.web3forms.com',
   ].filter(Boolean);
 
@@ -39,9 +38,9 @@ function buildContentSecurityPolicy(nonce: string) {
       "img-src 'self' data: blob:",
       'https://afaq-lilac.vercel.app',
       'https://images.unsplash.com',
-      'https://*.tile.openstreetmap.org',
     ].join(' '),
     "media-src 'self' blob:",
+    "frame-src 'self' https://www.google.com https://maps.google.com",
     `connect-src ${connectSources.join(' ')}`,
     "worker-src 'self' blob:",
     "manifest-src 'self'",

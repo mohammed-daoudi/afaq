@@ -52,7 +52,7 @@ export default function MarquesPage() {
         {/* Page Header */}
         <motion.div 
           initial="hidden" animate="visible" variants={{ hidden: { opacity: 0 }, visible: { opacity: 1, transition: { staggerChildren: 0.2 } } }}
-          className="max-w-4xl mx-auto text-center mb-20 space-y-6"
+          className="max-w-4xl mx-auto text-center mb-10 space-y-6"
         >
           <motion.div variants={fadeUp} className="inline-block px-4 py-1.5 text-xs font-bold tracking-widest text-gold-soft bg-white border border-gold-soft/20 rounded-full uppercase">
             NOS MARQUES
