@@ -32,7 +32,9 @@ class PublicController extends Controller
             
             // Only return validated pharmacies
             $query = Account::where('type', 'pharmacie')
-                ->where('status', 'active'); // The schema/form uses 'active' rather than 'valide'
+                ->where(function ($q) {
+                    $q->where('status', 'active')->orWhere('status', 'valide');
+                });
                 
             if ($driver === 'sqlite') {
                 return $query->select('id', 'name', 'address', 'city', 'lat', 'lng')->get();

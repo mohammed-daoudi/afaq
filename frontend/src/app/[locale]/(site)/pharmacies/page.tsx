@@ -48,6 +48,14 @@ function formatDistance(distance: number) {
   return distance < 1 ? `${Math.round(distance * 1000)} m` : `${distance.toFixed(1)} km`;
 }
 
+const DEFAULT_PHARMACIES: Pharmacy[] = [
+  { id: 1, name: 'Pharmacie Centrale', city: 'Rabat', address: '15 Avenue Mohammed V, Rabat', lat: 34.020882, lng: -6.841650 },
+  { id: 2, name: 'Pharmacie Al Amal', city: 'Rabat', address: 'Quartier Agdal, Rabat', lat: 34.004413, lng: -6.847582 },
+  { id: 3, name: 'Pharmacie des Nations Unies', city: 'Casablanca', address: 'Place des Nations Unies, Casablanca', lat: 33.592817, lng: -7.619183 },
+  { id: 4, name: 'Pharmacie Maârif', city: 'Casablanca', address: 'Quartier Maârif, Casablanca', lat: 33.579471, lng: -7.632948 },
+  { id: 5, name: 'Pharmacie Kénitra Médina', city: 'Kénitra', address: 'Centre Ville, Kénitra', lat: 34.261013, lng: -6.580196 },
+];
+
 export default function PharmaciesPage() {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCity, setSelectedCity] = useState('Toutes');
@@ -82,15 +90,15 @@ export default function PharmaciesPage() {
           : '/public/pharmacies';
           
         const response = await api.get(endpoint);
-        setPharmacies(response.data);
+        if (Array.isArray(response.data) && response.data.length > 0) {
+          setPharmacies(response.data);
+        } else if (!safeProductId) {
+          setPharmacies(DEFAULT_PHARMACIES);
+        } else {
+          setPharmacies([]);
+        }
       } catch {
-        setPharmacies([
-          { id: 1, name: 'Pharmacie Centrale', city: 'Rabat', address: '15 Avenue Mohammed V, Rabat', lat: 34.020882, lng: -6.841650 },
-          { id: 2, name: 'Pharmacie Al Amal', city: 'Rabat', address: 'Quartier Agdal, Rabat', lat: 34.004413, lng: -6.847582 },
-          { id: 3, name: 'Pharmacie des Nations Unies', city: 'Casablanca', address: 'Place des Nations Unies, Casablanca', lat: 33.592817, lng: -7.619183 },
-          { id: 4, name: 'Pharmacie Maârif', city: 'Casablanca', address: 'Quartier Maârif, Casablanca', lat: 33.579471, lng: -7.632948 },
-          { id: 5, name: 'Pharmacie Kénitra Médina', city: 'Kénitra', address: 'Centre Ville, Kénitra', lat: 34.261013, lng: -6.580196 },
-        ]);
+        setPharmacies(DEFAULT_PHARMACIES);
       } finally {
         setIsLoading(false);
       }
