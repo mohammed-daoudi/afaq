@@ -14,7 +14,7 @@ export async function generateMetadata({
     path: '',
     title: 'AFAQ HEALTH | Marques Européennes de Compléments Alimentaires au Maroc',
     description:
-      'Représentant exclusif au Maroc de marques européennes réputées de compléments alimentaires (Sotya, Colagenova, Naturamins). Produits certifiés disponibles en pharmacie.',
+      'Représentant exclusif au Maroc de marques européennes réputées de compléments alimentaires (Sotya, COLAGENOVA®, Naturamins). Produits certifiés disponibles en pharmacie.',
     image: '/icon.png',
   });
 }
@@ -41,7 +41,7 @@ export default async function HomePage({
       height: 512,
     },
     description:
-      'Représentant exclusif au Maroc de marques européennes de compléments alimentaires et produits de santé certifiés (Sotya, Colagenova, Naturamins). Disponibles en pharmacie via notre réseau partenaire dépositaire.',
+      'Représentant exclusif au Maroc de marques européennes de compléments alimentaires et produits de santé certifiés (Sotya, COLAGENOVA®, Naturamins). Disponibles en pharmacie via notre réseau partenaire dépositaire.',
     address: {
       '@type': 'PostalAddress',
       streetAddress: 'Bir Rami Ouest',

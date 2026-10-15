@@ -69,6 +69,7 @@ import { getMessages } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import { locales } from '@/i18n';
 import { DisableInspect } from '@/components/ui/DisableInspect';
+import { CookiePreferencesProvider } from '@/context/CookiePreferencesContext';
 
 export default async function RootLayout({
   children,
@@ -93,7 +94,9 @@ export default async function RootLayout({
       <body className="antialiased text-anthracite-soft bg-ivory-soft">
         <DisableInspect />
         <NextIntlClientProvider messages={messages}>
-          {children}
+          <CookiePreferencesProvider>
+            {children}
+          </CookiePreferencesProvider>
         </NextIntlClientProvider>
       </body>
     </html>

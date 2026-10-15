@@ -3,8 +3,11 @@
 import React from 'react';
 import { Card } from '@/components/ui/Card';
 import { motion } from 'framer-motion';
+import { useCookiePreferences } from '@/context/CookiePreferencesContext';
 
 export default function CookiesPage() {
+  const { openPreferences } = useCookiePreferences();
+
   return (
     <div className="min-h-screen bg-ivory-soft pt-32 pb-24 overflow-hidden">
       <div className="container mx-auto px-4 max-w-4xl">
@@ -45,33 +48,38 @@ export default function CookiesPage() {
             
             <h3 className="text-xl font-bold text-anthracite-soft mb-3">Cookies strictement nécessaires</h3>
             <p>
-              Ces cookies sont indispensables au bon fonctionnement du site web et ne peuvent pas être désactivés dans nos systèmes. Ils ne stockent aucune information d'identification personnelle. Ils nous permettent notamment de :
+              Ces cookies et stockages sont nécessaires au fonctionnement du site et restent actifs. Ils permettent notamment de :
             </p>
             <ul>
-              <li>Mémoriser votre choix concernant le dépôt de cookies (bannière de consentement).</li>
-              <li>Sécuriser la navigation sur le site.</li>
+              <li>Mémoriser votre langue avec le cookie NEXT_LOCALE.</li>
+              <li>Assurer la sécurité et la gestion des sessions.</li>
+              <li>Conserver vos préférences dans le stockage local de votre navigateur (localStorage), sous la clé afaq-cookie-preferences. Ce stockage local est distinct d'un cookie.</li>
             </ul>
 
-            <h3 className="text-xl font-bold text-anthracite-soft mt-8 mb-3">Cookies analytiques (mesure d'audience)</h3>
+            <h3 className="text-xl font-bold text-anthracite-soft mt-8 mb-3">Mesure d'audience &amp; Statistiques</h3>
             <p>
-              Ces cookies nous permettent de déterminer le nombre de visites et les sources du trafic sur notre site web, afin d'en mesurer et d'en améliorer les performances. Ils nous aident à savoir quelles pages sont les plus ou les moins consultées et comment les visiteurs naviguent sur le site.
+              Cette catégorie facultative est désactivée par défaut. Elle concerne les statistiques anonymes de fréquentation et ne peut être activée qu'avec votre accord. Aucun service de mesure d'audience n'est actuellement actif sur le site.
             </p>
+
+            <h3 className="text-xl font-bold text-anthracite-soft mt-8 mb-3">Fonctionnalités &amp; Médias enrichis</h3>
             <p>
-              Toutes les informations collectées par ces cookies sont agrégées et donc anonymisées. Si vous n'acceptez pas ces cookies, nous ne serons pas informés de votre visite sur notre site.
+              Cette catégorie facultative, désactivée par défaut, contrôle la carte interactive des pharmacies et les lecteurs vidéo. La carte Google Maps se charge uniquement après votre accord ; son fournisseur reçoit alors votre adresse IP et les paramètres de la requête de carte. La lecture des vidéos du site attend également cet accord.
             </p>
 
             <h2 className="text-2xl font-bold text-teal-deep mt-10 mb-6">3. Gérer vos préférences</h2>
             <p>
-              Lors de votre première visite sur le site, une bannière vous a informé de la présence de cookies et vous a invité à faire un choix. 
+              Lors de votre première visite, une bannière vous permet de tout accepter, de tout refuser ou de personnaliser votre choix. Les catégories facultatives restent désactivées tant que vous n'avez pas donné votre accord. Fermer le panneau ne vaut pas consentement et ne modifie pas vos préférences enregistrées.
             </p>
             <p>
-              Vous pouvez à tout moment modifier vos préférences ou retirer votre consentement concernant les cookies non essentiels en utilisant le bouton ci-dessous :
+              Vous pouvez à tout moment modifier vos préférences ou retirer votre consentement concernant les catégories facultatives avec le bouton ci-dessous ou le bouton « Cookies » en bas de chaque page. Vos choix et leur date sont conservés dans votre navigateur pendant six mois, puis votre choix vous est à nouveau demandé.
             </p>
             
             <div className="mt-8 mb-12">
               <button 
+                type="button"
+                aria-haspopup="dialog"
                 className="bg-teal-deep text-white font-bold py-3 px-6 rounded-xl hover:bg-gold-soft hover:text-teal-deep transition-all shadow-md shimmer-effect"
-                onClick={() => alert('Ouverture du panneau de configuration des cookies (Bientôt disponible)')}
+                onClick={openPreferences}
               >
                 Gérer mes préférences cookies
               </button>
@@ -86,7 +94,7 @@ export default function CookiesPage() {
             </p>
 
             <div className="mt-12 pt-8 border-t border-sage-light text-sm text-anthracite-soft/60">
-              Dernière mise à jour : {new Date().toLocaleDateString('fr-FR')}
+              Dernière mise à jour : 15 octobre 2026
             </div>
           </Card>
         </motion.div>

@@ -106,10 +106,13 @@ export default function AProposPage() {
             </motion.h1>
 
             <motion.p variants={fadeUp} className="text-xl font-bold text-anthracite-deep leading-relaxed mb-4">
-              De l’Europe au marché marocain, nous construisons les conditions d’une implantation durable.
+              Nous accompagnons le développement des marques européennes de santé et de nutrition sur le marché marocain.
+            </motion.p>
+            <motion.p variants={fadeUp} className="text-base text-anthracite-soft/75 leading-relaxed mb-4">
+              AFAQ HEALTH est une société marocaine spécialisée dans l’importation, le développement et la commercialisation de marques européennes dans les domaines de la santé, de la nutrition et du bien-être.
             </motion.p>
             <motion.p variants={fadeUp} className="text-base text-anthracite-soft/75 leading-relaxed">
-              AFAQ HEALTH est une société marocaine spécialisée dans l’importation, le développement et la commercialisation de marques européennes dans les domaines de la santé, de la nutrition et du bien-être.
+              De l’accès au marché à la commercialisation, nous accompagnons nos partenaires dans le développement de leurs marques au Maroc, en associant expertise réglementaire, stratégie commerciale et connaissance du marché local.
             </motion.p>
           </motion.div>
         </div>

@@ -98,7 +98,7 @@ export default function CatalogPage() {
         >
           <option>Toutes les marques</option>
           <option>SOTYA</option>
-          <option>Colagenova</option>
+          <option>COLAGENOVA®</option>
           <option>Naturamins</option>
         </select>
       </div>

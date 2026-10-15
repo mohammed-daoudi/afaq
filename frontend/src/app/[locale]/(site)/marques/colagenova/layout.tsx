@@ -11,9 +11,9 @@ export async function generateMetadata({
   return buildPageMetadata({
     locale,
     path: '/marques/colagenova',
-    title: 'Colagenova Maroc | Collagène Hydrolysé & Nutrition Articulaire - AFAQ HEALTH',
+    title: 'COLAGENOVA® Maroc | Collagène Hydrolysé & Nutrition Articulaire - AFAQ HEALTH',
     description:
-      'Découvrez Colagenova au Maroc : gamme innovante de collagène marin et bovin hydrolysé pour la beauté cutanée et la santé articulaire. Disponibilité en pharmacie.',
+      'Découvrez COLAGENOVA® au Maroc : gamme innovante de collagène marin et bovin hydrolysé pour la beauté cutanée et la santé articulaire. Disponibilité en pharmacie.',
   });
 }
 

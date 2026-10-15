@@ -13,7 +13,7 @@ export async function generateMetadata({
     path: '/marques',
     title: 'Marques Européennes Partenaires au Maroc | AFAQ HEALTH',
     description:
-      'Découvrez les laboratoires européens représentés par AFAQ HEALTH au Maroc : Sotya, Colagenova et Naturamins Kids, formulés selon les plus hauts standards et disponibles en pharmacie.',
+      'Découvrez les laboratoires européens représentés par AFAQ HEALTH au Maroc : Sotya, COLAGENOVA® et Naturamins Kids, formulés selon les plus hauts standards et disponibles en pharmacie.',
   });
 }
 

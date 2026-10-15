@@ -2,8 +2,10 @@
 
 import React from 'react';
 import { Link } from '@/navigation';
+import { useCookiePreferences } from '@/context/CookiePreferencesContext';
 
 export function Footer() {
+  const { openPreferences } = useCookiePreferences();
 
   return (
     <footer className="bg-teal-deep text-white pt-16 pb-8">
@@ -43,12 +45,12 @@ export function Footer() {
 
       <div className="container mx-auto px-4 pt-6 border-t border-white/10 text-xs text-sage-light/60 flex flex-col md:flex-row justify-between items-center">
         <p>&copy; {new Date().getFullYear()} AFAQ HEALTH — Kénitra, Maroc. Tous droits réservés.</p>
-        <div className="flex gap-4 mt-4 md:mt-0">
+        <div className="flex flex-wrap justify-center gap-x-4 gap-y-2 mt-4 md:mt-0">
           <Link href="/mentions-legales" className="hover:text-white transition-colors">Mentions légales</Link>
           <span>·</span>
           <Link href="/confidentialite" className="hover:text-white transition-colors">Politique de confidentialité</Link>
           <span>·</span>
-          <Link href="/cookies" className="hover:text-white transition-colors">Cookies</Link>
+          <button id="afaq-cookie-settings" type="button" onClick={openPreferences} aria-haspopup="dialog" className="hover:text-white transition-colors focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-gold-soft">Cookies</button>
         </div>
       </div>
     </footer>

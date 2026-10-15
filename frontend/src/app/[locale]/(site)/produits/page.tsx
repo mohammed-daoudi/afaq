@@ -10,6 +10,7 @@ import { Link } from '@/navigation';
 const BRAND_LOGOS: Record<string, string> = {
   'SOTYA':           '/gammelogo/sotyaaa.jpg',
   'NATURAMINS KIDS': '/gammelogo/naturamins.jpeg',
+  'COLAGENOVA®':     '/gammelogo/colagenova.jpg',
   'COLAGENOVA':      '/gammelogo/colagenova.jpg',
 };
 
@@ -28,6 +29,13 @@ const BRAND_COLORS: Record<string, { text: string; border: string; shadow: strin
     shadow: 'shadow-[#5FB4D9]/20',
     dot: 'bg-[#5FB4D9]',
     shimmer: 'rgba(95, 180, 217, 0.15)' // #5FB4D9
+  },
+  'COLAGENOVA®': {
+    text: 'text-gold-soft',
+    border: 'border-gold-soft',
+    shadow: 'shadow-gold-soft/20',
+    dot: 'bg-gold-soft',
+    shimmer: 'rgba(217, 160, 91, 0.15)'
   },
   'COLAGENOVA': {
     text: 'text-gold-soft',
@@ -49,7 +57,7 @@ const fadeUp = {
 const SLUG_TO_BRAND: Record<string, string> = {
   'sotya':           'SOTYA',
   'naturamins-kids': 'NATURAMINS KIDS',
-  'colagenova':      'COLAGENOVA',
+  'colagenova':      'COLAGENOVA®',
 };
 
 export default function ProduitsPage() {

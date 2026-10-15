@@ -42,13 +42,13 @@ const brands = [
   },
   {
     slug: 'colagenova',
-    name: 'Colagenova',
+    name: 'COLAGENOVA®',
     logo: '/gammelogo/colagenova.jpg',
     cardBg: '#FFFFFF',
     logoClass: 'object-contain scale-90',
     subtitle: 'BEAUTÉ & ARTICULATIONS',
     status: 'MARQUE ESPAGNOLE · Lancement en 2027',
-    description: "COLAGENOVA propose une gamme spécialisée à base de collagène, développée pour accompagner la beauté et le confort articulaire.",
+    description: "COLAGENOVA® propose une gamme spécialisée à base de collagène, développée pour accompagner la beauté et le confort articulaire.",
   }
 ];
 
@@ -294,7 +294,7 @@ export function HomePageClient() {
 
             <Link href="/conseils/sante-masculine-comprendre-prostate" className="group block bg-white rounded-none overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 border border-gray-100 flex flex-col h-full">
               <div className="relative h-64 w-full shrink-0 overflow-hidden">
-                <Image src="/images/unsplash/welness/prostal-man-taking-pill-full-frame.png" alt="Conseil santé masculine et vitalité" fill className="object-cover group-hover:scale-110 transition-transform duration-700" />
+                <Image src="/images/unsplash/welness/prostal-man-taking-pill-full-frame.png?v=fr-labels-20261015" alt="Conseil santé masculine et vitalité" fill className="object-cover group-hover:scale-110 transition-transform duration-700" />
               </div>
               <div className="p-8 flex flex-col flex-grow">
                 <span className="text-gold-soft text-xs font-bold uppercase tracking-widest mb-3 block">{t('pediatrics')}</span>

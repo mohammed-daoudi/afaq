@@ -38,7 +38,7 @@
       },
       {
         id: 3,
-        brand: "COLAGENOVA",
+        brand: "COLAGENOVA®",
         title: t('colagenovaTitle'),
         subtitle: t('colagenovaSubtitle'),
         link: "/produits?brand=colagenova",
@@ -143,13 +143,13 @@
             ) : slides[current].id === 3 ? (
               <BrandSlide
                 productImage="/images/collagenslider/zyounat.png"
-                productImageAlt="Gamme COLAGENOVA"
+                productImageAlt="Gamme COLAGENOVA®"
 
                 personImage="/images/collagenslider/madamcollagene.png"
                 personImageAlt="Beauté et articulations au naturel"
 
                 logo="/images/collagenslider/nobgcollagene.png"
-                logoAlt="COLAGENOVA"
+                logoAlt="COLAGENOVA®"
                 logoClassName="h-[74px] xl:h-[88px]"
                 centerAreaClassName="left-[29%] right-[22%]"
                 contentClassName="translate-x-1 -translate-y-6 xl:translate-x-2 xl:-translate-y-8"

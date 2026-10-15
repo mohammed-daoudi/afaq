@@ -1,6 +1,8 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { MapPin } from 'lucide-react';
+import { useCookiePreferences } from '@/context/CookiePreferencesContext';
 
 interface Pharmacy {
   id: number;
@@ -47,6 +49,7 @@ export default function PharmacyMap({
   pharmacies,
   userLocation,
 }: PharmacyMapProps) {
+  const { preferences, ready, openPreferences } = useCookiePreferences();
   const [defaultZoom, setDefaultZoom] = useState(DESKTOP_MOROCCO_ZOOM);
   const activePharmacy = pharmacies.find((pharmacy) => pharmacy.id === activePharmacyId);
 
@@ -69,15 +72,33 @@ export default function PharmacyMap({
 
   return (
     <div className="relative h-full w-full bg-[#f4f7f6]">
-      <iframe
-        key={mapUrl}
-        title="Carte Google Maps des pharmacies partenaires AFAQ HEALTH"
-        src={mapUrl}
-        className="absolute inset-0 h-full w-full border-0"
-        loading="lazy"
-        referrerPolicy="no-referrer-when-downgrade"
-        allowFullScreen
-      />
+      {ready && preferences.functional ? (
+        <iframe
+          key={mapUrl}
+          title="Carte Google Maps des pharmacies partenaires AFAQ HEALTH"
+          src={mapUrl}
+          className="absolute inset-0 h-full w-full border-0"
+          loading="lazy"
+          referrerPolicy="no-referrer-when-downgrade"
+          allowFullScreen
+        />
+      ) : (
+        <div className="absolute inset-0 flex flex-col items-center justify-center gap-4 p-6 text-center text-teal-deep">
+          <MapPin size={32} className="text-gold-soft" aria-hidden="true" />
+          <h2 className="text-xl font-semibold">Afficher la carte des pharmacies</h2>
+          <p className="max-w-md text-sm leading-relaxed">
+            La carte Google Maps nécessite votre accord pour les fonctionnalités et médias enrichis.
+            La liste des pharmacies reste disponible.
+          </p>
+          <button
+            type="button"
+            onClick={openPreferences}
+            className="rounded-xl bg-teal-deep px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-teal-deep/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-soft focus-visible:ring-offset-2"
+          >
+            Gérer mes préférences
+          </button>
+        </div>
+      )}
     </div>
   );
 }

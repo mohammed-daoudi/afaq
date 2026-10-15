@@ -25,7 +25,7 @@ const STATIC_BRANDS = [
     link: '/marques/naturamins-kids',
   },
   {
-    name: 'COLAGENOVA',
+    name: 'COLAGENOVA®',
     tagline: 'La beauté et la vitalité au naturel',
     bg: '#fcf5f5',
     accentColor: '#db2777',

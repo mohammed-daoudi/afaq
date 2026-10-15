@@ -7,6 +7,7 @@ import { ArrowLeft, Calendar, Clock, AlertTriangle, Lightbulb } from 'lucide-rea
 import { MOCK_ARTICLES } from '@/data/conseils';
 import { getTranslations } from 'next-intl/server';
 import { buildPageMetadata, getSiteUrl } from '@/lib/seo';
+import ConsentVideo from '@/components/ui/ConsentVideo';
 
 export async function generateMetadata({
   params,
@@ -287,16 +288,8 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
 
           {/* Featured Media (Mobile Only) */}
           <div className={`lg:hidden relative w-full rounded-3xl overflow-hidden shadow-2xl mb-8 ${hasLandscapeFeaturedImage ? 'aspect-[3/2]' : 'h-[300px] sm:h-[400px]'}`}>
-            {(article as any).video ? (
-              <video
-                src={(article as any).video}
-                autoPlay
-                loop
-                muted
-                playsInline
-                className="block w-full h-full object-cover"
-                style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-              />
+            {article.video ? (
+              <ConsentVideo src={article.video} title={article.title} />
             ) : (
               <Image
                 src={article.image}
@@ -341,16 +334,8 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
         <div className="w-full min-w-0 lg:w-1/3 lg:sticky top-[160px] flex flex-col gap-8">
             {/* Featured Media (Desktop Only) */}
             <div className={`hidden lg:block relative w-full rounded-3xl overflow-hidden shadow-2xl ${hasLandscapeFeaturedImage ? 'aspect-[3/2]' : 'h-[450px]'}`}>
-              {(article as any).video ? (
-                <video
-                  src={(article as any).video}
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                  className="block w-full h-full object-cover"
-                  style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-                />
+              {article.video ? (
+                <ConsentVideo src={article.video} title={article.title} />
               ) : (
                 <Image
                   src={article.image}

@@ -29,13 +29,13 @@ const brands = [
   },
   {
     slug: 'colagenova',
-    name: 'Colagenova',
+    name: 'COLAGENOVA®',
     logo: '/gammelogo/colagenova.jpg',
     cardBg: '#FFFFFF',
     logoClass: 'object-contain scale-90',
     subtitle: 'BEAUTÉ & ARTICULATIONS',
     status: 'MARQUE ESPAGNOLE · Lancement en 2027',
-    description: "COLAGENOVA propose une gamme spécialisée à base de collagène, développée pour accompagner la beauté et le confort articulaire.",
+    description: "COLAGENOVA® propose une gamme spécialisée à base de collagène, développée pour accompagner la beauté et le confort articulaire.",
   }
 ];
 
