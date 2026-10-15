@@ -315,12 +315,17 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
               <div className="absolute top-0 right-0 p-6 opacity-10">
                 <Lightbulb size={120} />
               </div>
-              <div className="relative z-10 flex flex-col sm:flex-row sm:items-start gap-4">
-                <div className="bg-white p-3 rounded-2xl shadow-sm text-gold-soft flex-shrink-0">
-                  <Lightbulb size={24} />
+              <div className="relative z-10 flex flex-col lg:flex-row lg:items-start gap-4">
+                <div className="bg-white px-4 py-3 lg:p-3 rounded-2xl shadow-sm flex items-center gap-3 lg:block flex-shrink-0">
+                  <Lightbulb size={24} className="text-gold-soft shrink-0" />
+                  <h3 className="lg:hidden text-lg font-bold text-black m-0">
+                    {t('takeaway')}
+                  </h3>
                 </div>
                 <div>
-                  <h3 className="text-xl font-bold text-black mb-2">{t('takeaway')}</h3>
+                  <h3 className="hidden lg:block text-xl font-bold text-black mb-2">
+                    {t('takeaway')}
+                  </h3>
                   <p className="text-black font-medium leading-relaxed">
                     {article.takeaway}
                   </p>
