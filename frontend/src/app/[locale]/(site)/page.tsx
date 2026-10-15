@@ -9,22 +9,35 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
 
-  return buildPageMetadata({
-    locale,
-    path: '',
-    title: 'AFAQ HEALTH | Marques Européennes de Compléments Alimentaires au Maroc',
-    description:
-      'Représentant exclusif au Maroc de marques européennes réputées de compléments alimentaires (Sotya, COLAGENOVA®, Naturamins). Produits certifiés disponibles en pharmacie.',
-    image: '/icon.png',
-  });
+  return {
+    ...buildPageMetadata({
+      locale,
+      path: '',
+      title: 'AFAQ HEALTH | Marques Européennes de Compléments Alimentaires au Maroc',
+      description:
+        'Représentant exclusif au Maroc de marques européennes réputées de compléments alimentaires (Sotya, COLAGENOVA®, Naturamins). Produits certifiés disponibles en pharmacie.',
+      image: '/icon.png',
+    }),
+    keywords: [
+      'AFAQ',
+      'AFAQ HEALTH',
+      'Afaq Health',
+      'afaq',
+      'afaqhealth',
+      'afaq complements alimentaires',
+      'compléments alimentaires Maroc',
+      'santé Maroc',
+      'AFAQ Santé',
+      'AFAQ Maroc',
+      'laboratoire compléments alimentaires Maroc',
+      'Sotya Maroc',
+      'Naturamins Kids Maroc',
+      'COLAGENOVA Maroc',
+    ],
+  };
 }
 
-export default async function HomePage({
-  params,
-}: {
-  params: Promise<{ locale: string }>;
-}) {
-  const { locale } = await params;
+export default function HomePage() {
   const siteUrl = getSiteUrl();
 
   const organizationSchema = {
@@ -32,7 +45,15 @@ export default async function HomePage({
     '@type': 'Organization',
     '@id': `${siteUrl}/#organization`,
     name: 'AFAQ HEALTH',
-    alternateName: 'AFAQ HEALTH Maroc',
+    alternateName: [
+      'AFAQ',
+      'Afaq Health',
+      'AFAQ Santé',
+      'AFAQ Maroc',
+      'afaqhealth',
+      'AFAQ Health Maroc',
+      'AFAQ Compléments Alimentaires',
+    ],
     url: siteUrl,
     logo: {
       '@type': 'ImageObject',
@@ -41,7 +62,7 @@ export default async function HomePage({
       height: 512,
     },
     description:
-      'Représentant exclusif au Maroc de marques européennes de compléments alimentaires et produits de santé certifiés (Sotya, COLAGENOVA®, Naturamins). Disponibles en pharmacie via notre réseau partenaire dépositaire.',
+      'AFAQ HEALTH (AFAQ) est une société marocaine représentant et distribuant des marques européennes de compléments alimentaires et produits de santé certifiés (Sotya, COLAGENOVA®, Naturamins). Disponibles en pharmacie via notre réseau partenaire dépositaire.',
     address: {
       '@type': 'PostalAddress',
       streetAddress: 'Bir Rami Ouest',
@@ -64,8 +85,15 @@ export default async function HomePage({
     '@id': `${siteUrl}/#website`,
     url: siteUrl,
     name: 'AFAQ HEALTH',
+    alternateName: [
+      'AFAQ',
+      'Afaq Health',
+      'afaqhealth',
+      'AFAQ Compléments Alimentaires',
+      'AFAQ Santé',
+    ],
     description:
-      'Portefeuille de marques européennes de compléments alimentaires au Maroc. Retrouvez nos références en pharmacie.',
+      'Portefeuille de marques européennes de compléments alimentaires au Maroc (AFAQ HEALTH). Retrouvez nos références en pharmacie.',
     publisher: {
       '@id': `${siteUrl}/#organization`,
     },

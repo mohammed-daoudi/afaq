@@ -33,8 +33,26 @@ export function buildPageMetadata({
   const imageUrl = image.startsWith('http') ? image : `${BASE_URL}${image.startsWith('/') ? '' : '/'}${image}`;
 
   return {
-    title,
+    title: {
+      absolute: title,
+    },
     description,
+    keywords: [
+      'AFAQ',
+      'AFAQ HEALTH',
+      'Afaq Health',
+      'afaq',
+      'afaqhealth',
+      'afaq complements alimentaires',
+      'compléments alimentaires Maroc',
+      'santé Maroc',
+      'AFAQ Santé',
+      'AFAQ Maroc',
+      'laboratoire compléments alimentaires Maroc',
+      'Sotya Maroc',
+      'Naturamins Kids Maroc',
+      'COLAGENOVA Maroc',
+    ],
     metadataBase: new URL(BASE_URL),
     alternates: {
       canonical: canonicalUrl,

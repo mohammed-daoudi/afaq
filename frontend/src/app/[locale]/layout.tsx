@@ -26,10 +26,26 @@ import { getSiteUrl } from "@/lib/seo";
 export const metadata: Metadata = {
   metadataBase: new URL(getSiteUrl()),
   title: {
-    default: "AFAQ HEALTH | Compléments Alimentaires & Santé au Maroc",
-    template: "%s | AFAQ HEALTH",
+    default: "AFAQ HEALTH | Marques Européennes de Compléments Alimentaires au Maroc",
+    template: "%s",
   },
   description: "AFAQ HEALTH représente des marques européennes certifiées de compléments alimentaires au Maroc. Retrouvez nos produits en pharmacie.",
+  keywords: [
+    'AFAQ',
+    'AFAQ HEALTH',
+    'Afaq Health',
+    'afaq',
+    'afaqhealth',
+    'afaq complements alimentaires',
+    'compléments alimentaires Maroc',
+    'santé Maroc',
+    'AFAQ Santé',
+    'AFAQ Maroc',
+    'laboratoire compléments alimentaires Maroc',
+    'Sotya Maroc',
+    'Naturamins Kids Maroc',
+    'COLAGENOVA Maroc',
+  ],
   alternates: {
     canonical: getSiteUrl(),
     languages: {
@@ -45,7 +61,7 @@ export const metadata: Metadata = {
     alternateLocale: ["en_US", "ar_MA"],
     url: getSiteUrl(),
     siteName: "AFAQ HEALTH",
-    title: "AFAQ HEALTH | Compléments Alimentaires & Santé au Maroc",
+    title: "AFAQ HEALTH | Marques Européennes de Compléments Alimentaires au Maroc",
     description: "AFAQ HEALTH représente des marques européennes certifiées de compléments alimentaires au Maroc. Retrouvez nos produits en pharmacie.",
     images: [
       {
@@ -58,7 +74,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "AFAQ HEALTH | Compléments Alimentaires & Santé au Maroc",
+    title: "AFAQ HEALTH | Marques Européennes de Compléments Alimentaires au Maroc",
     description: "AFAQ HEALTH représente des marques européennes certifiées de compléments alimentaires au Maroc. Retrouvez nos produits en pharmacie.",
     images: [`${getSiteUrl()}/icon.png`],
   },
