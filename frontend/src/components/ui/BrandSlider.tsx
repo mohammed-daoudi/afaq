@@ -1,4 +1,6 @@
   'use client';
+import { useText } from '@/lib/useText';
+
   import React, { useState, useEffect } from "react";
   import Image from "next/image";
   import { Link } from '@/navigation';
@@ -8,6 +10,7 @@
   import { useTranslations } from 'next-intl';
 
   export const BrandSlider = () => {
+  const tx = useText();
     const [current, setCurrent] = useState(0);
     const [direction, setDirection] = useState(0);
     const t = useTranslations('BrandSlider');
@@ -30,7 +33,7 @@
         title: t('naturaminsTitle'),
         subtitle: t('naturaminsSubtitle'),
         link: "/produits?brand=naturamins-kids",
-        leftImage: "/images/unsplash/comp/Gemini_Generated_Image_1tkniv1tkniv1tkn.jpg",
+        leftImage: "/images/unsplash/comp/naturamins-kids-nutrition-pediatrique.jpg",
         productImage: "/uploaded/sotya_smile_1786930963164.png",
         bgColor: "bg-[#eaf4ec]",
         accentColor: "bg-[#0f4c3a]",
@@ -96,41 +99,41 @@
             {slides[current].id === 1 ? (
               <BrandSlide
                 productImage="/images/sotyaslider/sotyat.png"
-                productImageAlt="Gamme de compléments alimentaires SOTYA"
+                productImageAlt={tx("Gamme de compléments alimentaires SOTYA au Maroc")}
 
                 personImage="/images/sotyaslider/madamsotya.png"
-                personImageAlt="Femme avec un complément alimentaire SOTYA"
+                personImageAlt={tx("SOTYA compléments alimentaires naturels et bien-être au Maroc")}
 
                 logo="/images/sotyaslider/nobgsotya.png"
-                logoAlt="SOTYA"
+                logoAlt={tx("SOTYA - Compléments alimentaires naturels au Maroc")}
                 logoClassName="h-[64px] xl:h-[74px]"
                 centerAreaClassName="left-[29%] right-[22%]"
                 contentClassName="translate-x-1 xl:translate-x-2"
 
-                headlinePart1="Le naturel au service de votre"
-                headlineItalic=""
-                headlinePart2="au quotidien"
+                headlinePart1={tx("Le naturel au service de votre")}
+                headlineItalic={tx("")}
+                headlinePart2={tx("au quotidien")}
                 headlinePart2Italic="bien-être"
                 headlinePart2ItalicFirst
                 headlineClassName="font-poppins text-[18px] md:text-[20px] xl:text-[24px] leading-[1.24] font-normal tracking-normal"
                 headlineItalicClassName="font-poppins not-italic font-bold text-[#176747]"
-                mobileHeadlinePart1="Le naturel au service de votre"
-                mobileHeadlineItalic=""
-                mobileHeadlinePart2="au quotidien"
+                mobileHeadlinePart1={tx("Le naturel au service de votre")}
+                mobileHeadlineItalic={tx("")}
+                mobileHeadlinePart2={tx("au quotidien")}
                 mobileHeadlinePart2Italic="bien-être"
                 mobileHeadlinePart2ItalicFirst
                 mobileHeadlineClassName="font-poppins text-[23px] md:text-[27px] leading-[1.12] font-normal tracking-normal"
-                mobileTagline="Compléments Alimentaires"
+                mobileTagline={tx("Compléments Alimentaires")}
                 mobileTaglineClassName="-translate-x-2 lg:-translate-x-4"
                 mobileAvailabilityVariant="default"
-                mobileSupportText={null}
+                mobileSupportText={tx(null)}
 
-                tagline="Compléments alimentaires"
-                availability="Désormais disponible au Maroc"
+                tagline={tx("Compléments alimentaires")}
+                availability={tx("Désormais disponible au Maroc")}
                 availabilityColor="#176747"
                 availabilityClassName="-translate-x-6 lg:-translate-x-16"
 
-                ctaLabel="Découvrir la gamme"
+                ctaLabel={tx("Découvrir la gamme")}
                 ctaHref={slides[current].link}
 
                 accentDark="#176747"
@@ -143,37 +146,37 @@
             ) : slides[current].id === 3 ? (
               <BrandSlide
                 productImage="/images/collagenslider/zyounat.png"
-                productImageAlt="Gamme COLAGENOVA®"
+                productImageAlt={tx("Gamme COLAGENOVA® collagène beauté et articulations au Maroc")}
 
                 personImage="/images/collagenslider/madamcollagene.png"
-                personImageAlt="Beauté et articulations au naturel"
+                personImageAlt={tx("COLAGENOVA® beauté de la peau et confort articulaire au Maroc")}
 
                 logo="/images/collagenslider/nobgcollagene.png"
-                logoAlt="COLAGENOVA®"
+                logoAlt={tx("COLAGENOVA® - Solutions à base de collagène au Maroc")}
                 logoClassName="h-[74px] xl:h-[88px]"
                 centerAreaClassName="left-[29%] right-[22%]"
                 contentClassName="translate-x-1 -translate-y-6 xl:translate-x-2 xl:-translate-y-8"
 
-                headlinePart1="Le collagène"
-                headlineItalic="ciblé"
-                headlineAfterItalic="pour"
-                headlinePart2="chaque besoin"
+                headlinePart1={tx("Le collagène")}
+                headlineItalic={tx("ciblé")}
+                headlineAfterItalic={tx("pour")}
+                headlinePart2={tx("chaque besoin")}
                 headlineClassName="font-poppins text-[18px] md:text-[20px] xl:text-[24px] leading-[1.24] font-normal tracking-normal"
                 headlineItalicClassName="font-poppins not-italic font-bold text-[#db2777]"
-                mobileHeadlinePart1="Le collagène"
-                mobileHeadlineItalic="ciblé"
-                mobileHeadlineAfterItalic="pour"
-                mobileHeadlinePart2="chaque besoin"
+                mobileHeadlinePart1={tx("Le collagène")}
+                mobileHeadlineItalic={tx("ciblé")}
+                mobileHeadlineAfterItalic={tx("pour")}
+                mobileHeadlinePart2={tx("chaque besoin")}
                 mobileHeadlineClassName="font-poppins text-[23px] md:text-[27px] leading-[1.12] font-normal tracking-normal"
                 mobileAvailabilityVariant="default"
-                mobileSupportText={null}
+                mobileSupportText={tx(null)}
 
-                tagline="BEAUTÉ & ARTICULATIONS"
-                availability="Lancement en 2027"
+                tagline={tx("BEAUTÉ & ARTICULATIONS")}
+                availability={tx("Lancement en 2027")}
                 availabilityColor="#be185d"
                 availabilityClassName="-translate-x-6 lg:-translate-x-16"
 
-                ctaLabel="Découvrir la gamme"
+                ctaLabel={tx("Découvrir la gamme")}
                 ctaHref={slides[current].link}
 
                 accentDark="#831843"
@@ -186,48 +189,48 @@
             ) : slides[current].id === 2 ? (
               <BrandSlide
                 productImage="/images/kidsslider/naturamins-kids-fdf5e6-left.png"
-                productImageAlt="Produits NATURAMINS KIDS"
+                productImageAlt={tx("NATURAMINS KIDS nutrition pédiatrique et vitamines au Maroc")}
                 productObjectPosition="0% 50%"
 
                 personImage="/images/kidsslider/nizz.png"
                 personImageMobile="/images/kidsslider/nizarr.png"
-                personImageAlt="Enfance et santé"
+                personImageAlt={tx("NATURAMINS KIDS santé et vitalité de l'enfant au Maroc")}
                 personOffsetClass="translate-x-8 lg:translate-x-16"
                 personImageMobileClassName="-translate-y-8 md:-translate-y-12"
 
                 logo="/images/kidsslider/nobgkids.png"
-                logoAlt="NATURAMINS KIDS"
+                logoAlt={tx("NATURAMINS KIDS - Nutrition pédiatrique au Maroc")}
                 logoClassName="h-[104px] xl:h-[132px]"
                 logoMobilePosition="top"
                 logoMobileClassName="h-[96px] md:h-[116px]"
                 centerAreaClassName="left-[29%] right-[22%]"
                 contentClassName="translate-x-1 -translate-y-6 xl:translate-x-2 xl:-translate-y-8"
 
-                headlinePart1="Nourrir chaque étape"
-                headlineItalic=""
-                headlinePart2="de"
+                headlinePart1={tx("Nourrir chaque étape")}
+                headlineItalic={tx("")}
+                headlinePart2={tx("de")}
                 headlinePart2Italic="l’enfance"
                 headlineClassName="font-poppins text-[18px] md:text-[20px] xl:text-[24px] leading-[1.24] font-normal tracking-normal"
                 headlineItalicClassName="font-poppins not-italic font-semibold text-[#1F3763]"
-                mobileHeadlinePart1="Nourrir chaque étape"
-                mobileHeadlineItalic=""
-                mobileHeadlinePart2="de"
+                mobileHeadlinePart1={tx("Nourrir chaque étape")}
+                mobileHeadlineItalic={tx("")}
+                mobileHeadlinePart2={tx("de")}
                 mobileHeadlinePart2Italic="l’enfance"
                 mobileHeadlineClassName="font-poppins text-[23px] md:text-[27px] leading-[1.12] font-normal tracking-normal"
                 mobileHeadlineItalicClassName="font-poppins not-italic font-semibold text-[#1F3763]"
                 mobileAvailabilityVariant="default"
-                mobileSupportText={null}
+                mobileSupportText={tx(null)}
 
-                tagline="NUTRITION PÉDIATRIQUE"
+                tagline={tx("NUTRITION PÉDIATRIQUE")}
                 taglineClassName="!mb-4"
                 taglineColor="#344469"
                 hideTaglineOnMobile
 
-                availability="Lancement en 2027"
+                availability={tx("Lancement en 2027")}
                 availabilityColor="#284F8C"
                 availabilityLineColor="#245C42"
 
-                ctaLabel="Découvrir la gamme"
+                ctaLabel={tx("Découvrir la gamme")}
                 ctaHref={slides[current].link}
                 ctaBg="linear-gradient(90deg, #294A7F 0%, #3F63BC 100%)"
 
@@ -245,7 +248,7 @@
                   <div className="absolute inset-0 bg-black/20 lg:hidden z-10" /> {/* Mobile darkening overlay */}
                   <Image
                     src={slides[current].leftImage || ""}
-                    alt={slides[current].brand}
+                    alt={tx(`${slides[current].brand} - Compléments alimentaires et santé au Maroc`)}
                     fill
                     className="object-cover"
                     priority
@@ -274,7 +277,7 @@
                       transition={{ delay: 0.3 }}
                       className={`text-2xl lg:text-4xl xl:text-5xl font-bold mb-1 lg:mb-2 leading-tight ${slides[current].textColor}`}
                     >
-                      {slides[current].title}
+                      {tx(slides[current].title)}
                     </motion.h2>
 
                     <motion.div
@@ -286,7 +289,7 @@
                       <h1 className={`text-3xl lg:text-6xl font-extrabold tracking-tighter opacity-90 leading-none`}
                         style={{ color: slides[current].accentColor.replace('bg-', '') }}
                       >
-                        {slides[current].brand}
+                        {tx(slides[current].brand)}
                       </h1>
                     </motion.div>
 
@@ -316,7 +319,7 @@
                   >
                     <Image
                       src={slides[current].productImage || ""}
-                      alt={`${slides[current].brand} Products`}
+                      alt={tx(`${slides[current].brand} - Gamme certifiée disponible en pharmacie au Maroc`)}
                       fill
                       className="object-contain"
                     />

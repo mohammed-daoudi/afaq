@@ -98,7 +98,8 @@
     "doNotExceed": "Il est recommandé de ne pas dépasser la dose journalière indiquée. À consommer dans le cadre d'une alimentation variée et équilibrée et d'un mode de vie sain.",
     "nutritionalInfo": "Informations Nutritionnelles",
     "relatedProducts": "Cela pourrait vous intéresser",
-    "durationShort": "Durée"
+    "durationShort": "Durée",
+    "imageView": "{name} — vue {index}"
   },
   "AboutPage": {
     "heroSurtitre": "QUI SOMMES-NOUS",
@@ -231,5 +232,14 @@
     "importantInfo": "Information importante",
     "disclaimer": "Les informations publiées sur ce site sont destinées à des fins informatives et éducatives. Elles ne remplacent pas l'avis d'un professionnel de santé. En cas de doute, consultez toujours votre médecin ou votre pharmacien.",
     "relatedArticles": "Articles similaires"
+  },
+  "Seo": {
+    "productTitle": "{name} | Complément Alimentaire en Pharmacie au Maroc - AFAQ HEALTH",
+    "productDescription": "Retrouvez {name} de la marque {brand} en pharmacie et parapharmacie au Maroc.",
+    "articleTitle": "{title} | Conseils Santé & Micronutrition au Maroc - AFAQ HEALTH",
+    "articleDescription": "Retrouvez les conseils d'experts AFAQ HEALTH au Maroc."
+  },
+  "Common": {
+    "pharmaceuticalPartner": "Partenaire pharmaceutique AFAQ HEALTH {index}"
   }
 }

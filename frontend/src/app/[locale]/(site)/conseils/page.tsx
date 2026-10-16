@@ -1,4 +1,6 @@
 'use client';
+import { useText } from '@/lib/useText';
+
 
 import React, { useState } from 'react';
 import { Link } from '@/navigation';
@@ -8,6 +10,7 @@ import { CATEGORIES, MOCK_ARTICLES } from '@/data/conseils';
 import { useTranslations } from 'next-intl';
 
 export default function ConseilsPage() {
+  const tx = useText();
   const [activeCategory, setActiveCategory] = useState('Toutes');
   const t = useTranslations('ConseilsPage');
 
@@ -40,7 +43,7 @@ export default function ConseilsPage() {
               onClick={() => setActiveCategory(category)}
               className={`px-5 py-2.5 text-sm font-semibold ${ activeCategory === category ? 'bg-teal-deep text-white -translate-y-0.5' : 'bg-white text-teal-deep border border-sage-light' } rounded-xl hover:bg-gold-soft hover:text-teal-deep transition-all shadow-md shimmer-effect`}
             >
-              {category === 'Toutes' ? t('allCategories') : category}
+              {tx(category === 'Toutes' ? t('allCategories') : category)}
             </button>
           ))}
         </div>
@@ -58,13 +61,13 @@ export default function ConseilsPage() {
                   <div className="absolute inset-0 bg-teal-deep/10 group-hover:bg-transparent transition-colors duration-500 z-10" />
                   <Image 
                     src={article.image}
-                    alt={article.title}
+                    alt={tx(article.title)}
                     fill
                     className="object-cover transform group-hover:scale-105 transition-transform duration-700 ease-out"
                   />
                   <div className="absolute top-4 left-4 z-20">
                     <span className="px-4 py-1.5 bg-white/90 backdrop-blur-sm text-teal-deep text-xs font-bold uppercase tracking-wider rounded-full shadow-sm">
-                      {article.category}
+                      {tx(article.category)}
                     </span>
                   </div>
                 </div>
@@ -74,20 +77,20 @@ export default function ConseilsPage() {
                   <div className="flex items-center gap-4 text-xs text-anthracite-soft/60 font-semibold uppercase tracking-wider mb-4">
                     <span className="flex items-center gap-1.5">
                       <Calendar size={14} />
-                      {article.date}
+                      {tx(article.date)}
                     </span>
                     <span className="flex items-center gap-1.5">
                       <Clock size={14} />
-                      {article.readTime}
+                      {tx(article.readTime)}
                     </span>
                   </div>
                   
                   <h3 className="text-2xl font-bold text-teal-deep leading-snug mb-4 group-hover:text-gold-soft transition-colors duration-300">
-                    {article.title}
+                    {tx(article.title)}
                   </h3>
                   
                   <p className="text-anthracite-soft/80 leading-relaxed mb-8 flex-grow">
-                    {article.intro}
+                    {tx(article.intro)}
                   </p>
                   
                   <div className="mt-auto pt-6 border-t border-sage-light/30 flex items-center justify-between text-teal-deep font-bold group-hover:text-gold-soft transition-colors duration-300">

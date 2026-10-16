@@ -1,4 +1,7 @@
 'use client';
+import { useText } from '@/lib/useText';
+import { useLocale } from 'next-intl';
+
 import React, { useEffect, useState } from 'react';
 import { Card, CardContent } from '@/components/ui/Card';
 import api from '@/lib/api';
@@ -27,6 +30,8 @@ function getSafeDocumentUrl(fileUrl: string) {
 }
 
 export default function DocumentsPage() {
+  const tx = useText();
+  const locale = useLocale();
   const [documents, setDocuments] = useState<Document[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
@@ -78,8 +83,8 @@ export default function DocumentsPage() {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-3xl font-bold text-teal-deep">Mes Documents</h1>
-        <p className="text-anthracite-soft/60 mt-1">Consultez et téléchargez vos factures, bons de livraison et fiches techniques.</p>
+        <h1 className="text-3xl font-bold text-teal-deep">{tx("Mes Documents")}</h1>
+        <p className="text-anthracite-soft/60 mt-1">{tx("Consultez et téléchargez vos factures, bons de livraison et fiches techniques.")}</p>
       </div>
 
       {loading ? (
@@ -88,7 +93,7 @@ export default function DocumentsPage() {
         </div>
       ) : error ? (
         <div className="bg-red-50 text-red-600 p-4 rounded-xl border border-red-200">
-          {error}
+          {tx(error)}
         </div>
       ) : documents.length === 0 ? (
         <Card>
@@ -96,8 +101,8 @@ export default function DocumentsPage() {
             <div className="w-16 h-16 bg-sage-light rounded-full flex items-center justify-center text-2xl mb-4">
               📭
             </div>
-            <h3 className="text-lg font-bold text-teal-deep mb-2">Aucun document</h3>
-            <p className="text-anthracite-soft/60">Vous n'avez pas encore de documents associés à votre compte.</p>
+            <h3 className="text-lg font-bold text-teal-deep mb-2">{tx("Aucun document")}</h3>
+            <p className="text-anthracite-soft/60">{tx("Vous n'avez pas encore de documents associés à votre compte.")}</p>
           </div>
         </Card>
       ) : (
@@ -110,16 +115,15 @@ export default function DocumentsPage() {
                 <CardContent className="p-6">
                   <div className="flex items-start justify-between">
                     <div className="w-12 h-12 bg-ivory-soft rounded-xl flex items-center justify-center text-2xl border border-sage-light group-hover:border-teal-deep/30 transition-colors">
-                      {getTypeIcon(doc.type)}
+                      {tx(getTypeIcon(doc.type))}
                     </div>
                     <span className="text-xs font-bold text-teal-deep bg-sage-light px-2 py-1 rounded-full uppercase tracking-wider">
-                      {getTypeName(doc.type)}
+                      {tx(getTypeName(doc.type))}
                     </span>
                   </div>
                   
-                  <h3 className="font-bold text-teal-deep mt-4 text-lg line-clamp-2">{doc.title}</h3>
-                  <p className="text-xs text-anthracite-soft/60 mt-1">
-                    Ajouté le {new Date(doc.created_at).toLocaleDateString('fr-FR', { day: '2-digit', month: 'long', year: 'numeric' })}
+                  <h3 className="font-bold text-teal-deep mt-4 text-lg line-clamp-2">{tx(doc.title)}</h3>
+                  <p className="text-xs text-anthracite-soft/60 mt-1">{tx("Ajouté le ")}{tx(new Date(doc.created_at).toLocaleDateString(locale, { day: '2-digit', month: 'long', year: 'numeric' }))}
                   </p>
                   
                   {safeDocumentUrl ? (
@@ -133,17 +137,13 @@ export default function DocumentsPage() {
                         <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
                         <polyline points="7 10 12 15 17 10"></polyline>
                         <line x1="12" y1="15" x2="12" y2="3"></line>
-                      </svg>
-                      Télécharger
-                    </a>
+                      </svg>{tx("Télécharger")}</a>
                   ) : (
                     <button
                       type="button"
                       disabled
                       className="mt-6 w-full flex items-center justify-center gap-2 px-4 py-2 bg-sage-light/30 text-anthracite-soft/50 font-bold rounded-xl"
-                    >
-                      Lien indisponible
-                    </button>
+                    >{tx("Lien indisponible")}</button>
                   )}
                 </CardContent>
               </Card>

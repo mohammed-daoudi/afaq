@@ -1,10 +1,13 @@
 'use client';
+import { useText } from '@/lib/useText';
+
 
 import React, { useState, useRef, useEffect } from 'react';
 import { useRouter, usePathname } from '@/navigation';
 import { useLocale } from 'next-intl';
 
 export function LanguageSwitcher() {
+  const tx = useText();
   const currentLocale = useLocale();
   const [isOpen, setIsOpen] = useState(false);
   const wrapperRef = useRef<HTMLDivElement>(null);
@@ -17,7 +20,7 @@ export function LanguageSwitcher() {
     const targetLocale = l.toLowerCase();
     if (targetLocale === currentLocale) return;
 
-    router.replace(pathname, {locale: targetLocale});
+    router.replace(`${pathname}${window.location.search}${window.location.hash}`, {locale: targetLocale});
   };
 
   useEffect(() => {
@@ -33,10 +36,13 @@ export function LanguageSwitcher() {
   return (
     <div className="relative" ref={wrapperRef}>
       <button 
+        type="button"
+        aria-label={tx('Choisir la langue')}
+        aria-expanded={isOpen}
         onClick={toggleDropdown}
         className="flex items-center gap-1 text-sm font-medium text-anthracite-soft hover:text-teal-deep transition-colors bg-sage-light/20 px-3 py-2 rounded-lg"
       >
-        {currentLocale.toUpperCase()}
+        {tx(currentLocale.toUpperCase())}
         <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
           <path d="M6 9l6 6 6-6" />
         </svg>
@@ -46,11 +52,12 @@ export function LanguageSwitcher() {
         <div className="absolute top-full right-0 mt-2 w-16 bg-white border border-sage-light/50 rounded-lg shadow-lg overflow-hidden z-50 text-center">
           {['FR', 'EN', 'AR'].map((l) => (
             <button
+              type="button"
               key={l}
               onClick={() => selectLang(l)}
               className="block w-full px-2 py-2 text-sm text-anthracite-soft hover:bg-sage-light/30 hover:text-teal-deep transition-colors"
             >
-              {l}
+              {tx(l)}
             </button>
           ))}
         </div>

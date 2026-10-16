@@ -1,3 +1,6 @@
+'use client';
+import { useText } from '@/lib/useText';
+import { Link } from '@/navigation';
 import React from "react";
 import { motion } from "framer-motion";
 
@@ -149,6 +152,7 @@ export default function BrandSlide({
   contentClassName,
   centerAreaClassName = "left-[32%] right-[21%]",
 }: BrandSlideProps) {
+  const tx = useText();
   const availabilityTone = availabilityColor || accentMid;
   const availabilityLineTone = availabilityLineColor || availabilityTone;
   const resolvedMobileHeadlinePart1 = mobileHeadlinePart1 ?? headlinePart1;
@@ -171,7 +175,9 @@ export default function BrandSlide({
     text = availability,
   ) => {
     if (variant === "announcement") return null;
-    const shouldShimmer = text?.includes("Maroc");
+    const displayText = tx(text);
+    const country = tx('Maroc');
+    const shouldShimmer = displayText?.includes(country);
 
     return (
       <motion.div
@@ -197,11 +203,10 @@ export default function BrandSlide({
             animation: "availability-shimmer 4s linear 1.8s infinite",
           } : { color: availabilityTone }}
         >
-          {text?.replace("Maroc", "")}{
-            text?.includes("Maroc") && (
-              <span style={{ fontWeight: 800, filter: `drop-shadow(0 0 4px ${availabilityTone + "80"})` }}>Maroc</span>
-            )
-          }
+          {displayText?.replace(country, '')}
+          {displayText?.includes(country) && (
+            <span style={{ fontWeight: 800, filter: `drop-shadow(0 0 4px ${availabilityTone + "80"})` }}>{country}</span>
+          )}
         </span>
         <motion.span
           initial={{ scaleX: 0 }}
@@ -238,7 +243,7 @@ export default function BrandSlide({
         {/* ── LEFT : products ── */}
         <img
           src={productImage}
-          alt={productImageAlt}
+          alt={tx(productImageAlt)}
           className={`absolute inset-y-0 left-0 w-[41%] h-full object-cover ${productOffsetClass}`}
           style={{
             objectPosition: productObjectPosition || "110% 50%",
@@ -254,7 +259,7 @@ export default function BrandSlide({
         {/* ── RIGHT : woman ── */}
         <img
           src={personImage}
-          alt={personImageAlt}
+          alt={tx(personImageAlt)}
           className={`absolute inset-y-0 right-0 w-[34%] h-full object-cover ${personOffsetClass}`}
           style={{
             objectPosition: "35% 0%",
@@ -282,7 +287,7 @@ export default function BrandSlide({
             {/* LOGO */}
             <img
               src={logo}
-              alt={logoAlt}
+              alt={tx(logoAlt)}
               className={`w-auto object-contain mx-auto mb-1 ${logoClassName || 'h-[58px] xl:h-[66px]'}`}
             />
 
@@ -291,7 +296,7 @@ export default function BrandSlide({
               <div className={`mb-6 xl:mb-8 flex items-center justify-center gap-3 ${taglineClassName || ''}`}>
                 <span className="block h-px w-8 xl:w-10" style={{ backgroundColor: taglineColor || accentMid }} />
                 <p className="text-[10px] xl:text-[11px] uppercase tracking-[0.22em] font-bold whitespace-nowrap" style={{ color: taglineColor || accentMid }}>
-                  {tagline}
+                  {tx(tagline)}
                 </p>
                 <span className="block h-px w-8 xl:w-10" style={{ backgroundColor: taglineColor || accentMid }} />
               </div>
@@ -300,27 +305,27 @@ export default function BrandSlide({
             {/* HEADLINE */}
             <div style={{ color: accentDark }}>
               <p className={headlineClassName || "font-poppins text-[26px] xl:text-[32px] leading-[1.12] font-light tracking-[-0.01em]"}>
-                {headlinePart1}
+                {tx(headlinePart1)}
                 {headlineItalic && (
                   <>
-                    {" "}
-                    <span className={headlineItalicClassName || "font-semibold"}>{headlineItalic}</span>
+                    {tx(" ")}
+                    <span className={headlineItalicClassName || "font-semibold"}>{tx(headlineItalic)}</span>
                   </>
                 )}
-                {headlineAfterItalic && <> {headlineAfterItalic}</>}
+                {headlineAfterItalic && <> {tx(headlineAfterItalic)}</>}
               </p>
               <p className={headlineClassName || "font-poppins text-[26px] xl:text-[32px] leading-[1.12] font-light tracking-[-0.01em]"}>
                 {headlinePart2ItalicFirst && headlinePart2Italic && (
                   <>
-                    <span className={headlineItalicClassName || "font-semibold"}>{headlinePart2Italic}</span>
-                    {headlinePart2 && " "}
+                    <span className={headlineItalicClassName || "font-semibold"}>{tx(headlinePart2Italic)}</span>
+                    {tx(headlinePart2 && " ")}
                   </>
                 )}
-                {headlinePart2}
+                {tx(headlinePart2)}
                 {!headlinePart2ItalicFirst && headlinePart2Italic && (
                   <>
-                    {" "}
-                    <span className={headlineItalicClassName || "font-semibold"}>{headlinePart2Italic}</span>
+                    {tx(" ")}
+                    <span className={headlineItalicClassName || "font-semibold"}>{tx(headlinePart2Italic)}</span>
                   </>
                 )}
               </p>
@@ -328,14 +333,14 @@ export default function BrandSlide({
 
             {supportText && (
               <p className={`mx-auto mt-3 max-w-[480px] text-[15px] xl:text-[16px] leading-relaxed text-[#26443a]/80 ${supportTextClassName || ""}`}>
-                {supportText}
+                {tx(supportText)}
               </p>
             )}
 
-            {renderAvailability(false)}
+            {tx(renderAvailability(false))}
 
             {/* CTA */}
-            <a
+            <Link
               href={ctaHref}
               className="
                 inline-flex items-center justify-center gap-2
@@ -350,8 +355,8 @@ export default function BrandSlide({
                 background: ctaBg || accentDark,
               }}
             >
-              {ctaLabel} <span aria-hidden="true">→</span>
-            </a>
+              {tx(ctaLabel)} <span aria-hidden="true">→</span>
+            </Link>
 
           </div>
         </div>
@@ -366,7 +371,7 @@ export default function BrandSlide({
         {/* Person photo */}
         <img
           src={personImageMobile || personImage}
-          alt={personImageAlt}
+          alt={tx(personImageAlt)}
           className={`absolute inset-0 w-full h-full object-cover object-[68%_center] lg:hidden ${personImageMobileClassName}`}
         />
 
@@ -400,11 +405,11 @@ export default function BrandSlide({
         {/* Mobile Logo & Tagline (Top Position) */}
         {logoMobilePosition === 'top' && (
           <div className="absolute top-4 inset-x-0 flex flex-col items-center z-30">
-            <img src={logo} alt={logoAlt} className={`w-auto object-contain mb-2 ${logoMobileClassName || 'h-16 md:h-20'}`} />
+            <img src={logo} alt={tx(logoAlt)} className={`w-auto object-contain mb-2 ${logoMobileClassName || 'h-16 md:h-20'}`} />
             {resolvedMobileTagline && !hideTaglineOnMobile && (
               <div className={`flex items-center gap-2 ${resolvedMobileTaglineClassName || ''}`}>
                 <span className="block h-px w-5" style={{ backgroundColor: taglineColor || accentMid }} />
-                <p className="text-[9px] md:text-[10px] uppercase tracking-[0.18em] font-bold" style={{ color: taglineColor || accentMid }}>{resolvedMobileTagline}</p>
+                <p className="text-[9px] md:text-[10px] uppercase tracking-[0.18em] font-bold" style={{ color: taglineColor || accentMid }}>{tx(resolvedMobileTagline)}</p>
                 <span className="block h-px w-5" style={{ backgroundColor: taglineColor || accentMid }} />
               </div>
             )}
@@ -421,7 +426,7 @@ export default function BrandSlide({
           {logoMobilePosition === 'bottom' && (
             <img
               src={logo}
-              alt={logoAlt}
+              alt={tx(logoAlt)}
               className={`h-12 md:h-14 w-auto object-contain mb-1 ${logoMobileClassName || ''}`}
             />
           )}
@@ -429,34 +434,34 @@ export default function BrandSlide({
           {logoMobilePosition === 'bottom' && resolvedMobileTagline && !hideTaglineOnMobile && (
             <div className={`mb-3 flex items-center gap-2 ${resolvedMobileTaglineClassName || ''}`}>
               <span className="block h-px w-5" style={{ backgroundColor: taglineColor || accentMid }} />
-              <p className="text-[9px] md:text-[10px] uppercase tracking-[0.18em] font-bold" style={{ color: taglineColor || accentMid }}>{resolvedMobileTagline}</p>
+              <p className="text-[9px] md:text-[10px] uppercase tracking-[0.18em] font-bold" style={{ color: taglineColor || accentMid }}>{tx(resolvedMobileTagline)}</p>
               <span className="block h-px w-5" style={{ backgroundColor: taglineColor || accentMid }} />
             </div>
           )}
 
           <div style={{ color: accentDark }}>
             <p className={resolvedMobileHeadlineClassName || "font-poppins text-[22px] md:text-[26px] leading-[1.15] font-light"}>
-              {resolvedMobileHeadlinePart1}
+              {tx(resolvedMobileHeadlinePart1)}
               {resolvedMobileHeadlineItalic && (
                 <>
-                  {" "}
-                  <span className={resolvedMobileHeadlineItalicClassName || "font-semibold"}>{resolvedMobileHeadlineItalic}</span>
+                  {tx(" ")}
+                  <span className={resolvedMobileHeadlineItalicClassName || "font-semibold"}>{tx(resolvedMobileHeadlineItalic)}</span>
                 </>
               )}
-              {resolvedMobileHeadlineAfterItalic && <> {resolvedMobileHeadlineAfterItalic}</>}
+              {resolvedMobileHeadlineAfterItalic && <> {tx(resolvedMobileHeadlineAfterItalic)}</>}
             </p>
             <p className={resolvedMobileHeadlineClassName || "font-poppins text-[22px] md:text-[26px] leading-[1.15] font-light"}>
               {resolvedMobileHeadlinePart2ItalicFirst && resolvedMobileHeadlinePart2Italic && (
                 <>
-                  <span className={resolvedMobileHeadlineItalicClassName || "font-semibold"}>{resolvedMobileHeadlinePart2Italic}</span>
-                  {resolvedMobileHeadlinePart2 && " "}
+                  <span className={resolvedMobileHeadlineItalicClassName || "font-semibold"}>{tx(resolvedMobileHeadlinePart2Italic)}</span>
+                  {tx(resolvedMobileHeadlinePart2 && " ")}
                 </>
               )}
-              {resolvedMobileHeadlinePart2}
+              {tx(resolvedMobileHeadlinePart2)}
               {!resolvedMobileHeadlinePart2ItalicFirst && resolvedMobileHeadlinePart2Italic && (
                 <>
-                  {" "}
-                  <span className={resolvedMobileHeadlineItalicClassName || "font-semibold"}>{resolvedMobileHeadlinePart2Italic}</span>
+                  {tx(" ")}
+                  <span className={resolvedMobileHeadlineItalicClassName || "font-semibold"}>{tx(resolvedMobileHeadlinePart2Italic)}</span>
                 </>
               )}
             </p>
@@ -464,13 +469,13 @@ export default function BrandSlide({
 
           {resolvedMobileSupportText && (
             <p className={`mx-auto mt-2 max-w-[350px] text-[13px] leading-[1.6] text-[#26443a]/80 md:text-[14.5px] ${supportTextClassName || ""}`}>
-              {resolvedMobileSupportText}
+              {tx(resolvedMobileSupportText)}
             </p>
           )}
 
-          {renderAvailability(true, resolvedMobileAvailabilityVariant, resolvedMobileAvailability)}
+          {tx(renderAvailability(true, resolvedMobileAvailabilityVariant, resolvedMobileAvailability))}
 
-          <a
+          <Link
             href={ctaHref}
             className="
               inline-flex items-center justify-center gap-2
@@ -484,8 +489,8 @@ export default function BrandSlide({
               background: ctaBg || accentDark,
             }}
           >
-            {ctaLabel} <span aria-hidden="true">→</span>
-          </a>
+            {tx(ctaLabel)} <span aria-hidden="true">→</span>
+          </Link>
 
         </div>
       </div>

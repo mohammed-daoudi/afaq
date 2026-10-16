@@ -1,4 +1,8 @@
 'use client';
+import { useText } from '@/lib/useText';
+import { useLocale } from 'next-intl';
+import { Link } from '@/navigation';
+
 import React, { useEffect, useState } from 'react';
 import { Card } from '@/components/ui/Card';
 import api from '@/lib/api';
@@ -25,6 +29,8 @@ interface Order {
 }
 
 export default function OrdersPage() {
+  const tx = useText();
+  const locale = useLocale();
   const [orders, setOrders] = useState<Order[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
@@ -47,15 +53,15 @@ export default function OrdersPage() {
   const getStatusBadge = (status: string) => {
     switch (status) {
       case 'commande':
-        return <span className="px-3 py-1 bg-yellow-100 text-yellow-800 rounded-full text-xs font-semibold whitespace-nowrap">En attente</span>;
+        return <span className="px-3 py-1 bg-yellow-100 text-yellow-800 rounded-full text-xs font-semibold whitespace-nowrap">{tx("En attente")}</span>;
       case 'en_preparation':
-        return <span className="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-xs font-semibold whitespace-nowrap">En préparation</span>;
+        return <span className="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-xs font-semibold whitespace-nowrap">{tx("En préparation")}</span>;
       case 'expediee':
-        return <span className="px-3 py-1 bg-purple-100 text-purple-800 rounded-full text-xs font-semibold whitespace-nowrap">Expédiée</span>;
+        return <span className="px-3 py-1 bg-purple-100 text-purple-800 rounded-full text-xs font-semibold whitespace-nowrap">{tx("Expédiée")}</span>;
       case 'livree':
-        return <span className="px-3 py-1 bg-green-100 text-green-800 rounded-full text-xs font-semibold whitespace-nowrap">Livrée</span>;
+        return <span className="px-3 py-1 bg-green-100 text-green-800 rounded-full text-xs font-semibold whitespace-nowrap">{tx("Livrée")}</span>;
       default:
-        return <span className="px-3 py-1 bg-gray-100 text-gray-800 rounded-full text-xs font-semibold whitespace-nowrap">{status}</span>;
+        return <span className="px-3 py-1 bg-gray-100 text-gray-800 rounded-full text-xs font-semibold whitespace-nowrap">{tx(status)}</span>;
     }
   };
 
@@ -70,8 +76,8 @@ export default function OrdersPage() {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-3xl font-bold text-teal-deep">Historique des Commandes</h1>
-        <p className="text-anthracite-soft/60 mt-1">Consultez et suivez l'état de vos commandes B2B.</p>
+        <h1 className="text-3xl font-bold text-teal-deep">{tx("Historique des Commandes")}</h1>
+        <p className="text-anthracite-soft/60 mt-1">{tx("Consultez et suivez l'état de vos commandes B2B.")}</p>
       </div>
 
       {loading ? (
@@ -80,7 +86,7 @@ export default function OrdersPage() {
         </div>
       ) : error ? (
         <div className="bg-red-50 text-red-600 p-4 rounded-xl border border-red-200">
-          {error}
+          {tx(error)}
         </div>
       ) : orders.length === 0 ? (
         <Card>
@@ -88,11 +94,9 @@ export default function OrdersPage() {
             <div className="w-16 h-16 bg-sage-light rounded-full flex items-center justify-center text-2xl mb-4">
               📦
             </div>
-            <h3 className="text-lg font-bold text-teal-deep mb-2">Aucune commande</h3>
-            <p className="text-anthracite-soft/60 mb-6">Vous n'avez pas encore passé de commande sur le portail.</p>
-            <a href="/portal/catalog" className="px-6 py-2 bg-teal-deep text-white font-bold rounded-xl hover:bg-gold-soft hover:text-teal-deep transition-all shadow-md shimmer-effect">
-              Découvrir le catalogue
-            </a>
+            <h3 className="text-lg font-bold text-teal-deep mb-2">{tx("Aucune commande")}</h3>
+            <p className="text-anthracite-soft/60 mb-6">{tx("Vous n'avez pas encore passé de commande sur le portail.")}</p>
+            <Link href="/portal/catalog" className="px-6 py-2 bg-teal-deep text-white font-bold rounded-xl hover:bg-gold-soft hover:text-teal-deep transition-all shadow-md shimmer-effect">{tx("Découvrir le catalogue")}</Link>
           </div>
         </Card>
       ) : (
@@ -101,11 +105,11 @@ export default function OrdersPage() {
             <table className="w-full text-sm text-left">
               <thead className="text-xs text-anthracite-soft/60 uppercase bg-sage-light">
                 <tr>
-                  <th className="px-6 py-4">N° Commande</th>
-                  <th className="px-6 py-4">Date</th>
-                  <th className="px-6 py-4 text-center">Articles</th>
-                  <th className="px-6 py-4">Montant Total</th>
-                  <th className="px-6 py-4">Statut</th>
+                  <th className="px-6 py-4">{tx("N° Commande")}</th>
+                  <th className="px-6 py-4">{tx("Date")}</th>
+                  <th className="px-6 py-4 text-center">{tx("Articles")}</th>
+                  <th className="px-6 py-4">{tx("Montant Total")}</th>
+                  <th className="px-6 py-4">{tx("Statut")}</th>
                   <th className="px-6 py-4"></th>
                 </tr>
               </thead>
@@ -120,22 +124,20 @@ export default function OrdersPage() {
                         className={`border-b border-sage-light hover:bg-sage-light/30 transition-colors cursor-pointer ${isExpanded ? 'bg-sage-light/30' : ''}`}
                         onClick={() => toggleExpand(order.id)}
                       >
-                        <td className="px-6 py-4 font-bold text-teal-deep">
-                          CMD-{order.id.toString().padStart(4, '0')}
+                        <td className="px-6 py-4 font-bold text-teal-deep">{tx("CMD-")}{tx(order.id.toString().padStart(4, '0'))}
                         </td>
                         <td className="px-6 py-4 text-anthracite-soft">
-                          {new Date(order.created_at).toLocaleDateString('fr-FR', { day: '2-digit', month: 'long', year: 'numeric' })}
+                          {tx(new Date(order.created_at).toLocaleDateString(locale, { day: '2-digit', month: 'long', year: 'numeric' }))}
                         </td>
                         <td className="px-6 py-4 text-center">
                           <span className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-ivory-soft text-xs font-bold text-teal-deep border border-sage-light">
-                            {totalItems}
+                            {tx(totalItems)}
                           </span>
                         </td>
                         <td className="px-6 py-4 font-bold text-teal-deep">
-                          {Number(order.total_amount).toFixed(2)} MAD
-                        </td>
+                          {tx(Number(order.total_amount).toFixed(2))}{tx(" MAD")}</td>
                         <td className="px-6 py-4">
-                          {getStatusBadge(order.status)}
+                          {tx(getStatusBadge(order.status))}
                         </td>
                         <td className="px-6 py-4 text-right">
                           <button className="p-2 text-anthracite-soft hover:text-teal-deep hover:bg-sage-light rounded-full transition-colors">
@@ -153,7 +155,7 @@ export default function OrdersPage() {
                         <tr className="bg-ivory-soft/50 border-b border-sage-light">
                           <td colSpan={6} className="p-0">
                             <div className="p-6">
-                              <h4 className="font-bold text-teal-deep mb-4 text-sm uppercase tracking-wider">Détails des articles</h4>
+                              <h4 className="font-bold text-teal-deep mb-4 text-sm uppercase tracking-wider">{tx("Détails des articles")}</h4>
                               <div className="space-y-4">
                                 {order.items.map((item) => (
                                   <div key={item.id} className="flex items-center justify-between p-4 bg-white rounded-xl border border-sage-light">
@@ -163,13 +165,12 @@ export default function OrdersPage() {
                                         <span className="text-2xl">💊</span>
                                       </div>
                                       <div>
-                                        <p className="font-bold text-teal-deep text-sm">{item.product?.label || 'Produit inconnu'}</p>
-                                        <p className="text-xs text-anthracite-soft/60 mt-1">{Number(item.unit_price).toFixed(2)} MAD x {item.quantity}</p>
+                                        <p className="font-bold text-teal-deep text-sm">{tx(item.product?.label || 'Produit inconnu')}</p>
+                                        <p className="text-xs text-anthracite-soft/60 mt-1">{tx(Number(item.unit_price).toFixed(2))}{tx(" MAD x ")}{tx(item.quantity)}</p>
                                       </div>
                                     </div>
                                     <div className="font-bold text-teal-deep">
-                                      {Number(item.subtotal).toFixed(2)} MAD
-                                    </div>
+                                      {tx(Number(item.subtotal).toFixed(2))}{tx(" MAD")}</div>
                                   </div>
                                 ))}
                               </div>

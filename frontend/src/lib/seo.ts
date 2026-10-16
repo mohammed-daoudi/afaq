@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { createTextTranslator } from './translate';
 
 const BASE_URL = (process.env.NEXT_PUBLIC_SITE_URL || 'https://www.afaqhealth.com').replace(/\/$/, '');
 
@@ -29,6 +30,9 @@ export function buildPageMetadata({
   image?: string;
   type?: 'website' | 'article';
 }): Metadata {
+  const tx = createTextTranslator(locale);
+  title = tx(title);
+  description = tx(description);
   const canonicalUrl = getLocalizedUrl(locale, path);
   const imageUrl = image.startsWith('http') ? image : `${BASE_URL}${image.startsWith('/') ? '' : '/'}${image}`;
 

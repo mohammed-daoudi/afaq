@@ -1,4 +1,6 @@
 'use client';
+import { useText } from '@/lib/useText';
+
 
 import React, { useState, useEffect } from 'react';
 import { createPortal } from 'react-dom';
@@ -9,6 +11,8 @@ import type { Product } from '@/lib/products';
 import { useTranslations } from 'next-intl';
 
 export function ProductGallery({ product }: { product: Product }) {
+  const tx = useText();
+  const t = useTranslations('ProductDetail');
   const images = [
     product.imagePath,
     product.labelImagePath
@@ -40,12 +44,12 @@ export function ProductGallery({ product }: { product: Product }) {
         <div className="flex-1 max-w-[350px] md:max-w-[450px] w-full mx-auto relative group">
           {(activeIndex === 0 ? product.imageBadge : (product.labelImageBadge || product.imageBadge)) && (
             <div className="absolute bottom-4 right-4 md:bottom-6 md:right-6 z-30 bg-red-600 text-white px-2 py-0.5 md:px-3 md:py-1 rounded-full text-[8px] md:text-[10px] font-bold uppercase tracking-wider shadow-sm border border-red-700">
-              {activeIndex === 0 ? product.imageBadge : (product.labelImageBadge || product.imageBadge)}
+              {tx(activeIndex === 0 ? product.imageBadge : (product.labelImageBadge || product.imageBadge))}
             </div>
           )}
           <ImageMagnifier 
             src={images[activeIndex]} 
-            alt={product.name}
+            alt={tx(product.name)}
             zoomLevel={2}
             onClick={() => setFullscreenImage(images[activeIndex])}
             imageClassName={activeIndex === 0 ? product.imageScaleClass : undefined}
@@ -76,7 +80,7 @@ export function ProductGallery({ product }: { product: Product }) {
                 activeIndex === idx ? 'border-[#8dc63f]' : 'border-transparent hover:border-gray-300'
               }`}
             >
-              <img src={img} alt={`${product.name} view ${idx + 1}`} className="w-full h-full object-contain mix-blend-multiply" />
+              <img src={img} alt={t('imageView', { name: product.name, index: idx + 1 })} className="w-full h-full object-contain mix-blend-multiply" />
             </button>
           ))}
         </div>
@@ -88,6 +92,7 @@ export function ProductGallery({ product }: { product: Product }) {
 }
 
 export function ProductTabs({ product, colors }: { product: Product, colors: any }) {
+  const tx = useText();
   const [activeTab, setActiveTab] = useState<'description' | 'fiche'>('description');
   const [fullscreenImage, setFullscreenImage] = useState<string | null>(null);
   const t = useTranslations('ProductDetail');
@@ -125,21 +130,19 @@ export function ProductTabs({ product, colors }: { product: Product, colors: any
         {activeTab === 'description' ? (
           <div className="space-y-10 animate-in fade-in slide-in-from-bottom-4 duration-500">
             <h2 className="text-2xl font-bold text-teal-deep uppercase mb-8">
-              {product.name}
+              <bdi dir="ltr">{tx(product.name)}</bdi>
             </h2>
 
 
 
             {product.longDescription && (
               <section>
-                <h3 className="text-xl font-bold text-teal-deep flex items-center gap-2 mb-4">
-                  Description :
-                </h3>
+                <h3 className="text-xl font-bold text-teal-deep flex items-center gap-2 mb-4">{tx("Description :")}</h3>
                 <div className="text-anthracite-soft/80 leading-relaxed text-lg space-y-2">
-                  {product.longDescription.split('\n').map((paragraph, pIdx) => (
+                  {tx(product.longDescription).split('\n').map((paragraph, pIdx) => (
                     <div key={pIdx} className="space-y-2">
                       {paragraph.split('. ').map((sentence, sIdx, arr) => (
-                        <p key={sIdx}>{sentence}{sIdx < arr.length - 1 ? '.' : ''}</p>
+                        <p key={sIdx}>{tx(sentence)}{sIdx < arr.length - 1 ? '.' : ''}</p>
                       ))}
                     </div>
                   ))}
@@ -149,33 +152,27 @@ export function ProductTabs({ product, colors }: { product: Product, colors: any
             
             {product.composition && (
               <section>
-                <h3 className="text-xl font-bold text-teal-deep flex items-center gap-2 mb-4">
-                  Apport — dose journalière recommandée :
-                </h3>
+                <h3 className="text-xl font-bold text-teal-deep flex items-center gap-2 mb-4">{tx("Apport — dose journalière recommandée :")}</h3>
                 <p className="text-anthracite-soft/80 leading-relaxed text-lg whitespace-pre-line">
-                  {product.composition}
+                  {tx(product.composition)}
                 </p>
               </section>
             )}
 
             {product.howToUse && (
               <section>
-                <h3 className="text-xl font-bold text-teal-deep flex items-center gap-2 mb-4">
-                  Mode d'emploi :
-                </h3>
+                <h3 className="text-xl font-bold text-teal-deep flex items-center gap-2 mb-4">{tx("Mode d'emploi :")}</h3>
                 <p className="text-anthracite-soft/80 leading-relaxed text-lg whitespace-pre-line">
-                  {product.howToUse}
+                  {tx(product.howToUse)}
                 </p>
               </section>
             )}
 
             {product.warning && (
               <section>
-                <h3 className="text-xl font-bold text-teal-deep flex items-center gap-2 mb-4">
-                  Avertissement nutritionnel :
-                </h3>
+                <h3 className="text-xl font-bold text-teal-deep flex items-center gap-2 mb-4">{tx("Avertissement nutritionnel :")}</h3>
                 <p className="text-anthracite-soft/80 leading-relaxed text-lg whitespace-pre-line">
-                  {product.warning}
+                  {tx(product.warning)}
                 </p>
               </section>
             )}
@@ -192,7 +189,7 @@ export function ProductTabs({ product, colors }: { product: Product, colors: any
 
              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                <div className="bg-sage-light/20 p-6 rounded-2xl border border-sage-light/50">
-                  <h4 className="text-sm font-bold text-anthracite-soft/60 uppercase tracking-wider mb-2">Format</h4>
+                  <h4 className="text-sm font-bold text-anthracite-soft/60 uppercase tracking-wider mb-2">{tx("Format")}</h4>
                   <div className="text-base font-medium text-teal-deep whitespace-pre-line leading-relaxed">
                     {(() => {
                       if (product.format.includes(' et ')) {
@@ -201,32 +198,32 @@ export function ProductTabs({ product, colors }: { product: Product, colors: any
                         if (match) {
                           const secondNum = match[1];
                           const text = match[2];
-                          return `${firstPart}${text}\n${secondNum}${text}`;
+                          return tx(`${firstPart}${text}\n${secondNum}${text}`);
                         }
                       }
-                      return product.format;
+                      return tx(product.format);
                     })()}
                   </div>
                </div>
                {product.duration && (
                  <div className="bg-sage-light/20 p-6 rounded-2xl border border-sage-light/50">
-                    <h4 className="text-sm font-bold text-anthracite-soft/60 uppercase tracking-wider mb-2">Durée</h4>
-                    <p className="text-base font-medium text-teal-deep whitespace-pre-line leading-relaxed">{product.duration}</p>
+                    <h4 className="text-sm font-bold text-anthracite-soft/60 uppercase tracking-wider mb-2">{tx("Durée")}</h4>
+                    <p className="text-base font-medium text-teal-deep whitespace-pre-line leading-relaxed">{tx(product.duration)}</p>
                  </div>
                )}
                {product.dosage && (
                  <div className="bg-sage-light/20 p-6 rounded-2xl border border-sage-light/50">
-                    <h4 className="text-sm font-bold text-anthracite-soft/60 uppercase tracking-wider mb-2">Dosage</h4>
-                    <p className="text-base font-medium text-teal-deep">{product.dosage}</p>
+                    <h4 className="text-sm font-bold text-anthracite-soft/60 uppercase tracking-wider mb-2">{tx("Dosage")}</h4>
+                    <p className="text-base font-medium text-teal-deep">{tx(product.dosage)}</p>
                  </div>
                )}
                {product.certifications && product.certifications.length > 0 && (
                  <div className="bg-sage-light/20 p-6 rounded-2xl border border-sage-light/50">
-                    <h4 className="text-sm font-bold text-anthracite-soft/60 uppercase tracking-wider mb-3">Certifications</h4>
+                    <h4 className="text-sm font-bold text-anthracite-soft/60 uppercase tracking-wider mb-3">{tx("Certifications")}</h4>
                     <div className="flex flex-wrap gap-2">
                       {product.certifications.map(c => (
                         <span key={c} className="bg-white text-teal-deep border border-sage-light px-3 py-1 rounded-full text-sm font-medium shadow-sm">
-                          {c}
+                          {tx(c)}
                         </span>
                       ))}
                     </div>
@@ -269,6 +266,7 @@ export function RelatedProducts({ currentProductId, products }: { currentProduct
 }
 
 function FullscreenModal({ src, onClose }: { src: string | null, onClose: () => void }) {
+  const tx = useText();
   useEffect(() => {
     if (!src) return;
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -317,7 +315,7 @@ function FullscreenModal({ src, onClose }: { src: string | null, onClose: () => 
           >
             <ImageMagnifier 
               src={src} 
-              alt="Vue détaillée haute définition du produit AFAQ HEALTH" 
+              alt={tx("Vue détaillée haute définition du produit AFAQ HEALTH")}
               zoomLevel={2.5}
               containerClassName="w-full h-full bg-white rounded-2xl"
               imageClassName="object-contain"

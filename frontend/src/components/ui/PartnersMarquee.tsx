@@ -1,4 +1,7 @@
 'use client';
+import { useText } from '@/lib/useText';
+import { useTranslations } from 'next-intl';
+
 import React from 'react';
 import Image from 'next/image';
 
@@ -10,18 +13,14 @@ const PARTNERS = [
 ];
 
 export function PartnersMarquee() {
+  const tx = useText();
+  const t = useTranslations('Common');
   return (
     <section className="bg-white py-16 border-t border-sage-light/30">
       <div className="container mx-auto px-8 md:px-16 text-center mb-12 max-w-3xl">
-        <h2 className="text-base font-bold uppercase tracking-widest text-gold-soft mb-4">
-          NOS PARTENAIRES
-        </h2>
-        <h3 className="text-3xl md:text-4xl font-extrabold text-teal-deep mb-6 leading-tight">
-          Des partenaires sélectionnés avec exigence.
-        </h3>
-        <p className="text-lg text-anthracite-soft/80 leading-relaxed">
-          AFAQ HEALTH s’appuie sur des partenaires sélectionnés pour leur savoir-faire, leur expertise et leur capacité à accompagner durablement le développement de nos marques.
-        </p>
+        <h2 className="text-base font-bold uppercase tracking-widest text-gold-soft mb-4">{tx("NOS PARTENAIRES")}</h2>
+        <h3 className="text-3xl md:text-4xl font-extrabold text-teal-deep mb-6 leading-tight">{tx("Des partenaires sélectionnés avec exigence.")}</h3>
+        <p className="text-lg text-anthracite-soft/80 leading-relaxed">{tx("AFAQ HEALTH s’appuie sur des partenaires sélectionnés pour leur savoir-faire, leur expertise et leur capacité à accompagner durablement le développement de nos marques.")}</p>
       </div>
 
       <div className="relative w-full overflow-hidden whitespace-nowrap bg-white py-8">
@@ -32,7 +31,7 @@ export function PartnersMarquee() {
               <div className="relative w-full h-full flex items-center justify-center">
                 <Image 
                   src={partner} 
-                  alt={`Partenaire pharmaceutique AFAQ HEALTH ${(index % PARTNERS.length) + 1}`} 
+                  alt={t('pharmaceuticalPartner', { index: (index % PARTNERS.length) + 1 })}
                   fill 
                   className="object-contain" 
                 />

@@ -1,3 +1,4 @@
+import { getText } from '@/lib/getText';
 import React from 'react';
 import type { Metadata } from 'next';
 import Image from 'next/image';
@@ -8,26 +9,29 @@ import { MOCK_ARTICLES } from '@/data/conseils';
 import { getTranslations } from 'next-intl/server';
 import { buildPageMetadata, getSiteUrl } from '@/lib/seo';
 import ConsentVideo from '@/components/ui/ConsentVideo';
+import type { TextTranslator } from '@/lib/translate';
 
 export async function generateMetadata({
   params,
 }: {
   params: Promise<{ slug: string; locale?: string }>;
 }): Promise<Metadata> {
+  const tx = await getText();
+  const t = await getTranslations('Seo');
   const { slug, locale = 'fr' } = await params;
   const article = MOCK_ARTICLES.find((a) => a.slug === slug);
 
   if (!article) {
     return {
-      title: 'Article introuvable | AFAQ HEALTH',
+      title: tx('Article introuvable | AFAQ HEALTH'),
     };
   }
 
   return buildPageMetadata({
     locale,
     path: `/conseils/${article.slug}`,
-    title: `${article.title} | Conseils Santé & Micronutrition au Maroc - AFAQ HEALTH`,
-    description: `${article.intro.slice(0, 155)}... Retrouvez les conseils d'experts AFAQ HEALTH au Maroc.`,
+    title: t('articleTitle', { title: tx(article.title) }),
+    description: `${tx(article.intro).slice(0, 155)}... ${t('articleDescription')}`,
     image: article.image,
     type: 'article',
   });
@@ -68,7 +72,7 @@ function getArticleBody(content: string) {
   return desktopCtaIndex >= 0 ? content.slice(0, desktopCtaIndex) : content;
 }
 
-function renderInline(content: string, keyPrefix: string): React.ReactNode[] {
+function renderInline(content: string, keyPrefix: string, tx: TextTranslator): React.ReactNode[] {
   const nodes: React.ReactNode[] = [];
   const brParts = content.split(/<br\s*\/?>/gi);
 
@@ -82,26 +86,26 @@ function renderInline(content: string, keyPrefix: string): React.ReactNode[] {
 
     for (const match of part.matchAll(strongPattern)) {
       if (match.index > lastIndex) {
-        nodes.push(part.slice(lastIndex, match.index));
+        nodes.push(tx(part.slice(lastIndex, match.index)));
       }
 
       nodes.push(
         <strong key={`${keyPrefix}-strong-${brIndex}-${match.index}`}>
-          {renderInline(match[1], `${keyPrefix}-strong-${brIndex}-${match.index}`)}
+          {renderInline(match[1], `${keyPrefix}-strong-${brIndex}-${match.index}`, tx)}
         </strong>,
       );
       lastIndex = match.index + match[0].length;
     }
 
     if (lastIndex < part.length) {
-      nodes.push(part.slice(lastIndex));
+      nodes.push(tx(part.slice(lastIndex)));
     }
   });
 
   return nodes;
 }
 
-function renderArticleBlocks(content: string) {
+function renderArticleBlocks(content: string, tx: TextTranslator) {
   const blocks: React.ReactNode[] = [];
   const blockPattern = /<(h2|p|ul)>([\s\S]*?)<\/\1>/gi;
 
@@ -110,11 +114,11 @@ function renderArticleBlocks(content: string) {
     const key = `${tag}-${match.index}`;
 
     if (tag === 'h2') {
-      blocks.push(<h2 key={key}>{renderInline(innerHtml.trim(), key)}</h2>);
+      blocks.push(<h2 key={key}>{renderInline(innerHtml.trim(), key, tx)}</h2>);
     }
 
     if (tag === 'p') {
-      blocks.push(<p key={key}>{renderInline(innerHtml.trim(), key)}</p>);
+      blocks.push(<p key={key}>{renderInline(innerHtml.trim(), key, tx)}</p>);
     }
 
     if (tag === 'ul') {
@@ -123,7 +127,7 @@ function renderArticleBlocks(content: string) {
 
       for (const itemMatch of innerHtml.matchAll(itemPattern)) {
         const itemKey = `${key}-li-${itemMatch.index}`;
-        items.push(<li key={itemKey}>{renderInline(itemMatch[1].trim(), itemKey)}</li>);
+        items.push(<li key={itemKey}>{renderInline(itemMatch[1].trim(), itemKey, tx)}</li>);
       }
 
       blocks.push(<ul key={key}>{items}</ul>);
@@ -133,25 +137,27 @@ function renderArticleBlocks(content: string) {
   return blocks;
 }
 
-function ArticleCta({
+async function ArticleCta({
   cta,
   className,
 }: {
   cta: { title: string; text: string; href: string; label: string };
   className: string;
 }) {
+  const tx = await getText();
   return (
     <div className={className}>
-      <h3 className="text-xl lg:text-3xl font-bold text-teal-deep mb-3 lg:mb-4 mt-0">{cta.title}</h3>
-      <p className="text-black lg:text-anthracite-soft mb-6 lg:mb-8 font-medium lg:font-normal lg:text-xl">{cta.text}</p>
+      <h3 className="text-xl lg:text-3xl font-bold text-teal-deep mb-3 lg:mb-4 mt-0">{tx(cta.title)}</h3>
+      <p className="text-black lg:text-anthracite-soft mb-6 lg:mb-8 font-medium lg:font-normal lg:text-xl">{tx(cta.text)}</p>
       <Link href={cta.href} className="inline-flex w-full sm:w-auto max-w-full justify-center text-center text-sm font-bold bg-teal-deep text-white px-5 sm:px-6 py-3 rounded-xl hover:bg-gold-soft hover:text-teal-deep transition-all shadow-md shimmer-effect uppercase tracking-wider leading-snug">
-        {cta.label}
+        {tx(cta.label)}
       </Link>
     </div>
   );
 }
 
 export default async function ArticlePage({ params }: { params: Promise<{ slug: string }> }) {
+  const tx = await getText();
   const { slug } = await params;
   const article = MOCK_ARTICLES.find(a => a.slug === slug);
 
@@ -175,8 +181,8 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
       '@type': 'WebPage',
       '@id': articleUrl,
     },
-    headline: article.title,
-    description: article.intro,
+    headline: tx(article.title),
+    description: tx(article.intro),
     image: [imageUrl],
     author: {
       '@type': 'Organization',
@@ -202,19 +208,19 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
       {
         '@type': 'ListItem',
         position: 1,
-        name: 'Accueil',
+        name: tx('Accueil'),
         item: siteUrl,
       },
       {
         '@type': 'ListItem',
         position: 2,
-        name: 'Conseils Santé',
+        name: tx('Conseils Santé'),
         item: `${siteUrl}/conseils`,
       },
       {
         '@type': 'ListItem',
         position: 3,
-        name: article.title,
+        name: tx(article.title),
         item: articleUrl,
       },
     ],
@@ -242,21 +248,21 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
 
         <div className="space-y-6 lg:w-2/3">
           <div className="inline-block px-4 py-1.5 text-xs font-bold tracking-widest text-black bg-sage-light rounded-full uppercase">
-            {article.category}
+            {tx(article.category)}
           </div>
 
           <h1 className="text-3xl md:text-5xl font-semibold text-black leading-tight">
-            {article.title}
+            {tx(article.title)}
           </h1>
 
           <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-black font-semibold uppercase tracking-wider border-y border-sage-light/50 py-4">
             <span className="flex items-center gap-2">
               <Calendar size={16} className="text-gold-soft" />
-              {article.date}
+              {tx(article.date)}
             </span>
             <span className="flex items-center gap-2">
               <Clock size={16} className="text-gold-soft" />
-              {article.readTime}
+              {tx(article.readTime)}
             </span>
           </div>
         </div>
@@ -268,14 +274,14 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
         <div className="w-full min-w-0 lg:w-2/3 flex flex-col">
           <div className="lg:mb-16 lg:rounded-[2rem] lg:border lg:border-[#d7ceb9]/60 lg:bg-gradient-to-br lg:from-[#f3eedf]/80 lg:via-[#eee6d4]/55 lg:to-[#e6dcc7]/45 lg:p-8 xl:p-10 lg:shadow-[0_18px_50px_rgba(23,103,71,0.06)]">
             <div className="text-lg md:text-xl text-black font-normal leading-relaxed mb-12 lg:mb-10 border-l-4 border-gold-soft pl-5 md:pl-6">
-              {article.intro}
+              {tx(article.intro)}
             </div>
 
             {/* Prose Content */}
             <div
               className="mb-16 lg:mb-0 max-w-none [&_h2]:text-xl md:[&_h2]:text-2xl [&_h2]:text-black [&_h2]:font-medium [&_h2]:leading-tight [&_h2]:mt-10 [&_h2]:mb-4 [&_p]:text-base md:[&_p]:text-lg [&_h3]:text-black [&_h3]:font-semibold [&_p]:text-black [&_p]:leading-relaxed [&_p]:mb-6 [&_ul]:list-disc [&_ul]:pl-6 md:[&_ul]:pl-8 [&_ul]:mb-6 [&_ul]:text-base md:[&_ul]:text-lg [&_ul]:leading-relaxed [&_ul]:text-black [&_li]:text-black [&_ul]:space-y-2 [&_img]:max-w-full [&_img]:h-auto [&_a:not(.shimmer-effect)]:text-black [&_a:not(.shimmer-effect)]:underline [&_strong]:text-black [&_strong]:font-normal"
             >
-              {renderArticleBlocks(articleBody)}
+              {renderArticleBlocks(articleBody, tx)}
             </div>
           </div>
 
@@ -289,11 +295,11 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
           {/* Featured Media (Mobile Only) */}
           <div className={`lg:hidden relative w-full rounded-3xl overflow-hidden shadow-2xl mb-8 ${hasLandscapeFeaturedImage ? 'aspect-[3/2]' : 'h-[300px] sm:h-[400px]'}`}>
             {article.video ? (
-              <ConsentVideo src={article.video} title={article.title} />
+              <ConsentVideo src={article.video} title={tx(article.title)} />
             ) : (
               <Image
                 src={article.image}
-                alt={article.title}
+                alt={tx(article.title)}
                 fill
                 className="object-cover"
                 priority
@@ -327,7 +333,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
                     {t('takeaway')}
                   </h3>
                   <p className="text-black font-medium leading-relaxed">
-                    {article.takeaway}
+                    {tx(article.takeaway)}
                   </p>
                 </div>
               </div>
@@ -340,11 +346,11 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
             {/* Featured Media (Desktop Only) */}
             <div className={`hidden lg:block relative w-full rounded-3xl overflow-hidden shadow-2xl ${hasLandscapeFeaturedImage ? 'aspect-[3/2]' : 'h-[450px]'}`}>
               {article.video ? (
-                <ConsentVideo src={article.video} title={article.title} />
+                <ConsentVideo src={article.video} title={tx(article.title)} />
               ) : (
                 <Image
                   src={article.image}
-                  alt={article.title}
+                  alt={tx(article.title)}
                   fill
                   className="object-cover"
                   priority
@@ -381,20 +387,20 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
                 <div className="relative h-64 w-full shrink-0 overflow-hidden">
                   <Image
                     src={related.image}
-                    alt={related.title}
+                    alt={tx(related.title)}
                     fill
                     className="object-cover group-hover:scale-110 transition-transform duration-700"
                   />
                 </div>
                 <div className="p-8 flex flex-col flex-1">
                   <div className="text-xs font-bold text-gold-soft uppercase tracking-widest mb-4">
-                    {related.category}
+                    {tx(related.category)}
                   </div>
                   <h3 className="text-xl font-bold text-teal-deep mb-4 line-clamp-2 group-hover:text-gold-soft transition-colors">
-                    {related.title}
+                    {tx(related.title)}
                   </h3>
                   <p className="text-sm text-anthracite-soft/80 leading-relaxed line-clamp-3 mb-6 flex-1">
-                    {related.intro}
+                    {tx(related.intro)}
                   </p>
                 </div>
               </Link>

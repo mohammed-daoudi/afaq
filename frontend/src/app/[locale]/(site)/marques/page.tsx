@@ -1,4 +1,6 @@
 'use client';
+import { useText } from '@/lib/useText';
+
 
 import React from 'react';
 import { Link } from '@/navigation';
@@ -45,6 +47,7 @@ const fadeUp = {
 };
 
 export default function MarquesPage() {
+  const tx = useText();
   return (
     <div className="min-h-screen bg-sage-light/20 pt-8 pb-24 overflow-hidden">
       <div className="container mx-auto px-4">
@@ -54,16 +57,10 @@ export default function MarquesPage() {
           initial="hidden" animate="visible" variants={{ hidden: { opacity: 0 }, visible: { opacity: 1, transition: { staggerChildren: 0.2 } } }}
           className="max-w-4xl mx-auto text-center mb-10 space-y-6"
         >
-          <motion.div variants={fadeUp} className="inline-block px-4 py-1.5 text-xs font-bold tracking-widest text-gold-soft bg-white border border-gold-soft/20 rounded-full uppercase">
-            NOS MARQUES
-          </motion.div>
-          <motion.h1 variants={fadeUp} className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-teal-deep">
-            Notre portefeuille de marques
-          </motion.h1>
+          <motion.div variants={fadeUp} className="inline-block px-4 py-1.5 text-xs font-bold tracking-widest text-gold-soft bg-white border border-gold-soft/20 rounded-full uppercase">{tx("NOS MARQUES")}</motion.div>
+          <motion.h1 variants={fadeUp} className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-teal-deep">{tx("Notre portefeuille de marques")}</motion.h1>
 
-          <motion.p variants={fadeUp} className="text-lg text-anthracite-soft/80 max-w-3xl mx-auto leading-relaxed">
-            AFAQ HEALTH construit un portefeuille de marques européennes sélectionnées pour leur qualité, leur savoir-faire et leur capacité à répondre durablement aux besoins en matière de santé et de bien-être.
-          </motion.p>
+          <motion.p variants={fadeUp} className="text-lg text-anthracite-soft/80 max-w-3xl mx-auto leading-relaxed">{tx("AFAQ HEALTH construit un portefeuille de marques européennes sélectionnées pour leur qualité, leur savoir-faire et leur capacité à répondre durablement aux besoins en matière de santé et de bien-être.")}</motion.p>
         </motion.div>
 
         {/* Brands List */}
@@ -86,7 +83,7 @@ export default function MarquesPage() {
                     >
                       <Image
                         src={brand.logo}
-                        alt={brand.name}
+                        alt={tx(`${brand.name} - Marque européenne de compléments alimentaires au Maroc`)}
                         fill
                         className={`object-contain transition-transform duration-500 group-hover:scale-105 p-4 mix-blend-multiply ${brand.logoClass.replace('object-contain', '').replace('object-cover', '')}`}
                         sizes="(max-width: 768px) 100vw, 33vw"
@@ -95,29 +92,28 @@ export default function MarquesPage() {
 
                     <div className="flex flex-col flex-1 text-left">
                       <span className="text-xs font-bold uppercase tracking-wider text-gold-soft mb-1 line-clamp-1">
-                        {brand.subtitle}
+                        {tx(brand.subtitle)}
                       </span>
                       
                       <h3 className="font-bold text-base md:text-lg text-anthracite-deep leading-snug group-hover:text-teal-deep transition-colors line-clamp-2 mb-2">
-                        {brand.name}
+                        <bdi dir="ltr">{tx(brand.name)}</bdi>
                       </h3>
                       
                       <div className="mb-2">
                         <span className="inline-block px-2 py-1.5 rounded text-xs font-bold bg-sage-light/50 text-teal-deep uppercase tracking-wider">
-                          {brand.status}
+                          {tx(brand.status)}
                         </span>
                       </div>
                       
                       <p className="text-sm md:text-[15px] text-anthracite-soft mt-1.5 line-clamp-3 flex-grow leading-relaxed">
-                        {brand.description}
+                        {tx(brand.description)}
                       </p>
 
                       <div className="mt-4 flex items-center text-teal-deep text-sm font-bold group-hover:text-gold-soft transition-colors border-t border-gray-100 pt-3">
                         <Link
                           href={`/produits?brand=${brand.slug}`}
                           className="w-full flex items-center"
-                        >
-                          Découvrir {brand.name} <span className="ml-1">→</span>
+                        >{tx("Découvrir ")}<bdi dir="ltr">{tx(brand.name)}</bdi> <span className="ml-1">→</span>
                         </Link>
                       </div>
                     </div>

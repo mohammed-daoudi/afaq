@@ -1,4 +1,6 @@
 'use client';
+import { useText } from '@/lib/useText';
+
 
 import React, { useState } from 'react';
 import { Link, usePathname } from '@/navigation';
@@ -8,6 +10,7 @@ import { LanguageSwitcher } from '@/components/ui/LanguageSwitcher';
 import { useTranslations } from 'next-intl';
 
 export function Header() {
+  const tx = useText();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const pathname = usePathname();
   const t = useTranslations('Header');
@@ -51,7 +54,7 @@ export function Header() {
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             className="lg:hidden p-2 text-teal-deep hover:bg-sage-light rounded-lg transition-colors"
-            aria-label="Menu"
+            aria-label={tx("Menu")}
           >
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               {isMenuOpen ? (
@@ -84,7 +87,7 @@ export function Header() {
                 href={link.href}
                 className="text-sm font-bold text-anthracite-soft hover:text-teal-deep transition-colors whitespace-nowrap uppercase tracking-wider relative group"
               >
-                {link.label}
+                {tx(link.label)}
                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gold-soft transition-all duration-300 group-hover:w-full"></span>
               </Link>
             ))}
@@ -102,7 +105,7 @@ export function Header() {
               onClick={() => setIsMenuOpen(false)}
               className="block text-base font-medium text-anthracite-soft hover:text-teal-deep transition-colors py-2 border-b border-sage-light/30"
             >
-              {link.label}
+              {tx(link.label)}
             </Link>
           ))}
           <Link

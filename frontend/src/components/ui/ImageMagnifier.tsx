@@ -1,4 +1,6 @@
 'use client';
+import { useText } from '@/lib/useText';
+
 
 import React, { useState, MouseEvent } from 'react';
 import Image from 'next/image';
@@ -26,6 +28,7 @@ export function ImageMagnifier({
   containerClassName,
   imageClassName
 }: ImageMagnifierProps) {
+  const tx = useText();
   const [[x, y], setXY] = useState([0, 0]);
   const [[imgWidth, imgHeight], setSize] = useState([0, 0]);
   const [showMagnifier, setShowMagnifier] = useState(false);
@@ -60,7 +63,7 @@ export function ImageMagnifier({
       <div className={`relative w-full flex items-center justify-center overflow-hidden ${containerClassName ?? 'aspect-square md:aspect-[4/5] rounded-3xl bg-white border border-sage-light/30 shadow-inner p-8'}`}>
         <Image
           src={src}
-          alt={alt}
+          alt={tx(alt)}
           fill
           className={`object-contain mix-blend-multiply p-8 ${imageClassName || ''}`}
           sizes="(max-width: 768px) 100vw, 50vw"
@@ -90,7 +93,7 @@ export function ImageMagnifier({
           >
             <Image
               src={src}
-              alt={alt}
+              alt={tx(alt)}
               fill
               className={`object-contain mix-blend-multiply p-8 ${imageClassName || ''}`}
             />

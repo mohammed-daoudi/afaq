@@ -1,4 +1,6 @@
 'use client';
+import { useText } from '@/lib/useText';
+
 import React, { useState, useEffect } from 'react';
 import { useSearchParams } from 'next/navigation';
 import Image from 'next/image';
@@ -61,6 +63,7 @@ const SLUG_TO_BRAND: Record<string, string> = {
 };
 
 export default function ProduitsPage() {
+  const tx = useText();
   const searchParams = useSearchParams();
   const brandParam = searchParams.get('brand') ?? 'all';
   const initialBrand = SLUG_TO_BRAND[brandParam] ?? 'all';
@@ -82,6 +85,8 @@ export default function ProduitsPage() {
     const matchCategory = activeCategory === 'all' || p.categories.includes(activeCategory);
     return matchBrand && matchCategory;
   });
+  const isComingSoon = ['NATURAMINS KIDS', 'COLAGENOVA®'].includes(activeBrand)
+    && !products.some((product) => product.brand === activeBrand);
 
   return (
     <div className="min-h-screen bg-ivory-soft pt-8 pb-0 flex flex-col">
@@ -97,7 +102,7 @@ export default function ProduitsPage() {
             {/* Mobile Filter Toggle */}
             <div className="flex lg:hidden items-center justify-between mb-4">
               <h2 className="text-xl font-bold text-teal-deep">
-                {activeBrand === 'all' ? 'Toutes les marques' : activeBrand}
+                {tx(activeBrand === 'all' ? 'Toutes les marques' : activeBrand)}
               </h2>
               <button
                 onClick={() => setIsMobileBrandFilterOpen(!isMobileBrandFilterOpen)}
@@ -113,17 +118,13 @@ export default function ProduitsPage() {
                   <line x1="1" y1="14" x2="7" y2="14"></line>
                   <line x1="9" y1="8" x2="15" y2="8"></line>
                   <line x1="17" y1="16" x2="23" y2="16"></line>
-                </svg>
-                Choisissez la marque
-              </button>
+                </svg>{tx("Choisissez la marque")}</button>
             </div>
 
             <div className={`${isMobileBrandFilterOpen ? 'block mb-8' : 'hidden'} lg:block lg:sticky lg:top-32 space-y-6`}>
               <div className="hidden lg:flex items-center gap-3 mb-2">
                 <span className="w-8 h-px bg-gold-soft" />
-                <h2 className="text-xs font-bold uppercase tracking-widest text-anthracite-soft">
-                  Les Gammes
-                </h2>
+                <h2 className="text-xs font-bold uppercase tracking-widest text-anthracite-soft">{tx("Les Gammes")}</h2>
               </div>
               
               <div className="flex flex-col gap-3">
@@ -135,7 +136,7 @@ export default function ProduitsPage() {
                       : 'bg-white text-anthracite-soft hover:bg-sage-light/30 border border-sage-light/50 hover:border-sage-light hover:shadow-sm'
                   }`}
                 >
-                  <span className="relative z-10">Toutes les marques</span>
+                  <span className="relative z-10">{tx("Toutes les marques")}</span>
                 </button>
                 {PRODUCT_BRANDS.map((brand) => {
                   return (
@@ -148,7 +149,7 @@ export default function ProduitsPage() {
                           : 'bg-white text-anthracite-soft hover:bg-ivory-soft border border-sage-light/50 hover:border-gold-soft/30 hover:shadow-sm'
                       }`}
                     >
-                      <span className="relative z-10 flex-1 leading-tight">{brand}</span>
+                      <span className="relative z-10 flex-1 leading-tight">{tx(brand)}</span>
                     </button>
                   );
                 })}
@@ -165,24 +166,20 @@ export default function ProduitsPage() {
             <div className="mb-8">
               <div className="flex items-center gap-3 mb-4 lg:hidden">
                 <span className="w-8 h-px bg-teal-deep/30" />
-                <h2 className="text-xs font-bold uppercase tracking-widest text-anthracite-soft">
-                  Les Besoins
-                </h2>
+                <h2 className="text-xs font-bold uppercase tracking-widest text-anthracite-soft">{tx("Les Besoins")}</h2>
               </div>
               <div className="flex flex-wrap gap-2.5">
                 <button
                   onClick={() => setActiveCategory('all')}
                   className={`px-4 py-2 text-xs font-bold tracking-wide ${ activeCategory === 'all' ? 'bg-teal-deep text-white' : 'bg-white text-anthracite-soft/80 border border-sage-light/50' } rounded-xl hover:bg-gold-soft hover:text-teal-deep transition-all shadow-md shimmer-effect`}
-                >
-                  Toutes les catégories
-                </button>
+                >{tx("Toutes les catégories")}</button>
                 {PRODUCT_CATEGORIES.map((cat) => (
                   <button
                     key={cat}
                     onClick={() => setActiveCategory(cat)}
                     className={`px-4 py-2 text-xs font-bold tracking-wide ${ activeCategory === cat ? 'bg-teal-deep text-white' : 'bg-white text-anthracite-soft/80 border border-sage-light/50' } rounded-xl hover:bg-gold-soft hover:text-teal-deep transition-all shadow-md shimmer-effect`}
                   >
-                    {cat}
+                    {tx(cat)}
                   </button>
                 ))}
               </div>
@@ -216,18 +213,18 @@ export default function ProduitsPage() {
                   className="w-full flex flex-col items-center justify-center py-32 bg-white rounded-3xl border border-sage-light/30 shadow-sm text-center px-4"
                 >
                   <div className="w-16 h-16 mb-4 rounded-full bg-ivory-soft flex items-center justify-center text-3xl">
-                    🔍
+                    {isComingSoon ? '⏳' : '🔍'}
                   </div>
-                  <h3 className="text-xl font-bold text-teal-deep mb-2">Aucun produit trouvé</h3>
-                  <p className="text-anthracite-soft/80 ">
-                    Essayez de modifier vos filtres pour voir d'autres références.
-                  </p>
-                  <button 
-                    onClick={() => { setActiveBrand('all'); setActiveCategory('all'); }}
-                    className="mt-6 text-sm font-bold text-gold-soft hover:text-gold-deep border-b border-transparent hover:border-gold-deep transition-all"
-                  >
-                    Réinitialiser les filtres
-                  </button>
+                  <h3 className="text-xl font-bold text-teal-deep mb-2">{tx(isComingSoon ? 'Prochainement' : 'Aucun produit trouvé')}</h3>
+                  <p className="text-anthracite-soft/80">{tx(isComingSoon
+                    ? "Restez à l'écoute, les fiches produits seront bientôt disponibles."
+                    : "Essayez de modifier vos filtres pour voir d'autres références.")}</p>
+                  {!isComingSoon && (
+                    <button
+                      onClick={() => { setActiveBrand('all'); setActiveCategory('all'); }}
+                      className="mt-6 text-sm font-bold text-gold-soft hover:text-gold-deep border-b border-transparent hover:border-gold-deep transition-all"
+                    >{tx("Réinitialiser les filtres")}</button>
+                  )}
                 </motion.div>
               )}
             </AnimatePresence>
@@ -241,18 +238,12 @@ export default function ProduitsPage() {
       <div className="w-full bg-white py-16 border-t border-sage-light mt-12 relative overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_right,rgba(11,75,81,0.03),transparent_50%)] pointer-events-none" />
         <div className="container mx-auto px-4 max-w-4xl text-center relative z-10">
-          <h2 className="text-2xl md:text-3xl font-extrabold text-teal-deep mb-4 tracking-tight">
-            VOUS ÊTES PROFESSIONNEL DE SANTÉ ?
-          </h2>
-          <p className="text-anthracite-soft/80 text-lg md:text-xl mb-10 max-w-2xl mx-auto leading-relaxed">
-            Accédez à notre espace professionnel pour découvrir nos offres, consulter nos conditions commerciales et passer vos commandes en toute simplicité.
-          </p>
+          <h2 className="text-2xl md:text-3xl font-extrabold text-teal-deep mb-4 tracking-tight">{tx("VOUS ÊTES PROFESSIONNEL DE SANTÉ ?")}</h2>
+          <p className="text-anthracite-soft/80 text-lg md:text-xl mb-10 max-w-2xl mx-auto leading-relaxed">{tx("Accédez à notre espace professionnel pour découvrir nos offres, consulter nos conditions commerciales et passer vos commandes en toute simplicité.")}</p>
           <Link 
             href="/portal/login" 
             className="inline-flex items-center gap-3 bg-teal-deep text-white px-8 py-4 rounded-xl font-bold hover:bg-gold-soft hover:text-teal-deep transition-all shadow-lg hover:shadow-xl hover:-translate-y-1 text-lg group shimmer-effect"
-          >
-            Accéder à l'espace professionnel 
-            <span className="transform group-hover:translate-x-1 transition-transform">→</span>
+          >{tx("Accéder à l'espace professionnel")}<span className="transform group-hover:translate-x-1 transition-transform">→</span>
           </Link>
         </div>
       </div>

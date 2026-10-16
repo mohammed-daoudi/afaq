@@ -1,4 +1,6 @@
 'use client';
+import { useText } from '@/lib/useText';
+
 
 import React from 'react';
 import { Card } from '@/components/ui/Card';
@@ -10,6 +12,7 @@ const fadeUp = {
 };
 
 export default function ColagenovaPage() {
+  const tx = useText();
   return (
     <div className="min-h-screen bg-ivory-soft pt-32 pb-24 overflow-hidden flex flex-col items-center justify-center">
       <div className="container mx-auto px-4">
@@ -20,23 +23,13 @@ export default function ColagenovaPage() {
           className="max-w-4xl mx-auto text-center space-y-8"
         >
           <div className="flex flex-wrap justify-center gap-3 mb-4">
-            <motion.div variants={fadeUp} className="inline-block px-4 py-1.5 text-xs font-bold tracking-widest text-gold-soft bg-white border border-gold-soft/20 rounded-full uppercase shadow-sm">
-              Prochainement
-            </motion.div>
-            <motion.div variants={fadeUp} className="inline-block px-4 py-1.5 text-xs font-bold tracking-widest text-teal-deep bg-sage-light rounded-full uppercase shadow-sm">
-              Exclusivité AFAQ HEALTH — Maroc & Afrique de l'Ouest
-            </motion.div>
+            <motion.div variants={fadeUp} className="inline-block px-4 py-1.5 text-xs font-bold tracking-widest text-gold-soft bg-white border border-gold-soft/20 rounded-full uppercase shadow-sm">{tx("Prochainement")}</motion.div>
+            <motion.div variants={fadeUp} className="inline-block px-4 py-1.5 text-xs font-bold tracking-widest text-teal-deep bg-sage-light rounded-full uppercase shadow-sm">{tx("Exclusivité AFAQ HEALTH — Maroc & Afrique de l'Ouest")}</motion.div>
           </div>
           
-          <motion.h1 variants={fadeUp} className="text-5xl md:text-7xl font-black text-teal-deep leading-tight">
-            COLAGENOVA®
-          </motion.h1>
-          <motion.h2 variants={fadeUp} className="text-2xl md:text-3xl font-bold text-gold-soft">
-            La beauté et les articulations au cœur de la gamme.
-          </motion.h2>
-          <motion.p variants={fadeUp} className="text-xl text-anthracite-soft/80 font-medium max-w-3xl mx-auto leading-relaxed">
-            COLAGENOVA® est une marque spécialisée dans l'univers du collagène, de la beauté et des articulations, qui rejoindra prochainement le portefeuille AFAQ HEALTH.
-          </motion.p>
+          <motion.h1 variants={fadeUp} className="text-5xl md:text-7xl font-black text-teal-deep leading-tight"><bdi dir="ltr">{tx("COLAGENOVA®")}</bdi></motion.h1>
+          <motion.h2 variants={fadeUp} className="text-2xl md:text-3xl font-bold text-gold-soft">{tx("La beauté et les articulations au cœur de la gamme.")}</motion.h2>
+          <motion.p variants={fadeUp} className="text-xl text-anthracite-soft/80 font-medium max-w-3xl mx-auto leading-relaxed">{tx("COLAGENOVA® est une marque spécialisée dans l'univers du collagène, de la beauté et des articulations, qui rejoindra prochainement le portefeuille AFAQ HEALTH.")}</motion.p>
         </motion.div>
 
         {/* Message / Disclaimer */}
@@ -47,13 +40,9 @@ export default function ColagenovaPage() {
           className="max-w-3xl mx-auto mt-24"
         >
           <Card className="bg-white border border-sage-light text-center p-12 rounded-[2rem] shadow-lg">
-            <h3 className="text-2xl font-bold text-teal-deep mb-4">Lancement en préparation</h3>
-            <p className="text-lg text-anthracite-soft/80 mb-8">
-              Nous finalisons actuellement les étapes nécessaires pour vous proposer cette gamme de qualité. Plus d'informations seront disponibles lors du lancement officiel.
-            </p>
-            <button className="bg-sage-light text-teal-deep font-bold px-8 py-4 rounded-xl hover:bg-gold-soft hover:text-teal-deep transition-all shadow-md shimmer-effect">
-              Découvrir la marque
-            </button>
+            <h3 className="text-2xl font-bold text-teal-deep mb-4">{tx("Lancement en préparation")}</h3>
+            <p className="text-lg text-anthracite-soft/80 mb-8">{tx("Nous finalisons actuellement les étapes nécessaires pour vous proposer cette gamme de qualité. Plus d'informations seront disponibles lors du lancement officiel.")}</p>
+            <button className="bg-sage-light text-teal-deep font-bold px-8 py-4 rounded-xl hover:bg-gold-soft hover:text-teal-deep transition-all shadow-md shimmer-effect">{tx("Découvrir la marque")}</button>
           </Card>
         </motion.div>
 

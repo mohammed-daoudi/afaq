@@ -1,3 +1,4 @@
+import { getText } from '@/lib/getText';
 import React from 'react';
 import { Metadata } from 'next';
 import { Link } from '@/navigation';
@@ -26,22 +27,24 @@ export async function generateMetadata({
 }: {
   params: Promise<{ id: string; locale?: string }>;
 }): Promise<Metadata> {
+  const tx = await getText();
+  const t = await getTranslations('Seo');
   const { id, locale = 'fr' } = await params;
   const product = products.find((p) => p.id === id);
 
   if (!product) {
     return {
-      title: 'Produit introuvable | AFAQ HEALTH',
+      title: tx('Produit introuvable | AFAQ HEALTH'),
     };
   }
 
-  const shortDesc = product.description.split('.')[0] + '.';
+  const shortDesc = tx(product.description).split('.')[0] + '.';
 
   return buildPageMetadata({
     locale,
     path: `/produits/${product.id}`,
-    title: `${product.name} | Complément Alimentaire en Pharmacie au Maroc - AFAQ HEALTH`,
-    description: `${shortDesc} Retrouvez ${product.name} de la marque ${product.brand} en pharmacie et parapharmacie au Maroc.`,
+    title: t('productTitle', { name: product.name }),
+    description: `${shortDesc} ${t('productDescription', { name: product.name, brand: product.brand })}`,
     image: product.imagePath,
   });
 }
@@ -51,6 +54,7 @@ export default async function ProductDetailPage({
 }: {
   params: Promise<{ id: string; locale?: string }>;
 }) {
+  const tx = await getText();
   const { id } = await params;
   const product = products.find((p) => p.id === id);
 
@@ -72,7 +76,7 @@ export default async function ProductDetailPage({
     '@type': 'Product',
     name: product.name,
     image: `${siteUrl}${product.imagePath}`,
-    description: product.description,
+    description: tx(product.description),
     brand: {
       '@type': 'Brand',
       name: product.brand,
@@ -120,11 +124,11 @@ export default async function ProductDetailPage({
         
         {/* Breadcrumbs */}
         <div className="mb-8 flex items-center text-sm text-anthracite-soft/60 font-medium">
-          <Link href="/produits" className="hover:text-teal-deep transition-colors">Produits</Link>
+          <Link href="/produits" className="hover:text-teal-deep transition-colors">{tx("Produits")}</Link>
           <span className="mx-2">›</span>
-          <span style={{ color: colors.accent }}>{product.categories[0]}</span>
+          <span style={{ color: colors.accent }}>{tx(product.categories[0])}</span>
           <span className="mx-2">›</span>
-          <span className="text-teal-deep font-bold">{product.name}</span>
+          <span className="text-teal-deep font-bold"><bdi dir="ltr">{tx(product.name)}</bdi></span>
         </div>
 
         {/* Top Section: Image & Summary */}
@@ -143,20 +147,20 @@ export default async function ProductDetailPage({
                   className="inline-block px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider mb-4 border"
                   style={{ backgroundColor: `${colors.accent}15`, color: colors.accent, borderColor: `${colors.accent}30` }}
                 >
-                  {product.categories.join(' · ')}
+                  {tx(product.categories.join(' · '))}
                 </div>
                 <h1 className="text-4xl md:text-5xl font-extrabold text-teal-deep leading-tight mb-2">
-                  {product.name}
+                  <bdi dir="ltr">{tx(product.name)}</bdi>
                 </h1>
                 <div className="text-lg font-semibold text-gold-soft mt-2 whitespace-pre-line">
-                  {product.format}
+                  {tx(product.format)}
                 </div>
               </div>
 
               <div className="space-y-6">
                 <div className="text-base text-anthracite-soft/80 leading-relaxed space-y-2">
-                  {product.description.split('. ').map((sentence, idx, arr) => (
-                    <p key={idx}>{sentence}{idx < arr.length - 1 ? '.' : ''}</p>
+                  {tx(product.description).split('. ').map((sentence, idx, arr) => (
+                    <p key={idx}>{tx(sentence)}{idx < arr.length - 1 ? '.' : ''}</p>
                   ))}
                 </div>
               </div>

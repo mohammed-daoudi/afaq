@@ -1,4 +1,6 @@
 'use client';
+import { useText } from '@/lib/useText';
+
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { Link } from '@/navigation';
@@ -36,6 +38,7 @@ const RESEAU_IMAGES = [
 ];
 
 const ReseauSlider = () => {
+  const tx = useText();
   const [current, setCurrent] = useState(0);
 
   useEffect(() => {
@@ -57,7 +60,7 @@ const ReseauSlider = () => {
         >
           <Image
             src={src}
-            alt="Réseau AFAQ Health"
+            alt={tx("Réseau de distribution pharmaceutique et partenaires AFAQ HEALTH au Maroc")}
             fill
             className="object-cover object-center"
             priority={index === 0}
@@ -70,10 +73,11 @@ const ReseauSlider = () => {
 };
 
 const VisionImage = () => {
+  const tx = useText();
   return (
     <Image
       src="/images/unsplash/welness/family-walking-away-green-meadow-professional-8k.png"
-      alt="Notre Vision AFAQ Health"
+      alt={tx("Notre vision AFAQ HEALTH : Santé, nutrition et bien-être pour la famille au Maroc")}
       width={800}
       height={800}
       className="w-full h-auto object-contain object-center"
@@ -84,6 +88,7 @@ const VisionImage = () => {
 };
 
 export default function AProposPage() {
+  const tx = useText();
   return (
     <div className="min-h-screen bg-white flex flex-col overflow-hidden">
 
@@ -98,22 +103,12 @@ export default function AProposPage() {
         {/* Text column */}
         <div className="relative z-10 flex flex-col justify-center h-full min-h-[600px] w-full lg:w-[55%] px-8 md:px-16 lg:px-24 py-20 lg:py-28">
           <motion.div initial="hidden" animate="visible" variants={staggerContainer} className="max-w-xl">
-            <motion.div variants={fadeUp} className="text-xs font-bold uppercase tracking-widest text-gold-soft mb-6">
-              QUI SOMMES-NOUS ?
-            </motion.div>
-            <motion.h1 variants={fadeUp} className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-teal-deep leading-tight mb-6">
-              AFAQ HEALTH
-            </motion.h1>
+            <motion.div variants={fadeUp} className="text-xs font-bold uppercase tracking-widest text-gold-soft mb-6">{tx("QUI SOMMES-NOUS ?")}</motion.div>
+            <motion.h1 variants={fadeUp} className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-teal-deep leading-tight mb-6"><bdi dir="ltr">{tx("AFAQ HEALTH")}</bdi></motion.h1>
 
-            <motion.p variants={fadeUp} className="text-xl font-bold text-anthracite-deep leading-relaxed mb-4">
-              Nous accompagnons le développement des marques européennes de santé et de nutrition sur le marché marocain.
-            </motion.p>
-            <motion.p variants={fadeUp} className="text-base text-anthracite-soft/75 leading-relaxed mb-4">
-              AFAQ HEALTH est une société marocaine spécialisée dans l’importation, le développement et la commercialisation de marques européennes dans les domaines de la santé, de la nutrition et du bien-être.
-            </motion.p>
-            <motion.p variants={fadeUp} className="text-base text-anthracite-soft/75 leading-relaxed">
-              De l’accès au marché à la commercialisation, nous accompagnons nos partenaires dans le développement de leurs marques au Maroc, en associant expertise réglementaire, stratégie commerciale et connaissance du marché local.
-            </motion.p>
+            <motion.p variants={fadeUp} className="text-xl font-bold text-anthracite-deep leading-relaxed mb-4">{tx("Nous accompagnons le développement des marques européennes de santé et de nutrition sur le marché marocain.")}</motion.p>
+            <motion.p variants={fadeUp} className="text-base text-anthracite-soft/75 leading-relaxed mb-4">{tx("AFAQ HEALTH est une société marocaine spécialisée dans l’importation, le développement et la commercialisation de marques européennes dans les domaines de la santé, de la nutrition et du bien-être.")}</motion.p>
+            <motion.p variants={fadeUp} className="text-base text-anthracite-soft/75 leading-relaxed">{tx("De l’accès au marché à la commercialisation, nous accompagnons nos partenaires dans le développement de leurs marques au Maroc, en associant expertise réglementaire, stratégie commerciale et connaissance du marché local.")}</motion.p>
           </motion.div>
         </div>
 
@@ -121,7 +116,7 @@ export default function AProposPage() {
         <div className="absolute inset-y-0 right-0 w-full lg:w-[50%] h-full hidden lg:block">
           <Image
             src="/images/unsplash/welness/welness.jpg"
-            alt="AFAQ Health Expertise"
+            alt={tx("Expertise AFAQ HEALTH dans la sélection et distribution de compléments alimentaires européens au Maroc")}
             fill
             className="object-cover object-center"
             priority
@@ -133,7 +128,7 @@ export default function AProposPage() {
         <div className="lg:hidden relative w-full h-72 mt-8">
           <Image
             src="/images/unsplash/welness/welness.jpg"
-            alt="AFAQ Health Expertise"
+            alt={tx("Expertise AFAQ HEALTH dans la sélection et distribution de compléments alimentaires européens au Maroc")}
             fill
             className="object-cover object-center"
           />
@@ -146,20 +141,11 @@ export default function AProposPage() {
       <section className="bg-teal-deep py-20 md:py-24">
         <div className="container mx-auto px-8 md:px-16 max-w-5xl text-center">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer}>
-            <motion.div variants={fadeUp} className="text-xs font-bold uppercase tracking-widest text-gold-soft mb-6">
-              NOTRE MISSION
-            </motion.div>
-            <motion.h2 variants={fadeUp} className="text-3xl md:text-5xl lg:text-6xl font-extrabold text-white leading-tight mb-6">
-              Sélectionner.{' '}
-              <span className="font-light text-gold-soft">Développer.</span>{' '}
-              Commercialiser.
-            </motion.h2>
-            <motion.p variants={fadeUp} className="text-lg md:text-xl text-white/75 leading-relaxed max-w-3xl mx-auto mt-6">
-              Notre mission est de construire au Maroc une présence solide et durable pour des marques sélectionnées pour la qualité de leurs produits, leur savoir-faire et la pertinence de leurs gammes.
-            </motion.p>
-            <motion.p variants={fadeUp} className="text-base text-white/60 leading-relaxed max-w-2xl mx-auto mt-4">
-              De la conformité réglementaire au développement commercial, nous coordonnons les différentes étapes nécessaires à leur implantation et à leur développement.
-            </motion.p>
+            <motion.div variants={fadeUp} className="text-xs font-bold uppercase tracking-widest text-gold-soft mb-6">{tx("NOTRE MISSION")}</motion.div>
+            <motion.h2 variants={fadeUp} className="text-3xl md:text-5xl lg:text-6xl font-extrabold text-white leading-tight mb-6">{tx("Sélectionner.")}{tx(' ')}
+              <span className="font-light text-gold-soft">{tx("Développer.")}</span>{tx(' ')}{tx("Commercialiser.")}</motion.h2>
+            <motion.p variants={fadeUp} className="text-lg md:text-xl text-white/75 leading-relaxed max-w-3xl mx-auto mt-6">{tx("Notre mission est de construire au Maroc une présence solide et durable pour des marques sélectionnées pour la qualité de leurs produits, leur savoir-faire et la pertinence de leurs gammes.")}</motion.p>
+            <motion.p variants={fadeUp} className="text-base text-white/60 leading-relaxed max-w-2xl mx-auto mt-4">{tx("De la conformité réglementaire au développement commercial, nous coordonnons les différentes étapes nécessaires à leur implantation et à leur développement.")}</motion.p>
           </motion.div>
         </div>
       </section>
@@ -184,15 +170,9 @@ export default function AProposPage() {
         {/* Text column — order-2 on mobile (after image), normal on desktop */}
         <div className="relative z-10 flex flex-col justify-center h-full min-h-[600px] w-full lg:w-[55%] px-8 md:px-16 lg:px-24 py-12 lg:py-28 order-2">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer} className="max-w-xl">
-            <motion.div variants={fadeUp} className="text-xs font-bold uppercase tracking-widest text-gold-soft mb-6">
-              NOTRE RÉSEAU
-            </motion.div>
-            <motion.h2 variants={fadeUp} className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-teal-deep leading-tight mb-6">
-              Un réseau au service de nos marques
-            </motion.h2>
-            <motion.p variants={fadeUp} className="text-lg text-anthracite-soft/80 leading-relaxed mb-12">
-              AFAQ HEALTH s’appuie sur un réseau de partenaires sélectionnés pour accompagner le développement de ses marques et assurer leur présence durable sur le marché marocain.
-            </motion.p>
+            <motion.div variants={fadeUp} className="text-xs font-bold uppercase tracking-widest text-gold-soft mb-6">{tx("NOTRE RÉSEAU")}</motion.div>
+            <motion.h2 variants={fadeUp} className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-teal-deep leading-tight mb-6">{tx("Un réseau au service de nos marques")}</motion.h2>
+            <motion.p variants={fadeUp} className="text-lg text-anthracite-soft/80 leading-relaxed mb-12">{tx("AFAQ HEALTH s’appuie sur un réseau de partenaires sélectionnés pour accompagner le développement de ses marques et assurer leur présence durable sur le marché marocain.")}</motion.p>
 
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
               {RESEAU_ITEMS.map((item, i) => (
@@ -207,8 +187,8 @@ export default function AProposPage() {
                   <div className="w-14 h-14 border border-sage-light rounded-xl flex items-center justify-center mb-4 bg-white shadow-sm">
                     <item.icon className="w-6 h-6 text-teal-deep" strokeWidth={1.5} />
                   </div>
-                  <h4 className="text-base font-bold text-anthracite-deep mb-2">{item.title}</h4>
-                  <p className="text-anthracite-soft/80 text-sm leading-relaxed">{item.desc}</p>
+                  <h4 className="text-base font-bold text-anthracite-deep mb-2">{tx(item.title)}</h4>
+                  <p className="text-anthracite-soft/80 text-sm leading-relaxed">{tx(item.desc)}</p>
                 </motion.div>
               ))}
             </div>
@@ -248,15 +228,9 @@ export default function AProposPage() {
               variants={staggerContainer}
               className="space-y-6 lg:pl-10"
             >
-              <motion.div variants={fadeUp} className="text-sm font-bold uppercase tracking-widest text-gold-soft">
-                NOTRE VISION
-              </motion.div>
-              <motion.h2 variants={fadeUp} className="text-3xl lg:text-4xl font-extrabold text-teal-deep leading-tight">
-                Construire et développer un portefeuille de marques complémentaires et exigeantes.
-              </motion.h2>
-              <motion.p variants={fadeUp} className="text-base lg:text-lg text-anthracite-soft/75 leading-relaxed">
-                Notre ambition est de développer progressivement notre portefeuille avec des marques sélectionnées pour leur qualité, leur savoir-faire et leur capacité à répondre durablement aux besoins du marché.
-              </motion.p>
+              <motion.div variants={fadeUp} className="text-sm font-bold uppercase tracking-widest text-gold-soft">{tx("NOTRE VISION")}</motion.div>
+              <motion.h2 variants={fadeUp} className="text-3xl lg:text-4xl font-extrabold text-teal-deep leading-tight">{tx("Construire et développer un portefeuille de marques complémentaires et exigeantes.")}</motion.h2>
+              <motion.p variants={fadeUp} className="text-base lg:text-lg text-anthracite-soft/75 leading-relaxed">{tx("Notre ambition est de développer progressivement notre portefeuille avec des marques sélectionnées pour leur qualité, leur savoir-faire et leur capacité à répondre durablement aux besoins du marché.")}</motion.p>
             </motion.div>
           </div>
         </div>

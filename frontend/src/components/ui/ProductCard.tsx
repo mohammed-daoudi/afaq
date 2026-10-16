@@ -1,7 +1,10 @@
 'use client';
-import React, { useState, useEffect } from 'react';
+import { useText } from '@/lib/useText';
+
+import React, { useState, useEffect, useRef, useId } from 'react';
+import { createPortal } from 'react-dom';
 import Image from 'next/image';
-import { useRouter } from 'next/navigation';
+import { useRouter } from '@/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import type { Product } from '@/lib/products';
 import { useTranslations } from 'next-intl';
@@ -28,7 +31,11 @@ const PRODUCT_CARD_IMAGE_ADJUSTMENTS: Record<string, { scale: number; translateX
 };
 
 export function ProductCard({ product }: ProductCardProps) {
+  const tx = useText();
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [glutenTooltip, setGlutenTooltip] = useState<{ left: number; top: number } | null>(null);
+  const glutenBadgeRef = useRef<HTMLButtonElement>(null);
+  const glutenTooltipId = useId();
   const router = useRouter();
   const t = useTranslations('ProductCard');
   const imageAdjustment = PRODUCT_CARD_IMAGE_ADJUSTMENTS[product.id] ?? {
@@ -37,15 +44,41 @@ export function ProductCard({ product }: ProductCardProps) {
     bottom: '0%',
   };
 
+  const showGlutenTooltip = () => {
+    const badge = glutenBadgeRef.current?.getBoundingClientRect();
+    if (!badge) return;
+
+    const width = 144;
+    const height = 44;
+    const gap = 8;
+    const fitsRight = badge.right + gap + width <= window.innerWidth - gap;
+    setGlutenTooltip({
+      left: fitsRight ? badge.right + gap : Math.max(gap, badge.right - width),
+      top: Math.max(gap, badge.top - height - gap),
+    });
+  };
+
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape' && isModalOpen) {
-        setIsModalOpen(false);
+      if (e.key === 'Escape') {
+        setGlutenTooltip(null);
+        if (isModalOpen) setIsModalOpen(false);
       }
     };
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [isModalOpen]);
+
+  useEffect(() => {
+    if (!glutenTooltip) return;
+    const closeTooltip = () => setGlutenTooltip(null);
+    window.addEventListener('resize', closeTooltip);
+    window.addEventListener('scroll', closeTooltip, true);
+    return () => {
+      window.removeEventListener('resize', closeTooltip);
+      window.removeEventListener('scroll', closeTooltip, true);
+    };
+  }, [glutenTooltip]);
 
   return (
     <>
@@ -66,7 +99,7 @@ export function ProductCard({ product }: ProductCardProps) {
           >
             <Image
               src={product.imagePath}
-              alt={product.name}
+              alt={tx(`${product.name} - Complément alimentaire ${product.brand} au Maroc`)}
               fill
               className="object-contain mix-blend-multiply opacity-90 transition-transform duration-500 md:group-hover:scale-105"
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
@@ -80,7 +113,18 @@ export function ProductCard({ product }: ProductCardProps) {
                 <span className="text-xs font-bold bg-green-100/90 text-green-700 px-2 py-1 rounded-full shadow-sm">🌿</span>
               )}
               {product.certifications.includes('Sans gluten') && (
-                <span className="text-xs font-bold bg-amber-100/90 text-amber-700 px-2 py-1 rounded-full shadow-sm">SG</span>
+                <button
+                  ref={glutenBadgeRef}
+                  type="button"
+                  aria-label={`${tx('SG')} : ${tx('Sans gluten')}`}
+                  aria-describedby={glutenTooltip ? glutenTooltipId : undefined}
+                  onMouseEnter={showGlutenTooltip}
+                  onMouseLeave={() => setGlutenTooltip(null)}
+                  onFocus={showGlutenTooltip}
+                  onBlur={() => setGlutenTooltip(null)}
+                  onClick={(event) => { event.stopPropagation(); showGlutenTooltip(); }}
+                  className="text-xs font-bold bg-amber-100/90 text-amber-700 px-2 py-1 rounded-full shadow-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold-soft"
+                >{tx("SG")}</button>
               )}
             </div>
           )}
@@ -89,19 +133,28 @@ export function ProductCard({ product }: ProductCardProps) {
         {/* Text Content */}
         <div className="flex flex-col flex-1 text-left mt-2">
           <span className="text-[10px] font-bold uppercase tracking-wider text-gold-soft mb-1 line-clamp-1">
-            {product.categories.join(' · ')}
+            {tx(product.categories.join(' · '))}
           </span>
           <h3 className="font-bold text-sm md:text-base text-anthracite-deep leading-snug group-hover:text-teal-deep transition-colors line-clamp-2">
-            {product.name}
+            <bdi dir="ltr">{tx(product.name)}</bdi>
           </h3>
           <p className="text-xs text-anthracite-soft mt-1.5 line-clamp-2">
-            {product.format || product.description}
+            {tx(product.format || product.description)}
           </p>
-          <div className="mt-4 flex items-center text-teal-deep text-xs font-bold group-hover:text-gold-soft transition-colors">
-            Découvrir le produit <span className="ml-1">→</span>
+          <div className="mt-4 flex items-center text-teal-deep text-xs font-bold group-hover:text-gold-soft transition-colors">{tx("Découvrir le produit ")}<span className="ml-1">→</span>
           </div>
         </div>
       </div>
+
+      {glutenTooltip && createPortal(
+        <div
+          id={glutenTooltipId}
+          role="tooltip"
+          style={glutenTooltip}
+          className="pointer-events-none fixed z-[120] flex h-11 w-36 items-center justify-center rounded-xl border border-gold-soft/40 bg-white px-3 text-sm font-semibold text-teal-deep shadow-lg"
+        >{tx('Sans gluten')}</div>,
+        document.body
+      )}
 
       {/* Quick-View Modal */}
       <AnimatePresence>
@@ -128,8 +181,7 @@ export function ProductCard({ product }: ProductCardProps) {
               <button
                 onClick={() => setIsModalOpen(false)}
                 className="absolute top-4 right-4 z-20 bg-white/80 backdrop-blur hover:bg-ivory-soft text-anthracite-soft px-3 py-1.5 rounded-full text-xs font-bold transition-colors shadow-sm flex items-center gap-1 border border-sage-light"
-              >
-                Quitter <span className="text-base leading-none">&times;</span>
+              >{tx("Quitter ")}<span className="text-base leading-none">{tx("×")}</span>
               </button>
 
               {/* Image Section */}
@@ -137,7 +189,7 @@ export function ProductCard({ product }: ProductCardProps) {
                 <div className="relative w-full h-full min-h-[250px]">
                   <Image
                     src={product.imagePath}
-                    alt={`${product.name}`}
+                    alt={tx(`${product.name} - Complément alimentaire ${product.brand} au Maroc`)}
                     fill
                     className="object-contain mix-blend-multiply opacity-90 p-4"
                     sizes="(max-width: 768px) 100vw, 50vw"
@@ -148,17 +200,17 @@ export function ProductCard({ product }: ProductCardProps) {
               {/* Content Section */}
               <div className="w-full md:w-1/2 p-8 md:p-10 flex flex-col justify-center overflow-y-auto">
                 <span className="text-xs font-bold uppercase tracking-wider text-teal-deep/60 mb-2">
-                  {product.categories.join(' · ')}
+                  {tx(product.categories.join(' · '))}
                 </span>
                 <h2 className="text-3xl font-extrabold text-teal-deep mb-2">
-                  {product.name}
+                  <bdi dir="ltr">{tx(product.name)}</bdi>
                 </h2>
                 <div className="text-sm font-semibold text-gold-soft mb-4 whitespace-pre-line">
-                  {product.format}
+                  {tx(product.format)}
                 </div>
                 <div className="text-sm text-anthracite-soft/80 mb-6 leading-relaxed space-y-2">
-                  {product.description.split('. ').map((sentence, idx, arr) => (
-                    <p key={idx}>{sentence}{idx < arr.length - 1 ? '.' : ''}</p>
+                  {tx(product.description).split('. ').map((sentence, idx, arr) => (
+                    <p key={idx}>{tx(sentence)}{idx < arr.length - 1 ? '.' : ''}</p>
                   ))}
                 </div>
 

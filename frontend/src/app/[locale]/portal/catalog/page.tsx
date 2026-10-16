@@ -1,4 +1,6 @@
 'use client';
+import { useText } from '@/lib/useText';
+
 
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
@@ -7,6 +9,7 @@ import { PRODUCT_CATEGORIES } from '@/lib/products';
 import api from '@/lib/api';
 
 export default function CatalogPage() {
+  const tx = useText();
   const { addItem, totalItems, setIsOpen } = useCart();
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedBrand, setSelectedBrand] = useState('Toutes les marques');
@@ -60,8 +63,8 @@ export default function CatalogPage() {
     <div className="space-y-8">
       <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-4">
         <div>
-          <h1 className="text-3xl font-bold text-teal-deep">Catalogue & Commandes</h1>
-          <p className="text-anthracite-soft/60 mt-1">Gérez vos approvisionnements avec vos tarifs négociés (PPH).</p>
+          <h1 className="text-3xl font-bold text-teal-deep">{tx("Catalogue & Commandes")}</h1>
+          <p className="text-anthracite-soft/60 mt-1">{tx("Gérez vos approvisionnements avec vos tarifs négociés (PPH).")}</p>
         </div>
         <button 
           onClick={() => setIsOpen(true)}
@@ -69,8 +72,7 @@ export default function CatalogPage() {
         >
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
             <path d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path>
-          </svg>
-          Mon panier ({totalItems})
+          </svg>{tx("Mon panier (")}{tx(totalItems)})
         </button>
       </div>
 
@@ -78,7 +80,7 @@ export default function CatalogPage() {
       <div className="bg-white p-4 rounded-2xl shadow-sm border border-sage-light flex flex-col md:flex-row gap-4">
         <input 
           type="text" 
-          placeholder="Rechercher une référence..." 
+          placeholder={tx("Rechercher une référence...")}
           className="flex-grow border border-sage-light rounded-xl px-4 py-2.5 focus:outline-none focus:border-teal-deep focus:ring-1 focus:ring-teal-deep text-sm"
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
@@ -88,18 +90,18 @@ export default function CatalogPage() {
           value={selectedFamily}
           onChange={(e) => setSelectedFamily(e.target.value)}
         >
-          <option>Toutes les familles</option>
-          {PRODUCT_CATEGORIES.map(f => <option key={f}>{f}</option>)}
+          <option>{tx("Toutes les familles")}</option>
+          {PRODUCT_CATEGORIES.map(f => <option key={f}>{tx(f)}</option>)}
         </select>
         <select 
           className="border border-sage-light rounded-xl px-4 py-2.5 focus:outline-none focus:border-teal-deep text-sm text-anthracite-soft font-medium bg-white"
           value={selectedBrand}
           onChange={(e) => setSelectedBrand(e.target.value)}
         >
-          <option>Toutes les marques</option>
-          <option>SOTYA</option>
-          <option>COLAGENOVA®</option>
-          <option>Naturamins</option>
+          <option>{tx("Toutes les marques")}</option>
+          <option><bdi dir="ltr">{tx("SOTYA")}</bdi></option>
+          <option><bdi dir="ltr">{tx("COLAGENOVA®")}</bdi></option>
+          <option><bdi dir="ltr">{tx("Naturamins")}</bdi></option>
         </select>
       </div>
 
@@ -122,31 +124,31 @@ export default function CatalogPage() {
                 <div className="relative w-full h-48 mb-6 bg-ivory-soft/50 rounded-2xl p-4 flex items-center justify-center group-hover:bg-ivory-soft transition-colors">
                   <Image 
                     src={product.imagePath} 
-                    alt={product.name}
+                    alt={tx(product.name)}
                     fill
                     className="object-contain p-2 drop-shadow-md md:group-hover:scale-105 transition-transform duration-500"
                   />
                   <div className="absolute top-2 left-2 bg-white/80 backdrop-blur px-2 py-1 rounded text-[10px] font-bold text-teal-deep uppercase">
-                    {product.brand}
+                    {tx(product.brand)}
                   </div>
                 </div>
                 
                 <div className="mb-2 flex-grow">
-                  <p className="text-xs text-anthracite-soft/60 mb-1">{product.category}</p>
-                  <h3 className="font-bold text-lg text-teal-deep leading-tight">{product.name}</h3>
-                  <p className="text-[11px] text-anthracite-soft/80 mt-1">{product.format}</p>
+                  <p className="text-xs text-anthracite-soft/60 mb-1">{tx(product.category)}</p>
+                  <h3 className="font-bold text-lg text-teal-deep leading-tight"><bdi dir="ltr">{tx(product.name)}</bdi></h3>
+                  <p className="text-[11px] text-anthracite-soft/80 mt-1">{tx(product.format)}</p>
                 </div>
                 
                 <div className="mt-4 pt-4 border-t border-sage-light/50 flex justify-between items-end">
                   <div>
-                    <p className="text-xs text-anthracite-soft/60 line-through">PPV: {ppv.toFixed(2)} MAD</p>
-                    <p className="text-2xl font-bold text-teal-deep tracking-tight">{pph.toFixed(2)} <span className="text-sm">MAD</span></p>
+                    <p className="text-xs text-anthracite-soft/60 line-through">{tx("PPV: ")}{tx(ppv.toFixed(2))}{tx(" MAD")}</p>
+                    <p className="text-2xl font-bold text-teal-deep tracking-tight">{tx(pph.toFixed(2))} <span className="text-sm">{tx("MAD")}</span></p>
                   </div>
                   <div className="text-right">
                     {stock > 50 ? (
-                      <p className="text-[11px] font-semibold text-green-600 mb-1.5 flex items-center justify-end gap-1"><span className="w-1.5 h-1.5 rounded-full bg-green-500"></span> En stock</p>
+                      <p className="text-[11px] font-semibold text-green-600 mb-1.5 flex items-center justify-end gap-1"><span className="w-1.5 h-1.5 rounded-full bg-green-500"></span>{tx(" En stock")}</p>
                     ) : (
-                      <p className="text-[11px] font-semibold text-orange-500 mb-1.5 flex items-center justify-end gap-1"><span className="w-1.5 h-1.5 rounded-full bg-orange-500 animate-pulse"></span> Stock limité ({stock})</p>
+                      <p className="text-[11px] font-semibold text-orange-500 mb-1.5 flex items-center justify-end gap-1"><span className="w-1.5 h-1.5 rounded-full bg-orange-500 animate-pulse"></span>{tx(" Stock limité (")}{tx(stock)})</p>
                     )}
                     <div className="flex items-center gap-1.5 bg-ivory-soft rounded-lg p-1 border border-sage-light">
                       <button 
@@ -174,9 +176,7 @@ export default function CatalogPage() {
               >
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                   <path d="M12 4v16m8-8H4"></path>
-                </svg>
-                Ajouter au panier
-              </button>
+                </svg>{tx("Ajouter au panier")}</button>
             </div>
           );
         })}
@@ -185,7 +185,7 @@ export default function CatalogPage() {
       
       {!isLoading && filteredProducts.length === 0 && (
         <div className="text-center py-20 bg-white rounded-3xl border border-sage-light">
-          <p className="text-anthracite-soft/60">Aucune référence ne correspond à votre recherche.</p>
+          <p className="text-anthracite-soft/60">{tx("Aucune référence ne correspond à votre recherche.")}</p>
         </div>
       )}
     </div>

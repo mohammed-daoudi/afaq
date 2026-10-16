@@ -1,4 +1,7 @@
 'use client';
+import { useText } from '@/lib/useText';
+import { Link } from '@/navigation';
+
 
 import React, { useState } from 'react';
 import { useTranslations } from 'next-intl';
@@ -24,6 +27,7 @@ const contactFormSchema = z.object({
 type Status = 'idle' | 'sending' | 'success';
 
 export default function ContactPage() {
+  const tx = useText();
   const [formType, setFormType] = useState('');
   const [copied, setCopied] = useState<string | null>(null);
   const [errors, setErrors] = useState<Record<string, string>>({});
@@ -151,10 +155,7 @@ export default function ContactPage() {
                   <div className="mt-1 text-gold-soft">📍</div>
                   <div>
                     <p className="font-semibold">{t('headquarters')}</p>
-                    <p className="text-sm text-sage-light mt-1">
-                      Bir Rami Ouest<br />
-                      14000 Kénitra — Maroc
-                    </p>
+                    <p className="text-sm text-sage-light mt-1">{tx("Bir Rami Ouest")}<br />{tx("14000 Kénitra — Maroc")}</p>
                   </div>
                 </div>
 
@@ -183,7 +184,7 @@ export default function ContactPage() {
                   <div className="flex-1">
                     <p className="font-semibold">{t('email')}</p>
                     <div className="flex items-center gap-2 mt-1">
-                      <p className="text-sm text-sage-light">contact@afaqhealth.com</p>
+                      <p className="text-sm text-sage-light">{tx("contact@afaqhealth.com")}</p>
                       <button 
                         onClick={() => handleCopy('contact@afaqhealth.com', 'email')}
                         className="text-sage-light hover:text-gold-soft transition-colors"
@@ -205,9 +206,9 @@ export default function ContactPage() {
               <p className="text-sm text-anthracite-soft/80 mb-4">
                 {t('proSpaceDesc')}
               </p>
-              <a href="/portal/login" className="text-teal-deep font-semibold text-sm underline hover:text-gold-soft transition-colors">
+              <Link href="/portal/login" className="text-teal-deep font-semibold text-sm underline hover:text-gold-soft transition-colors">
                 {t('b2bLogin')}
-              </a>
+              </Link>
             </div>
           </div>
 
@@ -231,12 +232,12 @@ export default function ContactPage() {
                   <option value="Devenir partenaire">{t('becomePartner')}</option>
                   <option value="Autre demande">{t('otherRequest')}</option>
                 </select>
-                {errors.formType && <p className="text-xs text-red-600">{errors.formType}</p>}
+                {errors.formType && <p className="text-xs text-red-600">{tx(errors.formType)}</p>}
               </div>
 
               {/* Honeypots (hidden from humans) */}
               <div className="hidden" aria-hidden="true">
-                <label htmlFor="website">Website</label>
+                <label htmlFor="website">{tx("Website")}</label>
                 <input id="website" name="website" type="text" tabIndex={-1} autoComplete="off" />
                 <input type="checkbox" name="botcheck" tabIndex={-1} autoComplete="off" />
               </div>
@@ -244,38 +245,38 @@ export default function ContactPage() {
               <div className="grid md:grid-cols-2 gap-6">
                 <div className="space-y-2">
                   <label htmlFor="name" className="text-sm font-semibold text-teal-deep">{t('fullName')}</label>
-                  <input type="text" id="name" name="name" required className="w-full px-4 py-3 rounded-xl border border-sage-light focus:border-teal-deep focus:ring-1 focus:ring-teal-deep outline-none bg-ivory-soft/30 transition-all" placeholder={t('fullNamePlaceholder')} aria-invalid={Boolean(errors.name)} />
-                  {errors.name && <p className="text-xs text-red-600">{errors.name}</p>}
+                  <input type="text" id="name" name="name" required className="w-full px-4 py-3 rounded-xl border border-sage-light focus:border-teal-deep focus:ring-1 focus:ring-teal-deep outline-none bg-ivory-soft/30 transition-all" placeholder={tx(t('fullNamePlaceholder'))} aria-invalid={Boolean(errors.name)} />
+                  {errors.name && <p className="text-xs text-red-600">{tx(errors.name)}</p>}
                 </div>
                 <div className="space-y-2">
                   <label htmlFor="company" className="text-sm font-semibold text-teal-deep">{t('company')}</label>
-                  <input type="text" id="company" name="company" required className="w-full px-4 py-3 rounded-xl border border-sage-light focus:border-teal-deep focus:ring-1 focus:ring-teal-deep outline-none bg-ivory-soft/30 transition-all" placeholder={t('companyPlaceholder')} aria-invalid={Boolean(errors.company)} />
-                  {errors.company && <p className="text-xs text-red-600">{errors.company}</p>}
+                  <input type="text" id="company" name="company" required className="w-full px-4 py-3 rounded-xl border border-sage-light focus:border-teal-deep focus:ring-1 focus:ring-teal-deep outline-none bg-ivory-soft/30 transition-all" placeholder={tx(t('companyPlaceholder'))} aria-invalid={Boolean(errors.company)} />
+                  {errors.company && <p className="text-xs text-red-600">{tx(errors.company)}</p>}
                 </div>
               </div>
 
               <div className="grid md:grid-cols-2 gap-6">
                 <div className="space-y-2">
                   <label htmlFor="email" className="text-sm font-semibold text-teal-deep">{t('proEmail')}</label>
-                  <input type="email" id="email" name="email" required className="w-full px-4 py-3 rounded-xl border border-sage-light focus:border-teal-deep focus:ring-1 focus:ring-teal-deep outline-none bg-ivory-soft/30 transition-all" placeholder="contact@..." aria-invalid={Boolean(errors.email)} />
-                  {errors.email && <p className="text-xs text-red-600">{errors.email}</p>}
+                  <input type="email" id="email" name="email" required className="w-full px-4 py-3 rounded-xl border border-sage-light focus:border-teal-deep focus:ring-1 focus:ring-teal-deep outline-none bg-ivory-soft/30 transition-all" placeholder={tx("contact@...")} aria-invalid={Boolean(errors.email)} />
+                  {errors.email && <p className="text-xs text-red-600">{tx(errors.email)}</p>}
                 </div>
                 <div className="space-y-2">
                   <label htmlFor="phone" className="text-sm font-semibold text-teal-deep">{t('phone')}</label>
-                  <input type="tel" id="phone" name="phone" className="w-full px-4 py-3 rounded-xl border border-sage-light focus:border-teal-deep focus:ring-1 focus:ring-teal-deep outline-none bg-ivory-soft/30 transition-all" placeholder={t('phonePlaceholder')} aria-invalid={Boolean(errors.phone)} />
-                  {errors.phone && <p className="text-xs text-red-600">{errors.phone}</p>}
+                  <input type="tel" id="phone" name="phone" className="w-full px-4 py-3 rounded-xl border border-sage-light focus:border-teal-deep focus:ring-1 focus:ring-teal-deep outline-none bg-ivory-soft/30 transition-all" placeholder={tx(t('phonePlaceholder'))} aria-invalid={Boolean(errors.phone)} />
+                  {errors.phone && <p className="text-xs text-red-600">{tx(errors.phone)}</p>}
                 </div>
               </div>
 
               <div className="space-y-2">
                 <label htmlFor="message" className="text-sm font-semibold text-teal-deep">{t('yourMessage')}</label>
-                <textarea id="message" name="message" required rows={5} className="w-full px-4 py-3 rounded-xl border border-sage-light focus:border-teal-deep focus:ring-1 focus:ring-teal-deep outline-none bg-ivory-soft/30 transition-all resize-none" placeholder={t('messagePlaceholder')} aria-invalid={Boolean(errors.message)}></textarea>
-                {errors.message && <p className="text-xs text-red-600">{errors.message}</p>}
+                <textarea id="message" name="message" required rows={5} className="w-full px-4 py-3 rounded-xl border border-sage-light focus:border-teal-deep focus:ring-1 focus:ring-teal-deep outline-none bg-ivory-soft/30 transition-all resize-none" placeholder={tx(t('messagePlaceholder'))} aria-invalid={Boolean(errors.message)}></textarea>
+                {errors.message && <p className="text-xs text-red-600">{tx(errors.message)}</p>}
               </div>
 
               {errors.form && (
                 <div className="rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700" role="alert">
-                  {errors.form}
+                  {tx(errors.form)}
                 </div>
               )}
 
@@ -306,25 +307,21 @@ export default function ContactPage() {
                       <div className="flex justify-center mb-6">
                         <Image
                           src="/images/logo.png"
-                          alt="Afaq Health"
+                          alt={tx("AFAQ HEALTH - Marques Européennes de Compléments Alimentaires au Maroc")}
                           width={160}
                           height={160}
                           className="object-contain drop-shadow-sm"
                         />
                       </div>
                       
-                      <h3 className="text-3xl font-bold text-teal-deep mb-3">Merci !</h3>
-                      <p className="text-anthracite-soft mb-8 font-medium">
-                        Votre message a bien été envoyé.<br/>Notre équipe reviendra vers vous très rapidement.
-                      </p>
+                      <h3 className="text-3xl font-bold text-teal-deep mb-3">{tx("Merci !")}</h3>
+                      <p className="text-anthracite-soft mb-8 font-medium">{tx("Votre message a bien été envoyé.")}<br/>{tx("Notre équipe reviendra vers vous très rapidement.")}</p>
                       
                       <button
                         onClick={() => setStatus('idle')}
                         type="button"
                         className="w-full px-6 py-4 bg-teal-deep text-white font-bold rounded-xl hover:bg-gold-soft hover:text-teal-deep transition-all shadow-md shimmer-effect uppercase tracking-wide text-sm"
-                      >
-                        Fermer
-                      </button>
+                      >{tx("Fermer")}</button>
                     </motion.div>
                   </motion.div>
                 )}
@@ -335,7 +332,7 @@ export default function ContactPage() {
                 disabled={status === 'sending'}
                 className="w-full md:w-auto px-8 py-4 bg-teal-deep text-white font-bold rounded-xl hover:bg-gold-soft hover:text-teal-deep transition-all shadow-md shimmer-effect disabled:opacity-60 disabled:cursor-not-allowed"
               >
-                {status === 'sending' ? 'Envoi en cours…' : t('send')}
+                {tx(status === 'sending' ? 'Envoi en cours…' : t('send'))}
               </button>
               
               <p className="text-xs text-anthracite-soft/60 mt-4">

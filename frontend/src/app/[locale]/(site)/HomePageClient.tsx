@@ -1,4 +1,6 @@
 'use client';
+import { useText } from '@/lib/useText';
+
 import React from "react";
 import { Link } from '@/navigation';
 import Image from "next/image";
@@ -53,6 +55,7 @@ const brands = [
 ];
 
 export function HomePageClient() {
+  const tx = useText();
   const featuredProducts = products.slice(0, 4);
   const t = useTranslations('HomePage');
 
@@ -94,7 +97,7 @@ export function HomePageClient() {
                 {['ISO 9001 / 22000', 'Marques Européennes', 'Expertise Nutrition & Bien-Être'].map((item, j) => (
                   <span key={j} className="flex items-center mx-10">
                     <span className="marquee-shine font-extrabold text-base md:text-xl tracking-wider">
-                      {item}
+                      {tx(item)}
                     </span>
                     <span className="ml-10 text-gold-soft/60 text-lg">·</span>
                   </span>
@@ -117,30 +120,18 @@ export function HomePageClient() {
             variants={staggerContainer}
             className="w-full lg:w-1/2 max-w-xl"
           >
-            <motion.div variants={fadeUp} className="text-sm md:text-base font-bold uppercase tracking-widest text-gold-soft mb-3">
-              L&apos;expertise derrière AFAQ Health
-            </motion.div>
-            <motion.h1 variants={fadeUp} className="text-3xl md:text-4xl lg:text-5xl font-black text-teal-deep leading-tight mb-6">
-              AFAQ HEALTH
-              <span className="block text-lg md:text-xl font-normal text-anthracite-soft/80 mt-2">
-                Compléments alimentaires & santé au Maroc
-              </span>
+            <motion.div variants={fadeUp} className="text-sm md:text-base font-bold uppercase tracking-widest text-gold-soft mb-3">{tx("L'expertise derrière AFAQ Health")}</motion.div>
+            <motion.h1 variants={fadeUp} className="text-3xl md:text-4xl lg:text-5xl font-black text-teal-deep leading-tight mb-6"><bdi dir="ltr">{tx("AFAQ HEALTH")}</bdi><span className="block text-lg md:text-xl font-normal text-anthracite-soft/80 mt-2">{tx("Compléments alimentaires & santé au Maroc")}</span>
             </motion.h1>
-            <motion.p variants={fadeUp} className="text-lg md:text-xl font-light text-anthracite-soft/90 leading-relaxed mb-6">
-              AFAQ HEALTH développe et distribue au Maroc un portefeuille de marques européennes sélectionnées pour leur qualité, leur savoir-faire et la pertinence de leurs gammes.
-            </motion.p>
-            <motion.p variants={fadeUp} className="text-lg md:text-xl font-light text-anthracite-soft/90 leading-relaxed mb-8">
-              Nous accompagnons nos partenaires de l&apos;accès au marché à la commercialisation, en associant expertise réglementaire, développement commercial et connaissance du marché marocain.
-            </motion.p>
+            <motion.p variants={fadeUp} className="text-lg md:text-xl font-light text-anthracite-soft/90 leading-relaxed mb-6">{tx("AFAQ HEALTH développe et distribue au Maroc un portefeuille de marques européennes sélectionnées pour leur qualité, leur savoir-faire et la pertinence de leurs gammes.")}</motion.p>
+            <motion.p variants={fadeUp} className="text-lg md:text-xl font-light text-anthracite-soft/90 leading-relaxed mb-8">{tx("Nous accompagnons nos partenaires de l'accès au marché à la commercialisation, en associant expertise réglementaire, développement commercial et connaissance du marché marocain.")}</motion.p>
 
             {/* Desktop Button */}
             <motion.div variants={fadeUp} className="hidden lg:block">
               <Link
                 href="/a-propos"
                 className="inline-block px-8 py-4 bg-teal-deep text-white font-bold text-base tracking-wide uppercase rounded-xl hover:bg-gold-soft hover:text-teal-deep transition-all shadow-md shimmer-effect"
-              >
-                Découvrir → Qui sommes-nous ?
-              </Link>
+              >{tx("Découvrir → Qui sommes-nous ?")}</Link>
             </motion.div>
           </motion.div>
 
@@ -148,7 +139,7 @@ export function HomePageClient() {
           <div className="w-full lg:w-[45%] h-[400px] lg:h-[500px] relative overflow-hidden shadow-2xl rounded-2xl">
             <Image
               src="/images/unsplash/science/khallliii-doctors-closer.png"
-              alt="Laboratoire et compléments alimentaires AFAQ HEALTH au Maroc"
+              alt={tx("Laboratoire et compléments alimentaires AFAQ HEALTH au Maroc")}
               fill
               className="object-cover object-[25%_top] lg:object-left-top scale-[1.12] origin-[36%_20%]"
               priority
@@ -166,9 +157,7 @@ export function HomePageClient() {
             <Link
               href="/a-propos"
               className="inline-block text-center w-full px-8 py-4 bg-teal-deep text-white font-bold text-base tracking-wide uppercase rounded-xl hover:bg-gold-soft hover:text-teal-deep transition-all shadow-md shimmer-effect"
-            >
-              Découvrir → Qui sommes-nous ?
-            </Link>
+            >{tx("Découvrir → Qui sommes-nous ?")}</Link>
           </motion.div>
 
         </div>
@@ -178,7 +167,7 @@ export function HomePageClient() {
       <section className="py-12 bg-white">
         <div className="container mx-auto px-4 max-w-7xl">
           <div className="text-center mb-6">
-            <h2 className="text-4xl md:text-5xl font-extrabold text-teal-deep uppercase tracking-wide">NOS MARQUES</h2>
+            <h2 className="text-4xl md:text-5xl font-extrabold text-teal-deep uppercase tracking-wide">{tx("NOS MARQUES")}</h2>
             <div className="w-24 h-1 bg-gold-soft mx-auto mt-4" />
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -195,7 +184,7 @@ export function HomePageClient() {
                     >
                       <Image
                         src={brand.logo}
-                        alt={brand.name}
+                        alt={tx(`${brand.name} - Marque de compléments alimentaires au Maroc`)}
                         fill
                         className={`object-contain transition-transform duration-500 group-hover:scale-105 p-6 mix-blend-multiply ${brand.logoClass.replace('object-contain', '').replace('object-cover', '')}`}
                         sizes="(max-width: 768px) 100vw, 33vw"
@@ -204,29 +193,28 @@ export function HomePageClient() {
 
                     <div className="flex flex-col flex-1 text-left">
                       <span className="text-xs font-bold uppercase tracking-wider text-gold-soft mb-1 line-clamp-1">
-                        {brand.subtitle}
+                        {tx(brand.subtitle)}
                       </span>
 
                       <h3 className="font-bold text-base md:text-lg text-anthracite-deep leading-snug group-hover:text-teal-deep transition-colors line-clamp-2 mb-2">
-                        {brand.name}
+                        <bdi dir="ltr">{tx(brand.name)}</bdi>
                       </h3>
 
                       <div className="mb-2">
                         <span className="inline-block px-2 py-1.5 rounded text-xs font-bold bg-sage-light/50 text-teal-deep uppercase tracking-wider">
-                          {brand.status}
+                          {tx(brand.status)}
                         </span>
                       </div>
 
                       <p className="text-sm md:text-[15px] text-anthracite-soft mt-1.5 line-clamp-3 flex-grow leading-relaxed">
-                        {brand.description}
+                        {tx(brand.description)}
                       </p>
 
                       <div className="mt-4 flex items-center text-teal-deep text-sm font-bold group-hover:text-gold-soft transition-colors border-t border-gray-100 pt-3">
                         <Link
                           href={`/produits?brand=${brand.slug}`}
                           className="w-full flex items-center"
-                        >
-                          Découvrir {brand.name} <span className="ml-1">→</span>
+                        >{tx("Découvrir ")}<bdi dir="ltr">{tx(brand.name)}</bdi> <span className="ml-1">→</span>
                         </Link>
                       </div>
                     </div>
@@ -260,9 +248,7 @@ export function HomePageClient() {
             <Link
               href="/produits"
               className="inline-block px-8 py-4 bg-teal-deep text-white font-bold text-base tracking-wide uppercase rounded-xl hover:bg-gold-soft hover:text-teal-deep transition-all shadow-md shimmer-effect"
-            >
-              tous les produits
-            </Link>
+            >{tx("tous les produits")}</Link>
           </div>
         </div>
       </section>
@@ -278,7 +264,7 @@ export function HomePageClient() {
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             <Link href="/conseils/magnesium-comment-choisir-bonne-formule" className="group block bg-white rounded-none overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 border border-gray-100 flex flex-col h-full">
               <div className="relative h-64 w-full shrink-0 overflow-hidden">
-                <Image src="/images/unsplash/formulations/formulation_3.jpg" alt="Conseil bien-être : Le rôle du magnésium au quotidien" fill className="object-cover group-hover:scale-110 transition-transform duration-700" />
+                <Image src="/images/unsplash/formulations/formulation_3.jpg" alt={tx("Conseil bien-être : Le rôle du magnésium au quotidien")} fill className="object-cover group-hover:scale-110 transition-transform duration-700" />
               </div>
               <div className="p-8 flex flex-col flex-grow">
                 <span className="text-gold-soft text-xs font-bold uppercase tracking-widest mb-3 block">{t('specialReport')}</span>
@@ -289,7 +275,7 @@ export function HomePageClient() {
 
             <Link href="/conseils/cycle-feminin-comprendre-role-huile-onagre" className="group block bg-white rounded-none overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 border border-gray-100 flex flex-col h-full">
               <div className="relative h-64 w-full shrink-0 overflow-hidden">
-                <Image src="/images/unsplash/beauty/beauty_3.jpg" alt="Conseil sommeil et mélatonine pour un repos naturel" fill className="object-cover group-hover:scale-110 transition-transform duration-700" />
+                <Image src="/images/unsplash/beauty/beauty_3.jpg" alt={tx("Conseil sommeil et mélatonine pour un repos naturel")} fill className="object-cover group-hover:scale-110 transition-transform duration-700" />
               </div>
               <div className="p-8 flex flex-col flex-grow">
                 <span className="text-gold-soft text-xs font-bold uppercase tracking-widest mb-3 block">{t('beautySkin')}</span>
@@ -300,7 +286,7 @@ export function HomePageClient() {
 
             <Link href="/conseils/sante-masculine-comprendre-prostate" className="group block bg-white rounded-none overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 border border-gray-100 flex flex-col h-full">
               <div className="relative h-64 w-full shrink-0 overflow-hidden">
-                <Image src="/images/unsplash/welness/prostal-man-taking-pill-full-frame.png?v=fr-labels-20261015" alt="Conseil santé masculine et vitalité" fill className="object-cover group-hover:scale-110 transition-transform duration-700" />
+                <Image src="/images/unsplash/welness/prostal-man-taking-pill-full-frame.png?v=fr-labels-20261015" alt={tx("Conseil santé masculine et vitalité")} fill className="object-cover group-hover:scale-110 transition-transform duration-700" />
               </div>
               <div className="p-8 flex flex-col flex-grow">
                 <span className="text-gold-soft text-xs font-bold uppercase tracking-widest mb-3 block">{t('pediatrics')}</span>
@@ -323,8 +309,8 @@ export function HomePageClient() {
         {/* Image de fond en fullscreen */}
         <div className="absolute inset-0 w-full h-full">
           <Image
-            src="/images/unsplash/science/Gemini_Generated_Image_54h96b54h96b54h9.jpg"
-            alt="Portail professionnel de santé et pharmacies partenaires AFAQ HEALTH"
+            src="/images/unsplash/science/espace-professionnel-afaq-health.jpg"
+            alt={tx("Portail professionnel de santé, médecins et pharmacies partenaires - AFAQ HEALTH Maroc")}
             fill
             className="object-cover object-[center_30%]"
             quality={90}
@@ -336,22 +322,14 @@ export function HomePageClient() {
 
         <div className="relative z-10 container mx-auto px-8 md:px-16 max-w-5xl text-center">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer}>
-            <motion.div variants={fadeUp} className="text-sm md:text-base font-extrabold uppercase tracking-[0.2em] text-gold-soft mb-6 drop-shadow-md">
-              ESPACE PROFESSIONNEL
-            </motion.div>
-            <motion.h2 variants={fadeUp} className="text-3xl md:text-5xl lg:text-6xl font-extrabold text-white leading-tight mb-6 drop-shadow-md">
-              Vous êtes un professionnel de santé ?
-            </motion.h2>
-            <motion.p variants={fadeUp} className="text-lg md:text-xl text-white/90 leading-relaxed max-w-3xl mx-auto mt-6 drop-shadow-md">
-              Découvrez nos conditions dédiées, et accédez à notre portail B2B.
-            </motion.p>
+            <motion.div variants={fadeUp} className="text-sm md:text-base font-extrabold uppercase tracking-[0.2em] text-gold-soft mb-6 drop-shadow-md">{tx("ESPACE PROFESSIONNEL")}</motion.div>
+            <motion.h2 variants={fadeUp} className="text-3xl md:text-5xl lg:text-6xl font-extrabold text-white leading-tight mb-6 drop-shadow-md">{tx("Vous êtes un professionnel de santé ?")}</motion.h2>
+            <motion.p variants={fadeUp} className="text-lg md:text-xl text-white/90 leading-relaxed max-w-3xl mx-auto mt-6 drop-shadow-md">{tx("Découvrez nos conditions dédiées, et accédez à notre portail B2B.")}</motion.p>
             <motion.div variants={fadeUp} className="mt-10">
               <Link
                 href="/portal/login"
                 className="inline-block px-8 md:px-10 py-4 bg-teal-deep text-white font-bold text-sm tracking-wide uppercase rounded-xl hover:bg-gold-soft hover:text-teal-deep transition-all shadow-md shimmer-effect"
-              >
-                Accéder à l&apos;espace pro →
-              </Link>
+              >{tx("Accéder à l'espace pro →")}</Link>
             </motion.div>
           </motion.div>
         </div>

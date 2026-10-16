@@ -1,4 +1,6 @@
 'use client';
+import { useText } from '@/lib/useText';
+
 
 import React, { useState, useEffect, useRef } from 'react';
 import { useRouter } from '@/navigation';
@@ -7,6 +9,7 @@ import Image from 'next/image';
 import { useTranslations } from 'next-intl';
 
 export function GlobalSearch() {
+  const tx = useText();
   const [query, setQuery] = useState('');
   const [isOpen, setIsOpen] = useState(false);
   const router = useRouter();
@@ -42,7 +45,7 @@ export function GlobalSearch() {
             setIsOpen(true);
           }}
           onFocus={() => setIsOpen(true)}
-          placeholder={t('searchPlaceholder')}
+          placeholder={tx(t('searchPlaceholder'))}
           className="w-full pl-10 pr-10 py-2.5 bg-ivory-soft border border-sage-light/50 rounded-xl text-sm focus:outline-none focus:border-teal-deep/50 transition-colors placeholder:text-anthracite-soft/50 text-anthracite-soft font-medium shadow-inner"
         />
         <div className="absolute left-3 top-1/2 -translate-y-1/2 text-anthracite-soft/50">
@@ -80,12 +83,12 @@ export function GlobalSearch() {
                   >
                     {p.imagePath && (
                       <div className="relative w-12 h-12 flex-shrink-0 bg-ivory-soft rounded-lg overflow-hidden p-1 border border-sage-light/30 flex items-center justify-center">
-                        <Image src={p.imagePath} alt={p.name} width={40} height={40} className="object-contain mix-blend-multiply" />
+                        <Image src={p.imagePath} alt={tx(`${p.name} - ${p.brand} Maroc`)} width={40} height={40} className="object-contain mix-blend-multiply" />
                       </div>
                     )}
                     <div>
-                      <p className="text-sm font-bold text-teal-deep line-clamp-1">{p.name}</p>
-                      <p className="text-xs text-anthracite-soft/70 line-clamp-1">{p.brand}</p>
+                      <p className="text-sm font-bold text-teal-deep line-clamp-1"><bdi dir="ltr">{tx(p.name)}</bdi></p>
+                      <p className="text-xs text-anthracite-soft/70 line-clamp-1">{tx(p.brand)}</p>
                     </div>
                   </button>
                 </li>
@@ -94,7 +97,7 @@ export function GlobalSearch() {
           ) : (
              <div className="p-6 text-center">
                <p className="text-sm text-anthracite-soft/70">{t('noResultsFor')}</p>
-               <p className="text-sm font-bold text-teal-deep line-clamp-1 break-all mt-1">"{query}"</p>
+               <p className="text-sm font-bold text-teal-deep line-clamp-1 break-all mt-1">"{tx(query)}"</p>
              </div>
           )}
         </div>

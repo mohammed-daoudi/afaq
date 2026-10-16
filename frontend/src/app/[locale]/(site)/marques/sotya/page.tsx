@@ -1,4 +1,6 @@
 'use client';
+import { useText } from '@/lib/useText';
+
 
 import React from 'react';
 import { Card } from '@/components/ui/Card';
@@ -20,6 +22,7 @@ const fadeUp = {
 };
 
 export default function SotyaPage() {
+  const tx = useText();
   return (
     <div className="min-h-screen bg-sage-light/20 pt-32 pb-24 overflow-hidden">
       <div className="container mx-auto px-4">
@@ -29,18 +32,10 @@ export default function SotyaPage() {
           initial="hidden" animate="visible" variants={{ hidden: { opacity: 0 }, visible: { opacity: 1, transition: { staggerChildren: 0.2 } } }}
           className="max-w-4xl mx-auto text-center mb-24 space-y-8"
         >
-          <motion.div variants={fadeUp} className="inline-block px-4 py-1.5 text-xs font-bold tracking-widest text-teal-deep bg-white border border-teal-deep/20 rounded-full uppercase mb-4 shadow-sm">
-            Distribution exclusive AFAQ HEALTH — Maroc & Afrique de l'Ouest
-          </motion.div>
-          <motion.h1 variants={fadeUp} className="text-5xl md:text-6xl lg:text-7xl font-black text-teal-deep leading-tight">
-            SOTYA
-          </motion.h1>
-          <motion.h2 variants={fadeUp} className="text-2xl md:text-3xl font-bold text-gold-soft">
-            Des solutions nutritionnelles pour accompagner le quotidien.
-          </motion.h2>
-          <motion.p variants={fadeUp} className="text-xl text-anthracite-soft/80 font-medium max-w-3xl mx-auto leading-relaxed">
-            SOTYA est une marque européenne de compléments alimentaires proposant une gamme diversifiée destinée à accompagner différents besoins liés au bien-être, à la vitalité, à la beauté et à la santé au quotidien.
-          </motion.p>
+          <motion.div variants={fadeUp} className="inline-block px-4 py-1.5 text-xs font-bold tracking-widest text-teal-deep bg-white border border-teal-deep/20 rounded-full uppercase mb-4 shadow-sm">{tx("Distribution exclusive AFAQ HEALTH — Maroc & Afrique de l'Ouest")}</motion.div>
+          <motion.h1 variants={fadeUp} className="text-5xl md:text-6xl lg:text-7xl font-black text-teal-deep leading-tight"><bdi dir="ltr">{tx("SOTYA")}</bdi></motion.h1>
+          <motion.h2 variants={fadeUp} className="text-2xl md:text-3xl font-bold text-gold-soft">{tx("Des solutions nutritionnelles pour accompagner le quotidien.")}</motion.h2>
+          <motion.p variants={fadeUp} className="text-xl text-anthracite-soft/80 font-medium max-w-3xl mx-auto leading-relaxed">{tx("SOTYA est une marque européenne de compléments alimentaires proposant une gamme diversifiée destinée à accompagner différents besoins liés au bien-être, à la vitalité, à la beauté et à la santé au quotidien.")}</motion.p>
         </motion.div>
 
         {/* La marque */}
@@ -50,10 +45,8 @@ export default function SotyaPage() {
           viewport={{ once: true, margin: "-100px" }}
           className="max-w-4xl mx-auto bg-white rounded-3xl p-10 shadow-lg border border-sage-light/50 mb-24 text-center"
         >
-          <h3 className="text-3xl font-bold text-teal-deep mb-6">À propos de la marque</h3>
-          <p className="text-lg text-anthracite-soft/80 leading-relaxed ">
-            "Fondée en Espagne, SOTYA (Laboratoires Bescorp) a plus de 40 ans d'expérience dans la fabrication de compléments alimentaires. Notre mission est d'offrir des compléments nutritionnels efficaces avec un engagement strict envers la qualité et la traçabilité de nos matières premières. Tous nos produits sont fabriqués selon les normes européennes les plus exigeantes."
-          </p>
+          <h3 className="text-3xl font-bold text-teal-deep mb-6">{tx("À propos de la marque")}</h3>
+          <p className="text-lg text-anthracite-soft/80 leading-relaxed ">{tx("\"Fondée en Espagne, SOTYA (Laboratoires Bescorp) a plus de 40 ans d'expérience dans la fabrication de compléments alimentaires. Notre mission est d'offrir des compléments nutritionnels efficaces avec un engagement strict envers la qualité et la traçabilité de nos matières premières. Tous nos produits sont fabriqués selon les normes européennes les plus exigeantes.\"")}</p>
         </motion.div>
 
         {/* Les univers SOTYA */}
@@ -62,8 +55,8 @@ export default function SotyaPage() {
             initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl font-extrabold text-teal-deep mb-4">Les univers SOTYA</h2>
-            <p className="text-xl text-anthracite-soft/80">Des gammes structurées pour répondre à chaque besoin.</p>
+            <h2 className="text-4xl font-extrabold text-teal-deep mb-4">{tx("Les univers SOTYA")}</h2>
+            <p className="text-xl text-anthracite-soft/80">{tx("Des gammes structurées pour répondre à chaque besoin.")}</p>
           </motion.div>
           
           <motion.div 
@@ -74,7 +67,7 @@ export default function SotyaPage() {
             {universes.map((universe, index) => (
               <motion.div variants={fadeUp} key={index}>
                 <Card className="border border-sage-light shadow-sm hover:shadow-md transition-all bg-white p-8 text-center group cursor-pointer h-full flex items-center justify-center">
-                  <h3 className="text-xl font-bold text-teal-deep group-hover:text-gold-soft transition-colors">{universe}</h3>
+                  <h3 className="text-xl font-bold text-teal-deep group-hover:text-gold-soft transition-colors">{tx(universe)}</h3>
                 </Card>
               </motion.div>
             ))}
@@ -87,16 +80,12 @@ export default function SotyaPage() {
             initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}
           >
             <Card className="h-full bg-teal-deep text-white p-12 border-none flex flex-col justify-center items-center text-center rounded-xl hover:bg-gold-soft hover:text-teal-deep transition-all shadow-md shimmer-effect">
-              <h3 className="text-3xl font-bold mb-4">Découvrez la gamme</h3>
-              <p className="text-white/80 mb-8">
-                Parcourez l'ensemble des références SOTYA homologuées au Maroc et disponibles dans notre catalogue exclusif.
-              </p>
+              <h3 className="text-3xl font-bold mb-4">{tx("Découvrez la gamme")}</h3>
+              <p className="text-white/80 mb-8">{tx("Parcourez l'ensemble des références SOTYA homologuées au Maroc et disponibles dans notre catalogue exclusif.")}</p>
               <Link
                 href="/produits"
                 className="shimmer-effect bg-white text-teal-deep font-bold px-8 py-4 rounded-xl hover:bg-sage-light transition-all shadow-md"
-              >
-                Voir les produits
-              </Link>
+              >{tx("Voir les produits")}</Link>
             </Card>
           </motion.div>
           
@@ -104,16 +93,12 @@ export default function SotyaPage() {
             initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}
           >
             <Card className="h-full bg-white p-12 rounded-[2rem] border border-sage-light shadow-xl flex flex-col justify-center items-center text-center">
-              <h3 className="text-3xl font-bold text-teal-deep mb-4">Où trouver SOTYA ?</h3>
-              <p className="text-anthracite-soft/80 mb-8">
-                Retrouvez les produits SOTYA auprès des pharmacies partenaires AFAQ HEALTH à travers le Maroc.
-              </p>
+              <h3 className="text-3xl font-bold text-teal-deep mb-4">{tx("Où trouver SOTYA ?")}</h3>
+              <p className="text-anthracite-soft/80 mb-8">{tx("Retrouvez les produits SOTYA auprès des pharmacies partenaires AFAQ HEALTH à travers le Maroc.")}</p>
               <Link
                 href="/pharmacies"
                 className="inline-block bg-teal-deep text-white font-bold px-8 py-4 rounded-xl hover:bg-gold-soft hover:text-teal-deep transition-all shadow-md shimmer-effect"
-              >
-                Trouver une pharmacie
-              </Link>
+              >{tx("Trouver une pharmacie")}</Link>
             </Card>
           </motion.div>
         </div>

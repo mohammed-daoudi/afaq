@@ -1,8 +1,11 @@
 'use client';
+import { useText } from '@/lib/useText';
+
 
 import React, { useState, useEffect } from "react";
-import { Link, usePathname } from '@/navigation';
+import { Link, usePathname, useRouter } from '@/navigation';
 import { Logo } from "@/components/ui/Logo";
+import { LanguageSwitcher } from '@/components/ui/LanguageSwitcher';
 import { PortalProviders } from "@/components/portal/PortalProviders";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -11,6 +14,8 @@ export default function PortalLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const tx = useText();
+  const router = useRouter();
   const pathname = usePathname();
   const isAuthPage = pathname === '/portal/login' || pathname === '/portal/register';
   
@@ -42,7 +47,8 @@ export default function PortalLayout({
 
   if (isAuthPage) {
     return (
-      <div className="min-h-screen bg-ivory-soft">
+      <div className="relative min-h-screen bg-ivory-soft">
+        <div className="absolute end-4 top-4 z-40"><LanguageSwitcher /></div>
         {children}
       </div>
     );
@@ -60,9 +66,7 @@ export default function PortalLayout({
       <div className="p-6 border-b border-sage-light flex justify-between items-center">
         <div>
           <Logo />
-          <div className="mt-4 text-xs font-bold text-teal-deep uppercase tracking-wider">
-            Portail B2B
-          </div>
+          <div className="mt-4 text-xs font-bold text-teal-deep uppercase tracking-wider">{tx("Portail B2B")}</div>
         </div>
         {/* Mobile Close Button inside sidebar */}
         <button 
@@ -86,8 +90,8 @@ export default function PortalLayout({
               onClick={() => setIsMobileMenuOpen(false)}
               className={`block px-4 py-3 text-sm font-medium flex items-center gap-3 ${ isActive ? 'bg-teal-deep text-white' : 'text-anthracite-soft' } rounded-xl hover:bg-gold-soft hover:text-teal-deep transition-all shadow-md shimmer-effect`}
             >
-              <span>{item.icon}</span>
-              {item.name}
+              <span>{tx(item.icon)}</span>
+              {tx(item.name)}
             </Link>
           );
         })}
@@ -96,14 +100,12 @@ export default function PortalLayout({
       <div className="p-4 border-t border-sage-light bg-ivory-soft/50">
         <div className="flex items-center gap-3 px-2 py-2">
           <div className="w-10 h-10 rounded-full bg-teal-deep/10 text-teal-deep border border-teal-deep/20 flex items-center justify-center font-bold text-sm shrink-0">
-            {userInitials}
+            {tx(userInitials)}
           </div>
           <div className="overflow-hidden">
-            <p className="text-sm font-bold text-teal-deep truncate" title={userName}>{userName}</p>
+            <p className="text-sm font-bold text-teal-deep truncate" title={tx(userName)}>{tx(userName)}</p>
             <p className="text-xs text-anthracite-soft/60 flex items-center gap-1">
-              <span className="w-2 h-2 rounded-full bg-green-500 inline-block"></span>
-              Compte Validé
-            </p>
+              <span className="w-2 h-2 rounded-full bg-green-500 inline-block"></span>{tx("Compte Validé")}</p>
           </div>
         </div>
         <button 
@@ -111,11 +113,10 @@ export default function PortalLayout({
           onClick={() => {
             document.cookie = `auth_token=; Path=/; Max-Age=0; SameSite=Lax${window.location.protocol === 'https:' ? '; Secure' : ''}`;
             localStorage.removeItem('afaq_b2b_user');
-            window.location.href = '/portal/login';
+            router.replace('/portal/login');
+            router.refresh();
           }}
-        >
-          Déconnexion
-        </button>
+        >{tx("Déconnexion")}</button>
       </div>
     </>
   );
@@ -173,6 +174,7 @@ export default function PortalLayout({
         {/* Main Content Area */}
         <main className="flex-grow p-4 pt-20 md:p-8 md:pt-8 w-full overflow-x-hidden">
           <div className="max-w-7xl mx-auto">
+            <div className="mb-4 flex justify-end"><LanguageSwitcher /></div>
             {children}
           </div>
         </main>

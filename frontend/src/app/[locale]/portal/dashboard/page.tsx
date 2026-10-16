@@ -1,4 +1,7 @@
 'use client';
+import { useText } from '@/lib/useText';
+import { useLocale } from 'next-intl';
+
 import React, { useEffect, useState } from 'react';
 import { Card, CardContent } from '@/components/ui/Card';
 import api from '@/lib/api';
@@ -12,6 +15,8 @@ interface Order {
 }
 
 export default function DashboardPage() {
+  const tx = useText();
+  const locale = useLocale();
   const [orders, setOrders] = useState<Order[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
@@ -47,15 +52,15 @@ export default function DashboardPage() {
   const getStatusBadge = (status: string) => {
     switch (status) {
       case 'commande':
-        return <span className="px-2 py-1 bg-yellow-100 text-yellow-800 rounded-full text-xs font-semibold">En attente</span>;
+        return <span className="px-2 py-1 bg-yellow-100 text-yellow-800 rounded-full text-xs font-semibold">{tx("En attente")}</span>;
       case 'en_preparation':
-        return <span className="px-2 py-1 bg-blue-100 text-blue-800 rounded-full text-xs font-semibold">En préparation</span>;
+        return <span className="px-2 py-1 bg-blue-100 text-blue-800 rounded-full text-xs font-semibold">{tx("En préparation")}</span>;
       case 'expediee':
-        return <span className="px-2 py-1 bg-purple-100 text-purple-800 rounded-full text-xs font-semibold">Expédiée</span>;
+        return <span className="px-2 py-1 bg-purple-100 text-purple-800 rounded-full text-xs font-semibold">{tx("Expédiée")}</span>;
       case 'livree':
-        return <span className="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs font-semibold">Livrée</span>;
+        return <span className="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs font-semibold">{tx("Livrée")}</span>;
       default:
-        return <span className="px-2 py-1 bg-gray-100 text-gray-800 rounded-full text-xs font-semibold">{status}</span>;
+        return <span className="px-2 py-1 bg-gray-100 text-gray-800 rounded-full text-xs font-semibold">{tx(status)}</span>;
     }
   };
 
@@ -63,8 +68,8 @@ export default function DashboardPage() {
     <div className="space-y-8">
       <div className="flex justify-between items-end">
         <div>
-          <h1 className="text-3xl font-bold text-teal-deep">Tableau de Bord</h1>
-          <p className="text-anthracite-soft/60 mt-1">Bienvenue sur votre espace partenaire, <span className="font-bold text-teal-deep">{userName}</span>.</p>
+          <h1 className="text-3xl font-bold text-teal-deep">{tx("Tableau de Bord")}</h1>
+          <p className="text-anthracite-soft/60 mt-1">{tx("Bienvenue sur votre espace partenaire, ")}<span className="font-bold text-teal-deep">{tx(userName)}</span>.</p>
         </div>
       </div>
 
@@ -74,72 +79,68 @@ export default function DashboardPage() {
         </div>
       ) : error ? (
         <div className="bg-red-50 text-red-600 p-4 rounded-xl border border-red-200">
-          {error}
+          {tx(error)}
         </div>
       ) : (
         <>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <Card>
               <CardContent className="p-6">
-                <h3 className="text-sm font-semibold text-anthracite-soft/60 mb-2 uppercase tracking-wider">Commandes en cours</h3>
-                <p className="text-4xl font-bold text-teal-deep">{activeOrders.length}</p>
-                <Link href="/portal/orders" className="text-sm text-gold-soft font-medium mt-2 hover:underline inline-block">Voir le suivi →</Link>
+                <h3 className="text-sm font-semibold text-anthracite-soft/60 mb-2 uppercase tracking-wider">{tx("Commandes en cours")}</h3>
+                <p className="text-4xl font-bold text-teal-deep">{tx(activeOrders.length)}</p>
+                <Link href="/portal/orders" className="text-sm text-gold-soft font-medium mt-2 hover:underline inline-block">{tx("Voir le suivi →")}</Link>
               </CardContent>
             </Card>
             <Card>
               <CardContent className="p-6">
-                <h3 className="text-sm font-semibold text-anthracite-soft/60 mb-2 uppercase tracking-wider">Total Historique</h3>
+                <h3 className="text-sm font-semibold text-anthracite-soft/60 mb-2 uppercase tracking-wider">{tx("Total Historique")}</h3>
                 <p className="text-4xl font-bold text-teal-deep">
-                  {orders.reduce((sum, o) => sum + Number(o.total_amount), 0).toFixed(2)} <span className="text-2xl">MAD</span>
+                  {orders.reduce((sum, o) => sum + Number(o.total_amount), 0).toFixed(2)} <span className="text-2xl">{tx("MAD")}</span>
                 </p>
-                <p className="text-sm text-teal-deep/60 mt-2">{orders.length} commandes au total</p>
+                <p className="text-sm text-teal-deep/60 mt-2">{tx(orders.length)}{tx(" commandes au total")}</p>
               </CardContent>
             </Card>
             <Card className="bg-teal-deep text-white rounded-xl hover:bg-gold-soft hover:text-teal-deep transition-all shadow-md shimmer-effect">
               <CardContent className="p-6">
-                <h3 className="text-sm font-semibold text-sage-light/60 mb-2 uppercase tracking-wider">Accès Rapide</h3>
-                <p className="text-2xl font-bold text-gold-soft mb-2">Catalogue B2B</p>
-                <p className="text-sm text-ivory-soft/80 mb-4">Commandez directement aux prix professionnels (PPH).</p>
-                <Link href="/portal/catalog" className="px-4 py-2 bg-gold-soft text-white font-bold rounded-lg text-sm hover:bg-white hover:text-teal-deep transition-colors">
-                  Voir le catalogue
-                </Link>
+                <h3 className="text-sm font-semibold text-sage-light/60 mb-2 uppercase tracking-wider">{tx("Accès Rapide")}</h3>
+                <p className="text-2xl font-bold text-gold-soft mb-2">{tx("Catalogue B2B")}</p>
+                <p className="text-sm text-ivory-soft/80 mb-4">{tx("Commandez directement aux prix professionnels (PPH).")}</p>
+                <Link href="/portal/catalog" className="px-4 py-2 bg-gold-soft text-white font-bold rounded-lg text-sm hover:bg-white hover:text-teal-deep transition-colors">{tx("Voir le catalogue")}</Link>
               </CardContent>
             </Card>
           </div>
 
           <div className="flex justify-between items-center pt-4">
-            <h2 className="text-2xl font-bold text-teal-deep">Dernières Commandes</h2>
+            <h2 className="text-2xl font-bold text-teal-deep">{tx("Dernières Commandes")}</h2>
             {orders.length > 0 && (
-              <Link href="/portal/orders" className="text-sm font-bold text-gold-soft hover:underline">Voir tout →</Link>
+              <Link href="/portal/orders" className="text-sm font-bold text-gold-soft hover:underline">{tx("Voir tout →")}</Link>
             )}
           </div>
           
           <Card>
             {recentOrders.length === 0 ? (
-              <div className="p-8 text-center text-anthracite-soft/60">
-                Vous n'avez passé aucune commande pour le moment.
-              </div>
+              <div className="p-8 text-center text-anthracite-soft/60">{tx("Vous n'avez passé aucune commande pour le moment.")}</div>
             ) : (
               <div className="overflow-x-auto">
                 <table className="w-full text-sm text-left">
                   <thead className="text-xs text-anthracite-soft/60 uppercase bg-sage-light">
                     <tr>
-                      <th className="px-6 py-4">N° Commande</th>
-                      <th className="px-6 py-4">Date</th>
-                      <th className="px-6 py-4">Montant</th>
-                      <th className="px-6 py-4">Statut</th>
+                      <th className="px-6 py-4">{tx("N° Commande")}</th>
+                      <th className="px-6 py-4">{tx("Date")}</th>
+                      <th className="px-6 py-4">{tx("Montant")}</th>
+                      <th className="px-6 py-4">{tx("Statut")}</th>
                     </tr>
                   </thead>
                   <tbody>
                     {recentOrders.map(order => (
                       <tr key={order.id} className="border-b border-sage-light last:border-0">
-                        <td className="px-6 py-4 font-medium text-teal-deep">CMD-{order.id.toString().padStart(4, '0')}</td>
+                        <td className="px-6 py-4 font-medium text-teal-deep">{tx("CMD-")}{tx(order.id.toString().padStart(4, '0'))}</td>
                         <td className="px-6 py-4">
-                          {new Date(order.created_at).toLocaleDateString('fr-FR', { day: '2-digit', month: 'short', year: 'numeric' })}
+                          {tx(new Date(order.created_at).toLocaleDateString(locale, { day: '2-digit', month: 'short', year: 'numeric' }))}
                         </td>
-                        <td className="px-6 py-4 font-bold">{Number(order.total_amount).toFixed(2)} MAD</td>
+                        <td className="px-6 py-4 font-bold">{tx(Number(order.total_amount).toFixed(2))}{tx(" MAD")}</td>
                         <td className="px-6 py-4">
-                          {getStatusBadge(order.status)}
+                          {tx(getStatusBadge(order.status))}
                         </td>
                       </tr>
                     ))}

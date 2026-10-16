@@ -96,3 +96,13 @@ h1, h2, h3, h4, h5, h6 {
   0% { background-position: 200% center; }
   100% { background-position: -200% center; }
 }
+
+/* Match reading direction to the selected language while retaining French names. */
+html[dir="rtl"] body {
+  font-family: Tahoma, Arial, sans-serif;
+}
+html[dir="rtl"] .text-left { text-align: right; }
+html[dir="rtl"] .text-right { text-align: left; }
+html[dir="rtl"] .tracking-widest,
+html[dir="rtl"] .tracking-wider,
+html[dir="rtl"] .tracking-wide { letter-spacing: normal; }

@@ -1,4 +1,6 @@
 'use client';
+import { useText } from '@/lib/useText';
+
 
 import React, { useState } from 'react';
 import Image from 'next/image';
@@ -145,6 +147,7 @@ const fadeUp = {
 };
 
 export default function FaqPage() {
+  const tx = useText();
   const [openKey, setOpenKey] = useState<string | null>('0-0');
 
   const toggleAccordion = (key: string) => {
@@ -158,10 +161,10 @@ export default function FaqPage() {
     '@type': 'FAQPage',
     mainEntity: allFaqs.map((item) => ({
       '@type': 'Question',
-      name: item.q,
+      name: tx(item.q),
       acceptedAnswer: {
         '@type': 'Answer',
-        text: item.a,
+        text: tx(item.a),
       },
     })),
   };
@@ -180,15 +183,10 @@ export default function FaqPage() {
           initial="hidden" animate="visible" variants={{ hidden: { opacity: 0 }, visible: { opacity: 1, transition: { staggerChildren: 0.2 } } }}
           className="max-w-3xl mx-auto text-center mb-16 space-y-6"
         >
-          <motion.div variants={fadeUp} className="inline-block px-3 py-1 text-xs font-semibold tracking-wider text-teal-deep bg-sage-light rounded-full uppercase">
-            Guide & Conseils Santé
-          </motion.div>
-          <motion.h1 variants={fadeUp} className="text-4xl md:text-5xl font-extrabold text-teal-deep">
-            Questions Fréquentes sur nos <span className="text-gold-soft">Compléments Alimentaires</span>
+          <motion.div variants={fadeUp} className="inline-block px-3 py-1 text-xs font-semibold tracking-wider text-teal-deep bg-sage-light rounded-full uppercase">{tx("Guide & Conseils Santé")}</motion.div>
+          <motion.h1 variants={fadeUp} className="text-4xl md:text-5xl font-extrabold text-teal-deep">{tx("Questions Fréquentes sur nos ")}<span className="text-gold-soft">{tx("Compléments Alimentaires")}</span>
           </motion.h1>
-          <motion.p variants={fadeUp} className="text-lg text-anthracite-soft/80 leading-relaxed">
-            Trouvez les réponses sur nos marques, la disponibilité au Maroc, le choix de vos compléments alimentaires, leurs modes d’utilisation et les précautions à observer.
-          </motion.p>
+          <motion.p variants={fadeUp} className="text-lg text-anthracite-soft/80 leading-relaxed">{tx("Trouvez les réponses sur nos marques, la disponibilité au Maroc, le choix de vos compléments alimentaires, leurs modes d’utilisation et les précautions à observer.")}</motion.p>
         </motion.div>
 
         {/* Content with Visual Card and Categorized Accordions */}
@@ -206,28 +204,20 @@ export default function FaqPage() {
             >
               <Image 
                 src="/uploaded/faq_support.png" 
-                alt="Compléments alimentaires certifiés en pharmacie au Maroc - AFAQ HEALTH" 
+                alt={tx("Compléments alimentaires certifiés en pharmacie au Maroc - AFAQ HEALTH")}
                 fill 
                 sizes="33vw"
                 className="object-cover group-hover:scale-105 transition-transform duration-700" 
               />
               <div className="absolute inset-0 bg-teal-deep/15 pointer-events-none" />
               <div className="absolute bottom-5 left-5 right-5 bg-white/95 backdrop-blur-md p-6 rounded-2xl shadow-xl border border-sage-light/50">
-                <span className="text-xs font-bold text-gold-soft uppercase tracking-wider block mb-1">
-                  Disponibilité Immédiate
-                </span>
-                <h3 className="font-extrabold text-teal-deep text-lg mb-1.5">
-                  Où trouver nos produits ?
-                </h3>
-                <p className="text-anthracite-soft/80 text-xs sm:text-sm mb-4 leading-relaxed">
-                  Retrouvez nos marques européennes dans les pharmacies et parapharmacies partenaires partout au Maroc.
-                </p>
+                <span className="text-xs font-bold text-gold-soft uppercase tracking-wider block mb-1">{tx("Disponibilité Immédiate")}</span>
+                <h3 className="font-extrabold text-teal-deep text-lg mb-1.5">{tx("Où trouver nos produits ?")}</h3>
+                <p className="text-anthracite-soft/80 text-xs sm:text-sm mb-4 leading-relaxed">{tx("Retrouvez nos marques européennes dans les pharmacies et parapharmacies partenaires partout au Maroc.")}</p>
                 <Link 
                   href="/pharmacies" 
                   className="block w-full text-center bg-teal-deep text-white font-bold px-4 py-3 rounded-xl hover:bg-gold-soft hover:text-teal-deep transition-all shadow-md shimmer-effect text-sm"
-                >
-                  Localiser une pharmacie →
-                </Link>
+                >{tx("Localiser une pharmacie →")}</Link>
               </div>
             </motion.div>
 
@@ -241,7 +231,7 @@ export default function FaqPage() {
             >
               <Image 
                 src="/images/unsplash/marinee.png" 
-                alt="COLAGENOVA® Antiox+ Collagène marin au Maroc - AFAQ HEALTH" 
+                alt={tx("COLAGENOVA® Antiox+ Collagène marin au Maroc - AFAQ HEALTH")}
                 fill 
                 sizes="33vw"
                 className="object-cover group-hover:scale-105 transition-transform duration-700" 
@@ -257,8 +247,8 @@ export default function FaqPage() {
               className="relative aspect-square w-full rounded-3xl overflow-hidden shadow-xl border border-sage-light/50 group"
             >
               <Image 
-                src="/images/unsplash/comp/Gemini_Generated_Image_x71gg6x71gg6x71g.jpg" 
-                alt="Gamme de compléments alimentaires Sotya au Maroc" 
+                src="/images/unsplash/comp/sotya-complements-alimentaires-maroc.jpg"
+                alt={tx("Gamme de compléments alimentaires Sotya au Maroc - AFAQ HEALTH")}
                 fill 
                 sizes="33vw"
                 className="object-cover group-hover:scale-105 transition-transform duration-700" 
@@ -274,8 +264,8 @@ export default function FaqPage() {
               className="relative aspect-[3/4] w-full rounded-3xl overflow-hidden shadow-xl border border-sage-light/50 group"
             >
               <Image 
-                src="/images/unsplash/babies/Gemini_Generated_Image_lxoactlxoactlxoa.jpg" 
-                alt="Naturamins Kids Gummies Défenses et Vitamines au Maroc" 
+                src="/images/unsplash/babies/naturamins-kids-gummies-vitamines-maroc.jpg"
+                alt={tx("Naturamins Kids Gummies Défenses et Vitamines au Maroc - AFAQ HEALTH")}
                 fill 
                 sizes="33vw"
                 className="object-cover group-hover:scale-105 transition-transform duration-700" 
@@ -291,8 +281,8 @@ export default function FaqPage() {
               className="relative aspect-[3/4] w-full rounded-3xl overflow-hidden shadow-xl border border-sage-light/50 group"
             >
               <Image 
-                src="/images/unsplash/babies/725a1dc0-a8ce-49c6-b1ff-e99adc2d9dbf.png" 
-                alt="Naturamins Kids Sirop Sommeil et Relaxation pour enfants au Maroc" 
+                src="/images/unsplash/babies/naturamins-kids-sirop-sommeil-enfants-maroc.png"
+                alt={tx("Naturamins Kids Sirop Sommeil et Relaxation pour enfants au Maroc - AFAQ HEALTH")}
                 fill 
                 sizes="33vw"
                 className="object-cover group-hover:scale-105 transition-transform duration-700" 
@@ -310,7 +300,7 @@ export default function FaqPage() {
               <React.Fragment key={catIdx}>
                 <div className="space-y-4">
                   <div className="inline-block px-3.5 py-1 text-xs font-bold tracking-wider text-teal-deep bg-sage-light rounded-full uppercase">
-                    {category.title}
+                    {tx(category.title)}
                   </div>
 
                   <div className="space-y-3.5">
@@ -331,7 +321,7 @@ export default function FaqPage() {
                             className="w-full px-6 py-5 text-left flex justify-between items-center focus:outline-none"
                           >
                             <span className={`font-bold pr-6 text-[15px] sm:text-base transition-colors leading-snug ${isOpen ? 'text-teal-deep' : 'text-anthracite-deep'}`}>
-                              {faq.q}
+                              {tx(faq.q)}
                             </span>
                             <span className={`text-gold-soft text-sm flex-shrink-0 transform transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`}>
                               ▼
@@ -344,7 +334,7 @@ export default function FaqPage() {
                             }`}
                           >
                             <p className="text-anthracite-soft/85 text-sm leading-relaxed border-t border-sage-light/30 pt-4 whitespace-pre-line">
-                              {faq.a}
+                              {tx(faq.a)}
                             </p>
                           </div>
                         </motion.div>
@@ -359,28 +349,20 @@ export default function FaqPage() {
                     <div className="relative h-[480px] w-full rounded-3xl overflow-hidden shadow-xl border border-sage-light/50 group">
                       <Image 
                         src="/uploaded/faq_support.png" 
-                        alt="Compléments alimentaires certifiés en pharmacie au Maroc - AFAQ HEALTH" 
+                        alt={tx("Compléments alimentaires certifiés en pharmacie au Maroc - AFAQ HEALTH")}
                         fill 
                         sizes="(max-width: 1024px) 100vw, 33vw"
                         className="object-cover group-hover:scale-105 transition-transform duration-700" 
                       />
                       <div className="absolute inset-0 bg-teal-deep/15 pointer-events-none" />
                       <div className="absolute bottom-5 left-5 right-5 bg-white/95 backdrop-blur-md p-6 rounded-2xl shadow-xl border border-sage-light/50">
-                        <span className="text-xs font-bold text-gold-soft uppercase tracking-wider block mb-1">
-                          Disponibilité Immédiate
-                        </span>
-                        <h3 className="font-extrabold text-teal-deep text-lg mb-1.5">
-                          Où trouver nos produits ?
-                        </h3>
-                        <p className="text-anthracite-soft/80 text-xs sm:text-sm mb-4 leading-relaxed">
-                          Retrouvez nos marques européennes dans les pharmacies et parapharmacies partenaires partout au Maroc.
-                        </p>
+                        <span className="text-xs font-bold text-gold-soft uppercase tracking-wider block mb-1">{tx("Disponibilité Immédiate")}</span>
+                        <h3 className="font-extrabold text-teal-deep text-lg mb-1.5">{tx("Où trouver nos produits ?")}</h3>
+                        <p className="text-anthracite-soft/80 text-xs sm:text-sm mb-4 leading-relaxed">{tx("Retrouvez nos marques européennes dans les pharmacies et parapharmacies partenaires partout au Maroc.")}</p>
                         <Link 
                           href="/pharmacies" 
                           className="block w-full text-center bg-teal-deep text-white font-bold px-4 py-3 rounded-xl hover:bg-gold-soft hover:text-teal-deep transition-all shadow-md shimmer-effect text-sm"
-                        >
-                          Localiser une pharmacie →
-                        </Link>
+                        >{tx("Localiser une pharmacie →")}</Link>
                       </div>
                     </div>
                   </div>

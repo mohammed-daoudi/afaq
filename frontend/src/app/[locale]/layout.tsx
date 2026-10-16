@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Outfit, Inter, Poppins } from "next/font/google";
 import "../globals.css";
+import { createTextTranslator } from '@/lib/translate';
 
 const outfit = Outfit({
   subsets: ["latin"],
@@ -23,7 +24,7 @@ const poppins = Poppins({
 
 import { getSiteUrl } from "@/lib/seo";
 
-export const metadata: Metadata = {
+const baseMetadata: Metadata = {
   metadataBase: new URL(getSiteUrl()),
   title: {
     default: "AFAQ HEALTH | Marques Européennes de Compléments Alimentaires au Maroc",
@@ -93,6 +94,23 @@ export const metadata: Metadata = {
   manifest: '/site.webmanifest',
 };
 
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+  const { locale } = await params;
+  const tx = createTextTranslator(locale);
+  const title = tx('AFAQ HEALTH | Marques Européennes de Compléments Alimentaires au Maroc');
+  const description = tx(baseMetadata.description ?? '');
+  return {
+    ...baseMetadata,
+    title: { default: title, template: '%s' },
+    description,
+    openGraph: {
+      ...baseMetadata.openGraph, title, description,
+      locale: locale === 'ar' ? 'ar_MA' : locale === 'en' ? 'en_US' : 'fr_FR',
+    },
+    twitter: { ...baseMetadata.twitter, title, description },
+  };
+}
+
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages } from 'next-intl/server';
 import { notFound } from 'next/navigation';
@@ -116,13 +134,13 @@ export default async function RootLayout({
 
   // Providing all messages to the client
   // side is the easiest way to get started
-  const messages = await getMessages();
+  const messages = await getMessages({ locale });
 
   return (
     <html lang={locale} className={`${outfit.variable} ${inter.variable} ${poppins.variable}`} dir={locale === 'ar' ? 'rtl' : 'ltr'}>
       <body className="antialiased text-anthracite-soft bg-ivory-soft">
         <DisableInspect />
-        <NextIntlClientProvider messages={messages}>
+        <NextIntlClientProvider locale={locale} messages={messages} timeZone="Africa/Casablanca">
           <CookiePreferencesProvider>
             {children}
           </CookiePreferencesProvider>

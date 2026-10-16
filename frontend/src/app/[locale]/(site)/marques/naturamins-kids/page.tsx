@@ -1,4 +1,6 @@
 'use client';
+import { useText } from '@/lib/useText';
+
 
 import React from 'react';
 import { Card } from '@/components/ui/Card';
@@ -25,6 +27,7 @@ const fadeUp = {
 };
 
 export default function NaturaminsKidsPage() {
+  const tx = useText();
   return (
     <div className="min-h-screen bg-sage-light/20 pt-32 pb-24 overflow-hidden">
       <div className="container mx-auto px-4">
@@ -35,27 +38,15 @@ export default function NaturaminsKidsPage() {
           className="max-w-4xl mx-auto text-center mb-24 space-y-8"
         >
           <div className="flex flex-wrap justify-center gap-3 mb-4">
-            <motion.div variants={fadeUp} className="inline-block px-4 py-1.5 text-xs font-bold tracking-widest text-teal-deep bg-white border border-teal-deep/20 rounded-full uppercase shadow-sm">
-              Exclusivité AFAQ HEALTH
-            </motion.div>
-            <motion.div variants={fadeUp} className="inline-block px-4 py-1.5 text-xs font-bold tracking-widest text-gold-soft bg-gold-soft/10 rounded-full uppercase shadow-sm">
-              Lancement en 2027
-            </motion.div>
+            <motion.div variants={fadeUp} className="inline-block px-4 py-1.5 text-xs font-bold tracking-widest text-teal-deep bg-white border border-teal-deep/20 rounded-full uppercase shadow-sm">{tx("Exclusivité AFAQ HEALTH")}</motion.div>
+            <motion.div variants={fadeUp} className="inline-block px-4 py-1.5 text-xs font-bold tracking-widest text-gold-soft bg-gold-soft/10 rounded-full uppercase shadow-sm">{tx("Lancement en 2027")}</motion.div>
           </div>
           
-          <motion.h1 variants={fadeUp} className="text-5xl md:text-6xl lg:text-7xl font-black text-teal-deep leading-tight">
-            Naturamins Kids
-          </motion.h1>
-          <motion.h2 variants={fadeUp} className="text-2xl md:text-3xl font-bold text-teal-deep/70">
-            Une gamme dédiée à la nutrition des enfants.
-          </motion.h2>
+          <motion.h1 variants={fadeUp} className="text-5xl md:text-6xl lg:text-7xl font-black text-teal-deep leading-tight"><bdi dir="ltr">{tx("Naturamins Kids")}</bdi></motion.h1>
+          <motion.h2 variants={fadeUp} className="text-2xl md:text-3xl font-bold text-teal-deep/70">{tx("Une gamme dédiée à la nutrition des enfants.")}</motion.h2>
           <div className="space-y-4">
-            <motion.p variants={fadeUp} className="text-xl text-anthracite-soft/80 font-medium max-w-3xl mx-auto leading-relaxed">
-              Naturamins Kids rejoint le portefeuille exclusif d'AFAQ HEALTH au Maroc et en Afrique de l'Ouest.
-            </motion.p>
-            <motion.p variants={fadeUp} className="text-lg text-anthracite-soft/80 max-w-3xl mx-auto leading-relaxed">
-              Cette gamme pédiatrique a été sélectionnée pour répondre à des besoins nutritionnels spécifiques des enfants et accompagner les familles dans leur quotidien.
-            </motion.p>
+            <motion.p variants={fadeUp} className="text-xl text-anthracite-soft/80 font-medium max-w-3xl mx-auto leading-relaxed">{tx("Naturamins Kids rejoint le portefeuille exclusif d'AFAQ HEALTH au Maroc et en Afrique de l'Ouest.")}</motion.p>
+            <motion.p variants={fadeUp} className="text-lg text-anthracite-soft/80 max-w-3xl mx-auto leading-relaxed">{tx("Cette gamme pédiatrique a été sélectionnée pour répondre à des besoins nutritionnels spécifiques des enfants et accompagner les familles dans leur quotidien.")}</motion.p>
           </div>
         </motion.div>
 
@@ -65,8 +56,8 @@ export default function NaturaminsKidsPage() {
             initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl font-extrabold text-teal-deep mb-4">Notre approche</h2>
-            <p className="text-xl text-anthracite-soft/80">Une vision globale pour la santé de demain.</p>
+            <h2 className="text-4xl font-extrabold text-teal-deep mb-4">{tx("Notre approche")}</h2>
+            <p className="text-xl text-anthracite-soft/80">{tx("Une vision globale pour la santé de demain.")}</p>
           </motion.div>
           
           <motion.div 
@@ -77,9 +68,9 @@ export default function NaturaminsKidsPage() {
             {approaches.map((approach, index) => (
               <motion.div variants={fadeUp} key={index}>
                 <Card className="border-none shadow-md hover:shadow-xl transition-all duration-300 bg-white p-10 h-full">
-                  <h3 className="text-2xl font-bold text-teal-deep mb-4">{approach.title}</h3>
+                  <h3 className="text-2xl font-bold text-teal-deep mb-4">{tx(approach.title)}</h3>
                   <p className="text-anthracite-soft/80 leading-relaxed">
-                    {approach.desc}
+                    {tx(approach.desc)}
                   </p>
                 </Card>
               </motion.div>
@@ -95,12 +86,8 @@ export default function NaturaminsKidsPage() {
           className="max-w-4xl mx-auto"
         >
           <Card className="bg-sage-light text-center p-12 md:p-16 rounded-[3rem] shadow-sm border border-teal-deep/10">
-            <h2 className="text-3xl font-bold text-teal-deep mb-4">
-              La gamme est en cours de préparation.
-            </h2>
-            <p className="text-lg text-anthracite-soft/80">
-              Restez à l'écoute, les fiches produits seront bientôt disponibles.
-            </p>
+            <h2 className="text-3xl font-bold text-teal-deep mb-4">{tx("La gamme est en cours de préparation.")}</h2>
+            <p className="text-lg text-anthracite-soft/80">{tx("Restez à l'écoute, les fiches produits seront bientôt disponibles.")}</p>
           </Card>
         </motion.div>
 

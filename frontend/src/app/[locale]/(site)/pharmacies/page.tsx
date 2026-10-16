@@ -1,16 +1,23 @@
 'use client';
+import { useText } from '@/lib/useText';
+
 
 import React, { useState, useEffect } from 'react';
 import dynamic from 'next/dynamic';
 import api from '@/lib/api';
 
-const MapComponent = dynamic(() => import('@/components/map/PharmacyMap'), { 
-  ssr: false,
-  loading: () => (
+function MapLoading() {
+  const tx = useText();
+  return (
     <div className="absolute inset-0 flex items-center justify-center bg-[#f4f7f6]">
-      <div className="text-teal-deep font-semibold">Chargement de Google Maps...</div>
+      <div className="text-teal-deep font-semibold">{tx('Chargement de Google Maps...')}</div>
     </div>
-  )
+  );
+}
+
+const MapComponent = dynamic(() => import('@/components/map/PharmacyMap'), {
+  ssr: false,
+  loading: MapLoading,
 });
 
 interface Pharmacy {
@@ -57,6 +64,7 @@ const DEFAULT_PHARMACIES: Pharmacy[] = [
 ];
 
 export default function PharmaciesPage() {
+  const tx = useText();
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCity, setSelectedCity] = useState('Toutes');
   const [activePharmacy, setActivePharmacy] = useState<number | null>(null);
@@ -108,7 +116,7 @@ export default function PharmaciesPage() {
 
   const handleLocateMe = () => {
     if (!navigator.geolocation) {
-      alert("La géolocalisation n'est pas supportée par votre navigateur.");
+      alert(tx("La géolocalisation n'est pas supportée par votre navigateur."));
       return;
     }
     
@@ -123,7 +131,7 @@ export default function PharmaciesPage() {
         setIsLocating(false);
       },
       () => {
-        alert("Impossible de récupérer votre position. Veuillez vérifier vos autorisations.");
+        alert(tx("Impossible de récupérer votre position. Veuillez vérifier vos autorisations."));
         setIsLocating(false);
       }
     );
@@ -160,18 +168,15 @@ export default function PharmaciesPage() {
         <div className="max-w-4xl mx-auto mb-6 space-y-3 text-center flex flex-col items-center">
           {isProductFiltered && (
             <div className="flex items-center justify-center gap-3">
-              <div className="inline-block px-3 py-1 text-xs font-semibold tracking-wider text-white bg-gold-soft rounded-full uppercase">
-                Stock Vérifié ✓
-              </div>
+              <div className="inline-block px-3 py-1 text-xs font-semibold tracking-wider text-white bg-gold-soft rounded-full uppercase">{tx("Stock Vérifié ✓")}</div>
             </div>
           )}
-          <h1 className="text-3xl md:text-4xl font-extrabold text-teal-deep">
-            Pharmacies à <span className="text-gold-soft">proximité</span>
+          <h1 className="text-3xl md:text-4xl font-extrabold text-teal-deep">{tx("Pharmacies à ")}<span className="text-gold-soft">{tx("proximité")}</span>
           </h1>
           <p className="text-base text-anthracite-soft/80 max-w-2xl mx-auto">
-            {isProductFiltered 
+            {tx(isProductFiltered
               ? "Les pharmacies ci-dessous ont déclaré avoir ce produit en stock." 
-              : "Recherchez les pharmacies partenaires AFAQ HEALTH distribuant nos références près de chez vous."}
+              : "Recherchez les pharmacies partenaires AFAQ HEALTH distribuant nos références près de chez vous.")}
           </p>
         </div>
 
@@ -186,7 +191,7 @@ export default function PharmaciesPage() {
               <div className="flex flex-col sm:flex-row gap-3">
                 <input 
                   type="text" 
-                  placeholder="Rechercher une pharmacie, un quartier..." 
+                  placeholder={tx("Rechercher une pharmacie, un quartier...")}
                   className="flex-1 px-4 py-3 rounded-xl border border-sage-light focus:border-teal-deep focus:ring-1 focus:ring-teal-deep outline-none bg-white transition-all text-sm"
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
@@ -195,13 +200,13 @@ export default function PharmaciesPage() {
                   onClick={handleLocateMe}
                   disabled={isLocating}
                   className="flex-shrink-0 flex items-center justify-center gap-2 bg-white border border-teal-deep text-teal-deep px-4 py-3 rounded-xl hover:bg-sage-light transition-all text-sm font-semibold whitespace-nowrap disabled:opacity-50"
-                  title="Trouver les pharmacies autour de moi"
+                  title={tx("Trouver les pharmacies autour de moi")}
                 >
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                     <circle cx="12" cy="12" r="10"></circle>
                     <circle cx="12" cy="12" r="3"></circle>
                   </svg>
-                  {isLocating ? '...' : 'Autour de moi'}
+                  {tx(isLocating ? '...' : 'Autour de moi')}
                 </button>
               </div>
               
@@ -212,7 +217,7 @@ export default function PharmaciesPage() {
                     onClick={() => setSelectedCity(city)}
                     className={`whitespace-nowrap px-4 py-1.5 text-xs font-semibold ${ selectedCity === city ? 'bg-teal-deep text-white' : 'bg-sage-light text-teal-deep' } rounded-xl hover:bg-gold-soft hover:text-teal-deep transition-all shadow-md shimmer-effect`}
                   >
-                    {city}
+                    {tx(city)}
                   </button>
                 ))}
               </div>
@@ -232,14 +237,14 @@ export default function PharmaciesPage() {
                     }`}
                   >
                     <div className="flex justify-between items-start gap-2">
-                      <h3 className="font-bold text-teal-deep text-lg leading-tight mb-1">{pharmacy.name}</h3>
+                      <h3 className="font-bold text-teal-deep text-lg leading-tight mb-1">{tx(pharmacy.name)}</h3>
                     </div>
                     <p className="text-sm text-anthracite-soft/80 flex items-start gap-1.5 mt-2">
                       <span className="text-gold-soft">📍</span>
                       <span>
-                        {pharmacy.address}
+                        {tx(pharmacy.address)}
                         {pharmacy.distance !== null && (
-                          <span className="ml-2 font-semibold text-teal-deep">{formatDistance(pharmacy.distance)}</span>
+                          <span className="ml-2 font-semibold text-teal-deep">{tx(formatDistance(pharmacy.distance))}</span>
                         )}
                       </span>
                     </p>
@@ -250,15 +255,13 @@ export default function PharmaciesPage() {
                         rel="noopener noreferrer"
                         className="inline-block w-full text-center bg-teal-deep text-white text-sm py-2 font-semibold rounded-xl hover:bg-gold-soft hover:text-teal-deep transition-all shadow-md shimmer-effect"
                         onClick={(e) => e.stopPropagation()}
-                      >
-                        Obtenir l'itinéraire
-                      </a>
+                      >{tx("Obtenir l'itinéraire")}</a>
                     </div>
                   </div>
                 ))
               ) : (
                 <div className="text-center p-8 text-anthracite-soft/60">
-                  <p>Aucune pharmacie trouvée pour cette recherche.</p>
+                  <p>{tx("Aucune pharmacie trouvée pour cette recherche.")}</p>
                 </div>
               )}
             </div>
@@ -270,7 +273,7 @@ export default function PharmaciesPage() {
           <div className="w-full lg:w-1/2 xl:w-7/12 bg-white rounded-3xl shadow-sm border border-sage-light relative overflow-hidden flex flex-col z-0 h-[300px] sm:h-[400px] lg:h-auto lg:min-h-0">
             {isLoading ? (
               <div className="absolute inset-0 flex items-center justify-center bg-[#f4f7f6]">
-                <div className="text-teal-deep font-semibold">Chargement de la carte...</div>
+                <div className="text-teal-deep font-semibold">{tx("Chargement de la carte...")}</div>
               </div>
             ) : (
               <MapComponent 

@@ -21,7 +21,7 @@ const STATIC_BRANDS = [
     tagline: 'Nutrition adaptée et sûre pour les enfants',
     bg: '#eaf4ec',
     accentColor: '#0f4c3a',
-    heroImage: '/images/unsplash/comp/Gemini_Generated_Image_1tkniv1tkniv1tkn.jpg',
+    heroImage: '/images/unsplash/comp/naturamins-kids-nutrition-pediatrique.jpg',
     link: '/marques/naturamins-kids',
   },
   {
@@ -112,7 +112,7 @@ export function BrandCarousel() {
           {(brand.heroImage || brand.logo) && (
             <Image
               src={brand.heroImage || brand.logo}
-              alt={brand.name}
+              alt={`${brand.name} - Marques Européennes de Compléments Alimentaires au Maroc`}
               fill
               className="object-cover object-center"
             />

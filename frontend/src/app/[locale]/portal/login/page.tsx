@@ -1,6 +1,8 @@
 'use client';
+import { useText } from '@/lib/useText';
+
 import React, { useState } from 'react';
-import { useRouter } from 'next/navigation';
+import { Link, useRouter } from '@/navigation';
 import { Logo } from '@/components/ui/Logo';
 import { Input } from '@/components/ui/Input';
 import { Button } from '@/components/ui/Button';
@@ -13,6 +15,7 @@ const loginSchema = z.object({
 });
 
 export default function LoginPage() {
+  const tx = useText();
   const router = useRouter();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -54,24 +57,24 @@ export default function LoginPage() {
       <div className="w-full max-w-md bg-white rounded-3xl shadow-xl p-8 border border-sage-light">
         <div className="flex flex-col items-center mb-8">
           <Logo className="mb-6 scale-110" />
-          <h1 className="text-2xl font-bold text-teal-deep">Espace Professionnel</h1>
-          <p className="text-sm text-anthracite-soft/60 mt-1">Connectez-vous à votre compte partenaire</p>
+          <h1 className="text-2xl font-bold text-teal-deep">{tx("Espace Professionnel")}</h1>
+          <p className="text-sm text-anthracite-soft/60 mt-1">{tx("Connectez-vous à votre compte partenaire")}</p>
         </div>
 
         <form onSubmit={handleLogin} className="space-y-5">
           <Input 
-            label="Email Professionnel" 
+            label={tx("Email Professionnel")}
             type="email" 
-            placeholder="contact@pharmacie.ma"
+            placeholder={tx("contact@pharmacie.ma")}
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
             autoComplete="email"
           />
           <Input 
-            label="Mot de passe" 
+            label={tx("Mot de passe")}
             type="password" 
-            placeholder="••••••••"
+            placeholder={tx("••••••••")}
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
@@ -80,26 +83,25 @@ export default function LoginPage() {
 
           {formError && (
             <div className="rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
-              {formError}
+              {tx(formError)}
             </div>
           )}
           
           <div className="flex items-center justify-between text-sm">
             <label className="flex items-center gap-2 cursor-pointer">
               <input type="checkbox" className="rounded border-sage-light text-teal-deep focus:ring-teal-deep" />
-              <span className="text-anthracite-soft/80">Se souvenir de moi</span>
+              <span className="text-anthracite-soft/80">{tx("Se souvenir de moi")}</span>
             </label>
-            <a href="#" className="text-gold-soft hover:underline font-medium">Mot de passe oublié ?</a>
+            <a href="#" className="text-gold-soft hover:underline font-medium">{tx("Mot de passe oublié ?")}</a>
           </div>
 
           <Button type="submit" className="w-full" size="lg" withShimmer disabled={isLoading}>
-            {isLoading ? 'Connexion en cours...' : 'Se Connecter'}
+            {tx(isLoading ? 'Connexion en cours...' : 'Se Connecter')}
           </Button>
         </form>
 
-        <div className="mt-8 text-center text-sm text-anthracite-soft/60 border-t border-sage-light pt-6">
-          Vous souhaitez devenir partenaire ? <br />
-          <a href="/contact" className="text-teal-deep font-semibold hover:underline">Contactez notre service commercial</a>
+        <div className="mt-8 text-center text-sm text-anthracite-soft/60 border-t border-sage-light pt-6">{tx("Vous souhaitez devenir partenaire ? ")}<br />
+          <Link href="/contact" className="text-teal-deep font-semibold hover:underline">{tx("Contactez notre service commercial")}</Link>
         </div>
       </div>
     </div>
