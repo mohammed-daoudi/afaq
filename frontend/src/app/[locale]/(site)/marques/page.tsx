@@ -113,7 +113,9 @@ export default function MarquesPage() {
                         <Link
                           href={`/produits?brand=${brand.slug}`}
                           className="w-full flex items-center"
-                        >{tx("Découvrir ")}<bdi dir="ltr">{tx(brand.name)}</bdi> <span className="ml-1">→</span>
+                        >
+                          <span>{tx(`Découvrir ${brand.name}`)}</span>
+                          <span className="ml-1 rtl:mr-1 rtl:ml-0">→</span>
                         </Link>
                       </div>
                     </div>
