@@ -120,11 +120,19 @@ export function HomePageClient() {
             variants={staggerContainer}
             className="w-full lg:w-1/2 max-w-xl"
           >
-            <motion.div variants={fadeUp} className="text-sm md:text-base font-bold uppercase tracking-widest text-gold-soft mb-3">{tx("L'expertise derrière AFAQ Health")}</motion.div>
-            <motion.h1 variants={fadeUp} className="text-3xl md:text-4xl lg:text-5xl font-black text-teal-deep leading-tight mb-6"><bdi dir="ltr">{tx("AFAQ HEALTH")}</bdi><span className="block text-lg md:text-xl font-normal text-anthracite-soft/80 mt-2">{tx("Compléments alimentaires & santé au Maroc")}</span>
+            <motion.div variants={fadeUp} className="text-sm md:text-base font-bold uppercase tracking-widest text-gold-soft mb-3">{tx("PORTAIL OFFICIEL MAROC")}</motion.div>
+            <motion.h1 variants={fadeUp} className="text-3xl md:text-4xl lg:text-5xl font-black text-teal-deep leading-tight mb-6">
+              <bdi dir="ltr">{tx("AFAQ HEALTH")}</bdi>
+              <span className="block text-xl md:text-2xl lg:text-3xl font-extrabold text-teal-deep/90 mt-2">
+                {tx("Distributeur de compléments alimentaires européens au Maroc")}
+              </span>
             </motion.h1>
-            <motion.p variants={fadeUp} className="text-lg md:text-xl font-light text-anthracite-soft/90 leading-relaxed mb-6">{tx("AFAQ HEALTH développe et distribue au Maroc un portefeuille de marques européennes sélectionnées pour leur qualité, leur savoir-faire et la pertinence de leurs gammes.")}</motion.p>
-            <motion.p variants={fadeUp} className="text-lg md:text-xl font-light text-anthracite-soft/90 leading-relaxed mb-8">{tx("Nous accompagnons nos partenaires de l'accès au marché à la commercialisation, en associant expertise réglementaire, développement commercial et connaissance du marché marocain.")}</motion.p>
+            <motion.p variants={fadeUp} className="text-lg md:text-xl font-normal text-anthracite-soft/90 leading-relaxed mb-4">
+              {tx("Partenaire exclusif et distributeur officiel au Maroc de laboratoires européens reconnus (SOTYA, COLAGENOVA®, Naturamins Kids).")}
+            </motion.p>
+            <motion.p variants={fadeUp} className="text-base md:text-lg text-anthracite-soft/80 leading-relaxed mb-8">
+              {tx("AFAQ HEALTH assure la sélection, l'enregistrement réglementaire et la distribution pharmaceutique de compléments alimentaires de haute qualité à travers tout le Royaume.")}
+            </motion.p>
 
             {/* Desktop Button */}
             <motion.div variants={fadeUp} className="hidden lg:block">

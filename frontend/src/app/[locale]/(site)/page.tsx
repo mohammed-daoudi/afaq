@@ -13,7 +13,7 @@ export async function generateMetadata({
     ...buildPageMetadata({
       locale,
       path: '',
-      title: 'AFAQ HEALTH | Marques Européennes de Compléments Alimentaires au Maroc',
+      title: 'AFAQ Health Maroc | Compléments alimentaires européens',
       description:
         'Représentant exclusif au Maroc de marques européennes réputées de compléments alimentaires (Sotya, COLAGENOVA®, Naturamins). Produits certifiés disponibles en pharmacie.',
       image: '/icon.png',

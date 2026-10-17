@@ -11,9 +11,9 @@ export async function generateMetadata({
   return buildPageMetadata({
     locale,
     path: '/a-propos',
-    title: 'À Propos d’AFAQ HEALTH | Marques Européennes de Compléments au Maroc',
+    title: 'À propos | AFAQ Health Maroc',
     description:
-      'Découvrez AFAQ HEALTH, partenaire et représentant exclusif de marques européennes de compléments alimentaires au Maroc, disponibles en pharmacie via notre réseau.',
+      'Découvrez AFAQ Health, distributeur de compléments alimentaires européens au Maroc.',
   });
 }
 

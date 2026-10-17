@@ -47,15 +47,6 @@ const baseMetadata: Metadata = {
     'Naturamins Kids Maroc',
     'COLAGENOVA Maroc',
   ],
-  alternates: {
-    canonical: getSiteUrl(),
-    languages: {
-      'fr': getSiteUrl(),
-      'en': `${getSiteUrl()}/en`,
-      'ar': `${getSiteUrl()}/ar`,
-      'x-default': getSiteUrl(),
-    },
-  },
   openGraph: {
     type: "website",
     locale: "fr_FR",

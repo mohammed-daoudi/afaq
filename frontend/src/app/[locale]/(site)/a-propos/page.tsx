@@ -104,7 +104,7 @@ export default function AProposPage() {
         <div className="relative z-10 flex flex-col justify-center h-full min-h-[600px] w-full lg:w-[55%] px-8 md:px-16 lg:px-24 py-20 lg:py-28">
           <motion.div initial="hidden" animate="visible" variants={staggerContainer} className="max-w-xl">
             <motion.div variants={fadeUp} className="text-xs font-bold uppercase tracking-widest text-gold-soft mb-6">{tx("QUI SOMMES-NOUS ?")}</motion.div>
-            <motion.h1 variants={fadeUp} className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-teal-deep leading-tight mb-6"><bdi dir="ltr">{tx("AFAQ HEALTH")}</bdi></motion.h1>
+            <motion.h1 variants={fadeUp} className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-teal-deep leading-tight mb-6">{tx("À propos d'AFAQ HEALTH")}</motion.h1>
 
             <motion.p variants={fadeUp} className="text-xl font-bold text-anthracite-deep leading-relaxed mb-4">{tx("Nous accompagnons le développement des marques européennes de santé et de nutrition sur le marché marocain.")}</motion.p>
             <motion.p variants={fadeUp} className="text-base text-anthracite-soft/75 leading-relaxed mb-4">{tx("AFAQ HEALTH est une société marocaine spécialisée dans l’importation, le développement et la commercialisation de marques européennes dans les domaines de la santé, de la nutrition et du bien-être.")}</motion.p>

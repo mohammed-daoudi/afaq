@@ -15,7 +15,9 @@ export function Footer() {
       <div className="container mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
         <div className="space-y-4">
           <div className="flex items-center gap-2 mb-4">
-            <h3 className="font-bold text-2xl text-white"><bdi dir="ltr">{tx("AFAQ HEALTH")}</bdi></h3>
+            <Link href="/" className="hover:opacity-90 transition-opacity">
+              <h3 className="font-bold text-2xl text-white"><bdi dir="ltr">{tx("AFAQ HEALTH")}</bdi></h3>
+            </Link>
           </div>
           <p className="text-sm text-sage-light/80 max-w-xs leading-relaxed">{tx("Partenaire du développement des marques de santé européennes sur le marché marocain.")}</p>
         </div>

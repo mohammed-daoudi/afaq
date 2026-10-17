@@ -16,6 +16,7 @@ export function Header() {
   const t = useTranslations('Header');
 
   const navLinks = [
+    { href: '/', label: t('home') },
     { href: '/a-propos', label: t('about') },
     { href: '/marques', label: t('brands') },
     { href: '/produits', label: t('products') },
